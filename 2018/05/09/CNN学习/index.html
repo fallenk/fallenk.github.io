@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CNN学习 | Fallenk&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CNN学习快速学习背景知识在前面的文章中，我们介绍了全连接神经网络，以及它的训练和使用。我们用它来识别了手写数字，然而，这种结构的网络对于图像识别任务来说并不是很合适。本文将要介绍一种更适合图像、语音识别任务的神经网络结构——卷积神经网络(Convolutional Neural Network, CNN)。说卷积神经网络是最重要的一种神经网络也不为过，它在最近几年大放异彩，几乎所有图像、语音识别">
+<meta name="keywords" content="AI,深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CNN学习">
+<meta property="og:url" content="http://yoursite.com/2018/05/09/CNN学习/index.html">
+<meta property="og:site_name" content="Fallenk&#39;s Blog">
+<meta property="og:description" content="CNN学习快速学习背景知识在前面的文章中，我们介绍了全连接神经网络，以及它的训练和使用。我们用它来识别了手写数字，然而，这种结构的网络对于图像识别任务来说并不是很合适。本文将要介绍一种更适合图像、语音识别任务的神经网络结构——卷积神经网络(Convolutional Neural Network, CNN)。说卷积神经网络是最重要的一种神经网络也不为过，它在最近几年大放异彩，几乎所有图像、语音识别">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdn.net/20180113174854023">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2256672-0ac9923bebd3c9dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640">
+<meta property="og:image" content="https://img-blog.csdn.net/20180113174953099">
+<meta property="og:image" content="https://img-blog.csdn.net/20180115081038308">
+<meta property="og:image" content="https://img-blog.csdn.net/20180115081038308">
+<meta property="og:image" content="https://img-blog.csdn.net/20180115081038308">
+<meta property="og:image" content="https://img-blog.csdn.net/20180115081038308">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2256672-ad98d6b22f1a66ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/360">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2256672-a36210f89c7164a7.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2256672-548b82ccd7977294.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640">
+<meta property="og:image" content="https://img-blog.csdn.net/20180115081320003">
+<meta property="og:image" content="https://img-blog.csdn.net/20180115081402212">
+<meta property="og:image" content="https://img-blog.csdn.net/20180115081425922">
+<meta property="og:image" content="https://img-blog.csdn.net/20180115081453443">
+<meta property="og:updated_time" content="2018-05-09T14:32:57.758Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CNN学习">
+<meta name="twitter:description" content="CNN学习快速学习背景知识在前面的文章中，我们介绍了全连接神经网络，以及它的训练和使用。我们用它来识别了手写数字，然而，这种结构的网络对于图像识别任务来说并不是很合适。本文将要介绍一种更适合图像、语音识别任务的神经网络结构——卷积神经网络(Convolutional Neural Network, CNN)。说卷积神经网络是最重要的一种神经网络也不为过，它在最近几年大放异彩，几乎所有图像、语音识别">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180113174854023">
+  
+    <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fallenk&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">经历，心得，笔记，目标</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CNN学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/09/CNN学习/" class="article-date">
+  <time datetime="2018-05-09T13:58:41.000Z" itemprop="datePublished">2018-05-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/人工智能/">人工智能</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CNN学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="CNN学习快速学习"><a href="#CNN学习快速学习" class="headerlink" title="CNN学习快速学习"></a>CNN学习快速学习</h1><h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p>在前面的文章中，我们介绍了<a href="https://www.zybuluo.com/hanbingtao/note/485480" target="_blank" rel="noopener">全连接神经网络</a>，以及它的训练和使用。我们用它来识别了手写数字，然而，这种结构的网络对于图像识别任务来说并不是很合适。本文将要介绍一种更适合图像、语音识别任务的神经网络结构——卷积神经网络<code>(Convolutional Neural Network, CNN)</code>。说卷积神经网络是最重要的一种神经网络也不为过，它在最近几年大放异彩，几乎所有图像、语音识别领域的重要突破都是卷积神经网络取得的，比如谷歌的GoogleNet、微软的ResNet等，打败李世石的AlphaGo也用到了这种网络。本文将详细介绍卷积神经网络以及它的训练算法，以及动手实现一个简单的卷积神经网络。<br><a id="more"></a></p>
+<h2 id="一个新的激活函数–ReLU"><a href="#一个新的激活函数–ReLU" class="headerlink" title="一个新的激活函数–ReLU"></a>一个新的激活函数–ReLU</h2><p>最近几年卷积神经网络中，激活函数往往不选择sigmoid或tanh函数，而是选择relu函数。Relu函数的定义是：<br><img src="https://img-blog.csdn.net/20180113174854023" alt=""><br>Relu函数图像如下图所示:<br><img src="http://upload-images.jianshu.io/upload_images/2256672-0ac9923bebd3c9dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt=""></p>
+<p>Relu函数作为激活函数，有下面几大优势：</p>
+<ul>
+<li><strong>速度快</strong> 和<code>sigmoid函数</code>需要计算指数和倒数相比，<code>relu函数</code>其实就是一个<code>max(0,x)</code>，计算代价小很多。</li>
+<li><strong>减轻梯度消失问题</strong> 回忆一下计算梯度的公式<img src="https://img-blog.csdn.net/20180113174953099" alt="">其中，<img src="https://img-blog.csdn.net/20180115081038308" alt="">是sigmoid函数的导数。在使用反向传播算法进行梯度计算时，每经过一层sigmoid神经元，梯度就要乘上一个<img src="https://img-blog.csdn.net/20180115081038308" alt="">。从下图可以看出，<img src="https://img-blog.csdn.net/20180115081038308" alt="">函数最大值是1/4。因此，乘一个<img src="https://img-blog.csdn.net/20180115081038308" alt="">会导致梯度越来越小，这对于深层网络的训练是个很大的问题。而relu函数的导数是1，不会导致梯度变小。当然，激活函数仅仅是导致梯度减小的一个因素，但无论如何在这方面relu的表现强于sigmoid。使用relu激活函数可以让你训练更深的网络。<img src="http://upload-images.jianshu.io/upload_images/2256672-ad98d6b22f1a66ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/360" alt=""></li>
+<li><strong>稀疏性</strong> 通过对大脑的研究发现，大脑在工作的时候只有大约5%的神经元是激活的，而采用sigmoid激活函数的人工神经网络，其激活率大约是50%。有论文声称人工神经网络在15%-30%的激活率时是比较理想的。因为relu函数在输入小于0时是完全不激活的，因此可以获得一个更低的激活率。</li>
+</ul>
+<h2 id="全连接网络-VS-卷积网络"><a href="#全连接网络-VS-卷积网络" class="headerlink" title="全连接网络 VS 卷积网络"></a>全连接网络 VS 卷积网络</h2><p>全连接神经网络之所以不太适合图像识别任务，主要有以下几个方面的问题：</p>
+<ul>
+<li><strong>参数数量太多</strong> 考虑一个输入1000<em>1000像素的图片(一百万像素，现在已经不能算大图了)，输入层有1000</em>1000=100万节点。假设第一个隐藏层有100个节点(这个数量并不多)，那么仅这一层就有(1000<em>1000+1)</em>100=1亿参数，这实在是太多了！我们看到图像只扩大一点，参数数量就会多很多，因此它的扩展性很差。</li>
+<li><strong>没有利用像素之间的位置信息</strong> 对于图像识别任务来说，每个像素和其周围像素的联系是比较紧密的，和离得很远的像素的联系可能就很小了。如果一个神经元和上一层所有神经元相连，那么就相当于对于一个像素来说，把图像的所有像素都等同看待，这不符合前面的假设。当我们完成每个连接权重的学习之后，最终可能会发现，有大量的权重，它们的值都是很小的(也就是这些连接其实无关紧要)。努力学习大量并不重要的权重，这样的学习必将是非常低效的。</li>
+<li><strong>网络层数限制</strong> 我们知道网络层数越多其表达能力越强，但是通过梯度下降方法训练深度全连接神经网络很困难，因为全连接神经网络的梯度很难传递超过3层。因此，我们不可能得到一个很深的全连接神经网络，也就限制了它的能力。</li>
+</ul>
+<p>那么，卷积神经网络又是怎样解决这个问题的呢？主要有三个思路：</p>
+<ul>
+<li><strong>局部连接</strong> 这个是最容易想到的，每个神经元不再和上一层的所有神经元相连，而只和一小部分神经元相连。这样就减少了很多参数。</li>
+<li><strong>权值共享</strong> 一组连接可以共享同一个权重，而不是每个连接有一个不同的权重，这样又减少了很多参数。</li>
+<li><strong>下采样</strong> 可以使用Pooling来减少每层的样本数，进一步减少参数数量，同时还可以提升模型的鲁棒性。</li>
+</ul>
+<p>对于图像识别任务来说，卷积神经网络通过尽可能保留重要的参数，去掉大量不重要的参数，来达到更好的学习效果。</p>
+<p>接下来，我们将详述卷积神经网络到底是何方神圣。</p>
+<h2 id="卷积神经网络是啥"><a href="#卷积神经网络是啥" class="headerlink" title="卷积神经网络是啥"></a>卷积神经网络是啥</h2><p>首先，我们先获取一个感性认识，下图是一个卷积神经网络的示意图：<img src="http://upload-images.jianshu.io/upload_images/2256672-a36210f89c7164a7.png" alt=""></p>
+<h3 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h3><p>如上图所示，一个卷积神经网络由<strong>若干卷积层</strong>、<strong>Pooling层</strong>、<strong>全连接层</strong>组成。你可以构建各种不同的卷积神经网络，它的常用架构模式为：<br><code>INPUT -&gt; [[CONV]*N -&gt; POOL?]*M -&gt; [FC]*K</code></p>
+<p>也就是N个卷积层叠加，然后(可选)叠加一个Pooling层，重复这个结构M次，最后叠加K个全连接层。</p>
+<p>对于上图展示的卷积神经网络：<br><code>INPUT -&gt; CONV -&gt; POOL -&gt; CONV -&gt; POOL -&gt; FC -&gt; FC</code><br>按照上面描述：<br><code>INPUT -&gt; [[CONV]*1 -&gt; POOL]*2 -&gt; [FC]*2</code> 即<code>N=1, M=2, K=2</code></p>
+<h3 id="三维的层结构"><a href="#三维的层结构" class="headerlink" title="三维的层结构"></a>三维的层结构</h3><p>从图1我们可以发现卷积神经网络的层结构和全连接神经网络的层结构有很大不同。全连接神经网络每层的神经元是按照一维排列的，也就是排成一条线的样子；而卷积神经网络每层的神经元是按照三维排列的，也就是排成一个长方体的样子，有宽度、高度和深度。</p>
+<p>对于图1展示的神经网络，我们看到<strong>输入层的宽度和高度</strong>对应于输入图像的宽度和高度，而它的深度为1。接着，第一个卷积层对这幅图像<strong>进行了卷积操作</strong>(后面我们会讲如何计算卷积)，<strong>得到了三个Feature Map</strong>。这里的”3”可能是让很多初学者迷惑的地方，实际上，就是这个卷积层包含三个Filter，也就是三套参数，每个Filter都可以把原始输入图像卷积得到一个Feature Map，三个Filter就可以得到三个Feature Map。至于一个卷积层可以有多少个Filter，那是可以自由设定的。也就是说，卷积层的Filter个数也是一个超参数。我们可以<strong>把Feature Map可以看做是通过卷积变换提取到的图像特征</strong>，三个Filter就对原始图像提取出三组不同的特征，也就是得到了三个Feature Map，也称做三个<code>通道(channel)</code>。</p>
+<p>继续观察图1，在第一个卷积层之后，Pooling层对三个Feature Map做了下采样(后面我们会讲如何计算下采样)，得到了三个更小的Feature Map。接着，是第二个<strong>卷积层</strong>，它有5个Filter。每个Fitler都把前面下采样之后的3个<strong>Feature Map卷积在一起，得到一个新的Feature Map。这样，5个Filter就得到了5个Feature Map。接着，是第二个Pooling，继续对5个Feature Map进行下采样</strong>，得到了5个更小的Feature Map。</p>
+<p>图1所示网络的最后两层是全连接层。第一个全连接层的每个神经元，和上一层5个Feature Map中的每个神经元相连，第二个全连接层(也就是输出层)的每个神经元，则和第一个全连接层的每个神经元相连，这样得到了整个网络的输出。</p>
+<p>至此，我们对卷积神经网络有了最基本的感性认识。接下来，我们将介绍卷积神经网络中各种层的计算和训练。</p>
+<h2 id="卷积神经网络输出值的计算"><a href="#卷积神经网络输出值的计算" class="headerlink" title="卷积神经网络输出值的计算"></a>卷积神经网络输出值的计算</h2><h3 id="卷积层输出值的计算"><a href="#卷积层输出值的计算" class="headerlink" title="卷积层输出值的计算"></a>卷积层输出值的计算</h3><p>我们用一个简单的例子来讲述如何计算卷积，然后，我们抽象出卷积层的一些重要概念和计算方法。</p>
+<p>假设有一个<code>5*5</code>的图像，使用一个<code>3*3</code>的filter进行卷积，想得到一个<code>3*3</code>的F<code>eature Map</code>，如下所示：<br><img src="http://upload-images.jianshu.io/upload_images/2256672-548b82ccd7977294.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt=""></p>
+<p>为了清楚的描述卷积计算过程，我们首先对图像的每个像素进行编号，<img src="https://img-blog.csdn.net/20180115081320003" alt="">用表示图像的第i行第i列元素；对filter的每个权重进行编号，<img src="https://img-blog.csdn.net/20180115081402212" alt="">用表示第m行第n列权重，<img src="https://img-blog.csdn.net/20180115081425922" alt="">用表示filter的偏置项；<img src="https://img-blog.csdn.net/20180115081453443" alt="">对Feature Map的每个元素进行编号，用表示Feature Map的第i行第j列元素；用表示激活函数(这个例子选择relu函数作为激活函数)。然后，使用下列公式计算卷积：</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/09/CNN学习/" data-id="cjgz9f2dd0001xdsctb56fvy2" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/02/jupyter学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">jupyter学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CNN学习快速学习"><span class="toc-number">1.</span> <span class="toc-text">CNN学习快速学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景知识"><span class="toc-number">1.1.</span> <span class="toc-text">背景知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个新的激活函数–ReLU"><span class="toc-number">1.2.</span> <span class="toc-text">一个新的激活函数–ReLU</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全连接网络-VS-卷积网络"><span class="toc-number">1.3.</span> <span class="toc-text">全连接网络 VS 卷积网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卷积神经网络是啥"><span class="toc-number">1.4.</span> <span class="toc-text">卷积神经网络是啥</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#网络架构"><span class="toc-number">1.4.1.</span> <span class="toc-text">网络架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三维的层结构"><span class="toc-number">1.4.2.</span> <span class="toc-text">三维的层结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卷积神经网络输出值的计算"><span class="toc-number">1.5.</span> <span class="toc-text">卷积神经网络输出值的计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#卷积层输出值的计算"><span class="toc-number">1.5.1.</span> <span class="toc-text">卷积层输出值的计算</span></a></li></ol></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 Fallenk Liu&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;fallenk_liu@yeah.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "e2fb4051c49842688ce669e634bc983f",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+    
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
