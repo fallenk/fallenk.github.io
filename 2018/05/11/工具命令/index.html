@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
 <meta property="og:description" content="小工具Mac下使用ssh操作远程服务器">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-11T07:54:39.852Z">
+<meta property="og:updated_time" content="2018-05-12T08:26:13.039Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工具命令">
 <meta name="twitter:description" content="小工具Mac下使用ssh操作远程服务器">
@@ -118,7 +118,52 @@
 <p>2，下载文件<br>$ scp 172.30.4.42:/tmp/test2/aaa.php ./<br>将172.30.4.42linux系统中/tmp/test2/aaa.php文件copy到当前目录下面</p>
 <p>3，上传目录<br>$ scp -r ./mytest 172.30.4.42:/tmp/test2<br>将当前目录中的mytest目录上传到172.30.4.42服务器/tmp/test2目录下面。</p>
 <p>4，上传文件<br>$ scp ./mytest/password.php 172.30.4.42:/tmp/test2<br>将当前目录中的mytest目录下的password.php上传到172.30.4.42服务器/tmp/test2目录下面。</p>
-<h2 id="使用Filezilla或者Transmit来上传文件，大文件"><a href="#使用Filezilla或者Transmit来上传文件，大文件" class="headerlink" title="使用Filezilla或者Transmit来上传文件，大文件"></a>使用Filezilla或者Transmit来上传文件，大文件</h2>
+<h2 id="使用Filezilla或者Transmit来上传文件，大文件"><a href="#使用Filezilla或者Transmit来上传文件，大文件" class="headerlink" title="使用Filezilla或者Transmit来上传文件，大文件"></a>使用Filezilla或者Transmit来上传文件，大文件</h2><h2 id="Linux命令行记录"><a href="#Linux命令行记录" class="headerlink" title="Linux命令行记录"></a>Linux命令行记录</h2><p>Linux命令主要有以下9类：</p>
+<ol>
+<li>系统维护及管理命令</li>
+</ol>
+<p><code>date</code>——显示和设置系统日期和时间<br><code>setenv</code>——查询或设置环境变量(set environment variable)</p>
+<ol start="2">
+<li>文件操作及管理命令<br><code>ls</code>——显示文件及目录<br><code>find</code>——查找文件</li>
+<li><p>系统维护及管理命令<br><code>kill</code>——发送一个 signal 给某一个 process<br><code>at</code>——在指定的时间执行指令 </p>
+</li>
+<li><p>磁盘及设备管理命令</p>
+</li>
+</ol>
+<p><code>df</code>——检查文件系统的磁盘空间占用情况(disk free)<br><code>du</code>——显示磁盘空间的使用情况(disk usage)<br><code>mount</code>——挂载设备</p>
+<ol start="5">
+<li>用户管理命令</li>
+</ol>
+<p><code>adduser</code>——新增用户帐户<br><code>userdel</code>——删除用户帐号</p>
+<ol start="6">
+<li>文档操作命令</li>
+</ol>
+<p><code>csplit</code>——分割文件(Split a file into context-determined pieces)<br><code>sort</code>——对文件中的各行进行排序<br>8.网络通信命令</p>
+<p><code>netstat</code>——显示网络连接、路由表和网络接口信息<br><code>ifconfig</code>——显示或设置网络设备</p>
+<ol start="8">
+<li>程序开发命令</li>
+</ol>
+<p><code>cc</code>——c编译<br><code>link</code>——链接</p>
+<ol start="9">
+<li>X Window管理命令</li>
+</ol>
+<p><code>startx</code>——启动X Window<br><code>XF86setup</code>——图形界面下运行的配置程序</p>
+<h2 id="Shell程序组成："><a href="#Shell程序组成：" class="headerlink" title="Shell程序组成："></a>Shell程序组成：</h2><p>(1) 命令或Shell程序；<br>(2) 位置参数；<br>(3) 变量及特殊字符；<br>(4) 表达式比较；<br>(5) 控制流程语句，例如while，case等；<br>(6) 函数。<br>例：备份当前目录下的所有文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mkdir backup</span><br><span class="line">for file in ‘ls’</span><br><span class="line">do</span><br><span class="line">        cp $ file backup/$ file</span><br><span class="line">        if [$? –ne 0] then</span><br><span class="line">                echo “copying $ file error”</span><br><span class="line">        fi</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p>shell预定义变量是由<code>$</code>符和<code>另一个符号</code>组成的，常用的shell预定义变量有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">　　$#：位置参数的数量</span><br><span class="line">　　$*：所有位置参数的内容</span><br><span class="line">　　$?：命令执行后返回的状态</span><br><span class="line">　　$$：当前进程的进程号</span><br><span class="line">　　$!：后台运行的最后一个进程号</span><br><span class="line">　　$0：当前执行的进程名</span><br><span class="line">　　其中，“$?”用于检查上一个命令执行是否正确(在Linux中，命令退出状态为0表示该命令正确执行，任何非0值表示命令出错)。</span><br></pre></td></tr></table></figure>
+<h2 id="Windows的命令控制界面"><a href="#Windows的命令控制界面" class="headerlink" title="Windows的命令控制界面"></a>Windows的命令控制界面</h2><p>Windows命令主要有以下4类：<br>(1) 系统信息命令<br><code>time</code>——Displays or sets the system time. 显示或设置系统时间<br><code>date</code>——Displays or sets the date. 显示或设置日期<br><code>mem</code>——Displays the amount of used and free memory in your system.<br><code>driverquery</code>——Enables an administrator to enumerate and display the list of installed device drivers as well as their properties.<br><code>systeminfo</code>——This command line tool enables an administrator to query for basic system configuration information.</p>
+<p>(2) 系统操作命令<br><code>shutdown</code>——关机<br><code>runas</code>——允许用户用其他权限运行指定的工具和程序，而不是用户当前登录提供的权限。<br><code>taskkill</code>——This command line tool can be used to end one or more processes. Processes can be killed by the process id or image name.<br>(3) 文件系统命令<br><code>copy</code>——Copies one or more files to another location.<br><code>del</code>——删除文件<br><code>mkdir</code>——建立目录<br>(4) 网络通信命令<br><code>ping</code>——检查网络是否能够连通<br><code>netstat</code>——显示当前正在活动的网络连接的详细信息<br><code>route</code>——主要用来管理本机路由表，可以查看，添加、修改或删除路由表条目。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> &amp;——同时执行多条命令，而不管命令是否执行成功。</span><br><span class="line">Usage：第一条命令 &amp; 第二条命令 [&amp; 第三条命令...]</span><br><span class="line"> &amp;&amp;——同时执行多条命令，当碰到执行出错的命令后将不执行后面的命令，如果一直没有出错则一直执行完所有命令。</span><br><span class="line">Usage：第一条命令 &amp;&amp; 第二条命令 [&amp;&amp; 第三条命令...]</span><br><span class="line"> ||——同时执行多条命令，当碰到执行正确的命令后将不执行后面的命令，如果没有出现正确的命令则一直执行完所有命令。</span><br><span class="line">Usage：第一条命令 || 第二条命令 [|| 第三条命令...]</span><br></pre></td></tr></table></figure>
+<ol>
+<li>直接在命令行输出命令<br>Systeminfo &amp; mem</li>
+<li>批处理</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">	@echo off</span><br><span class="line">	mkdir test</span><br><span class="line">	echo hello</span><br><span class="line">	pause</span><br><span class="line">```	</span><br><span class="line">	例：</span><br></pre></td></tr></table></figure>
+<p>@echo off<br>mem&gt;%1\meminfo.txt<br>echo generate memoryinfo ok!</p>
+<p>@echo off<br>type %1*.txt<br>echo type ok!</p>
+<p>@echo off<br>mkdir test<br>call exam2.bat test<br>call exam3.bat test<br>echo call ok!<br>pause<br><code>`</code></p>
+
       
     </div>
     <footer class="article-footer">
@@ -215,7 +260,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#小工具"><span class="toc-number">1.</span> <span class="toc-text">小工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mac下使用ssh操作远程服务器"><span class="toc-number">1.1.</span> <span class="toc-text">Mac下使用ssh操作远程服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.1.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过程"><span class="toc-number">1.1.2.</span> <span class="toc-text">过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Filezilla或者Transmit来上传文件，大文件"><span class="toc-number">1.2.</span> <span class="toc-text">使用Filezilla或者Transmit来上传文件，大文件</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#小工具"><span class="toc-number">1.</span> <span class="toc-text">小工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mac下使用ssh操作远程服务器"><span class="toc-number">1.1.</span> <span class="toc-text">Mac下使用ssh操作远程服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.1.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过程"><span class="toc-number">1.1.2.</span> <span class="toc-text">过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Filezilla或者Transmit来上传文件，大文件"><span class="toc-number">1.2.</span> <span class="toc-text">使用Filezilla或者Transmit来上传文件，大文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux命令行记录"><span class="toc-number">1.3.</span> <span class="toc-text">Linux命令行记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shell程序组成："><span class="toc-number">1.4.</span> <span class="toc-text">Shell程序组成：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows的命令控制界面"><span class="toc-number">1.5.</span> <span class="toc-text">Windows的命令控制界面</span></a></li></ol></li></ol>
           </div>
       </div>
     </div>
