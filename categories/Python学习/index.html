@@ -3,20 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>你好，Hexo | Fallenk&#39;s Blog</title>
+  <title>分类: Python学习 | Fallenk&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="走上博客之路，望坚持！">
-<meta name="keywords" content="hexo,github,npm,基础">
-<meta property="og:type" content="article">
-<meta property="og:title" content="你好，Hexo">
-<meta property="og:url" content="http://yoursite.com/2018/04/16/你好，Hexo/index.html">
+  <meta name="description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta name="keywords" content="经历，心得，笔记，目标">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fallenk&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/categories/Python学习/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="走上博客之路，望坚持！">
+<meta property="og:description" content="不忘初心，努力学习，砥砺前进，自我反省">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-17T03:43:16.845Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你好，Hexo">
-<meta name="twitter:description" content="走上博客之路，望坚持！">
+<meta name="twitter:title" content="Fallenk&#39;s Blog">
+<meta name="twitter:description" content="不忘初心，努力学习，砥砺前进，自我反省">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
   
@@ -73,125 +72,40 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-你好，Hexo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/16/你好，Hexo/" class="article-date">
-  <time datetime="2018-04-16T13:44:44.000Z" itemprop="datePublished">2018-04-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/个人成长/">个人成长</a>
-  </div>
+        <section id="main">
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 class="article-title" itemprop="name">
-      你好，Hexo
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+         <span class="archive-year-post">15 post  this year</span>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2018/05/19/Python2-7-3-6/" class="archive-article-date">
+  <time datetime="2018-05-19T03:50:58.000Z" itemprop="datePublished">05-19</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/05/19/Python2-7-3-6/">Python2.7=&gt;3.6</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <p>走上博客之路，望坚持！<br><a id="more"></a><br>经过漫长的纠结，终于暂定下来了，要严格要求自己坚持下去。<br>雄关漫道真如铁，而今迈步从头越</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/你好，Hexo/" data-id="cjhcv2nkh000czm8oqa60uf7l" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
- <script src="/jquery/jquery.min.js"></script>
-  <div id="random_posts">
-    <h2>推荐文章</h2>
-    <div class="random_posts_ul">
-      <script>
-          var random_count =4
-          var site = {BASE_URI:'/'};
-          function load_random_posts(obj) {
-              var arr=site.posts;
-              if (!obj) return;
-              // var count = $(obj).attr('data-count') || 6;
-              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
-              arr = arr.slice(0, random_count);
-              var html = '<ul>';
-            
-              for(var j=0;j<arr.length;j++){
-                var item=arr[j];
-                html += '<li><strong>' + 
-                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
-                (item.title || item.uri) + '</a></strong>';
-                if(item.excerpt){
-                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
-                }
-                html +='</li>';
-                
-              }
-              $(obj).html(html + '</ul>');
-          }
-          $('.random_posts_ul').each(function () {
-              var c = this;
-              if (!site.posts || !site.posts.length){
-                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
-              } 
-               else{
-                load_random_posts(c);
-              }
-          });
-      </script>
-    </div>
-  </div>
-
-    
-<nav id="article-nav">
-  
-    <a href="/2018/04/17/第二篇博客/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          第二篇博客
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/04/16/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Hello World</div>
-    </a>
-  
-</nav>
-
-  
 </article>
- 
-     
-  <div class="comments" id="comments">
-    
-     
-       
-      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-    
-       
-      
-      
-  </div>
- 
+  
+  
+    </div></section>
   
 
 </section>
@@ -204,6 +118,13 @@
     
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title categories">分类</h3>
+    <div class="widget" id="categories">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人成长/">个人成长</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自我反省/">自我反省</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
 
   
     
