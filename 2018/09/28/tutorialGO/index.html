@@ -5,18 +5,18 @@
   
   <title>tutorialGO | Fallenk&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基础包，变量和函数包每个 Go 程序都是由包构成的。程序从main包开始运行。 本程序通过导入路径&amp;quot;fmt&amp;quot;和&amp;quot;math/rand&amp;quot;来使用这两个包。 按照约定，包名与导入路径的最后一个元素一致。例如&amp;quot;math/rand&amp;quot;包中的源码均以package rand语句开始。 注意： 此程序的运行环境是固定的，因此 rand.Intn总是会返回相">
+  <meta name="description" content="基础包，变量和函数包每个 Go 程序都是由包构成的。程序从main包开始运行。">
 <meta name="keywords" content="编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tutorialGO">
 <meta property="og:url" content="https://fallenk.github.io/2018/09/28/tutorialGO/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="基础包，变量和函数包每个 Go 程序都是由包构成的。程序从main包开始运行。 本程序通过导入路径&amp;quot;fmt&amp;quot;和&amp;quot;math/rand&amp;quot;来使用这两个包。 按照约定，包名与导入路径的最后一个元素一致。例如&amp;quot;math/rand&amp;quot;包中的源码均以package rand语句开始。 注意： 此程序的运行环境是固定的，因此 rand.Intn总是会返回相">
+<meta property="og:description" content="基础包，变量和函数包每个 Go 程序都是由包构成的。程序从main包开始运行。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-28T11:42:12.571Z">
+<meta property="og:updated_time" content="2018-09-28T11:43:48.438Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tutorialGO">
-<meta name="twitter:description" content="基础包，变量和函数包每个 Go 程序都是由包构成的。程序从main包开始运行。 本程序通过导入路径&amp;quot;fmt&amp;quot;和&amp;quot;math/rand&amp;quot;来使用这两个包。 按照约定，包名与导入路径的最后一个元素一致。例如&amp;quot;math/rand&amp;quot;包中的源码均以package rand语句开始。 注意： 此程序的运行环境是固定的，因此 rand.Intn总是会返回相">
+<meta name="twitter:description" content="基础包，变量和函数包每个 Go 程序都是由包构成的。程序从main包开始运行。">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
   
@@ -102,6 +102,7 @@
         <!-- Table of Contents -->
         
         <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="包，变量和函数"><a href="#包，变量和函数" class="headerlink" title="包，变量和函数"></a>包，变量和函数</h2><h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><p>每个 Go 程序都是由<strong>包</strong>构成的。<br>程序从<code>main</code>包开始运行。</p>
+<a id="more"></a>
 <p>本程序通过导入路径<code>&quot;fmt&quot;</code>和<code>&quot;math/rand&quot;</code>来使用这两个包。</p>
 <p>按照约定，包名与导入路径的最后一个元素一致。例如<code>&quot;math/rand&quot;</code>包中的源码均以<code>package rand</code>语句开始。</p>
 <p><em>注意：</em> 此程序的运行环境是固定的，因此 <code>rand.Intn</code>总是会返回相同的数字。 （要得到不同的数字，需为生成器提供不同的种子数，参见 <code>rand.Seed</code>。）</p>
