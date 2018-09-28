@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Fallenk&#39;s Blog</title>
+  <title>tutorialGO | Fallenk&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不忘初心，努力学习，砥砺前进，自我反省">
-<meta name="keywords" content="经历，心得，笔记，目标">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fallenk&#39;s Blog">
-<meta property="og:url" content="https://fallenk.github.io/index.html">
+  <meta name="description" content="基础包，变量和函数包每个 Go 程序都是由包构成的。程序从main包开始运行。 本程序通过导入路径&amp;quot;fmt&amp;quot;和&amp;quot;math/rand&amp;quot;来使用这两个包。 按照约定，包名与导入路径的最后一个元素一致。例如&amp;quot;math/rand&amp;quot;包中的源码均以package rand语句开始。 注意： 此程序的运行环境是固定的，因此 rand.Intn总是会返回相">
+<meta name="keywords" content="编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tutorialGO">
+<meta property="og:url" content="https://fallenk.github.io/2018/09/28/tutorialGO/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta property="og:description" content="基础包，变量和函数包每个 Go 程序都是由包构成的。程序从main包开始运行。 本程序通过导入路径&amp;quot;fmt&amp;quot;和&amp;quot;math/rand&amp;quot;来使用这两个包。 按照约定，包名与导入路径的最后一个元素一致。例如&amp;quot;math/rand&amp;quot;包中的源码均以package rand语句开始。 注意： 此程序的运行环境是固定的，因此 rand.Intn总是会返回相">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-28T11:42:12.571Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fallenk&#39;s Blog">
-<meta name="twitter:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta name="twitter:title" content="tutorialGO">
+<meta name="twitter:description" content="基础包，变量和函数包每个 Go 程序都是由包构成的。程序从main包开始运行。 本程序通过导入路径&amp;quot;fmt&amp;quot;和&amp;quot;math/rand&amp;quot;来使用这两个包。 按照约定，包名与导入路径的最后一个元素一致。例如&amp;quot;math/rand&amp;quot;包中的源码均以package rand语句开始。 注意： 此程序的运行环境是固定的，因此 rand.Intn总是会返回相">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
   
@@ -72,9 +73,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-tutorialGO" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-tutorialGO" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/28/tutorialGO/" class="article-date">
   <time datetime="2018-09-28T11:40:21.000Z" itemprop="datePublished">2018-09-28</time>
@@ -91,8 +90,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/28/tutorialGO/">tutorialGO</a>
+    <h1 class="article-title" itemprop="name">
+      tutorialGO
     </h1>
   
 
@@ -417,577 +416,109 @@
     </footer>
   </div>
   
-</article>
- 
-
-
-  
-    <article id="post-restartAndConsist" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/27/restartAndConsist/" class="article-date">
-  <time datetime="2018-09-27T13:58:16.000Z" itemprop="datePublished">2018-09-27</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/博客建设/">博客建设</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/27/restartAndConsist/">restartAndConsist</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>中断了一段时间的写作，由于学习，自身的懒散，时间的原因。自我要反思，明白好的习惯至少需要21天才能养成，恶习的形成只用一天，便足以破坏好的习惯。写博客，曾经的坚持被放弃了，现在要重拾博客，不再放弃。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/09/27/restartAndConsist/#more">继续阅读全文 »</a>
-          </p>
-        
-      
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/09/27/restartAndConsist/" data-id="cjmlxu81z00062p8o066s5n16" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/禅/">禅</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自我修炼/">自我修炼</a></li></ul>
-
-    </footer>
   </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/27/restartAndConsist/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">restartAndConsist</div>
+    </a>
+  
+</nav>
+
   
 </article>
  
-
-
-  
-    <article id="post-Python2-7-3-6" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/19/Python2-7-3-6/" class="article-date">
-  <time datetime="2018-05-19T03:50:58.000Z" itemprop="datePublished">2018-05-19</time>
-</a>
+     
+  <div class="comments" id="comments">
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Python学习/">Python学习</a>
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
   </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/19/Python2-7-3-6/">Python2.7=&gt;3.6</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>目前Python代码主要分为2.7和3.6版本，注意转换</p>
-<h1 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h1><ol>
-<li>在2.7中， <code>print xxx</code>; 在3.6中： <code>print(xxx)</code></li>
-<li>在2.7中，使用<code>map(xxx)</code>,之后会自动适应list，但在3.6中需要转换 <code>list(map(xxx))</code>；一定要记得转换</li>
-<li>学会debug</li>
-<li>Python3.6 中 <code>/</code>代表 除法，如’1/3 = 0.33333333…’;而’//‘代表地板擦，整除；Python2中相反，所以在np.array记得转换</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/05/19/Python2-7-3-6/" data-id="cjmlxu82100072p8oskrf7hkz" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python转换/">python转换</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
  
-
-
-  
-    <article id="post-Mac终端命令大全" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/13/Mac终端命令大全/" class="article-date">
-  <time datetime="2018-05-13T07:06:27.000Z" itemprop="datePublished">2018-05-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具学习/">工具学习</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/13/Mac终端命令大全/">Mac终端命令大全</a>
-    </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><p>在终端里输入<code>ls</code>就可以查看文件和文件夹，但隐藏的文件就无法查看，使用<code>ls -a</code>即可。<br></p>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/13/Mac终端命令大全/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/05/13/Mac终端命令大全/" data-id="cjmlxu81n00002p8oz2uceqg8" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac终端命令/">Mac终端命令</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-工具命令" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/11/工具命令/" class="article-date">
-  <time datetime="2018-05-11T07:40:54.000Z" itemprop="datePublished">2018-05-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具学习/">工具学习</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/11/工具命令/">工具命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="小工具"><a href="#小工具" class="headerlink" title="小工具"></a>小工具</h1><h2 id="Mac下使用ssh操作远程服务器"><a href="#Mac下使用ssh操作远程服务器" class="headerlink" title="Mac下使用ssh操作远程服务器"></a>Mac下使用ssh操作远程服务器</h2>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/11/工具命令/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/05/11/工具命令/" data-id="cjmlxu82h000t2p8oz7ut6jru" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程技巧，/">编程技巧，</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-CNN学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/09/CNN学习/" class="article-date">
-  <time datetime="2018-05-09T13:58:41.000Z" itemprop="datePublished">2018-05-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/人工智能/">人工智能</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/09/CNN学习/">CNN学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CNN学习快速学习"><a href="#CNN学习快速学习" class="headerlink" title="CNN学习快速学习"></a>CNN学习快速学习</h1><h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p>在前面的文章中，我们介绍了<a href="https://www.zybuluo.com/hanbingtao/note/485480" target="_blank" rel="noopener">全连接神经网络</a>，以及它的训练和使用。我们用它来识别了手写数字，然而，这种结构的网络对于图像识别任务来说并不是很合适。本文将要介绍一种更适合图像、语音识别任务的神经网络结构——卷积神经网络<code>(Convolutional Neural Network, CNN)</code>。说卷积神经网络是最重要的一种神经网络也不为过，它在最近几年大放异彩，几乎所有图像、语音识别领域的重要突破都是卷积神经网络取得的，比如谷歌的GoogleNet、微软的ResNet等，打败李世石的AlphaGo也用到了这种网络。本文将详细介绍卷积神经网络以及它的训练算法，以及动手实现一个简单的卷积神经网络。<br></p>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/09/CNN学习/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/05/09/CNN学习/" data-id="cjmlxu81x00052p8oxltwz065" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-jupyter学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/02/jupyter学习笔记/" class="article-date">
-  <time datetime="2018-05-02T08:44:04.000Z" itemprop="datePublished">2018-05-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具学习/">工具学习</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/02/jupyter学习笔记/">jupyter学习笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="jupyter-交互笔记本"><a href="#jupyter-交互笔记本" class="headerlink" title="jupyter-交互笔记本"></a>jupyter-交互笔记本</h1>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/02/jupyter学习笔记/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/05/02/jupyter学习笔记/" data-id="cjmlxu823000b2p8o3lsrl2j6" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云端学习笔记/">云端学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/提升自我/">提升自我</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-坐姿的调研" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/30/坐姿的调研/" class="article-date">
-  <time datetime="2018-04-30T14:25:01.000Z" itemprop="datePublished">2018-04-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/健康生活/">健康生活</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/30/坐姿的调研/">坐姿的调研</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Level 1: 刚刚坐下那一刻</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/30/坐姿的调研/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/04/30/坐姿的调研/" data-id="cjmlxu82e000o2p8o3bmk6lfk" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调养，生活/">调养，生活</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-人工智能学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/27/人工智能学习/" class="article-date">
-  <time datetime="2018-04-27T14:05:46.000Z" itemprop="datePublished">2018-04-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/自我反省/">自我反省</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/27/人工智能学习/">学习随笔</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="AI学习经验之总结"><a href="#AI学习经验之总结" class="headerlink" title="AI学习经验之总结"></a>AI学习经验之总结</h1>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/27/人工智能学习/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/04/27/人工智能学习/" data-id="cjmlxu827000g2p8oft8nkr0k" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/禅/">禅</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自我修炼/">自我修炼</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-每天三问" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/22/每天三问/" class="article-date">
-  <time datetime="2018-04-22T10:28:08.000Z" itemprop="datePublished">2018-04-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/自我反省/">自我反省</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/22/每天三问/">每天三问</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>每天三问：make promise to yourself<br></p>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/22/每天三问/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/04/22/每天三问/" data-id="cjmlxu82l00112p8ontgsdejm" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/禅/">禅</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-
-
-  <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页&raquo;</a>
-  </nav>
 </section>
            
     <aside id="sidebar">
   
     
-  <div class="widget-wrap">
-     
-        <h3 class="follow-title ">Follow me</h3>
-     
-    <div class="widget follow">
-      
-              <a class="github" aria-hidden="true" href="https://github.com/fallenk" target="_blank" title="Github"></a>
-      
-      
-            <a class="weibo" aria-hidden="true"  href="http://weibo.com/laohoubin" target="_blank" title="微博"></a>
-      
-      
-              <a class="zhihu" aria-hidden="true"  href="http://www.zhihu.com/people/fallenk" target="_blank" title="知乎"></a>
-      
-      
-            <a class="email" aria-hidden="true"  href="mailto:fallenk_liu@yeah.com" target="_blank" title="邮箱"></a>
-      
-    </div>
-  </div>
 
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基础"><span class="toc-number">1.</span> <span class="toc-text">基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#包，变量和函数"><span class="toc-number">1.1.</span> <span class="toc-text">包，变量和函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#包"><span class="toc-number">1.1.1.</span> <span class="toc-text">包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导入"><span class="toc-number">1.1.2.</span> <span class="toc-text">导入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导出名"><span class="toc-number">1.1.3.</span> <span class="toc-text">导出名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数"><span class="toc-number">1.1.4.</span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#与C语言对比"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">与C语言对比</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多值返回"><span class="toc-number">1.1.5.</span> <span class="toc-text">多值返回</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命名返回值"><span class="toc-number">1.1.6.</span> <span class="toc-text">命名返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量"><span class="toc-number">1.1.7.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量的初始化"><span class="toc-number">1.1.8.</span> <span class="toc-text">变量的初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#短变量声明"><span class="toc-number">1.1.9.</span> <span class="toc-text">短变量声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本类型"><span class="toc-number">1.1.10.</span> <span class="toc-text">基本类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#零值"><span class="toc-number">1.1.11.</span> <span class="toc-text">零值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型转换"><span class="toc-number">1.1.12.</span> <span class="toc-text">类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型推导"><span class="toc-number">1.1.13.</span> <span class="toc-text">类型推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常量"><span class="toc-number">1.1.14.</span> <span class="toc-text">常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数值常量"><span class="toc-number">1.1.15.</span> <span class="toc-text">数值常量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流程控制语句"><span class="toc-number">1.2.</span> <span class="toc-text">流程控制语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#for"><span class="toc-number">1.2.1.</span> <span class="toc-text">for</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-是-Go-中的-“while”"><span class="toc-number">1.2.2.</span> <span class="toc-text">for 是 Go 中的 “while”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无限循环"><span class="toc-number">1.2.3.</span> <span class="toc-text">无限循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#if"><span class="toc-number">1.2.4.</span> <span class="toc-text">if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#if-的简短语句"><span class="toc-number">1.2.5.</span> <span class="toc-text">if 的简短语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#if-和-else"><span class="toc-number">1.2.6.</span> <span class="toc-text">if 和 else</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#练习：循环与函数"><span class="toc-number">1.2.7.</span> <span class="toc-text">练习：循环与函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#switch"><span class="toc-number">1.2.8.</span> <span class="toc-text">switch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#switch-的求值顺序"><span class="toc-number">1.2.9.</span> <span class="toc-text">switch 的求值顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#没有条件的-switch"><span class="toc-number">1.2.10.</span> <span class="toc-text">没有条件的 switch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#defer"><span class="toc-number">1.2.11.</span> <span class="toc-text">defer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#defer-栈"><span class="toc-number">1.2.12.</span> <span class="toc-text">defer 栈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多类型-struct-slice-and-映射"><span class="toc-number">1.3.</span> <span class="toc-text">更多类型 struct, slice and 映射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#指针"><span class="toc-number">1.3.1.</span> <span class="toc-text">指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构体"><span class="toc-number">1.3.2.</span> <span class="toc-text">结构体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构体字段"><span class="toc-number">1.3.3.</span> <span class="toc-text">结构体字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构体指针"><span class="toc-number">1.3.4.</span> <span class="toc-text">结构体指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构体文法"><span class="toc-number">1.3.5.</span> <span class="toc-text">结构体文法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组"><span class="toc-number">1.3.6.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切片-slices"><span class="toc-number">1.3.7.</span> <span class="toc-text">切片(slices)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切片就像数组的引用-slices-are-like-references-to-arrays"><span class="toc-number">1.3.8.</span> <span class="toc-text">切片就像数组的引用(slices are like references to arrays)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切片文法-slices-literals"><span class="toc-number">1.3.9.</span> <span class="toc-text">切片文法(slices literals)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切片的默认行为"><span class="toc-number">1.3.10.</span> <span class="toc-text">切片的默认行为</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切片的长度与容量"><span class="toc-number">1.3.11.</span> <span class="toc-text">切片的长度与容量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nil切片"><span class="toc-number">1.3.12.</span> <span class="toc-text">nil切片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用-make-创建切片"><span class="toc-number">1.3.13.</span> <span class="toc-text">用 make 创建切片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切片的切片"><span class="toc-number">1.3.14.</span> <span class="toc-text">切片的切片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#向切片追加元素"><span class="toc-number">1.3.15.</span> <span class="toc-text">向切片追加元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Range"><span class="toc-number">1.3.16.</span> <span class="toc-text">Range</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#练习：切片"><span class="toc-number">1.3.17.</span> <span class="toc-text">练习：切片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#映射-map"><span class="toc-number">1.3.18.</span> <span class="toc-text">映射(map)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#map的文法-写法"><span class="toc-number">1.3.19.</span> <span class="toc-text">map的文法(写法)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改映射-map"><span class="toc-number">1.3.20.</span> <span class="toc-text">修改映射(map)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数值"><span class="toc-number">1.3.21.</span> <span class="toc-text">函数值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数的闭包"><span class="toc-number">1.3.22.</span> <span class="toc-text">函数的闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#练习：斐波纳契闭包"><span class="toc-number">1.3.23.</span> <span class="toc-text">练习：斐波纳契闭包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法与接口"><span class="toc-number">1.4.</span> <span class="toc-text">方法与接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方法"><span class="toc-number">1.4.1.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法即是函数-Methods-class-are-functions"><span class="toc-number">1.4.2.</span> <span class="toc-text">方法即是函数(Methods(class) are functions)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指针接收者"><span class="toc-number">1.4.3.</span> <span class="toc-text">指针接收者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指针与函数"><span class="toc-number">1.4.4.</span> <span class="toc-text">指针与函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法与指针重定向"><span class="toc-number">1.4.5.</span> <span class="toc-text">方法与指针重定向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法与指针重定向（续）"><span class="toc-number">1.4.6.</span> <span class="toc-text">方法与指针重定向（续）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择值或指针作为接收者"><span class="toc-number">1.4.7.</span> <span class="toc-text">选择值或指针作为接收者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口"><span class="toc-number">1.4.8.</span> <span class="toc-text">接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口与隐式实现"><span class="toc-number">1.4.9.</span> <span class="toc-text">接口与隐式实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口值"><span class="toc-number">1.4.10.</span> <span class="toc-text">接口值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#底层值为-nil-的接口值"><span class="toc-number">1.4.11.</span> <span class="toc-text">底层值为 nil 的接口值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nil-接口值"><span class="toc-number">1.4.12.</span> <span class="toc-text">nil 接口值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空接口"><span class="toc-number">1.4.13.</span> <span class="toc-text">空接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型断言"><span class="toc-number">1.4.14.</span> <span class="toc-text">类型断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型选择"><span class="toc-number">1.4.15.</span> <span class="toc-text">类型选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stringer"><span class="toc-number">1.4.16.</span> <span class="toc-text">Stringer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#练习：Stringer"><span class="toc-number">1.4.17.</span> <span class="toc-text">练习：Stringer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#错误"><span class="toc-number">1.4.18.</span> <span class="toc-text">错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#练习：错误"><span class="toc-number">1.4.19.</span> <span class="toc-text">练习：错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reader"><span class="toc-number">1.4.20.</span> <span class="toc-text">Reader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#练习：Reader"><span class="toc-number">1.4.21.</span> <span class="toc-text">练习：Reader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#练习：rot13Reader"><span class="toc-number">1.4.22.</span> <span class="toc-text">练习：rot13Reader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图像"><span class="toc-number">1.4.23.</span> <span class="toc-text">图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#练习：图像"><span class="toc-number">1.4.24.</span> <span class="toc-text">练习：图像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发"><span class="toc-number">1.5.</span> <span class="toc-text">并发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#goroutine"><span class="toc-number">1.5.1.</span> <span class="toc-text">goroutine</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#信道-Channels"><span class="toc-number">1.5.2.</span> <span class="toc-text">信道(Channels)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#带缓冲的信道"><span class="toc-number">1.5.3.</span> <span class="toc-text">带缓冲的信道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#range-和-close"><span class="toc-number">1.5.4.</span> <span class="toc-text">range 和 close</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#select-语句"><span class="toc-number">1.5.5.</span> <span class="toc-text">select 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#默认选择"><span class="toc-number">1.5.6.</span> <span class="toc-text">默认选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#练习：等价二叉查找树"><span class="toc-number">1.5.7.</span> <span class="toc-text">练习：等价二叉查找树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sync-Mutex"><span class="toc-number">1.5.8.</span> <span class="toc-text">sync.Mutex</span></a></li></ol></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
 
   
     
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title categories">分类</h3>
-    <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人成长/">个人成长</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自我反省/">自我反省</a><span class="category-list-count">2</span></li></ul>
-    </div>
-  </div>
-
+  
+    
 
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title tagcloud">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 17.67px;">hexo</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/基础/" style="font-size: 17.67px;">基础</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/深思/" style="font-size: 14px;">深思</a> <a href="/tags/禅/" style="font-size: 25px;">禅</a> <a href="/tags/编程/" style="font-size: 14px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/自我修炼/" style="font-size: 21.33px;">自我修炼</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/09/28/tutorialGO/">tutorialGO</a>
-          </li>
-        
-          <li>
-            <a href="/2018/09/27/restartAndConsist/">restartAndConsist</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/19/Python2-7-3-6/">Python2.7=&gt;3.6</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/13/Mac终端命令大全/">Mac终端命令大全</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/11/工具命令/">工具命令</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title archive">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">10</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-<div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
-    <div class="widget">
-        <ul>
-            
-            <li>
-                <a href="http://blog.giscafer.com">giscafer&#39;s blog</a>
-            </li>
-            
-            <li>
-                <a href="http://www.gis520.com">GIS520社区</a>
-            </li>
-            
-        </ul>
-    </div>
-</div>
-
   
     <!--微信公众号二维码-->
-
-  <div class="widget-wrap">
-    <h3 class="follow-title ">WeChat</h3>
-    <div class="widget wechat-widget">
-        <img src="http://blog.giscafer.com/static/images/qrcode_giscafer.jpg" alt="扫码关注" width="250"/>
-    </div>
-  </div>
 
 
   
