@@ -3,22 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>jupyter学习笔记 | Fallenk&#39;s Blog</title>
+  <title>Java基础 | Fallenk&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="jupyter-交互笔记本">
-<meta name="keywords" content="云端学习笔记,提升自我">
+  <meta name="description" content="基础入门">
+<meta name="keywords" content="编程,代码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jupyter学习笔记">
-<meta property="og:url" content="https://fallenk.github.io/2018/05/02/jupyter学习笔记/index.html">
+<meta property="og:title" content="Java基础">
+<meta property="og:url" content="https://fallenk.github.io/2018/10/08/Java基础/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="jupyter-交互笔记本">
+<meta property="og:description" content="基础入门">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://fallenk.github.io/2018/05/02/jupyter学习笔记/jupyterStart.jpg">
-<meta property="og:updated_time" content="2018-05-03T08:30:46.710Z">
+<meta property="og:updated_time" content="2018-10-08T13:03:29.839Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jupyter学习笔记">
-<meta name="twitter:description" content="jupyter-交互笔记本">
-<meta name="twitter:image" content="https://fallenk.github.io/2018/05/02/jupyter学习笔记/jupyterStart.jpg">
+<meta name="twitter:title" content="Java基础">
+<meta name="twitter:description" content="基础入门">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
   
@@ -75,14 +73,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-jupyter学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Java基础" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/05/02/jupyter学习笔记/" class="article-date">
-  <time datetime="2018-05-02T08:44:04.000Z" itemprop="datePublished">2018-05-02</time>
+    <a href="/2018/10/08/Java基础/" class="article-date">
+  <time datetime="2018-10-08T13:02:17.000Z" itemprop="datePublished">2018-10-08</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/工具学习/">工具学习</a>
+    <a class="article-category-link" href="/categories/Java学习/">Java学习</a>
   </div>
 
   </div>
@@ -93,7 +91,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      jupyter学习笔记
+      Java基础
     </h1>
   
 
@@ -103,37 +101,15 @@
       
         <!-- Table of Contents -->
         
-        <h1 id="jupyter-交互笔记本"><a href="#jupyter-交互笔记本" class="headerlink" title="jupyter-交互笔记本"></a>jupyter-交互笔记本</h1><a id="more"></a>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>Jupyter Notebook</strong>（此前被称为 <code>IPython notebook</code>）是一个交互式笔记本，支持运行 40 多种编程语言。在本文中，我们将介绍 Jupyter notebook 的主要特性，以及为什么对于希望编写漂亮的交互式文档的人来说是一个强大工具。</p>
-<!--more-->
-<h2 id="安转与运行"><a href="#安转与运行" class="headerlink" title="安转与运行"></a>安转与运行</h2><ol>
-<li><p>在开始使用 notebook 之前，我们先需要安装该库。</p>
-<ul>
-<li>方式1: <a href="https://jupyter.readthedocs.org/en/latest/install.html" target="_blank" rel="noopener">Jupyter 官网</a></li>
-<li>方式二: 使用<code>pip install jupyter</code></li>
-</ul>
-</li>
-<li><p>然后在命令行运行： <code>jupyter notebook</code>，运行上面的命令之后，你将看到类似下面这样的输出：</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[I 20:06:36.367 NotebookApp] Writing notebook server cookie secret to /run/user/1000/jupyter/notebook_cookie_secret</span><br><span class="line">[I 20:06:36.813 NotebookApp] Serving notebooks from local directory: /home/your_username</span><br><span class="line">[I 20:06:36.813 NotebookApp] 0 active kernels</span><br><span class="line">[I 20:06:36.813 NotebookApp] The IPython Notebook is running at: http://localhost:8888/</span><br><span class="line">[I 20:06:36.813 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).</span><br></pre></td></tr></table></figure>
-<p>同时，会在你开启 notebook 的文件夹中启动 Jupyter 主界面，如下所示</p>
-<p><img src="/2018/05/02/jupyter学习笔记/jupyterStart.jpg" alt=""></p>
-<p>接着在该界面可以进行编程，markdown等等</p>
-<h2 id="LaTex"><a href="#LaTex" class="headerlink" title="LaTex"></a>LaTex</h2><p>Use double US dollars sign pair for Block level Math formula, and one US dollar sign pair for Inline Level.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">For example this is a Block level $$x = &#123;-b \pm \sqrt&#123;b^2-4ac&#125; \over 2a&#125;$$ formula, and this is an inline Level $x = &#123;-b \pm \sqrt&#123;b^2-4ac&#125; \over 2a&#125;$ formula.</span><br><span class="line"></span><br><span class="line">\\[ \frac&#123;1&#125;&#123;\Bigl(\sqrt&#123;\phi \sqrt&#123;5&#125;&#125;-\phi\Bigr) e^&#123;\frac25 \pi&#125;&#125; =</span><br><span class="line">1+\frac&#123;e^&#123;-2\pi&#125;&#125; &#123;1+\frac&#123;e^&#123;-4\pi&#125;&#125; &#123;1+\frac&#123;e^&#123;-6\pi&#125;&#125;</span><br><span class="line">&#123;1+\frac&#123;e^&#123;-8\pi&#125;&#125; &#123;1+\ldots&#125; &#125; &#125; &#125; \\]</span><br></pre></td></tr></table></figure>
-<p><strong>Result:</strong></p>
-<p>For example this is a Block level $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$ formula, and this is an inline Level $x = {-b \pm \sqrt{b^2-4ac} \over 2a}$ formula.</p>
-<p>\[ \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} =<br>1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}}<br>{1+\frac{e^{-8\pi}} {1+\ldots} } } } \]</p>
-
+        <h1 id="基础入门"><a href="#基础入门" class="headerlink" title="基础入门"></a>基础入门</h1>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/05/02/jupyter学习笔记/" data-id="cjn0b967f000frx8ovcjpo261" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/10/08/Java基础/" data-id="cjn0b96740004rx8o1lta4ivd" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云端学习笔记/">云端学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/提升自我/">提升自我</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li></ul>
 
     </footer>
   </div>
@@ -183,19 +159,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/05/09/CNN学习/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          CNN学习
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/30/坐姿的调研/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/09/29/Deep-Image-Prior/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">坐姿的调研</div>
+      <div class="article-nav-title">Deep Image Prior</div>
     </a>
   
 </nav>
@@ -231,7 +198,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jupyter-交互笔记本"><span class="toc-number">1.</span> <span class="toc-text">jupyter-交互笔记本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安转与运行"><span class="toc-number">1.2.</span> <span class="toc-text">安转与运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LaTex"><span class="toc-number">1.3.</span> <span class="toc-text">LaTex</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基础入门"><span class="toc-number">1.</span> <span class="toc-text">基础入门</span></a></li></ol>
           </div>
       </div>
     </div>
