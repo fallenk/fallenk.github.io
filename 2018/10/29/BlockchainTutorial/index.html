@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
 <meta property="og:description" content="How to learn Blockchain确定方向从事区块链开发也有很多方向，如:区块链应用开发人员、区块链架构师、底层核心开发、共识算法研究等等。方向不同，需要学习的内容就不一样，如果做基于区块链应用开发，只需要了解一门编程语言（nodejs, Go, Python, C++ 等）, 大概了解区块链的原理，不一定要深入，当能理解越深入开发应用就越顺。如果做区块链基础开发，就需要了解加密算法，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-15T06:43:31.251Z">
+<meta property="og:updated_time" content="2018-11-15T06:58:59.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BlockchainTutorial">
 <meta name="twitter:description" content="How to learn Blockchain确定方向从事区块链开发也有很多方向，如:区块链应用开发人员、区块链架构师、底层核心开发、共识算法研究等等。方向不同，需要学习的内容就不一样，如果做基于区块链应用开发，只需要了解一门编程语言（nodejs, Go, Python, C++ 等）, 大概了解区块链的原理，不一定要深入，当能理解越深入开发应用就越顺。如果做区块链基础开发，就需要了解加密算法，">
@@ -135,7 +135,52 @@
 <p>  假如李四在还款时欺骗说，张三只借给李四10万，双方可以用AC4635D34DEF来验证原始信息。</p>
 </li>
 </ul>
-<p>哈希函数的这4个作用在区块链技术里有广泛的运用。<br>（哈希函数是一组函数或算法，以后会发文章专门介绍哈希）</p>
+<p>哈希函数的这4个作用在区块链技术里有广泛的运用。<br>（哈希函数是一组函数或算法）</p>
+<h3 id="区块链记账方法"><a href="#区块链记账方法" class="headerlink" title="区块链记账方法"></a>区块链记账方法</h3><p>假设有一个账页序号为0的账页交易记录如下:</p>
+<table>
+<thead>
+<tr>
+<th>账号</th>
+<th>入账</th>
+<th>出账</th>
+<th>余额</th>
+<th>备注说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>王二</td>
+<td>100</td>
+<td></td>
+<td>190</td>
+<td>收到xx货款</td>
+</tr>
+<tr>
+<td>张三</td>
+<td></td>
+<td>100</td>
+<td>30</td>
+<td>xxxx</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>120</td>
+<td>90</td>
+<td>170</td>
+<td>xxxx</td>
+</tr>
+</tbody>
+</table>
+<p>记账时间为：2018-11-11 10:22:02<br>区块链在记账是会把账页信息（包含序号、记账时间、交易记录）作为原始信息进行Hash, 得到一个Hash值，如：787635ACD, 用函数表示为：<br><code>Hash(序号0、记账时间、交易记录) = 787635ACD</code><br>账页信息和Hash值组合在一起就构成了第一个区块。</p>
+<blockquote>
+<p>比特币系统里约10分钟记一次账，即每个区块生成时间大概间隔10分钟</p>
+</blockquote>
+<p>在记第2个账页的时候，会把上一个块的Hash值和当前的账页信息一起作为原始信息进行Hash,即：</p>
+<blockquote>
+<p>Hash(上一个Hash值、序号1、记账时间、交易记录) = 456635BCD</p>
+</blockquote>
+<p>这样第2个区块不仅包含了本账页信息，还间接的包含了第一个区块的信息。依次按照此方法继续记账，则最新的区块总是间接包含了所有之前的账页信息。<br>所有这些区块组合起来就形成了区块链，这样的区块链就构成了一个便于验证（只要验证最后一个区块的Hash值就相当于验证了整个账本），不可更改（任何一个交易信息的更改，会让所有之后的区块的Hash值发生变化，这样在验证时就无法通过）的总账本。</p>
+<p>记账有成本，想了解节点为什么要记账，请看这篇：<a href="https://learnblockchain.cn/2017/11/04/bitcoin-pow/" target="_blank" rel="noopener">比特币如何挖矿（挖矿原理）-工作量证明</a></p>
 
       
     </div>
@@ -242,7 +287,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#How-to-learn-Blockchain"><span class="toc-number">1.</span> <span class="toc-text">How to learn Blockchain</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#确定方向"><span class="toc-number">1.1.</span> <span class="toc-text">确定方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#投入时间学习-动手实践"><span class="toc-number">1.2.</span> <span class="toc-text">投入时间学习-动手实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#学习资源介绍"><span class="toc-number">1.3.</span> <span class="toc-text">学习资源介绍</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Blockchain-introduction"><span class="toc-number">2.</span> <span class="toc-text">Blockchain introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是比特币"><span class="toc-number">2.1.</span> <span class="toc-text">什么是比特币</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数字货币是什么"><span class="toc-number">2.1.1.</span> <span class="toc-text">数字货币是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行原理"><span class="toc-number">2.1.2.</span> <span class="toc-text">运行原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#区块链记账原理"><span class="toc-number">2.2.</span> <span class="toc-text">区块链记账原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#哈希函数"><span class="toc-number">2.2.1.</span> <span class="toc-text">哈希函数</span></a></li></ol></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#How-to-learn-Blockchain"><span class="toc-number">1.</span> <span class="toc-text">How to learn Blockchain</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#确定方向"><span class="toc-number">1.1.</span> <span class="toc-text">确定方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#投入时间学习-动手实践"><span class="toc-number">1.2.</span> <span class="toc-text">投入时间学习-动手实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#学习资源介绍"><span class="toc-number">1.3.</span> <span class="toc-text">学习资源介绍</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Blockchain-introduction"><span class="toc-number">2.</span> <span class="toc-text">Blockchain introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是比特币"><span class="toc-number">2.1.</span> <span class="toc-text">什么是比特币</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数字货币是什么"><span class="toc-number">2.1.1.</span> <span class="toc-text">数字货币是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行原理"><span class="toc-number">2.1.2.</span> <span class="toc-text">运行原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#区块链记账原理"><span class="toc-number">2.2.</span> <span class="toc-text">区块链记账原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#哈希函数"><span class="toc-number">2.2.1.</span> <span class="toc-text">哈希函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#区块链记账方法"><span class="toc-number">2.2.2.</span> <span class="toc-text">区块链记账方法</span></a></li></ol></li></ol></li></ol>
           </div>
       </div>
     </div>
