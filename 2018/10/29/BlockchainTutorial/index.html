@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
 <meta property="og:description" content="How to learn Blockchain确定方向从事区块链开发也有很多方向，如:区块链应用开发人员、区块链架构师、底层核心开发、共识算法研究等等。方向不同，需要学习的内容就不一样，如果做基于区块链应用开发，只需要了解一门编程语言（nodejs, Go, Python, C++ 等）, 大概了解区块链的原理，不一定要深入，当能理解越深入开发应用就越顺。如果做区块链基础开发，就需要了解加密算法，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-15T06:36:16.301Z">
+<meta property="og:updated_time" content="2018-11-15T06:43:31.251Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BlockchainTutorial">
 <meta name="twitter:description" content="How to learn Blockchain确定方向从事区块链开发也有很多方向，如:区块链应用开发人员、区块链架构师、底层核心开发、共识算法研究等等。方向不同，需要学习的内容就不一样，如果做基于区块链应用开发，只需要了解一门编程语言（nodejs, Go, Python, C++ 等）, 大概了解区块链的原理，不一定要深入，当能理解越深入开发应用就越顺。如果做区块链基础开发，就需要了解加密算法，">
@@ -113,7 +113,7 @@
 <h3 id="运行原理"><a href="#运行原理" class="headerlink" title="运行原理"></a>运行原理</h3><p>在银行系统的数据库里记录着跟我们身份id对应的财产，下文称这样的记录为账本，如张三的卡10月1日转入1w, 余额10w。<br>比特币系统也同样有这样的账本，不同银行由单一的组织负责记录,<strong>比特币的记账由所有运行系统的人（即节点，可以简单理解为一台电脑）共同参与记录，每个节点都保存（同步）一份完整的账本。</strong><br>同时<strong>使用简单多数原则，来保证账本的一致性。</strong>举个例子：如果有人在自己电脑上把自己的余额从1万改为1百万，他这个账本和大多数人的账本不一致，就会被比特币系统认为是无效的。</p>
 <p>比特币使用区块链技术来支撑整个系统的运行：<br><a href="http://learnblockchain.cn//2017/10/25/whatbc" target="_blank" rel="noopener">区块链记账原理</a><br><a href="http://learnblockchain.cn/2017/11/02/bitcoin-own/" target="_blank" rel="noopener">比特币所有权问题</a><br><a href="http://learnblockchain.cn/2017/11/04/bitcoin-pow/" target="_blank" rel="noopener">比特币如何挖矿</a></p>
 <p>进阶阅读：<br><a href="https://xiaozhuanlan.com/topic/1670539284" target="_blank" rel="noopener">分析比特币网络：一种去中心化、点对点的网络架构</a>，可以详细了解比特币网络。<br><a href="https://xiaozhuanlan.com/topic/1402935768" target="_blank" rel="noopener">比特币区块结构Merkle树及简单支付验证分析</a>，可以详细了解区块结构如何验证交易。</p>
-<h2 id="区块链记账原理"><a href="#区块链记账原理" class="headerlink" title="区块链记账原理"></a>区块链记账原理</h2><p>区块链(1.0)是一个<strong>基于密码学安全的分布式账本</strong>，是一个方便验证，不可篡改的账本。<br>通常认为<strong>与智能合约相结合的区块链</strong>为区块链2.0, 如以太坊是典型的区块链2.0<br>很多人只了解过比特币，不知道区块链，比特币实际是一个使用了区块链技术的应用，只是比特币当前太热，把区块链技术的光芒给掩盖了。区块链才是未来，期望各位开发人员少关心币价，多关心技术。<br>本文将讲解区块链1.0技术是如何实现的。<br>很多人只了解过比特币，不知道区块链，比特币实际是一个使用了区块链技术的应用。<br>本文将讲解区块链1.0技术是如何实现的。</p>
+<h2 id="区块链记账原理"><a href="#区块链记账原理" class="headerlink" title="区块链记账原理"></a>区块链记账原理</h2><p>区块链(1.0)是一个<strong>基于密码学安全的分布式账本</strong>，是一个方便验证，不可篡改的账本。<br>通常认为<strong>与智能合约相结合的区块链</strong>为区块链2.0, 如以太坊是典型的区块链2.0<br>很多人只了解过比特币，不知道区块链，比特币实际是一个使用了区块链技术的应用，只是比特币当前太热，把区块链技术的光芒给掩盖了。区块链才是未来，期望各位开发人员少关心币价，多关心技术。<br>本文将讲解区块链1.0技术是如何实现的。</p>
 <h3 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h3><p>在讲区块链记账之前，先说明一下哈希函数。<br>哈希函数：Hash(原始信息) = 摘要信息<br>原始信息可以是任意的信息, hash之后会得到一个简短的摘要信息</p>
 <p>哈希函数有几个特点:</p>
 <pre><code>- 同样的原始信息用同一个哈希函数总能得到相同的摘要信息
