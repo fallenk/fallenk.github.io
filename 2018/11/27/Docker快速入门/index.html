@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Docker快速入门 | Fallenk&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简介本文记录的是作为一个新手，从了解 Docker 是什么、Docker 技术包含哪些概念到上手使用、安装以及发布 Docker 镜像的整个过程。作者在学习过程中参阅了诸多文档和教程，在此一并感谢，与此同时本文结尾也列出了参考文献的链接，供读者进一步参考。遵循简介、入门、上手到深入的顺序，本文根据个人学习实践过程进行书写，结构如下：  Docker 简介 1.1 Docker 概念扫盲：什么是 D">
+<meta name="keywords" content="编程，入门">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker快速入门">
+<meta property="og:url" content="https://fallenk.github.io/2018/11/27/Docker快速入门/index.html">
+<meta property="og:site_name" content="Fallenk&#39;s Blog">
+<meta property="og:description" content="简介本文记录的是作为一个新手，从了解 Docker 是什么、Docker 技术包含哪些概念到上手使用、安装以及发布 Docker 镜像的整个过程。作者在学习过程中参阅了诸多文档和教程，在此一并感谢，与此同时本文结尾也列出了参考文献的链接，供读者进一步参考。遵循简介、入门、上手到深入的顺序，本文根据个人学习实践过程进行书写，结构如下：  Docker 简介 1.1 Docker 概念扫盲：什么是 D">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://fallenk.github.io/2018/11/27/Docker快速入门/Docker快速入门/DockerAndVirtualMachine.png">
+<meta property="og:updated_time" content="2018-11-27T14:03:46.730Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker快速入门">
+<meta name="twitter:description" content="简介本文记录的是作为一个新手，从了解 Docker 是什么、Docker 技术包含哪些概念到上手使用、安装以及发布 Docker 镜像的整个过程。作者在学习过程中参阅了诸多文档和教程，在此一并感谢，与此同时本文结尾也列出了参考文献的链接，供读者进一步参考。遵循简介、入门、上手到深入的顺序，本文根据个人学习实践过程进行书写，结构如下：  Docker 简介 1.1 Docker 概念扫盲：什么是 D">
+<meta name="twitter:image" content="https://fallenk.github.io/2018/11/27/Docker快速入门/Docker快速入门/DockerAndVirtualMachine.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fallenk.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fallenk&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">经历，心得，笔记，目标</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Docker快速入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/27/Docker快速入门/" class="article-date">
+  <time datetime="2018-11-27T13:23:58.000Z" itemprop="datePublished">2018-11-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Docker容器/">Docker容器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Docker快速入门
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文记录的是作为一个新手，从了解 Docker 是什么、Docker 技术包含哪些概念到上手使用、安装以及发布 Docker 镜像的整个过程。作者在学习过程中参阅了诸多文档和教程，在此一并感谢，与此同时本文结尾也列出了参考文献的链接，供读者进一步参考。遵循简介、入门、上手到深入的顺序，本文根据个人学习实践过程进行书写，结构如下：</p>
+<ul>
+<li>Docker 简介<ul>
+<li>1.1 Docker 概念扫盲：什么是 Docker？</li>
+<li>1.2 Docker 和虚拟机的区别与特点</li>
+</ul>
+</li>
+<li>Docker 基本概念<ul>
+<li>2.1 核心概念：镜像、容器与仓库</li>
+<li>2.2 Docker 三剑客</li>
+</ul>
+</li>
+<li>Docker 安装与使用<ul>
+<li>3.1 Docker 安装、运行与加速</li>
+<li>3.2 Hello World</li>
+</ul>
+</li>
+<li>镜像使用与发布<ul>
+<li>4.1 镜像的获取与使用</li>
+<li>4.2 通过 commit 命令理解镜像构成</li>
+<li>4.3 利用 Dockerfile 定制镜像</li>
+</ul>
+</li>
+<li>总结</li>
+<li>参考</li>
+</ul>
+<p>其中第一章与第二章非常详细地介绍了 Docker 的相关概念与基本组成，主要是概论介绍等文字描述，第三章与第四章偏重于上手实践，从 Docker 环境安装、运行加速、镜像使用、镜像构成到镜像定制与发布，分解了各步骤的流程，通过教程加注解的形式加深读者印象。其中建立镜像的示例代码可以从 <a href="https://github.com/hijiangtao/friendlyhello-docker" target="_blank" rel="noopener">GitHub</a> 打包下载。</p>
+<h1 id="一、Docker-简介"><a href="#一、Docker-简介" class="headerlink" title="一、Docker 简介"></a>一、Docker 简介</h1><p>谈到 Docker，不论我们是否实践过，都应该对它或多或少有一个印象，即“环境一次创建，多端一致性运行”，因为它正解决了曾经困扰我们已久“这段代码在我电脑上运行没问题啊”的烦恼。首先，简单介绍一下 Docker 技术是什么。</p>
+<h2 id="1-1-Docker-概念扫盲：什么是-Docker？"><a href="#1-1-Docker-概念扫盲：什么是-Docker？" class="headerlink" title="1.1 Docker 概念扫盲：什么是 Docker？"></a>1.1 Docker 概念扫盲：什么是 Docker？</h2><p>Docker 是一个开放源代码软件项目，项目主要代码在2013年开源于 <a href="https://github.com/moby/moby" target="_blank" rel="noopener">GitHub</a>。它是云服务技术上的一次创新，<strong>让应用程序布署在软件容器下的工作可以自动化进行，借此在 Linux 操作系统上，提供一个额外的软件抽象层，以及操作系统层虚拟化的自动管理机制</strong>。</p>
+<p>Docker 利用 Linux <strong>核心中的资源分脱机制</strong>，例如 <em>cgroups，以及 Linux 核心名字空间（name space）</em>，来创建独立的软件容器（containers），属于操作系统层面的虚拟化技术。由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器。Docker 在容器的基础上进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极大的简化了容器的创建和维护，使得其比虚拟机技术更为轻便、快捷。Docker 可以在单一 Linux 实体下运作，避免因为创建一个虚拟机而造成的额外负担。</p>
+<h2 id="1-2-Docker-和虚拟机的区别与特点"><a href="#1-2-Docker-和虚拟机的区别与特点" class="headerlink" title="1.2 Docker 和虚拟机的区别与特点"></a>1.2 Docker 和虚拟机的区别与特点</h2><p>对于新手来说，第一个觉得困惑的地方可能就是不清楚 Docker 和虚拟机之间到底是什么关系。以下两张图分别介绍了虚拟机与 Docker 容器的结构。<br><img src="/2018/11/27/Docker快速入门/Docker快速入门/DockerAndVirtualMachine.png" alt=""></p>
+<p>对于虚拟机技术来说，传统的虚拟机需要模拟整台机器包括硬件，每台虚拟机都需要有自己的操作系统，虚拟机一旦被开启，预分配给他的资源将全部被占用。每一个虚拟机包括应用，必要的二进制和库，以及一个完整的用户操作系统。<br>![](../Docker快速入门/DockerStructure.png</p>
+<p>容器技术和我们的宿主机共享硬件资源及操作系统，可以实现资源的动态分配。容器包含应用和其所有的依赖包，但是与其他容器共享内核。<strong>容器在宿主机操作系统中，在用户空间以分离的进程运行</strong>。容器内没有自己的内核，也没有进行硬件虚拟</p>
+<p>具体来说与虚拟机技术对比，Docker 容器存在以下几个特点：</p>
+<ol>
+<li>更快的启动速度：因为 Docker 直接运行于宿主内核，无需启动完整的操作系统，因此启动速度属于秒级别，而虚拟机通常需要几分钟去启动。</li>
+<li>更高效的资源利用率：由于容器不需要进行硬件虚拟以及运行完整操作系统等额外开销，Docker 对系统资源的利用率更高。</li>
+<li>更高的系统支持量：Docker 的架构可以共用一个内核与共享应用程序库，所占内存极小。同样的硬件环境，Docker 运行的镜像数远多于虚拟机数量，对系统的利用率非常高。</li>
+<li>持续交付与部署：对开发和运维人员来说，最希望的就是<strong>一次创建或配置，可以在任意地方正常运行</strong>。使用 Docker 可以通过<strong>定制应用镜像来实现持续集成、持续交付、部署</strong>。<strong>开发人员可以通过 Dockerfile 来进行镜像构建，并进行集成测试</strong>，而运维人员则可以直接在生产环境中快速部署该镜像，甚至进行自动部署。</li>
+<li>更轻松的迁移：由于 Docker 确保了执行环境的一致性，使得应用的迁移更加容易。Docker 可以在很多平台上运行，无论是物理机、虚拟机、公有云、私有云，甚至是笔记本，其运行结果是一致的。因此用户可以很轻易的将在一个平台上运行的应用，迁移到另一个平台上，而不用担心运行环境的变化导致应用无法正常运行的情况。</li>
+<li>更轻松的维护与扩展：Docker 使用的<strong>分层存储以及镜像</strong>的技术，使得应用重复部分的复用更为容易，也使得应用的维护更新更加简单，基于基础镜像进一步扩展镜像也变得非常简单。此外，Docker 团队同各个开源项目团队一起维护了一大批高质量的 官方镜像，既可以直接在生产环境使用，又可以作为基础进一步定制，大大的降低了应用服务的镜像制作成本。</li>
+<li>更弱的隔离性：Docker 属于进程之间的隔离，虚拟机可实现系统级别隔离。</li>
+<li>更弱的安全性：Docker 的租户 root 和宿主机 root 等同，一旦容器内的用户从普通用户权限提升为 root 权限，它就直接具备了宿主机的 root 权限，进而可进行无限制的操作。虚拟机租户 root 权限和宿主机的 root 虚拟机权限是分离的，并且利用硬件隔离技术可以防止虚拟机突破和彼此交互，而容器至今还没有任何形式的硬件隔离，这使得容器容易受到攻击。</li>
+</ol>
+<h1 id="二、Docker-基本概念"><a href="#二、Docker-基本概念" class="headerlink" title="二、Docker 基本概念"></a>二、Docker 基本概念</h1><p>##2.1 核心概念：镜像、容器与仓库</p>
+<p>Docker 主要包含三个基本概念，分别是镜像、容器和仓库，理解了这三个概念，就理解了 Docker 的整个生命周期。以下简要总结一下这三点，详细介绍可以移步<a href="https://yeasy.gitbooks.io/docker_practice/content/basic_concept/" target="_blank" rel="noopener">Docker 从入门到实践</a>对应章节。</p>
+<ul>
+<li>镜像：Docker 镜像是一个特殊的<strong>文件系统</strong>，除了<strong>提供容器运行时所需的程序、库、资源、配置等文件</strong>外，还包含了一些为运行时<strong>准备的一些配置参数</strong>（如匿名卷、环境变量、用户等）。<strong>镜像不包含任何动态数据，其内容在构建之后也不会被改变。</strong></li>
+<li>容器：<strong>容器的实质是进程</strong>，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的命名空间容器可以被创建、启动、停止、删除和暂停等等，说到镜像与容器之间的关系，可以类比面向对象程序设计中的类和实例。</li>
+<li>仓库：镜像构建完成后，可以很容易的在当前宿主机上运行，但是，如果需要在其它服务器上使用这个镜像，我们就<strong>需要一个集中的存储、分发镜像的服务</strong>，Docker Registry 就是这样的服务。<strong>一个 Docker Registry 中可以包含多个仓库；每个仓库可以包含多个标签；每个标签对应一个镜像，其中标签可以理解为镜像的版本号</strong>。</li>
+</ul>
+<h2 id="2-2-Docker-三剑客"><a href="#2-2-Docker-三剑客" class="headerlink" title="2.2 Docker 三剑客"></a>2.2 Docker 三剑客</h2><ul>
+<li><strong>docker-compose</strong>：Docker 镜像在创建之后，往往需要自己手动 pull 来获取镜像，然后执行 run 命令来运行。当服务需要用到多种容器，容器之间又产生了各种依赖和连接的时候，部署一个服务的手动操作是令人感到十分厌烦的。</li>
+</ul>
+<p>dcoker-compose 技术，就是通过一个 <code>.yml</code> 配置文件，将所有的容器的部署方法、文件映射、容器连接等等一系列的配置写在一个配置文件里，最后只需要执行 <code>docker-compose up</code> 命令就会像执行脚本一样的去一个个安装容器并自动部署他们，极大的便利了复杂服务的部署。</p>
+<ul>
+<li><strong>docker-machine</strong>：Docker 技术是基于 Linux 内核的 cgroup 技术实现的，那么问题来了，在非 Linux 平台上是否就不能使用 docker 技术了呢？答案是可以的，不过显然需要<strong>借助虚拟机去模拟出 Linux 环境来</strong>。</li>
+</ul>
+<p>docker-machine 就是 docker 公司官方提出的，用于在各种平台上快速创建具有 docker 服务的虚拟机的技术，甚至可以通过指定 driver 来定制虚拟机的实现原理（一般是 virtualbox）</p>
+<ul>
+<li><strong>docker-swarm</strong>：swarm 是基于 docker 平台实现的集群技术，他可以通过几条简单的指令快速的创建一个 docker 集群，接着在集群的共享网络上部署应用，最终实现分布式的服务。</li>
+</ul>
+<h1 id="三、Docker-安装与使用"><a href="#三、Docker-安装与使用" class="headerlink" title="三、Docker 安装与使用"></a>三、Docker 安装与使用</h1><p>Docker 按版本划分，可以区分为 CE 和 EE。CE 即社区版（免费，支持周期三个月），EE 即企业版，强调安全，付费使用。</p>
+<h2 id="3-1-Docker-安装、运行与加速"><a href="#3-1-Docker-安装、运行与加速" class="headerlink" title="3.1 Docker 安装、运行与加速"></a>3.1 Docker 安装、运行与加速</h2><p>本部分只介绍 macOS 上的安装，其余操作系统上的使用方法可以参见<a href="https://docs.docker.com/install/" target="_blank" rel="noopener">官网</a>。</p>
+<p>Docker for Mac 要求系统最低为 macOS 10.10.3 Yosemite。如果系统不满足需求，可以安装 Docker Toolbox。</p>
+<p>安装方法有两种：homebrew 和手动下载安装。Homebrew-Cask 已经支持 Docker for Mac，如果使用该方式，你只需要运行如下命令：<br><code>brew cask install docker</code><br>若是手动下载，也很容易。从<a href="https://docs.docker.com/docker-for-mac/install/#install-and-run-docker-for-mac" target="_blank" rel="noopener">这里</a>选择合适你的版本下载 dmg 文件，然后拖进应用中即可。</p>
+<p>启动应用之后，你可以在命令行查看 Docker 版本（Docker 不同技术对应的版本用不同命令进行查看）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker --version</span><br><span class="line">&gt; Docker version 18.03.0-ce, build 0520e24</span><br><span class="line"></span><br><span class="line">docker-compose --version</span><br><span class="line">&gt; docker-compose version 1.20.1, build 5d8c71b</span><br><span class="line"></span><br><span class="line">docker-machine --version</span><br><span class="line">&gt; docker-machine version 0.14.0, build 89b8332</span><br></pre></td></tr></table></figure>
+<p>当然了，由于某些原因，国内从 Docker Hub 上拉取内容会非常缓慢，这个时候就可以配置一个镜像加速器环境。详情说明可以移步<a href="https://www.docker-cn.com/registry-mirror" target="_blank" rel="noopener">Docker 中国官方镜像加速</a>，对于 macOS 用户，在任务栏点击应用图标 -&gt; Perferences… -&gt; Daemon -&gt; Registry mirrors，在列表中填写加速器地址 <code>https://registry.docker-cn.com</code> 即可。修改完成之后，点击 <code>Apply &amp; Restart</code> 即可。</p>
+<h2 id="3-2-Hello-World"><a href="#3-2-Hello-World" class="headerlink" title="3.2 Hello World"></a>3.2 Hello World</h2><p>大多数编程语言以及一些软件的第一个示例都是 <code>Hello Wolrd</code>，Docker 也不例外，运行 <code>docker run hello-world</code> 验证一下吧（该命令下 Docker 会在本地查找镜像是否存在，但因为环境刚装上所以肯定不存在，之后 Docker 会去远程 <code>Docker registry server</code> 下载这个镜像），以下为运行信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Unable to find image &apos;hello-world:latest&apos; locally</span><br><span class="line">latest: Pulling from library/hello-world</span><br><span class="line">d1725b59e92d: Pull complete</span><br><span class="line">Digest: sha256:0add3ace90ecb4adbf7777e9aacf18357296e799f81cabc9fde470971e499788</span><br><span class="line">Status: Downloaded newer image for hello-world:latest</span><br><span class="line"></span><br><span class="line">Hello from Docker!</span><br><span class="line">This message shows that your installation appears to be working correctly.</span><br><span class="line"></span><br><span class="line">To generate this message, Docker took the following steps:</span><br><span class="line"> 1. The Docker client contacted the Docker daemon.</span><br><span class="line"> 2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.</span><br><span class="line">    (amd64)</span><br><span class="line"> 3. The Docker daemon created a new container from that image which runs the</span><br><span class="line">    executable that produces the output you are currently reading.</span><br><span class="line"> 4. The Docker daemon streamed that output to the Docker client, which sent it</span><br><span class="line">    to your terminal.</span><br><span class="line"></span><br><span class="line">To try something more ambitious, you can run an Ubuntu container with:</span><br><span class="line"> $ docker run -it ubuntu bash</span><br><span class="line"></span><br><span class="line">Share images, automate workflows, and more with a free Docker ID:</span><br><span class="line"> https://hub.docker.com/</span><br><span class="line"></span><br><span class="line">For more examples and ideas, visit:</span><br><span class="line"> https://docs.docker.com/get-started/</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2018/11/27/Docker快速入门/" data-id="cjoztb4xr0002k98oj1f7sshg" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程，入门/">编程，入门</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/18/2018-11-18/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一、Docker-简介"><span class="toc-number">2.</span> <span class="toc-text">一、Docker 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Docker-概念扫盲：什么是-Docker？"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 Docker 概念扫盲：什么是 Docker？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Docker-和虚拟机的区别与特点"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 Docker 和虚拟机的区别与特点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、Docker-基本概念"><span class="toc-number">3.</span> <span class="toc-text">二、Docker 基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Docker-三剑客"><span class="toc-number">3.1.</span> <span class="toc-text">2.2 Docker 三剑客</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、Docker-安装与使用"><span class="toc-number">4.</span> <span class="toc-text">三、Docker 安装与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Docker-安装、运行与加速"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 Docker 安装、运行与加速</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-Hello-World"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 Hello World</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 Fallenk Liu&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;fallenk_liu@yeah.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "e2fb4051c49842688ce669e634bc983f",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+    
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
