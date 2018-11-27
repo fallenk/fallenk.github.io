@@ -17,7 +17,8 @@
 <meta property="og:image" content="https://fallenk.github.io/2018/11/27/Docker快速入门/Docker快速入门/dockerUbuntu.png">
 <meta property="og:image" content="https://fallenk.github.io/2018/11/27/Docker快速入门/Docker快速入门/nginx.png">
 <meta property="og:image" content="https://fallenk.github.io/2018/11/27/Docker快速入门/Docker快速入门/editNginx.png">
-<meta property="og:updated_time" content="2018-11-27T16:44:23.562Z">
+<meta property="og:image" content="https://fallenk.github.io/2018/11/27/Docker快速入门/Docker快速入门/rundocker.png">
+<meta property="og:updated_time" content="2018-11-27T16:52:07.491Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker快速入门">
 <meta name="twitter:description" content="简介本文记录的是作为一个新手，从了解 Docker 是什么、Docker 技术包含哪些概念到上手使用、安装以及发布 Docker 镜像的整个过程。作者在学习过程中参阅了诸多文档和教程，在此一并感谢，与此同时本文结尾也列出了参考文献的链接，供读者进一步参考。遵循简介、入门、上手到深入的顺序，本文根据个人学习实践过程进行书写，结构如下：  Docker 简介 1.1 Docker 概念扫盲：什么是 D">
@@ -266,6 +267,18 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line"># 输出</span><br><span class="line">Dockerfile		app.py			requirements.txt</span><br></pre></td></tr></table></figure>
 <p>接着，我们在当前目录开始构建这个镜像吧。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># -t 可以给这个镜像取一个名字（tag）</span><br><span class="line">docker build -t friendlyhello .</span><br></pre></td></tr></table></figure>
+<p>以上代码用到了 <code>docker build</code> 命令，其格式如下：</p>
+<p><code>docker build [选项] &lt;上下文路径/URL/-&gt;</code><br>值得注意的是上下文路径这个概念。在本例中我们用 <code>.</code> 定义，那么什么是上下文环境呢？这里我们需要了解整 build 的工作原理。</p>
+<blockquote>
+<p>Docker 在运行时分为 Docker 引擎（也就是服务端守护进程）和客户端工具。Docker 的引擎提供了一组 REST API，被称为 Docker Remote API，而如 docker 命令这样的客户端工具，则是通过这组 API 与 Docker 引擎交互，从而完成各种功能。因此，虽然表面上我们好像是在本机执行各种 docker 功能，但实际上，一切都是使用的远程调用形式在服务端（Docker 引擎）完成。</p>
+</blockquote>
+<p>docker build 得知这个路径后，会将路径下的所有内容打包，然后上传给 Docker 引擎。当我们代码中使用到了诸如 COPY 等指令时，服务端会根据该指令复制调用相应的文件。但由于整个文件中</p>
+<p>构建完毕，新镜像放在哪里呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker image ls</span><br><span class="line"></span><br><span class="line"># 输出</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">friendlyhello       latest              73ff8ff81235        5 minutes ago       151MB</span><br><span class="line">nginx               v2                  48bcb7b903a4        About an hour ago   109MB</span><br><span class="line">ubuntu              16.04               c9d990395902        4 days ago          113MB</span><br><span class="line">hello-world         latest              e38bc07ac18e        5 days ago          1.85kB</span><br><span class="line">nginx               latest              b175e7467d66        6 days ago          109MB</span><br><span class="line">python              2.7-slim            b16fde09c92c        3 weeks ago         139MB</span><br></pre></td></tr></table></figure>
+<p>接下来，我们运行它（若是要后台运行则记得加上 -d 参数）：</p>
+<p><code>docker run -p 4000:80 friendlyhello</code></p>
+<p><img src="/2018/11/27/Docker快速入门/Docker快速入门/rundocker.png" alt=""></p>
+<p>你可以通过浏览器查看效果，也可以通过 <code>curl</code> 命令获得相同的内容：</p>
 
       
     </div>
