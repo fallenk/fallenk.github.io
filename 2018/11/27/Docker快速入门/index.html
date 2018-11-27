@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://fallenk.github.io/2018/11/27/Docker快速入门/Docker快速入门/nginx.png">
 <meta property="og:image" content="https://fallenk.github.io/2018/11/27/Docker快速入门/Docker快速入门/editNginx.png">
 <meta property="og:image" content="https://fallenk.github.io/2018/11/27/Docker快速入门/Docker快速入门/rundocker.png">
-<meta property="og:updated_time" content="2018-11-27T16:52:07.491Z">
+<meta property="og:updated_time" content="2018-11-27T16:54:44.468Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker快速入门">
 <meta name="twitter:description" content="简介本文记录的是作为一个新手，从了解 Docker 是什么、Docker 技术包含哪些概念到上手使用、安装以及发布 Docker 镜像的整个过程。作者在学习过程中参阅了诸多文档和教程，在此一并感谢，与此同时本文结尾也列出了参考文献的链接，供读者进一步参考。遵循简介、入门、上手到深入的顺序，本文根据个人学习实践过程进行书写，结构如下：  Docker 简介 1.1 Docker 概念扫盲：什么是 D">
@@ -279,6 +279,9 @@
 <p><code>docker run -p 4000:80 friendlyhello</code></p>
 <p><img src="/2018/11/27/Docker快速入门/Docker快速入门/rundocker.png" alt=""></p>
 <p>你可以通过浏览器查看效果，也可以通过 <code>curl</code> 命令获得相同的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:4000</span><br><span class="line"></span><br><span class="line"># 输出结果</span><br><span class="line">&lt;h3&gt;Hello World!&lt;/h3&gt;&lt;b&gt;Hostname:&lt;/b&gt; 98750b60e766&lt;br/&gt;&lt;b&gt;Visits:&lt;/b&gt; &lt;i&gt;cannot connect to Redis, counter disabled&lt;/i&gt;</span><br></pre></td></tr></table></figure>
+<p>接下来我们发布这个镜像到 Docker Hub。首先，你可以给这个镜像打上一个 tag（可选项）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># tag 格式</span><br><span class="line"> fepository:tag</span><br><span class="line"></span><br><span class="line"># 本例中的运行命令</span><br><span class="line">docker tag friendlyhello hijiangtao/friendlyhello:v1</span><br></pre></td></tr></table></figure>
 
       
     </div>
