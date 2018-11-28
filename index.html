@@ -74,6 +74,90 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Docker三剑客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/28/Docker三剑客/" class="article-date">
+  <time datetime="2018-11-28T02:37:36.000Z" itemprop="datePublished">2018-11-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Docker容器/">Docker容器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/28/Docker三剑客/">Docker三剑客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>理解Docker的三个核心概念：镜像，容器，仓库；</p>
+<ol>
+<li>开发人员使用Dockerfile定制镜像，使用docker-compose在<code>.yml</code>文件中配置所有容器的部署方法、文件映射、容器链接等，运行<code>docker-compose up</code>执行安装容器并且自动部署。</li>
+<li>运维人员从仓库下载容器，运行脚本。</li>
+</ol>
+<p>因此下面将介绍具体的操作流程。</p>
+<h1 id="Docker-Compose-项目"><a href="#Docker-Compose-项目" class="headerlink" title="Docker Compose 项目"></a>Docker Compose 项目</h1><p><code>Docker Compose</code> 是 <code>Docker</code> 官方编排（Orchestration）项目之一，负责<strong>快速的部署分布式应用</strong>。</p>
+<h2 id="Compose-简介"><a href="#Compose-简介" class="headerlink" title="Compose 简介"></a>Compose 简介</h2><p>Compose 项目是 Docker 官方的开源项目，负责<strong>实现对 Docker 容器集群的快速编排</strong>。从功能上看，跟 OpenStack 中的 Heat 十分类似。</p>
+<p>Compose 定位是 <strong>「定义和运行多个 Docker 容器的应用（Defining and running multi-container Docker applications）」</strong>，其前身是开源项目 Fig。</p>
+<p>我们知道使用一个 Dockerfile 模板文件，可以让用户很方便的定义一个单独的应用容器。然而，在日常工作中，经常会碰到需要多个容器相互配合来完成某项任务的情况。例如要实现一个 Web 项目，除了 Web 服务容器本身，往往还需要再加上后端的数据库服务容器，甚至还包括负载均衡容器等。</p>
+<p><code>Compose</code> 恰好满足了这样的需求。<strong>它允许用户通过一个单独的 <code>docker-compose.yml</code> 模板文件（<code>YAML</code> 格式）来定义一组相关联的应用容器为一个项目（project）。</strong><br>Compose 中有两个重要的概念：</p>
+<ul>
+<li>服务 (service)：一个应用的容器，实际上可以包括若干<strong>运行相同镜像的容器实例</strong>。</li>
+<li>项目 (project)：<strong>由一组关联的应用容器组成的一个完整业务单元</strong>，在 <code>docker-compose.yml</code> 文件中定义。</li>
+</ul>
+<p><code>Compose</code> 的默认管理对象是项目，通过子命令对项目中的一组容器进行便捷地生命周期管理。</p>
+<p>Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 来对容器进行管理。因此，只要所操作的平台支持 Docker API，就可以在其上利用 Compose 来进行编排管理。</p>
+<h2 id="安装与卸载"><a href="#安装与卸载" class="headerlink" title="安装与卸载"></a>安装与卸载</h2><p>Compose 支持 Linux、macOS、Windows 10 三大平台。</p>
+<p>Compose 可以通过 Python 的包管理工具 pip 进行安装，也可以直接下载编译好的二进制文件使用，甚至能够直接在 Docker 容器中运行。</p>
+<p>前两种方式是传统方式，适合本地环境下安装使用；最后一种方式则不破坏系统环境，更适合云计算场景。</p>
+<p>Docker for Mac 、Docker for Windows 自带 docker-compose 二进制文件，安装 Docker 之后可以直接使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose --version</span><br><span class="line"></span><br><span class="line">docker-compose version 1.17.1, build 6d101fb</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>###术语<br>首先介绍几个术语。</p>
+<ul>
+<li>服务 (service)：一个应用容器，实际上可以运行多个相同镜像的实例。</li>
+<li>项目 (project)：由一组关联的应用容器组成的一个完整业务单元。</li>
+</ul>
+<p>可见，一个项目可以由多个服务（容器）关联而成，Compose 面向项目进行管理。</p>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>最常见的项目是 web 网站，该项目应该包含 web 应用和缓存。</p>
+<p>下面我们用 Python 来建立一个能够记录页面访问次数的 web 网站。</p>
+<h3 id="web-应用"><a href="#web-应用" class="headerlink" title="web 应用"></a>web 应用</h3><p>新建文件夹，在该目录中编写 app.py 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">from redis import Redis</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">redis = Redis(host=&apos;redis&apos;, port=6379)</span><br><span class="line"></span><br><span class="line">@app.route(&apos;/&apos;)</span><br><span class="line">def hello():</span><br><span class="line">    count = redis.incr(&apos;hits&apos;)</span><br><span class="line">    return &apos;Hello World! 该页面已被访问 &#123;&#125; 次。\n&apos;.format(count)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    app.run(host=&quot;0.0.0.0&quot;, debug=True)</span><br></pre></td></tr></table></figure>
+<h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><p>编写 Dockerfile 文件，内容为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FROM python:3.6-alpine</span><br><span class="line">ADD . /code</span><br><span class="line">WORKDIR /code</span><br><span class="line">RUN pip install redis flask</span><br><span class="line">CMD [&quot;python&quot;, &quot;app.py&quot;]</span><br></pre></td></tr></table></figure>
+<h3 id="docker-compose-yml"><a href="#docker-compose-yml" class="headerlink" title="docker-compose.yml"></a>docker-compose.yml</h3><p>编写 docker-compose.yml 文件，这个是 Compose 使用的主模板文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">version: &apos;3&apos;</span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  web:</span><br><span class="line">    build: .</span><br><span class="line">    ports:</span><br><span class="line">     - &quot;5000:5000&quot;</span><br><span class="line"></span><br><span class="line">  redis:</span><br><span class="line">    image: &quot;redis:alpine&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="运行-compose-项目"><a href="#运行-compose-项目" class="headerlink" title="运行 compose 项目"></a>运行 compose 项目</h3><p><code>$ docker-compose up</code></p>
+<p>此时访问本地 5000 端口，每次刷新页面，计数就会加 1。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2018/11/28/Docker三剑客/" data-id="cjp0rzrpt0000kl8ocp3ujw3g" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/入门/">入门</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-Docker快速入门" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/27/Docker快速入门/" class="article-date">
@@ -113,7 +197,7 @@
       
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程，入门/">编程，入门</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/入门/">入门</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li></ul>
 
     </footer>
   </div>
@@ -497,55 +581,6 @@
 
 
   
-    <article id="post-tutorialGO" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/28/tutorialGO/" class="article-date">
-  <time datetime="2018-09-28T11:40:21.000Z" itemprop="datePublished">2018-09-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/golang学习/">golang学习</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/28/tutorialGO/">tutorialGO</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="包，变量和函数"><a href="#包，变量和函数" class="headerlink" title="包，变量和函数"></a>包，变量和函数</h2><h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><p>每个 Go 程序都是由<strong>包</strong>构成的。<br>程序从<code>main</code>包开始运行。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/09/28/tutorialGO/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/09/28/tutorialGO/" data-id="cjp0rsq92001c408ov6vb2g64" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
 
 
   <nav id="page-nav">
@@ -584,7 +619,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人成长/">个人成长</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自我反省/">自我反省</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人成长/">个人成长</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自我反省/">自我反省</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -594,7 +629,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/coding/" style="font-size: 14px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 17.67px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 21.33px;">代码</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 17.67px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/深思/" style="font-size: 14px;">深思</a> <a href="/tags/禅/" style="font-size: 25px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/编程，入门/" style="font-size: 14px;">编程，入门</a> <a href="/tags/自我修炼/" style="font-size: 21.33px;">自我修炼</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
+      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/coding/" style="font-size: 14px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.75px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 19.5px;">代码</a> <a href="/tags/入门/" style="font-size: 16.75px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 16.75px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/深思/" style="font-size: 14px;">深思</a> <a href="/tags/禅/" style="font-size: 22.25px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/自我修炼/" style="font-size: 19.5px;">自我修炼</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
     </div>
   </div>
 
@@ -604,6 +639,10 @@
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/11/28/Docker三剑客/">Docker三剑客</a>
+          </li>
         
           <li>
             <a href="/2018/11/27/Docker快速入门/">Docker快速入门</a>
@@ -621,10 +660,6 @@
             <a href="/2018/11/14/大数据学习之Spark/">大数据学习之Spark</a>
           </li>
         
-          <li>
-            <a href="/2018/10/29/BlockchainTutorial/">BlockchainTutorial</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -634,7 +669,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">10</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">10</span></li></ul>
     </div>
   </div>
 
