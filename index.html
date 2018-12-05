@@ -74,6 +74,88 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Pytorch快速入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/05/Pytorch快速入门/" class="article-date">
+  <time datetime="2018-12-05T12:17:44.000Z" itemprop="datePublished">2018-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python学习/">Python学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/05/Pytorch快速入门/">Pytorch快速入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>原文连接： <a href="https://zhuanlan.zhihu.com/p/26854386" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26854386</a><br>本文为快速学习入门Pytorch。<br>学习之道：明白目的；pytorchd的结构框架；pytorch的使用。</p>
+<ul>
+<li>目的：An open source deep learning platform that provides a seamless path from research prototyping to production deployment.</li>
+<li>结构：平台，对象，操作，框架</li>
+<li>使用：引用，使用</li>
+</ul>
+<h1 id="10分钟快速入门PyTorch-0"><a href="#10分钟快速入门PyTorch-0" class="headerlink" title="10分钟快速入门PyTorch (0)"></a>10分钟快速入门PyTorch (0)</h1><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>根据URL： <a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">https://pytorch.org/get-started/locally/</a><br>安装： <code>pip3 install torch torchvision</code></p>
+<h2 id="pytorch基础"><a href="#pytorch基础" class="headerlink" title="pytorch基础"></a>pytorch基础</h2><p>介绍一下pytorch处理的对象以及操作。</p>
+<h2 id="Tensor"><a href="#Tensor" class="headerlink" title="Tensor"></a>Tensor</h2><p>首先介绍里面最基本的操作对象，tensor。<br>使用<code>jupytert notebook</code>:</p>
+<p><img src="/2018/12/05/Pytorch快速入门/torch1.png" alt=""></p>
+<p>tensor就是张量的英文，表示<strong>多维的矩阵</strong>，比如一维就是向量，二维就是一般的矩阵等等，<strong>pytorch里面处理的单位就是一个一个的tensor</strong>.可以显示的得到其大小</p>
+<p><img src="/2018/12/05/Pytorch快速入门/torch2.png" alt=""></p>
+<p>这个和numpy很相似，同时tensor和numpy.array之间也可以相互转换.<br><img src="/2018/12/05/Pytorch快速入门/torch3.png" alt=""><br>tensor的运算也很简单，一般的四则运算都是支持的</p>
+<h2 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h2><p>pytorch和numpy不一样的地方就来了，就是其提供了<strong>自动求导功能</strong>，也就是可以<strong>自动给你你要的参数的梯度</strong>，这个操作由另外一个基本元素提供，Variable<br><img src="/2018/12/05/Pytorch快速入门/torch4.png" alt=""><br>本质上Variable和Tensor没有区别，不过<strong>Variable会放入一个计算图，然后进行前向传播，反向传播以及自动求导</strong>.<br>一个Variable里面包含着三个属性，data，grad和creator，其中<strong>creator表示得到这个Variabel的操作</strong>，比如乘法或者加法等等，<strong>grad表示方向传播的梯度</strong>，<strong>data表示取出这个Variabel里面的数据</strong><br><img src="/2018/12/05/Pytorch快速入门/torch5.png" alt=""><br>这就是一个简单的计算图的例子</p>
+<h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><p>前面讲了两个操作对象，最后讲一下pytorch里面的<strong>模型建立</strong>，<strong>模型的建立主要依赖于torch.nn</strong>，torch.nn包含这个所有神经网络的层的结构。<br><img src="/2018/12/05/Pytorch快速入门/torch6.png" alt=""></p>
+<p>这就是构建所有神经网络的模板，不管你想<strong>构建卷积神经网络还是循环神经网络或者是生成对抗网络都依赖于这个结构</strong>.<br><a href="https://github.com/L1aoXingyu/pytorch-beginner" target="_blank" rel="noopener">代码网址</a></p>
+<h1 id="10分钟快速入门PyTorch-1"><a href="#10分钟快速入门PyTorch-1" class="headerlink" title="10分钟快速入门PyTorch (1)"></a>10分钟快速入门PyTorch (1)</h1><p>以上基本的介绍了pytorch里面的<strong>操作单元，Tensor，以及计算图中的操作单位Variable</strong>，相信大家都已经熟悉了，下面这一部分我们就从两个最基本的机器学习，<strong>线性回归以及logistic回归</strong>来开始建立我们的计算图进行运算。</p>
+<h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>对于线性回归，相信大家都很熟悉了，各种机器学习的书第一个要讲的内容必定有线性回归，这里简单的回顾一下什么是简单的一元线性回归。即<strong>给出一系列的点，找一条直线，使得这条直线与这些点的距离之和最小</strong>。<br><img src="/2018/12/05/Pytorch快速入门/torch7.png" alt=""><br>上面这张图就简单地描绘出了线性回归的基本原理，下面我们重点讲讲如何用pytorch写一个简单的线性回归。</p>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><h3 id="1-data"><a href="#1-data" class="headerlink" title="1. data"></a>1. data</h3><p>首先我们需要给出一系列的点作为线性回归的数据，使用numpy来存储这些点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x_train = np.array([[<span class="number">3.3</span>], [<span class="number">4.4</span>], [<span class="number">5.5</span>], [<span class="number">6.71</span>], [<span class="number">6.93</span>], [<span class="number">4.168</span>],</span><br><span class="line">                    [<span class="number">9.779</span>], [<span class="number">6.182</span>], [<span class="number">7.59</span>], [<span class="number">2.167</span>], [<span class="number">7.042</span>],</span><br><span class="line">                    [<span class="number">10.791</span>], [<span class="number">5.313</span>], [<span class="number">7.997</span>], [<span class="number">3.1</span>]], dtype=np.float32)</span><br><span class="line"></span><br><span class="line">y_train = np.array([[<span class="number">1.7</span>], [<span class="number">2.76</span>], [<span class="number">2.09</span>], [<span class="number">3.19</span>], [<span class="number">1.694</span>], [<span class="number">1.573</span>],</span><br><span class="line">                    [<span class="number">3.366</span>], [<span class="number">2.596</span>], [<span class="number">2.53</span>], [<span class="number">1.221</span>], [<span class="number">2.827</span>],</span><br><span class="line">                    [<span class="number">3.465</span>], [<span class="number">1.65</span>], [<span class="number">2.904</span>], [<span class="number">1.3</span>]], dtype=np.float32)</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/12/05/Pytorch快速入门/torch8.png" alt=""></p>
+<p>还记得pytorch里面的基本处理单元吗？Tensor，我们需要将numpy转换成Tensor，如果你还记得上一节的内容，那么你就一定记得这个函数，<code>torch.from_numpy()</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x_train = torch.from_numpy(x_train)</span><br><span class="line">y_train = torch.from_numpy(y_train)</span><br></pre></td></tr></table></figure>
+<p>这样我们的数据就转换成了Tensor。</p>
+<h3 id="2-model"><a href="#2-model" class="headerlink" title="2. model"></a>2. model</h3><p>上一节讲了基本的模型框架，按照这个框架就可以写出一个线性回归模型了.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class LinearRegression(nn.Module):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        super(LinearRegression, self).__init__()</span><br><span class="line">        self.linear = nn.Linear(1, 1)  # input and output is 1 dimension</span><br><span class="line"></span><br><span class="line">    def forward(self, x):</span><br><span class="line">        out = self.linear(x)</span><br><span class="line">        return out</span><br><span class="line">model = LinearRegression()</span><br></pre></td></tr></table></figure>
+<p>这里的nn.Linear表示的是 y=w*x+b，里面的两个参数都是1，表示的是x是1维，y也是1维。当然这里是可以根据你想要的输入输出维度来更改的，之前使用的别的框架的同学应该很熟悉。</p>
+<p>然后需要定义loss和optimizer，就是误差和优化函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">criterion = nn.MSELoss()</span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr=1e-4)</span><br></pre></td></tr></table></figure></p>
+<p>这里使用的是最小二乘loss，之后我们做分类问题更多的使用的是<code>cross entropy loss</code>，交叉熵。优化函数使用的是随机梯度下降，注意需要将model的参数<code>model.parameters()</code>传进去让这个函数知道他要优化的参数是那些。</p>
+<h3 id="3-train"><a href="#3-train" class="headerlink" title="3. train"></a>3. train</h3><p>接着开始训练</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">num_epochs = 1000</span><br><span class="line">for epoch in range(num_epochs):</span><br><span class="line">    inputs = Variable(x_train)</span><br><span class="line">    target = Variable(y_train)</span><br><span class="line"></span><br><span class="line">    # forward</span><br><span class="line">    out = model(inputs) # 前向传播</span><br><span class="line">    loss = criterion(out, target) # 计算loss</span><br><span class="line">    # backward</span><br><span class="line">    optimizer.zero_grad() # 梯度归零</span><br><span class="line">    loss.backward() # 方向传播</span><br><span class="line">    optimizer.step() # 更新参数</span><br><span class="line"></span><br><span class="line">    if (epoch+1) % 20 == 0:</span><br><span class="line">        print(&apos;Epoch[&#123;&#125;/&#123;&#125;], loss: &#123;:.6f&#125;&apos;.format(epoch+1,</span><br><span class="line">                                                  num_epochs,                                             loss.data[0]))</span><br></pre></td></tr></table></figure>
+<p>第一个循环表示每个epoch，接着开始前向传播，然后计算loss，然后反向传播，接着优化参数，特别注意的是在每次反向传播的时候需要将参数的梯度归零，即<code>optimzier.zero_grad()</code></p>
+<h3 id="4-validation"><a href="#4-validation" class="headerlink" title="4. validation"></a>4. validation</h3><p>训练完成之后我们就可以开始测试模型了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model.eval()</span><br><span class="line">predict = model(Variable(x_train))</span><br><span class="line">predict = predict.data.numpy()</span><br></pre></td></tr></table></figure></p>
+<p>特别注意的是需要用 model.eval()，让model变成测试模式，这主要是对dropout和batch normalization的操作在训练和测试的时候是不一样的.<br>最后可以得到这个结果<br><img src="/2018/12/05/Pytorch快速入门/torch9.png" alt=""><br>以及loss的结果<br><img src="/2018/12/05/Pytorch快速入门/torch10.png" alt=""><br>ok，在这篇文章中我们使用pytorch实现了简单的线性回归模型，掌握了pytorch的一些基本操作，下一节我们将使用logistic回归对MNIST手写字体数据集做识别。</p>
+<h1 id="10分钟快速入门PyTorch-2"><a href="#10分钟快速入门PyTorch-2" class="headerlink" title="10分钟快速入门PyTorch (2)"></a>10分钟快速入门PyTorch (2)</h1><p>上一节介绍了简单的线性回归，如何在pytorch里面用最小二乘来拟合一些离散的点，这一节我们将开始简单的logistic回归，介绍图像分类问题，使用的数据是手写字体数据集MNIST。</p>
+<h2 id="logistic回归"><a href="#logistic回归" class="headerlink" title="logistic回归"></a>logistic回归</h2><p>logistic回归简单来说和线性回归是一样的，要做的运算同样是 <code>y = w * x + b</code>，logistic回归简单的是<strong>做二分类问题</strong>，使用<strong>sigmoid函数将所有的正数和负数都变成0-1之间的数</strong>，这样就可以用这个数来确定到底属于哪一类，可以简单的认为概率大于0.5即为第二类，小于0.5为第一类。<br><img src="/2018/12/05/Pytorch快速入门/torch11.png" alt=""><br>这就是sigmoid的图形<br><img src="/2018/12/05/Pytorch快速入门/torch12.png" alt=""><br>而我们这里要做的是多分类问题，对于每一个数据，我们输出的维数是分类的总数，比如10分类，我们输出的就是一个10维的向量，然后我们使用另外一个激活函数，softmax<br><img src="/2018/12/05/Pytorch快速入门/torch13.png" alt=""><br>这就是softmax函数作用的机制，其实简单的理解就是<strong>确定这10个数每个数对应的概率有多大，因为这10个数有正有负，所以通过指数函数将他们全部变成正数，然后求和，然后这10个数每个数都除以这个和，这样就得到了每个类别的概率</strong>。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="data"><a href="#data" class="headerlink" title="data"></a>data</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2018/12/05/Pytorch快速入门/" data-id="cjpb9y22x000mme8oeijgdcq3" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/入门/">入门</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-goa快速入门" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/30/goa快速入门/" class="article-date">
@@ -109,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/30/goa快速入门/" data-id="cjp3xwbjk000skc8odj5s1j5i" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/30/goa快速入门/" data-id="cjpb9y232000tme8oi230qb8k" class="article-share-link">分享</a>
       
       
       
@@ -159,7 +241,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/28/Swagger的快速入门/" data-id="cjp3xwbjf000mkc8oxgj67fy8" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/28/Swagger的快速入门/" data-id="cjpb9y231000sme8ookamb013" class="article-share-link">分享</a>
       
       
       
@@ -243,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/28/Docker三剑客/" data-id="cjp3xwbit0005kc8ov6e4fy6j" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/28/Docker三剑客/" data-id="cjpb9y2270005me8o9a7439n6" class="article-share-link">分享</a>
       
       
       
@@ -292,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/27/Docker快速入门/" data-id="cjp3xwbj3000bkc8o01vt2gb8" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/27/Docker快速入门/" data-id="cjpb9y2290006me8oj2r7gf8d" class="article-share-link">分享</a>
       
       
       
@@ -325,7 +407,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/18/2018-11-18/" data-id="cjp3xwbim0002kc8o0tnvymb6" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/18/2018-11-18/" data-id="cjpb9y21u0000me8ovukubaa1" class="article-share-link">分享</a>
       
       
       
@@ -372,7 +454,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/15/区块链技术学习指引/" data-id="cjp3xwbk6001jkc8oj3haghoj" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/15/区块链技术学习指引/" data-id="cjpb9y24b003cme8ogcz84vb9" class="article-share-link">分享</a>
       
       
       
@@ -421,7 +503,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/14/大数据学习之Spark/" data-id="cjp3xwbkd001rkc8oi292ith9" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/14/大数据学习之Spark/" data-id="cjpb9y24h003gme8ok0q31zai" class="article-share-link">分享</a>
       
       
       
@@ -471,7 +553,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/10/29/BlockchainTutorial/" data-id="cjp3xwbif0000kc8oyo7ijfhf" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/10/29/BlockchainTutorial/" data-id="cjpb9y21z0001me8owu7lxj3h" class="article-share-link">分享</a>
       
       
       
@@ -520,59 +602,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/10/08/Java基础/" data-id="cjp3xwbiz000akc8ooau430sc" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/10/08/Java基础/" data-id="cjpb9y22d0007me8o6tfog2yb" class="article-share-link">分享</a>
       
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-Deep-Image-Prior" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/29/Deep-Image-Prior/" class="article-date">
-  <time datetime="2018-09-29T14:35:54.000Z" itemprop="datePublished">2018-09-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/论文阅读/">论文阅读</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/29/Deep-Image-Prior/">Deep Image Prior</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <p>url: <a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Ulyanov_Deep_Image_Prior_CVPR_2018_paper.pdf" target="_blank" rel="noopener">http://openaccess.thecvf.com/content_cvpr_2018/papers/Ulyanov_Deep_Image_Prior_CVPR_2018_paper.pdf</a></p>
-<p>本周阅读任务</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/09/29/Deep-Image-Prior/" data-id="cjp3xwbiv0006kc8o0cylvccx" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CV，-论文阅读/">CV， 论文阅读</a></li></ul>
 
     </footer>
   </div>
@@ -620,7 +654,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人成长/">个人成长</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自我反省/">自我反省</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人成长/">个人成长</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自我反省/">自我反省</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -630,7 +664,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Goa入门/" style="font-size: 14px;">Goa入门</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 14px;">Swagger</a> <a href="/tags/coding/" style="font-size: 14px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.75px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 19.5px;">代码</a> <a href="/tags/入门/" style="font-size: 19.5px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 16.75px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/深思/" style="font-size: 14px;">深思</a> <a href="/tags/禅/" style="font-size: 22.25px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/自我修炼/" style="font-size: 19.5px;">自我修炼</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
+      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Goa入门/" style="font-size: 14px;">Goa入门</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 14px;">Swagger</a> <a href="/tags/coding/" style="font-size: 14px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.75px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 19.5px;">代码</a> <a href="/tags/入门/" style="font-size: 22.25px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 16.75px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/深思/" style="font-size: 14px;">深思</a> <a href="/tags/禅/" style="font-size: 22.25px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/自我修炼/" style="font-size: 19.5px;">自我修炼</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
     </div>
   </div>
 
@@ -640,6 +674,10 @@
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/12/05/Pytorch快速入门/">Pytorch快速入门</a>
+          </li>
         
           <li>
             <a href="/2018/11/30/goa快速入门/">goa快速入门</a>
@@ -657,10 +695,6 @@
             <a href="/2018/11/27/Docker快速入门/">Docker快速入门</a>
           </li>
         
-          <li>
-            <a href="/2018/11/18/2018-11-18/">(no title)</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -670,7 +704,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">10</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">10</span></li></ul>
     </div>
   </div>
 
