@@ -74,6 +74,78 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Pysyft-Prerequisites" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/21/Pysyft-Prerequisites/" class="article-date">
+  <time datetime="2018-12-21T09:03:24.000Z" itemprop="datePublished">2018-12-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Cryptography-Intro/">Cryptography Intro</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/21/Pysyft-Prerequisites/">Pysyft Prerequisites</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h1><p>密码学是研究<strong>密码编制、密码破译和密钥管理</strong>的一门综合性应用科学。<br>术语：</p>
+<ul>
+<li>明文：被隐蔽的消息称作明文，通常用m表示。 Message，Plaintext</li>
+<li>密文：将明文隐蔽后的结果称作密文，通常用c表示。 Ciphertext</li>
+<li>加密（ Encryption ）：将明文变换成密文的过程称作加密。</li>
+<li>脱密（ Decryption ）：合法用户由密文恢复出明文的过程称作脱密。</li>
+<li>密钥( key ) ：<strong>控制或参与密码变换</strong>的可变参数。密钥又分为加密密钥和脱密密钥。</li>
+<li>密码体制：一个密码体制由五部分组成：明文空间（M）；密文空间（C）；密钥空间（K）；加密变换E; 脱密变换 D 。</li>
+</ul>
+<p>对密码体制的基本要求:</p>
+<ul>
+<li>(1)即使达不到理论上是不可破的，也应当是实际上不可破的。</li>
+<li>(2)一切秘密蕴涵于密钥之中，即只要敌手不知道密钥，就不能由已知信息推出未知的明文信息。</li>
+<li>(3)加密算法和脱密算法适用于密钥空间中的所有元素。弱密钥要尽可能的少！</li>
+<li>(4)具有很好的实现性能。</li>
+</ul>
+<h1 id="安全计算初探"><a href="#安全计算初探" class="headerlink" title="安全计算初探"></a>安全计算初探</h1><p>安全计算，中文全称为安全多方计算，英文全称为Secure Multi-party Computation，缩写为SMC或 MPC，指的是在保护数据安全的前提下实现多方计算。</p>
+<p>那什么是多方计算呢？其实就是其字面意思：多个参与者将各自的数据凑在一起，并在这个大数据集上进行一定的计算，并得到最后的计算结果。形式化的描述就是：假定有 $n$ 个参与方 $P_1, P_2, \dots, P_n $，他们各自拥有自己的数据集 $a_1, a_2, \dots, a_n$ 。那么多方计算的目的就是得到某个函数 f 的输出，该函数的输入就是上面的 $a_i$ 们，即 $f(a_1, a_2, \dots, a_n)$ 。举个简单的例子：假定五道口某工科学校想统计该校男生的恋爱经历分布情况，那 $a_i$ 取值就是0（母胎单）或1（被甩过）。在这种情况下$f$就是简单的求和，即 $f(a_1, a_2, \dots, a_n) = \sum_{i}a_i$。</p>
+<p>保护数据安全的多方计算: 就是保护各个参与方所拥有数据的安全;安全计算解决的就是这个问题。有了安全计算，大家都不用把确切数据告诉别人（或曰：真实数据从未离开过自己），最后仍然能得到联合计算的结果。在我们的例子中大家不需要告诉别人自己的感情经历就能让学校得到统计结果。</p>
+<p>安全计算的用途:，凡是一个计算任务需要用到来自多个参与者的数据，但各个参与者又不想（或不被允许）交换或公开数据，那安全计算就适用于这样的计算任务。<br>比如，某机构组织了一场拍卖且有多个参与方报价，但大家都不想在自己未中标的情况下让别人知道自己出价多少，也就是说，除了最后的中标者需要让卖方知道自己的出价，其他人都不想透露自己的出价。安全多方计算就适用于此场景。</p>
+<p>再如，一家借贷公司A想预测贷款给一个试图借贷的客户的风险，但A公司只知道该客户的很简单的信息（如姓名、性别和年龄等）以及在自家借贷的历史，一些很关键的信息（如社保、健康状况等）却不为A公司所知。同时另一家政府机构B知道这些信息，但这些信息按规定是保密的。这时候双方就可以在不交换原始数据的情况下直接用预测模型预测风险。</p>
+<h1 id="安全计算实现方法概览"><a href="#安全计算实现方法概览" class="headerlink" title="安全计算实现方法概览"></a>安全计算实现方法概览</h1><p>研究计算理论的学者们四十多年当中已经提出了很多种实现安全计算的方法。总的来说，大致可归为两类：一类是基于噪音的，另一类不是基于噪音的。</p>
+<h2 id="differential-privacy"><a href="#differential-privacy" class="headerlink" title="differential privacy"></a>differential privacy</h2><p>基于噪音的安全计算方法，最主要代表是目前很火的差分隐私（differential privacy）。这类方法的思想是，对计算过程用噪音干扰，让原始数据淹没在噪音中，使别有用心者无法从得到的结果反推原始数据。这就好像我们拿到一张打了马赛克的图片，虽然可能可以猜出马赛克后面大概长啥样，但很难知道马赛克后面的所有细节。</p>
+<p>有一点值得注意：这个干扰既可以是<strong>数据源，也可以是模型参数和输出</strong>。也就是说，参与者既可以对自己的原始数据加噪音使得原始数据从来没在计算过程中出现过，也可以在模型训练的时候改变通过改变模型参数影响输出结果，也可以直接在输出暴露前在输出上加噪音从而使得从计算结果无法反推输入。</p>
+<p>比如我们要计算一个函数 $f(x_1, x_2, \dots, x_n, \theta)$ ，那么对输入进行干扰后得到的结果便是 $f(x_1 + r_1, x_2+r_2, \dots, x_n+r_n, \theta)$ ，对参数进行干扰后得到的结果为 $f(x_1, x_2, \dots, x_n, \theta + r_{\theta})$ ，对输出进行干扰后的结果是 $f(x_1, x_2, \dots, x_n, \theta) + r$ 。</p>
+<p>这种方法的优点是效率高（毕竟<strong>只需要生成服从特定分布的随机数即可</strong>），缺点是最后得到的结果不够准确，而且在复杂的计算任务中结果会和无噪音的结果相差很大导致结果无法使用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2018/12/21/Pysyft-Prerequisites/" data-id="cjpy37ftl000r4j8o06aci0an" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/intro/">intro</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-OpenGL快速入门" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/18/OpenGL快速入门/" class="article-date">
@@ -153,11 +225,18 @@
 <li>推荐的方式是建立一个新的目录包含所有的第三方库文件和头文件，并且在你的IDE或编译器中指定这些文件夹。我个人会使用一个单独的文件夹，里面包含Libs和Include文件夹，在这里存放OpenGL工程用到的所有第三方库和头文件。这样我的所有第三方库都在同一个位置（并且可以共享至多台电脑）。然而这要求你每次新建一个工程时都需要告诉IDE/编译器在哪能找到这些目录。</li>
 </ol>
 <p>完成上面步骤后，我们就可以使用GLFW创建我们的第一个OpenGL工程了！</p>
+<p>mac 配置环境：<a href="https://www.jianshu.com/p/25d5fbf792a2" target="_blank" rel="noopener">https://www.jianshu.com/p/25d5fbf792a2</a></p>
+<h3 id="GLAD"><a href="#GLAD" class="headerlink" title="GLAD"></a>GLAD</h3><p>因为OpenGL只是一个标准/规范，具体的实现是由驱动开发商针对特定显卡实现的。由于OpenGL驱动版本众多，它大多数函数的位置都无法在编译时确定下来，需要在运行时查询。所以任务就落在了开发者身上，开发者需要在运行时获取函数地址并将其保存在一个函数指针中供以后使用。取得地址的方法因平台而异。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 定义函数原型</span><br><span class="line">typedef void (*GL_GENBUFFERS) (GLsizei, GLuint*);</span><br><span class="line">// 找到正确的函数并赋值给函数指针</span><br><span class="line">GL_GENBUFFERS glGenBuffers  = (GL_GENBUFFERS)wglGetProcAddress(&quot;glGenBuffers&quot;);</span><br><span class="line">// 现在函数可以被正常调用了</span><br><span class="line">GLuint buffer;</span><br><span class="line">glGenBuffers(1, &amp;buffer);</span><br></pre></td></tr></table></figure>
+<p>你可以看到代码非常复杂，而且很繁琐，我们需要对每个可能使用的函数都要重复这个过程。幸运的是，有些库能简化此过程，其中GLAD是目前最新，也是最流行的库。</p>
+<h3 id="配置GLAD"><a href="#配置GLAD" class="headerlink" title="配置GLAD"></a>配置GLAD</h3><p>GLAD是一个开源的库，它能解决我们上面提到的那个繁琐的问题。GLAD的配置与大多数的开源库有些许的不同，GLAD使用了一个<a href="http://glad.dav1d.de/" target="_blank" rel="noopener">在线服务</a>。在这里我们能够告诉GLAD需要定义的OpenGL版本，并且根据这个版本加载所有相关的OpenGL函数。</p>
+<p>使用：打开GLAD的在线服务，将<em>语言(Language)设置为C/C++</em>，<em>在API选项中，选择3.3以上的OpenGL(gl)版本</em>（我们的教程中将使用3.3版本，但更新的版本也能正常工作）。之后将<em>模式(Profile)设置为Core</em>，并且<strong>保证生成加载器(Generate a loader)的选项是选中的</strong>。现在可以先（暂时）忽略拓展(Extensions)中的内容。都选择完之后，<strong>点击生成(Generate)按钮来生成库文件</strong>。</p>
+<p>GLAD现在应该提供给你了一个zip压缩文件，包含两个头文件目录，和一个glad.c文件。将两个头文件目录（glad和KHR）复制到你的Include文件夹中（或者增加一个额外的项目指向这些目录），并添加glad.c文件到你的工程中。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/12/18/OpenGL快速入门/" data-id="cjpskjvto00002o8o65ao6ak9" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/12/18/OpenGL快速入门/" data-id="cjpy37fte000m4j8on8vxs99x" class="article-share-link">分享</a>
       
       
       
@@ -232,7 +311,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/12/07/A-generic-framwork-for-privacy-preserving-deep-learning/" data-id="cjpskhwib00000g8otohuje7u" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/12/07/A-generic-framwork-for-privacy-preserving-deep-learning/" data-id="cjpy37fsk00054j8otdsqq439" class="article-share-link">分享</a>
       
       
       
@@ -346,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/12/05/Pytorch快速入门/" data-id="cjpskhwje000r0g8oss4124a0" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/12/05/Pytorch快速入门/" data-id="cjpy37fth000n4j8on2qe0wan" class="article-share-link">分享</a>
       
       
       
@@ -395,7 +474,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/30/goa快速入门/" data-id="cjpskhwjk00100g8ov0nxzrv0" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/30/goa快速入门/" data-id="cjpy37ftw00144j8o8ns1s3uh" class="article-share-link">分享</a>
       
       
       
@@ -445,7 +524,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/28/Swagger的快速入门/" data-id="cjpskhwjh000t0g8ocjtpfutu" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/28/Swagger的快速入门/" data-id="cjpy37ftt00104j8ovkwl4ng3" class="article-share-link">分享</a>
       
       
       
@@ -529,7 +608,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/28/Docker三剑客/" data-id="cjpskhwis00070g8oktaivbe1" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/28/Docker三剑客/" data-id="cjpy37fsp00074j8op2yern3u" class="article-share-link">分享</a>
       
       
       
@@ -578,7 +657,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/27/Docker快速入门/" data-id="cjpskhwj5000h0g8opi2jv88z" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/27/Docker快速入门/" data-id="cjpy37fsy000b4j8orstndksl" class="article-share-link">分享</a>
       
       
       
@@ -611,7 +690,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/18/2018-11-18/" data-id="cjpskhwih00020g8olqv08hre" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/18/2018-11-18/" data-id="cjpy37fs800004j8ovx0hkyct" class="article-share-link">分享</a>
       
       
       
@@ -658,60 +737,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/15/区块链技术学习指引/" data-id="cjpskhwk6001i0g8objkw3ljz" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/15/区块链技术学习指引/" data-id="cjpy37fv3003a4j8ocvjakapy" class="article-share-link">分享</a>
       
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/入门指引/">入门指引</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-大数据学习之Spark" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/14/大数据学习之Spark/" class="article-date">
-  <time datetime="2018-11-14T12:54:11.000Z" itemprop="datePublished">2018-11-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/大数据学习/">大数据学习</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/14/大数据学习之Spark/">大数据学习之Spark</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>基于内存计算的大数据并行计算框架;一个可用于大规模数据快速处理的快速、通用引擎。为Apache分布式计算三大框架[hadoop, Spark, Storm]之一。<br>Spark目的：使数据分析更快，不仅运行速度快，也要能快速、容易地编写程序。为了程序更快，Spark提供了内存运算，减少了迭代计算时的IO开销。<br>由于Hadoop中MapReduce存在诸多缺陷，Spark可以解决。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/11/14/大数据学习之Spark/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/14/大数据学习之Spark/" data-id="cjpskhwk9001o0g8o9nz7548v" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据，spark/">大数据，spark</a></li></ul>
 
     </footer>
   </div>
@@ -759,7 +789,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人成长/">个人成长</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习论文阅读/">深度学习论文阅读</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/游戏开发/">游戏开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自我反省/">自我反省</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography-Intro/">Cryptography Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人成长/">个人成长</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习论文阅读/">深度学习论文阅读</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/游戏开发/">游戏开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自我反省/">自我反省</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -769,7 +799,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Goa入门/" style="font-size: 14px;">Goa入门</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 14px;">Swagger</a> <a href="/tags/coding/" style="font-size: 14px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.2px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 18.4px;">代码</a> <a href="/tags/入门/" style="font-size: 22.8px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 16.2px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/深思/" style="font-size: 14px;">深思</a> <a href="/tags/禅/" style="font-size: 20.6px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/自我修炼/" style="font-size: 18.4px;">自我修炼</a> <a href="/tags/论文/" style="font-size: 14px;">论文</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a> <a href="/tags/阅读/" style="font-size: 14px;">阅读</a>
+      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Cryptography/" style="font-size: 14px;">Cryptography</a> <a href="/tags/Goa入门/" style="font-size: 14px;">Goa入门</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 14px;">Swagger</a> <a href="/tags/coding/" style="font-size: 14px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.2px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/intro/" style="font-size: 14px;">intro</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 18.4px;">代码</a> <a href="/tags/入门/" style="font-size: 22.8px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 16.2px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/深思/" style="font-size: 14px;">深思</a> <a href="/tags/禅/" style="font-size: 20.6px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/自我修炼/" style="font-size: 18.4px;">自我修炼</a> <a href="/tags/论文/" style="font-size: 14px;">论文</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a> <a href="/tags/阅读/" style="font-size: 14px;">阅读</a>
     </div>
   </div>
 
@@ -779,6 +809,10 @@
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/12/21/Pysyft-Prerequisites/">Pysyft Prerequisites</a>
+          </li>
         
           <li>
             <a href="/2018/12/18/OpenGL快速入门/">OpenGL快速入门</a>
@@ -796,10 +830,6 @@
             <a href="/2018/11/30/goa快速入门/">goa快速入门</a>
           </li>
         
-          <li>
-            <a href="/2018/11/28/Swagger的快速入门/">Swagger的快速入门</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -809,7 +839,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">10</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">10</span></li></ul>
     </div>
   </div>
 

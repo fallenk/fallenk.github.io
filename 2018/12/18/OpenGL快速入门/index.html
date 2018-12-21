@@ -14,7 +14,7 @@
 <meta property="og:description" content="学习方向目的(学习什么) - 结构(新知识的整体框架，运行流程) - 使用(如何使用，入门)网址 学会：核心是现代OpenGL；理解图形编程和OpenGL背后的原理。首先讨论核心的图形学概念，OpenGL怎样将像素绘制到屏幕上，以及如何利用黑科技做出一些很酷的效果。 第一节前置知识OpenGL是一个图形API，并不是一个独立的平台，它需要一个编程语言来工作，在这里我们使用的是C++, 学习C+">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/2018/12/18/OpenGL快速入门/open1.png">
-<meta property="og:updated_time" content="2018-12-17T17:15:08.929Z">
+<meta property="og:updated_time" content="2018-12-18T10:05:09.016Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenGL快速入门">
 <meta name="twitter:description" content="学习方向目的(学习什么) - 结构(新知识的整体框架，运行流程) - 使用(如何使用，入门)网址 学会：核心是现代OpenGL；理解图形编程和OpenGL背后的原理。首先讨论核心的图形学概念，OpenGL怎样将像素绘制到屏幕上，以及如何利用黑科技做出一些很酷的效果。 第一节前置知识OpenGL是一个图形API，并不是一个独立的平台，它需要一个编程语言来工作，在这里我们使用的是C++, 学习C+">
@@ -154,11 +154,18 @@
 <li>推荐的方式是建立一个新的目录包含所有的第三方库文件和头文件，并且在你的IDE或编译器中指定这些文件夹。我个人会使用一个单独的文件夹，里面包含Libs和Include文件夹，在这里存放OpenGL工程用到的所有第三方库和头文件。这样我的所有第三方库都在同一个位置（并且可以共享至多台电脑）。然而这要求你每次新建一个工程时都需要告诉IDE/编译器在哪能找到这些目录。</li>
 </ol>
 <p>完成上面步骤后，我们就可以使用GLFW创建我们的第一个OpenGL工程了！</p>
+<p>mac 配置环境：<a href="https://www.jianshu.com/p/25d5fbf792a2" target="_blank" rel="noopener">https://www.jianshu.com/p/25d5fbf792a2</a></p>
+<h3 id="GLAD"><a href="#GLAD" class="headerlink" title="GLAD"></a>GLAD</h3><p>因为OpenGL只是一个标准/规范，具体的实现是由驱动开发商针对特定显卡实现的。由于OpenGL驱动版本众多，它大多数函数的位置都无法在编译时确定下来，需要在运行时查询。所以任务就落在了开发者身上，开发者需要在运行时获取函数地址并将其保存在一个函数指针中供以后使用。取得地址的方法因平台而异。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 定义函数原型</span><br><span class="line">typedef void (*GL_GENBUFFERS) (GLsizei, GLuint*);</span><br><span class="line">// 找到正确的函数并赋值给函数指针</span><br><span class="line">GL_GENBUFFERS glGenBuffers  = (GL_GENBUFFERS)wglGetProcAddress(&quot;glGenBuffers&quot;);</span><br><span class="line">// 现在函数可以被正常调用了</span><br><span class="line">GLuint buffer;</span><br><span class="line">glGenBuffers(1, &amp;buffer);</span><br></pre></td></tr></table></figure>
+<p>你可以看到代码非常复杂，而且很繁琐，我们需要对每个可能使用的函数都要重复这个过程。幸运的是，有些库能简化此过程，其中GLAD是目前最新，也是最流行的库。</p>
+<h3 id="配置GLAD"><a href="#配置GLAD" class="headerlink" title="配置GLAD"></a>配置GLAD</h3><p>GLAD是一个开源的库，它能解决我们上面提到的那个繁琐的问题。GLAD的配置与大多数的开源库有些许的不同，GLAD使用了一个<a href="http://glad.dav1d.de/" target="_blank" rel="noopener">在线服务</a>。在这里我们能够告诉GLAD需要定义的OpenGL版本，并且根据这个版本加载所有相关的OpenGL函数。</p>
+<p>使用：打开GLAD的在线服务，将<em>语言(Language)设置为C/C++</em>，<em>在API选项中，选择3.3以上的OpenGL(gl)版本</em>（我们的教程中将使用3.3版本，但更新的版本也能正常工作）。之后将<em>模式(Profile)设置为Core</em>，并且<strong>保证生成加载器(Generate a loader)的选项是选中的</strong>。现在可以先（暂时）忽略拓展(Extensions)中的内容。都选择完之后，<strong>点击生成(Generate)按钮来生成库文件</strong>。</p>
+<p>GLAD现在应该提供给你了一个zip压缩文件，包含两个头文件目录，和一个glad.c文件。将两个头文件目录（glad和KHR）复制到你的Include文件夹中（或者增加一个额外的项目指向这些目录），并添加glad.c文件到你的工程中。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/12/18/OpenGL快速入门/" data-id="cjpskjvto00002o8o65ao6ak9" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/12/18/OpenGL快速入门/" data-id="cjpy37fte000m4j8on8vxs99x" class="article-share-link">分享</a>
       
       
       
@@ -212,6 +219,15 @@
     
 <nav id="article-nav">
   
+    <a href="/2018/12/21/Pysyft-Prerequisites/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Pysyft Prerequisites
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/12/07/A-generic-framwork-for-privacy-preserving-deep-learning/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
@@ -251,7 +267,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习方向"><span class="toc-number">1.</span> <span class="toc-text">学习方向</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一节"><span class="toc-number">2.</span> <span class="toc-text">第一节</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#前置知识"><span class="toc-number">2.1.</span> <span class="toc-text">前置知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结构"><span class="toc-number">2.2.</span> <span class="toc-text">结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#入门"><span class="toc-number">3.</span> <span class="toc-text">入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenGL"><span class="toc-number">3.1.</span> <span class="toc-text">OpenGL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#核心模式与立即渲染模式"><span class="toc-number">3.1.1.</span> <span class="toc-text">核心模式与立即渲染模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展"><span class="toc-number">3.1.2.</span> <span class="toc-text">扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#状态机"><span class="toc-number">3.1.3.</span> <span class="toc-text">状态机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象"><span class="toc-number">3.1.4.</span> <span class="toc-text">对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建窗口"><span class="toc-number">3.2.</span> <span class="toc-text">创建窗口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GLFW"><span class="toc-number">3.2.1.</span> <span class="toc-text">GLFW</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构建GLFW"><span class="toc-number">3.2.2.</span> <span class="toc-text">构建GLFW</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMake"><span class="toc-number">3.2.3.</span> <span class="toc-text">CMake</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译"><span class="toc-number">3.2.4.</span> <span class="toc-text">编译</span></a></li></ol></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习方向"><span class="toc-number">1.</span> <span class="toc-text">学习方向</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一节"><span class="toc-number">2.</span> <span class="toc-text">第一节</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#前置知识"><span class="toc-number">2.1.</span> <span class="toc-text">前置知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结构"><span class="toc-number">2.2.</span> <span class="toc-text">结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#入门"><span class="toc-number">3.</span> <span class="toc-text">入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenGL"><span class="toc-number">3.1.</span> <span class="toc-text">OpenGL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#核心模式与立即渲染模式"><span class="toc-number">3.1.1.</span> <span class="toc-text">核心模式与立即渲染模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展"><span class="toc-number">3.1.2.</span> <span class="toc-text">扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#状态机"><span class="toc-number">3.1.3.</span> <span class="toc-text">状态机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象"><span class="toc-number">3.1.4.</span> <span class="toc-text">对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建窗口"><span class="toc-number">3.2.</span> <span class="toc-text">创建窗口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GLFW"><span class="toc-number">3.2.1.</span> <span class="toc-text">GLFW</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构建GLFW"><span class="toc-number">3.2.2.</span> <span class="toc-text">构建GLFW</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMake"><span class="toc-number">3.2.3.</span> <span class="toc-text">CMake</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译"><span class="toc-number">3.2.4.</span> <span class="toc-text">编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GLAD"><span class="toc-number">3.2.5.</span> <span class="toc-text">GLAD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置GLAD"><span class="toc-number">3.2.6.</span> <span class="toc-text">配置GLAD</span></a></li></ol></li></ol></li></ol>
           </div>
       </div>
     </div>

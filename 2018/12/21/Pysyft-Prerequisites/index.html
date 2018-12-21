@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Pysyft Prerequisites | Fallenk&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="密码学密码学是研究密码编制、密码破译和密钥管理的一门综合性应用科学。术语：  明文：被隐蔽的消息称作明文，通常用m表示。 Message，Plaintext 密文：将明文隐蔽后的结果称作密文，通常用c表示。 Ciphertext 加密（ Encryption ）：将明文变换成密文的过程称作加密。 脱密（ Decryption ）：合法用户由密文恢复出明文的过程称作脱密。 密钥( key ) ：控制">
+<meta name="keywords" content="intro,Cryptography">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pysyft Prerequisites">
+<meta property="og:url" content="https://fallenk.github.io/2018/12/21/Pysyft-Prerequisites/index.html">
+<meta property="og:site_name" content="Fallenk&#39;s Blog">
+<meta property="og:description" content="密码学密码学是研究密码编制、密码破译和密钥管理的一门综合性应用科学。术语：  明文：被隐蔽的消息称作明文，通常用m表示。 Message，Plaintext 密文：将明文隐蔽后的结果称作密文，通常用c表示。 Ciphertext 加密（ Encryption ）：将明文变换成密文的过程称作加密。 脱密（ Decryption ）：合法用户由密文恢复出明文的过程称作脱密。 密钥( key ) ：控制">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-21T13:44:53.241Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pysyft Prerequisites">
+<meta name="twitter:description" content="密码学密码学是研究密码编制、密码破译和密钥管理的一门综合性应用科学。术语：  明文：被隐蔽的消息称作明文，通常用m表示。 Message，Plaintext 密文：将明文隐蔽后的结果称作密文，通常用c表示。 Ciphertext 加密（ Encryption ）：将明文变换成密文的过程称作加密。 脱密（ Decryption ）：合法用户由密文恢复出明文的过程称作脱密。 密钥( key ) ：控制">
+  
+    <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fallenk.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fallenk&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">经历，心得，笔记，目标</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Pysyft-Prerequisites" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/21/Pysyft-Prerequisites/" class="article-date">
+  <time datetime="2018-12-21T09:03:24.000Z" itemprop="datePublished">2018-12-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Cryptography-Intro/">Cryptography Intro</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Pysyft Prerequisites
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h1><p>密码学是研究<strong>密码编制、密码破译和密钥管理</strong>的一门综合性应用科学。<br>术语：</p>
+<ul>
+<li>明文：被隐蔽的消息称作明文，通常用m表示。 Message，Plaintext</li>
+<li>密文：将明文隐蔽后的结果称作密文，通常用c表示。 Ciphertext</li>
+<li>加密（ Encryption ）：将明文变换成密文的过程称作加密。</li>
+<li>脱密（ Decryption ）：合法用户由密文恢复出明文的过程称作脱密。</li>
+<li>密钥( key ) ：<strong>控制或参与密码变换</strong>的可变参数。密钥又分为加密密钥和脱密密钥。</li>
+<li>密码体制：一个密码体制由五部分组成：明文空间（M）；密文空间（C）；密钥空间（K）；加密变换E; 脱密变换 D 。</li>
+</ul>
+<p>对密码体制的基本要求:</p>
+<ul>
+<li>(1)即使达不到理论上是不可破的，也应当是实际上不可破的。</li>
+<li>(2)一切秘密蕴涵于密钥之中，即只要敌手不知道密钥，就不能由已知信息推出未知的明文信息。</li>
+<li>(3)加密算法和脱密算法适用于密钥空间中的所有元素。弱密钥要尽可能的少！</li>
+<li>(4)具有很好的实现性能。</li>
+</ul>
+<h1 id="安全计算初探"><a href="#安全计算初探" class="headerlink" title="安全计算初探"></a>安全计算初探</h1><p>安全计算，中文全称为安全多方计算，英文全称为Secure Multi-party Computation，缩写为SMC或 MPC，指的是在保护数据安全的前提下实现多方计算。</p>
+<p>那什么是多方计算呢？其实就是其字面意思：多个参与者将各自的数据凑在一起，并在这个大数据集上进行一定的计算，并得到最后的计算结果。形式化的描述就是：假定有 $n$ 个参与方 $P_1, P_2, \dots, P_n $，他们各自拥有自己的数据集 $a_1, a_2, \dots, a_n$ 。那么多方计算的目的就是得到某个函数 f 的输出，该函数的输入就是上面的 $a_i$ 们，即 $f(a_1, a_2, \dots, a_n)$ 。举个简单的例子：假定五道口某工科学校想统计该校男生的恋爱经历分布情况，那 $a_i$ 取值就是0（母胎单）或1（被甩过）。在这种情况下$f$就是简单的求和，即 $f(a_1, a_2, \dots, a_n) = \sum_{i}a_i$。</p>
+<p>保护数据安全的多方计算: 就是保护各个参与方所拥有数据的安全;安全计算解决的就是这个问题。有了安全计算，大家都不用把确切数据告诉别人（或曰：真实数据从未离开过自己），最后仍然能得到联合计算的结果。在我们的例子中大家不需要告诉别人自己的感情经历就能让学校得到统计结果。</p>
+<p>安全计算的用途:，凡是一个计算任务需要用到来自多个参与者的数据，但各个参与者又不想（或不被允许）交换或公开数据，那安全计算就适用于这样的计算任务。<br>比如，某机构组织了一场拍卖且有多个参与方报价，但大家都不想在自己未中标的情况下让别人知道自己出价多少，也就是说，除了最后的中标者需要让卖方知道自己的出价，其他人都不想透露自己的出价。安全多方计算就适用于此场景。</p>
+<p>再如，一家借贷公司A想预测贷款给一个试图借贷的客户的风险，但A公司只知道该客户的很简单的信息（如姓名、性别和年龄等）以及在自家借贷的历史，一些很关键的信息（如社保、健康状况等）却不为A公司所知。同时另一家政府机构B知道这些信息，但这些信息按规定是保密的。这时候双方就可以在不交换原始数据的情况下直接用预测模型预测风险。</p>
+<h1 id="安全计算实现方法概览"><a href="#安全计算实现方法概览" class="headerlink" title="安全计算实现方法概览"></a>安全计算实现方法概览</h1><p>研究计算理论的学者们四十多年当中已经提出了很多种实现安全计算的方法。总的来说，大致可归为两类：一类是基于噪音的，另一类不是基于噪音的。</p>
+<h2 id="differential-privacy"><a href="#differential-privacy" class="headerlink" title="differential privacy"></a>differential privacy</h2><p>基于噪音的安全计算方法，最主要代表是目前很火的差分隐私（differential privacy）。这类方法的思想是，对计算过程用噪音干扰，让原始数据淹没在噪音中，使别有用心者无法从得到的结果反推原始数据。这就好像我们拿到一张打了马赛克的图片，虽然可能可以猜出马赛克后面大概长啥样，但很难知道马赛克后面的所有细节。</p>
+<p>有一点值得注意：这个干扰既可以是<strong>数据源，也可以是模型参数和输出</strong>。也就是说，参与者既可以对自己的原始数据加噪音使得原始数据从来没在计算过程中出现过，也可以在模型训练的时候改变通过改变模型参数影响输出结果，也可以直接在输出暴露前在输出上加噪音从而使得从计算结果无法反推输入。</p>
+<p>比如我们要计算一个函数 $f(x_1, x_2, \dots, x_n, \theta)$ ，那么对输入进行干扰后得到的结果便是 $f(x_1 + r_1, x_2+r_2, \dots, x_n+r_n, \theta)$ ，对参数进行干扰后得到的结果为 $f(x_1, x_2, \dots, x_n, \theta + r_{\theta})$ ，对输出进行干扰后的结果是 $f(x_1, x_2, \dots, x_n, \theta) + r$ 。</p>
+<p>这种方法的优点是效率高（毕竟<strong>只需要生成服从特定分布的随机数即可</strong>），缺点是最后得到的结果不够准确，而且在复杂的计算任务中结果会和无噪音的结果相差很大导致结果无法使用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2018/12/21/Pysyft-Prerequisites/" data-id="cjpy37ftl000r4j8o06aci0an" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/intro/">intro</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/18/OpenGL快速入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">OpenGL快速入门</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#密码学"><span class="toc-number">1.</span> <span class="toc-text">密码学</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安全计算初探"><span class="toc-number">2.</span> <span class="toc-text">安全计算初探</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安全计算实现方法概览"><span class="toc-number">3.</span> <span class="toc-text">安全计算实现方法概览</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#differential-privacy"><span class="toc-number">3.1.</span> <span class="toc-text">differential privacy</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 Fallenk Liu&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;fallenk_liu@yeah.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "e2fb4051c49842688ce669e634bc983f",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+    
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
