@@ -5,19 +5,19 @@
   
   <title>A generic framwork for privacy preserving deep learning | Fallenk&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A generic framework for privacy preserving deep learning一个隐私保护深度学习的通用框架 Abstract我们详细介绍了一个新的隐私框架，以保护深度学习并讨论其优点。该框架重视所有权和数据的安全处理，并基于命令链和张量引入了有价值的表示。这种抽象允许人们实现复杂的隐私保护结构，如联合学习，安全多方计算和差异隐私，同时仍然向最终用户公开熟悉的深度">
+  <meta name="description" content="A generic framework for privacy preserving deep learning一个隐私保护深度学习的通用框架">
 <meta name="keywords" content="论文,阅读">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A generic framwork for privacy preserving deep learning">
 <meta property="og:url" content="https://fallenk.github.io/2018/12/07/A-generic-framwork-for-privacy-preserving-deep-learning/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="A generic framework for privacy preserving deep learning一个隐私保护深度学习的通用框架 Abstract我们详细介绍了一个新的隐私框架，以保护深度学习并讨论其优点。该框架重视所有权和数据的安全处理，并基于命令链和张量引入了有价值的表示。这种抽象允许人们实现复杂的隐私保护结构，如联合学习，安全多方计算和差异隐私，同时仍然向最终用户公开熟悉的深度">
+<meta property="og:description" content="A generic framework for privacy preserving deep learning一个隐私保护深度学习的通用框架">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/2018/12/07/A-generic-framwork-for-privacy-preserving-deep-learning/pysyft1.png">
-<meta property="og:updated_time" content="2018-12-07T06:08:58.418Z">
+<meta property="og:updated_time" content="2018-12-22T11:37:51.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A generic framwork for privacy preserving deep learning">
-<meta name="twitter:description" content="A generic framework for privacy preserving deep learning一个隐私保护深度学习的通用框架 Abstract我们详细介绍了一个新的隐私框架，以保护深度学习并讨论其优点。该框架重视所有权和数据的安全处理，并基于命令链和张量引入了有价值的表示。这种抽象允许人们实现复杂的隐私保护结构，如联合学习，安全多方计算和差异隐私，同时仍然向最终用户公开熟悉的深度">
+<meta name="twitter:description" content="A generic framework for privacy preserving deep learning一个隐私保护深度学习的通用框架">
 <meta name="twitter:image" content="https://fallenk.github.io/2018/12/07/A-generic-framwork-for-privacy-preserving-deep-learning/pysyft1.png">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
@@ -82,7 +82,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/深度学习论文阅读/">深度学习论文阅读</a>
+    <a class="article-category-link" href="/categories/论文阅读/">论文阅读</a>
   </div>
 
   </div>
@@ -103,7 +103,7 @@
       
         <!-- Table of Contents -->
         
-        <h1 id="A-generic-framework-for-privacy-preserving-deep-learning"><a href="#A-generic-framework-for-privacy-preserving-deep-learning" class="headerlink" title="A generic framework for privacy preserving deep learning"></a>A generic framework for privacy preserving deep learning</h1><p>一个隐私保护深度学习的通用框架</p>
+        <h1 id="A-generic-framework-for-privacy-preserving-deep-learning"><a href="#A-generic-framework-for-privacy-preserving-deep-learning" class="headerlink" title="A generic framework for privacy preserving deep learning"></a>A generic framework for privacy preserving deep learning</h1><p>一个隐私保护深度学习的通用框架<br><a id="more"></a></p>
 <h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>我们详细介绍了一个新的隐私框架，以保护深度学习并讨论其优点。该框架重视所有权和数据的安全处理，并基于命令链和张量引入了有价值的表示。这种抽象<strong>允许人们实现复杂的隐私保护结构，如联合学习，安全多方计算和差异隐私，同时仍然向最终用户公开熟悉的深度学习API</strong>。我们报告基于Boston Housing和Pima Indian Diabetes数据集的早期结果。虽然除差异隐私之外的隐私功能不会影响预测准确性，框架的当前实现在性能方面引入了显着的开销，将在开发的后期阶段解决。里程碑，第一个通用框架基于隐私保护的深度学习框架。</p>
 <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>安全多方计算（SMPC）作为在不信任环境中执行操作而不泄露数据的方式正变得越来越流行。在机器学习模型的情况下，SMPC将保护模型权重，同时允许多个工作节点使用自己的数据集参与训练阶段，比如联合学习。但是，已经证明，安全训练的模型仍然容易受到逆向工程攻击，这些攻击可以直接从模型中提取有关数据集的敏感信息。标记为差分专用（DP）方法的另一组方法解决了这个问题，并且可以有效地保护数据。我们为每个PyTorch用户提供透明的隐私保护框架，保护深度学习，从直观的界面中使用FL，MPC和DP。我们展示了框架支持MPC和DP解决方案的各种实现的能力，并报告了在联合学习环境中分别为MPC和DP实例化SPDZ和时刻会计方法时获得的结果。</p>
 <p><img src="/2018/12/07/A-generic-framwork-for-privacy-preserving-deep-learning/pysyft1.png" alt=""><br>我们的主要贡献如下：</p>

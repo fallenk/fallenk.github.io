@@ -5,18 +5,18 @@
   
   <title>Docker三剑客 | Fallenk&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言理解Docker的三个核心概念：镜像，容器，仓库；  开发人员使用Dockerfile定制镜像，使用docker-compose在.yml文件中配置所有容器的部署方法、文件映射、容器链接等，运行docker-compose up执行安装容器并且自动部署。 运维人员从仓库下载容器，运行脚本。  因此下面将介绍具体的操作流程。 Docker Compose 项目Docker Compose 是 D">
+  <meta name="description" content="前言理解Docker的三个核心概念：镜像，容器，仓库；  开发人员使用Dockerfile定制镜像，使用docker-compose在.yml文件中配置所有容器的部署方法、文件映射、容器链接等，运行docker-compose up执行安装容器并且自动部署。 运维人员从仓库下载容器，运行脚本。">
 <meta name="keywords" content="编程,入门">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker三剑客">
 <meta property="og:url" content="https://fallenk.github.io/2018/11/28/Docker三剑客/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="前言理解Docker的三个核心概念：镜像，容器，仓库；  开发人员使用Dockerfile定制镜像，使用docker-compose在.yml文件中配置所有容器的部署方法、文件映射、容器链接等，运行docker-compose up执行安装容器并且自动部署。 运维人员从仓库下载容器，运行脚本。  因此下面将介绍具体的操作流程。 Docker Compose 项目Docker Compose 是 D">
+<meta property="og:description" content="前言理解Docker的三个核心概念：镜像，容器，仓库；  开发人员使用Dockerfile定制镜像，使用docker-compose在.yml文件中配置所有容器的部署方法、文件映射、容器链接等，运行docker-compose up执行安装容器并且自动部署。 运维人员从仓库下载容器，运行脚本。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-28T07:40:54.085Z">
+<meta property="og:updated_time" content="2018-12-22T11:38:51.747Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker三剑客">
-<meta name="twitter:description" content="前言理解Docker的三个核心概念：镜像，容器，仓库；  开发人员使用Dockerfile定制镜像，使用docker-compose在.yml文件中配置所有容器的部署方法、文件映射、容器链接等，运行docker-compose up执行安装容器并且自动部署。 运维人员从仓库下载容器，运行脚本。  因此下面将介绍具体的操作流程。 Docker Compose 项目Docker Compose 是 D">
+<meta name="twitter:description" content="前言理解Docker的三个核心概念：镜像，容器，仓库；  开发人员使用Dockerfile定制镜像，使用docker-compose在.yml文件中配置所有容器的部署方法、文件映射、容器链接等，运行docker-compose up执行安装容器并且自动部署。 运维人员从仓库下载容器，运行脚本。">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
   
@@ -104,9 +104,9 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>理解Docker的三个核心概念：镜像，容器，仓库；</p>
 <ol>
 <li>开发人员使用Dockerfile定制镜像，使用docker-compose在<code>.yml</code>文件中配置所有容器的部署方法、文件映射、容器链接等，运行<code>docker-compose up</code>执行安装容器并且自动部署。</li>
-<li>运维人员从仓库下载容器，运行脚本。</li>
+<li>运维人员从仓库下载容器，运行脚本。<a id="more"></a>
+因此下面将介绍具体的操作流程。</li>
 </ol>
-<p>因此下面将介绍具体的操作流程。</p>
 <h1 id="Docker-Compose-项目"><a href="#Docker-Compose-项目" class="headerlink" title="Docker Compose 项目"></a>Docker Compose 项目</h1><p><code>Docker Compose</code> 是 <code>Docker</code> 官方编排（Orchestration）项目之一，负责<strong>快速的部署分布式应用</strong>。</p>
 <h2 id="Compose-简介"><a href="#Compose-简介" class="headerlink" title="Compose 简介"></a>Compose 简介</h2><p>Compose 项目是 Docker 官方的开源项目，负责<strong>实现对 Docker 容器集群的快速编排</strong>。从功能上看，跟 OpenStack 中的 Heat 十分类似。</p>
 <p>Compose 定位是 <strong>「定义和运行多个 Docker 容器的应用（Defining and running multi-container Docker applications）」</strong>，其前身是开源项目 Fig。</p>

@@ -149,67 +149,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <h1 id="学习方向"><a href="#学习方向" class="headerlink" title="学习方向"></a>学习方向</h1><p>目的(学习什么) - 结构(新知识的整体框架，运行流程) - 使用(如何使用，入门)<br><a href="https://learnopengl-cn.github.io/" target="_blank" rel="noopener">网址</a></p>
-<p>学会：核心是现代OpenGL；理解图形编程和OpenGL背后的原理。<br>首先讨论核心的图形学概念，OpenGL怎样将像素绘制到屏幕上，以及如何利用黑科技做出一些很酷的效果。</p>
-<h1 id="第一节"><a href="#第一节" class="headerlink" title="第一节"></a>第一节</h1><h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><p>OpenGL是一个图形API，并不是一个独立的平台，它需要一个编程语言来工作，在这里我们使用的是C++, 学习C++ ，<a href="www.learncpp.com">网址</a>; 学习线性代数、几何、三角学。</p>
-<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><ol>
-<li>入门 2.光照 3.模型加载 3.高级OpenGL 4. 高级光照 5.特效 6.PBR 7.实战</li>
-</ol>
-<h1 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h1><h2 id="OpenGL"><a href="#OpenGL" class="headerlink" title="OpenGL"></a>OpenGL</h2><p>定义： OpenGL本身并不是一个API，它仅仅是一个由Khronos组织制定并维护的规范(Specification)。</p>
-<p>OpenGL规范严格规定了每个函数该如何执行，以及它们的输出值。至于内部具体每个函数是如何实现(Implement)的，将由OpenGL库的开发者自行决定（译注：这里开发者是指编写OpenGL库的人）。因为OpenGL规范并没有规定实现的细节，具体的OpenGL库允许使用不同的实现，只要其功能和结果与规范相匹配（亦即，作为用户不会感受到功能上的差异）。</p>
-<p>实际的OpenGL库的开发者通常是显卡的生产商。</p>
-<h3 id="核心模式与立即渲染模式"><a href="#核心模式与立即渲染模式" class="headerlink" title="核心模式与立即渲染模式"></a>核心模式与立即渲染模式</h3><p>早期的OpenGL使用<strong>立即渲染模式</strong>（Immediate mode，也就是固定渲染管线）<br>核心模式：使用现代的函数</p>
-<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>OpenGL的一大特性就是对扩展(Extension)的支持，当一个显卡公司提出一个新特性或者渲染上的大优化，通常会以扩展的方式在驱动中实现。如果一个程序在支持这个扩展的显卡上运行，开发者可以使用这个扩展提供的一些更先进更有效的图形功能。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if(GL_ARB_extension_name)</span><br><span class="line">&#123;</span><br><span class="line">    // 使用硬件支持的全新的现代特性</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    // 不支持此扩展: 用旧的方式去做</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h3><p>OpenGL自身是一个巨大的状态机(State Machine)：一系列的变量描述OpenGL此刻应当如何运行。OpenGL的状态通常被称为OpenGL上下文(Context)。我们通常使用如下途径去更改OpenGL状态：<strong>设置选项，操作缓冲</strong>。最后，我们使用当前OpenGL上下文来渲染。</p>
-<p>假设当我们想告诉OpenGL去画线段而不是三角形的时候，我们通过改变一些上下文变量来改变OpenGL状态，从而告诉OpenGL如何去绘图。一旦我们改变了OpenGL的状态为绘制线段，下一个绘制命令就会画出线段而不是三角形。</p>
-<p>当使用OpenGL的时候，我们会遇到一些状态设置函数(State-changing Function)，这类函数将会改变上下文。以及状态使用函数(State-using Function)，这类函数会根据当前OpenGL的状态执行一些操作。只要你记住OpenGL本质上是个大状态机，就能更容易理解它的大部分特性。</p>
-<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>OpenGL库是用C语言写的，同时也支持多种语言的派生，但其内核仍是一个C库。由于C的一些语言结构不易被翻译到其它的高级语言，因此OpenGL开发的时候*<em>引入了一些抽象层</em>。“对象(Object)”就是其中一个。</p>
-<p>在OpenGL中一个对象是指<em>一些选项的集合</em>，它代表<em>OpenGL状态的一个子集</em>。比如，我们可以用一个对象来代表绘图窗口的设置，之后我们就可以设置它的大小、支持的颜色位数等等。可以把对象看做一个C风格的结构体(Struct)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct object_name &#123;</span><br><span class="line">    float  option1;</span><br><span class="line">    int    option2;</span><br><span class="line">    char[] name;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>当我们使用一个对象时，通常看起来像如下一样（把OpenGL上下文看作一个大的结构体）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// OpenGL的状态</span><br><span class="line">struct OpenGL_Context &#123;</span><br><span class="line">    ...</span><br><span class="line">    object* object_Window_Target;</span><br><span class="line">    ...     </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 创建对象</span><br><span class="line">unsigned int objectId = 0;</span><br><span class="line">glGenObject(1, &amp;objectId);</span><br><span class="line">// 绑定对象至上下文</span><br><span class="line">glBindObject(GL_WINDOW_TARGET, objectId);</span><br><span class="line">// 设置当前绑定到 GL_WINDOW_TARGET 的对象的一些选项</span><br><span class="line">glSetObjectOption(GL_WINDOW_TARGET, GL_OPTION_WINDOW_WIDTH, 800);</span><br><span class="line">glSetObjectOption(GL_WINDOW_TARGET, GL_OPTION_WINDOW_HEIGHT, 600);</span><br><span class="line">// 将上下文对象设回默认</span><br><span class="line">glBindObject(GL_WINDOW_TARGET, 0);</span><br></pre></td></tr></table></figure>
-<p>这一小段代码展现了你以后使用OpenGL时常见的工作流。我们</p>
-<ol>
-<li>首先创建一个对象，然后用一个id保存它的引用（实际数据被储存在后台）。</li>
-<li>然后我们将对象绑定至上下文的目标位置（例子中窗口对象目标的位置被定义成GL_WINDOW_TARGET）。</li>
-<li>接下来我们设置窗口的选项。</li>
-<li>最后我们将目标位置的对象id设回0，解绑这个对象。</li>
-<li>设置的选项将被保存在objectId所引用的对象中，一旦我们重新绑定这个对象到GL_WINDOW_TARGET位置，这些选项就会重新生效。</li>
-</ol>
-<p>使用对象的一个好处是在程序中，我们不止可以定义一个对象，并设置它们的选项，每个对象都可以是不同的设置。在我们执行一个使用OpenGL状态的操作的时候，只需要绑定含有需要的设置的对象即可。</p>
-<p>比如说我们有一些作为3D模型数据（一栋房子或一个人物）的容器对象，在我们想绘制其中任何一个模型的时候，只需绑定一个包含对应模型数据的对象就可以了（当然，我们需要先创建并设置对象的选项）。拥有数个这样的对象允许我们指定多个模型，在想画其中任何一个的时候，直接将对应的对象绑定上去，便不需要再重复设置选项了。</p>
-<h2 id="创建窗口"><a href="#创建窗口" class="headerlink" title="创建窗口"></a>创建窗口</h2><p>在我们画出出色的效果之前，首先要做的就是创建一个<em>OpenGL上下文(Context)</em>和一个用于<em>显示的窗口</em>。然而，这些操作在每个系统上都是不一样的，OpenGL有目的地从这些操作抽象(Abstract)出去。这意味着我们不得不自己处理创建窗口，定义OpenGL上下文以及处理用户输入。</p>
-<p>有一些库：节省了我们书写操作系统相关代码的时间，提供给我们一个窗口和上下文用来渲染;有GLUT，SDL，SFML和GLFW</p>
-<h3 id="GLFW"><a href="#GLFW" class="headerlink" title="GLFW"></a>GLFW</h3><p>GLFW是一个专门针对OpenGL的C语言库，它提供了一些渲染物体所需的最低限度的接口。它允许用户创建OpenGL上下文，定义窗口参数以及处理用户输入。本节和下一节的目标是建立GLFW环境，并保证它恰当地创建OpenGL上下文并显示窗口。这篇教程会一步步从获取、编译、链接GLFW库讲起。</p>
-<h3 id="构建GLFW"><a href="#构建GLFW" class="headerlink" title="构建GLFW"></a>构建GLFW</h3><p>GLFW可以从它官方网站的下载页上获取。GLFW已经有针对Visual Studio 2013/2015的预编译的二进制版本和相应的头文件，为了完整性我们将从编译源代码开始。所以我们需要下载源代码包。</p>
-<p>下载源码包之后，将其解压并打开。我们只需要里面的这些内容：</p>
-<ul>
-<li>编译生成的库</li>
-<li>include文件夹</li>
-</ul>
-<p>从源代码编译库可以保证生成的库是兼容你的操作系统和CPU的，而预编译的二进制文件可能会出现兼容问题（甚至有时候没提供支持你系统的文件）。提供源代码所产生的一个问题在于不是每个人都用相同的IDE开发程序，因而提供的工程/解决方案文件可能和一些人的IDE不兼容。所以人们只能从.c/.cpp和.h/.hpp文件来自己建立工程/解决方案，这是一项枯燥的工作。但因此也诞生了一个叫做CMake的工具。</p>
-<h3 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h3><p>CMake是一个工程文件生成工具。用户可以使用预定义好的CMake脚本，根据自己的选择（像是Visual Studio, Code::Blocks, Eclipse）生成不同IDE的工程文件。这允许我们从GLFW源码里创建一个Visual Studio 2015工程文件，之后进行编译。首先，我们需要从这里下载安装CMake。当CMake安装成功后，你可以选择从命令行或者GUI启动CMake，由于我不想让事情变得太过复杂，我们选择用GUI。</p>
-<p>CMake需要一个源代码目录和一个存放编译结果的目标文件目录。源代码目录我们选择GLFW的源代码的根目录，然后我们新建一个 build 文件夹，选中作为目标目录。</p>
-<p><img src="/2018/12/18/OpenGL快速入门/open1.png" alt=""><br>在设置完源代码目录和目标目录之后，点击Configure(设置)按钮，让CMake读取设置和源代码。我们接下来需要选择工程的生成器，由于我们使用的是Visual Studio 2015，我们选择 Visual Studio 14 选项（因为Visual Studio 2015的内部版本号是14）。CMake会显示可选的编译选项用来配置最终生成的库。这里我们使用默认设置，并再次点击Configure(设置)按钮保存设置。保存之后，点击Generate(生成)按钮，生成的工程文件会在你的build文件夹中。</p>
-<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>在build文件夹里可以找到GLFW.sln文件，用Visual Studio 2015打开。因为CMake已经配置好了项目，所以我们直接点击Build Solution(生成解决方案)按钮，然后编译的库glfw3.lib（注意我们用的是第3版）就会出现在src/Debug文件夹内。</p>
-<p>库生成完毕之后，我们需要让IDE知道库和头文件的位置。有两种方法：</p>
-<ol>
-<li>找到IDE或者编译器的/lib和/include文件夹，添加GLFW的include文件夹里的文件到IDE的/include文件夹里去。用类似的方法，将glfw3.lib添加到/lib文件夹里去。虽然这样能工作，但这不是推荐的方式，因为这样会让你很难去管理库和include文件，而且重新安装IDE或编译器可能会导致这些文件丢失。</li>
-<li>推荐的方式是建立一个新的目录包含所有的第三方库文件和头文件，并且在你的IDE或编译器中指定这些文件夹。我个人会使用一个单独的文件夹，里面包含Libs和Include文件夹，在这里存放OpenGL工程用到的所有第三方库和头文件。这样我的所有第三方库都在同一个位置（并且可以共享至多台电脑）。然而这要求你每次新建一个工程时都需要告诉IDE/编译器在哪能找到这些目录。</li>
-</ol>
-<p>完成上面步骤后，我们就可以使用GLFW创建我们的第一个OpenGL工程了！</p>
-<p>mac 配置环境：<a href="https://www.jianshu.com/p/25d5fbf792a2" target="_blank" rel="noopener">https://www.jianshu.com/p/25d5fbf792a2</a></p>
-<h3 id="GLAD"><a href="#GLAD" class="headerlink" title="GLAD"></a>GLAD</h3><p>因为OpenGL只是一个标准/规范，具体的实现是由驱动开发商针对特定显卡实现的。由于OpenGL驱动版本众多，它大多数函数的位置都无法在编译时确定下来，需要在运行时查询。所以任务就落在了开发者身上，开发者需要在运行时获取函数地址并将其保存在一个函数指针中供以后使用。取得地址的方法因平台而异。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 定义函数原型</span><br><span class="line">typedef void (*GL_GENBUFFERS) (GLsizei, GLuint*);</span><br><span class="line">// 找到正确的函数并赋值给函数指针</span><br><span class="line">GL_GENBUFFERS glGenBuffers  = (GL_GENBUFFERS)wglGetProcAddress(&quot;glGenBuffers&quot;);</span><br><span class="line">// 现在函数可以被正常调用了</span><br><span class="line">GLuint buffer;</span><br><span class="line">glGenBuffers(1, &amp;buffer);</span><br></pre></td></tr></table></figure>
-<p>你可以看到代码非常复杂，而且很繁琐，我们需要对每个可能使用的函数都要重复这个过程。幸运的是，有些库能简化此过程，其中GLAD是目前最新，也是最流行的库。</p>
-<h3 id="配置GLAD"><a href="#配置GLAD" class="headerlink" title="配置GLAD"></a>配置GLAD</h3><p>GLAD是一个开源的库，它能解决我们上面提到的那个繁琐的问题。GLAD的配置与大多数的开源库有些许的不同，GLAD使用了一个<a href="http://glad.dav1d.de/" target="_blank" rel="noopener">在线服务</a>。在这里我们能够告诉GLAD需要定义的OpenGL版本，并且根据这个版本加载所有相关的OpenGL函数。</p>
-<p>使用：打开GLAD的在线服务，将<em>语言(Language)设置为C/C++</em>，<em>在API选项中，选择3.3以上的OpenGL(gl)版本</em>（我们的教程中将使用3.3版本，但更新的版本也能正常工作）。之后将<em>模式(Profile)设置为Core</em>，并且<strong>保证生成加载器(Generate a loader)的选项是选中的</strong>。现在可以先（暂时）忽略拓展(Extensions)中的内容。都选择完之后，<strong>点击生成(Generate)按钮来生成库文件</strong>。</p>
-<p>GLAD现在应该提供给你了一个zip压缩文件，包含两个头文件目录，和一个glad.c文件。将两个头文件目录（glad和KHR）复制到你的Include文件夹中（或者增加一个额外的项目指向这些目录），并添加glad.c文件到你的工程中。</p>
-
+<p>学会：核心是现代OpenGL；理解图形编程和OpenGL背后的原理。<br>首先讨论核心的图形学概念，OpenGL怎样将像素绘制到屏幕上，以及如何利用黑科技做出一些很酷的效果。<br></p>
+        
+          <p class="article-more-link">
+            <a href="/2018/12/18/OpenGL快速入门/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -234,7 +180,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/深度学习论文阅读/">深度学习论文阅读</a>
+    <a class="article-category-link" href="/categories/论文阅读/">论文阅读</a>
   </div>
 
   </div>
@@ -253,38 +199,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
+        <h1 id="A-generic-framework-for-privacy-preserving-deep-learning"><a href="#A-generic-framework-for-privacy-preserving-deep-learning" class="headerlink" title="A generic framework for privacy preserving deep learning"></a>A generic framework for privacy preserving deep learning</h1><p>一个隐私保护深度学习的通用框架<br></p>
         
-        <h1 id="A-generic-framework-for-privacy-preserving-deep-learning"><a href="#A-generic-framework-for-privacy-preserving-deep-learning" class="headerlink" title="A generic framework for privacy preserving deep learning"></a>A generic framework for privacy preserving deep learning</h1><p>一个隐私保护深度学习的通用框架</p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>我们详细介绍了一个新的隐私框架，以保护深度学习并讨论其优点。该框架重视所有权和数据的安全处理，并基于命令链和张量引入了有价值的表示。这种抽象<strong>允许人们实现复杂的隐私保护结构，如联合学习，安全多方计算和差异隐私，同时仍然向最终用户公开熟悉的深度学习API</strong>。我们报告基于Boston Housing和Pima Indian Diabetes数据集的早期结果。虽然除差异隐私之外的隐私功能不会影响预测准确性，框架的当前实现在性能方面引入了显着的开销，将在开发的后期阶段解决。里程碑，第一个通用框架基于隐私保护的深度学习框架。</p>
-<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>安全多方计算（SMPC）作为在不信任环境中执行操作而不泄露数据的方式正变得越来越流行。在机器学习模型的情况下，SMPC将保护模型权重，同时允许多个工作节点使用自己的数据集参与训练阶段，比如联合学习。但是，已经证明，安全训练的模型仍然容易受到逆向工程攻击，这些攻击可以直接从模型中提取有关数据集的敏感信息。标记为差分专用（DP）方法的另一组方法解决了这个问题，并且可以有效地保护数据。我们为每个PyTorch用户提供透明的隐私保护框架，保护深度学习，从直观的界面中使用FL，MPC和DP。我们展示了框架支持MPC和DP解决方案的各种实现的能力，并报告了在联合学习环境中分别为MPC和DP实例化SPDZ和时刻会计方法时获得的结果。</p>
-<p><img src="/2018/12/07/A-generic-framwork-for-privacy-preserving-deep-learning/pysyft1.png" alt=""><br>我们的主要贡献如下：</p>
-<ul>
-<li>建立了一个标准化协议在worker之间的通信，协调联合学习</li>
-<li>让我们开发一个基于Tensor的链式抽象模型，可以重写操作 例如发送和共享一个Tensor 在两个worker之间。</li>
-<li>最后，我们提供了元素， 运用框架实现 最近提出的dp和mcp算法。<br>By doing so,通过这样做，我们打算帮助推广在机器学习中的隐私保护技术通过研究人员和数据科学家每天使用的可得到通用工具。</li>
-</ul>
-<h1 id="2-A-standardized-framework-to-abstract-operations-on-Tensors"><a href="#2-A-standardized-framework-to-abstract-operations-on-Tensors" class="headerlink" title="2 A standardized framework to abstract operations on Tensors"></a>2 A standardized framework to abstract operations on Tensors</h1><h2 id="2-1-The-chain-structure"><a href="#2-1-The-chain-structure" class="headerlink" title="2.1 The chain structure"></a>2.1 The chain structure</h2><p><strong>执行转换或向其他worker发送Tensor</strong>可以表示为一系列操作，每个操作都由一个特殊的类来体现。为此，我们创建了一个名为SyftTensor的抽象类。SyftTensors旨在表示数据的状态或转换，并且可以链接在一起。链结构总是在其头部具有PyTorch张量，并且使用子属性向下访问SyftTensors所体现的变换或状态，并使用父属性向上访问。</p>
-<p>图1显示了Tensor chain的一般结构，其中SyftTensors被一些子类的实例替换，这些子类都具有特定的角色，比如接下来将描述的LocalTensor类。所有操作首先应用于Torch张量，这使得可以使用native Torch接口，然后通过chain 转发到子属性。</p>
-<p>SyftTensor有两个重要的子类。首先，LocalTensor是在实例化Torch张量时自动创建的。它的作用是在Torch张量上执行与重载操作相对应的本机操作。例如，如果命令是add，则LocalTensor将在头张量上执行native torch命令native_add。该链有两个节点，它循环使得LocalTensor子节点引用包含数据的head node tensor，而不需要重新创建子张量对象，这会降低性能。</p>
-<p>Second, the PointerTensor which is created when a tensor is sent to a remote worker.发送和返回张量就像在张量上调用方法send（worker）和get（）一样简单。当发生这种情况时，整个链被发送给worker并由双节点链代替：tensor，现在为空，PointerTensor指向谁拥有数据和远程存储位置。这次，指针没有子节点。图2说明了在发送给remote worker时如何修改链以及如何在这些链中使用LocalTensor和PointerTensor。</p>
-<h2 id="2-2-From-virtual-to-real-context-execution-of-federated-learning"><a href="#2-2-From-virtual-to-real-context-execution-of-federated-learning" class="headerlink" title="2.2 From virtual to real context execution of federated learning"></a>2.2 From virtual to real context execution of federated learning</h2><p>为了简化调试复杂的操作链，该框架开发了Virtual Workers的概念。虚拟工作者都在同一台计算机上，不通过网络进行通信。它们只是复制命令链并公开与实际工作者相同的接口以便相互通信。</p>
-<p>截至目前，联合学习环境中的Network worker在框架中有两个实现。一个构建在普通网络套接字上，而另一个支持Web套接字。 Web Socket workers允许在浏览器中实例化多个工作程序，每个工作程序都在其自己的选项卡中。在实际寻址不在同一台机器上的远程工作程序之前，这在构建联合学习应用程序时为我们提供了另一层次的粒度。Web Socket工作者对于围绕基于浏览器的笔记本电脑的数据科学生态系统也是一个非常好的选择。</p>
-<h1 id="3-Towards-a-Secure-MPC-framework"><a href="#3-Towards-a-Secure-MPC-framework" class="headerlink" title="3 Towards a Secure MPC framework"></a>3 Towards a Secure MPC framework</h1><h2 id="3-1-Building-an-MPCTensor"><a href="#3-1-Building-an-MPCTensor" class="headerlink" title="3.1 Building an MPCTensor"></a>3.1 Building an MPCTensor</h2><p>第2节中介绍的元素构成了创建MPCTensor所需的构建块。可以使用PointerTensors列表完成拆分和发送共享Tensor。我们框架中提出的MPC工具箱实现了[3,2]中的SPDZ协议。MPC工具箱包括基本操作，例如加法和乘法，还包括预处理工具，用于生成例如用于乘法的三元组，以及包括矩阵乘法在内的神经网络的更具体操作。由于MPC，对卷积网络的传统元素进行了一些调整：如[2]中所述，我们使用平均池而不是最大池和近似高度sigmoid而不是relu作为激活函数。由于SPDZ协议假设数据以整数形式给出，我们在链中添加了一个名为FixedPrecisionTensor的节点，该节点将浮点数转换为固定精度数。此节点将值编码为整数并存储小数点的位置。实现SPDZ的张量的完整结构在图中进行了总结。</p>
-<p>与[2]提出的MPC协议不同，player在我们的框架中并不相同，因为一个是模型的所有者（称为localworker）。他通过控制所有其他参与者（remote worker）的训练程序来充当领导者。为了在处理数据时减轻这种集中偏差，localworker可以创建远程共享张量，这个张量基于他无法看到的数据和不拥有。</p>
-<p>实际上，我们希望remote worker能够在一般环境中保存自己的一些数据，例如，当医院提供医学图像来训练模型时。然后，多个参与者有兴趣看到执行正确执行，这在推理阶段尤其重要，因为许多因素可能会导致破坏预测。</p>
-<p>到目前为止，目前的实施还没有一种机制来确保每个玩家都诚实地行事。一个有趣的改进是实现秘密共享值的MAC认证，如下所述[2]</p>
-<h2 id="3-2-Applying-Differential-Privacy"><a href="#3-2-Applying-Differential-Privacy" class="headerlink" title="3.2 Applying Differential Privacy"></a>3.2 Applying Differential Privacy</h2><p>我们基于[1]的工作实现了差异隐私，其提供了适度（“单个数字”）隐私预算内的深度神经网络的训练方法。为了实现这一目标，本文提供了用于仔细调整所需噪声的隐私损失的新估计，以及提高私人培训效率的新算法.</p>
-<p>特别是，我们实施了随机梯度下降（SGD）：而不是以相同的方式在数据集和epoch上迭代，训练由阶段组成，每个阶段包括从数据集的N个项目中抽样L个项目并使用它们来升级模型.我们直接重用了[1]提供的privacy accountant，但实施了我们自己的sanitizer，它可以剪切渐变并增加高斯噪声。这样，本地工作人员将获得用于更新模型的安全梯度，该模型不能公开关于数据集的信息。</p>
-<p>我们的框架还提供了由联合学习环境指导的一些改进。首先，当抽样时，我们随机选择一个worker并在自己的数据中进行抽样。其次，对远程工作人员进行sanitizer，以便有效地确保数据隐私。</p>
-<p>[5]中描述的方法提出了另一种方法，通过使用预训练和未发表模型（教师）的嘈杂和聚合投票训练最终模型（称为学生模型）来确保差异隐私。它目前正在实施，并将作为我们框架中的另一个DP Tensor进行整合。</p>
-<h1 id="4-Results-and-discussion"><a href="#4-Results-and-discussion" class="headerlink" title="4 Results and discussion"></a>4 Results and discussion</h1><p>表1报告了在规范的Boston Housing数据集上训练神经网络所需的执行时间，使用了我们框架的三个下降。性能分析表示使用Web Socket工作器而不是Virtual Workers的开销相当小，从而验证了他们的笔记本开发工具的用途。这是由于在不同本地选项卡之间进行通信时网络延迟较低。然而，我们比使用常规PyTorch慢46倍。我们在第二个实验中观察到相同的性能开销，该实验使用Pima Indian Diabetes数据集训练分类器检测糖尿病，这是一个包含768行和8列的小数据集[6]。</p>
-<p>表2显示了如何增加？以牺牲数据隐私为代价改进模型。与基线模型中的20-24相比，DP模型实现了25-30 MSE，但随着我们实现（0.5,10-5） - 差异隐私，隐私保证仍然很强。这些结果与计算机视觉应用文献中报道的结果一致[1]。</p>
-<p>对于Boston Housing数据集，基线模型每批花费约19.8ms，而差异私有模型花费约30.0ms，这对于隐私等功能来说是非常合理的开销（+ 50％）。我们可以做的最后一个观察是，启用DP后收敛速度要慢得多。在50次采样的第一阶段，MSE的值保持在500的范围内。然后MSE开始下降并稳定地达到10-50 MSE值。有两个原因可以解释这种行为：首先，梯度削波会降低最后一层更新的效率，其次，高斯噪声会干扰梯度建议的更新，因此梯度更低，因此效率更低。注意，提高梯度限幅也会增加高斯噪声的方差。</p>
-<h1 id="5-Conclusions"><a href="#5-Conclusions" class="headerlink" title="5 Conclusions"></a>5 Conclusions</h1><p>我们引入了一个基于PyTorch构建的隐私保护联合学习框架。该设计依赖于在local 和remote worker之间交换的张量链。我们的张量实现支持PyTorch API的命令，并在同一框架内结合MPC和DP功能。</p>
-<p>仍有许多问题需要解决，其中最重要的是减少训练时间。效率尚未得到解决，但目前的开销表明，纯粹的Python框架存在改进的空间，而高级Python API则依赖于优化的低级库。另一个问题与保护MPC有关，以确保检测并防止恶意企图破坏数据或模型。</p>
-<p>在满足提交的匿名化要求后，本文中涉及的所有代码示例将在GitHub存储库中提供。</p>
-
+          <p class="article-more-link">
+            <a href="/2018/12/07/A-generic-framwork-for-privacy-preserving-deep-learning/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -328,77 +248,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>原文连接： <a href="https://zhuanlan.zhihu.com/p/26854386" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26854386</a><br>本文为快速学习入门Pytorch。<br>学习之道：明白目的；pytorchd的结构框架；pytorch的使用。<br></p>
         
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>原文连接： <a href="https://zhuanlan.zhihu.com/p/26854386" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26854386</a><br>本文为快速学习入门Pytorch。<br>学习之道：明白目的；pytorchd的结构框架；pytorch的使用。</p>
-<ul>
-<li>目的：An open source deep learning platform that provides a seamless path from research prototyping to production deployment.</li>
-<li>结构：平台，对象，操作，框架</li>
-<li>使用：引用，使用</li>
-</ul>
-<h1 id="10分钟快速入门PyTorch-0"><a href="#10分钟快速入门PyTorch-0" class="headerlink" title="10分钟快速入门PyTorch (0)"></a>10分钟快速入门PyTorch (0)</h1><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>根据URL： <a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">https://pytorch.org/get-started/locally/</a><br>安装： <code>pip3 install torch torchvision</code></p>
-<h2 id="pytorch基础"><a href="#pytorch基础" class="headerlink" title="pytorch基础"></a>pytorch基础</h2><p>介绍一下pytorch处理的对象以及操作。</p>
-<h2 id="Tensor"><a href="#Tensor" class="headerlink" title="Tensor"></a>Tensor</h2><p>首先介绍里面最基本的操作对象，tensor。<br>使用<code>jupytert notebook</code>:</p>
-<p><img src="/2018/12/05/Pytorch快速入门/torch1.png" alt=""></p>
-<p>tensor就是张量的英文，表示<strong>多维的矩阵</strong>，比如一维就是向量，二维就是一般的矩阵等等，<strong>pytorch里面处理的单位就是一个一个的tensor</strong>.可以显示的得到其大小</p>
-<p><img src="/2018/12/05/Pytorch快速入门/torch2.png" alt=""></p>
-<p>这个和numpy很相似，同时tensor和numpy.array之间也可以相互转换.<br><img src="/2018/12/05/Pytorch快速入门/torch3.png" alt=""><br>tensor的运算也很简单，一般的四则运算都是支持的</p>
-<h2 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h2><p>pytorch和numpy不一样的地方就来了，就是其提供了<strong>自动求导功能</strong>，也就是可以<strong>自动给你你要的参数的梯度</strong>，这个操作由另外一个基本元素提供，Variable<br><img src="/2018/12/05/Pytorch快速入门/torch4.png" alt=""><br>本质上Variable和Tensor没有区别，不过<strong>Variable会放入一个计算图，然后进行前向传播，反向传播以及自动求导</strong>.<br>一个Variable里面包含着三个属性，data，grad和creator，其中<strong>creator表示得到这个Variabel的操作</strong>，比如乘法或者加法等等，<strong>grad表示方向传播的梯度</strong>，<strong>data表示取出这个Variabel里面的数据</strong><br><img src="/2018/12/05/Pytorch快速入门/torch5.png" alt=""><br>这就是一个简单的计算图的例子</p>
-<h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><p>前面讲了两个操作对象，最后讲一下pytorch里面的<strong>模型建立</strong>，<strong>模型的建立主要依赖于torch.nn</strong>，torch.nn包含这个所有神经网络的层的结构。<br><img src="/2018/12/05/Pytorch快速入门/torch6.png" alt=""></p>
-<p>这就是构建所有神经网络的模板，不管你想<strong>构建卷积神经网络还是循环神经网络或者是生成对抗网络都依赖于这个结构</strong>.<br><a href="https://github.com/L1aoXingyu/pytorch-beginner" target="_blank" rel="noopener">代码网址</a></p>
-<h1 id="10分钟快速入门PyTorch-1"><a href="#10分钟快速入门PyTorch-1" class="headerlink" title="10分钟快速入门PyTorch (1)"></a>10分钟快速入门PyTorch (1)</h1><p>以上基本的介绍了pytorch里面的<strong>操作单元，Tensor，以及计算图中的操作单位Variable</strong>，相信大家都已经熟悉了，下面这一部分我们就从两个最基本的机器学习，<strong>线性回归以及logistic回归</strong>来开始建立我们的计算图进行运算。</p>
-<h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>对于线性回归，相信大家都很熟悉了，各种机器学习的书第一个要讲的内容必定有线性回归，这里简单的回顾一下什么是简单的一元线性回归。即<strong>给出一系列的点，找一条直线，使得这条直线与这些点的距离之和最小</strong>。<br><img src="/2018/12/05/Pytorch快速入门/torch7.png" alt=""><br>上面这张图就简单地描绘出了线性回归的基本原理，下面我们重点讲讲如何用pytorch写一个简单的线性回归。</p>
-<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><h3 id="1-data"><a href="#1-data" class="headerlink" title="1. data"></a>1. data</h3><p>首先我们需要给出一系列的点作为线性回归的数据，使用numpy来存储这些点。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x_train = np.array([[<span class="number">3.3</span>], [<span class="number">4.4</span>], [<span class="number">5.5</span>], [<span class="number">6.71</span>], [<span class="number">6.93</span>], [<span class="number">4.168</span>],</span><br><span class="line">                    [<span class="number">9.779</span>], [<span class="number">6.182</span>], [<span class="number">7.59</span>], [<span class="number">2.167</span>], [<span class="number">7.042</span>],</span><br><span class="line">                    [<span class="number">10.791</span>], [<span class="number">5.313</span>], [<span class="number">7.997</span>], [<span class="number">3.1</span>]], dtype=np.float32)</span><br><span class="line"></span><br><span class="line">y_train = np.array([[<span class="number">1.7</span>], [<span class="number">2.76</span>], [<span class="number">2.09</span>], [<span class="number">3.19</span>], [<span class="number">1.694</span>], [<span class="number">1.573</span>],</span><br><span class="line">                    [<span class="number">3.366</span>], [<span class="number">2.596</span>], [<span class="number">2.53</span>], [<span class="number">1.221</span>], [<span class="number">2.827</span>],</span><br><span class="line">                    [<span class="number">3.465</span>], [<span class="number">1.65</span>], [<span class="number">2.904</span>], [<span class="number">1.3</span>]], dtype=np.float32)</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/12/05/Pytorch快速入门/torch8.png" alt=""></p>
-<p>还记得pytorch里面的基本处理单元吗？Tensor，我们需要将numpy转换成Tensor，如果你还记得上一节的内容，那么你就一定记得这个函数，<code>torch.from_numpy()</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x_train = torch.from_numpy(x_train)</span><br><span class="line">y_train = torch.from_numpy(y_train)</span><br></pre></td></tr></table></figure>
-<p>这样我们的数据就转换成了Tensor。</p>
-<h3 id="2-model"><a href="#2-model" class="headerlink" title="2. model"></a>2. model</h3><p>上一节讲了基本的模型框架，按照这个框架就可以写出一个线性回归模型了.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class LinearRegression(nn.Module):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        super(LinearRegression, self).__init__()</span><br><span class="line">        self.linear = nn.Linear(1, 1)  # input and output is 1 dimension</span><br><span class="line"></span><br><span class="line">    def forward(self, x):</span><br><span class="line">        out = self.linear(x)</span><br><span class="line">        return out</span><br><span class="line">model = LinearRegression()</span><br></pre></td></tr></table></figure>
-<p>这里的nn.Linear表示的是 y=w*x+b，里面的两个参数都是1，表示的是x是1维，y也是1维。当然这里是可以根据你想要的输入输出维度来更改的，之前使用的别的框架的同学应该很熟悉。</p>
-<p>然后需要定义loss和optimizer，就是误差和优化函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">criterion = nn.MSELoss()</span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr=1e-4)</span><br></pre></td></tr></table></figure>
-<p>这里使用的是最小二乘loss，之后我们做分类问题更多的使用的是<code>cross entropy loss</code>，交叉熵。优化函数使用的是随机梯度下降，注意需要将model的参数<code>model.parameters()</code>传进去让这个函数知道他要优化的参数是那些。</p>
-<h3 id="3-train"><a href="#3-train" class="headerlink" title="3. train"></a>3. train</h3><p>接着开始训练</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">num_epochs = 1000</span><br><span class="line">for epoch in range(num_epochs):</span><br><span class="line">    inputs = Variable(x_train)</span><br><span class="line">    target = Variable(y_train)</span><br><span class="line"></span><br><span class="line">    # forward</span><br><span class="line">    out = model(inputs) # 前向传播</span><br><span class="line">    loss = criterion(out, target) # 计算loss</span><br><span class="line">    # backward</span><br><span class="line">    optimizer.zero_grad() # 梯度归零</span><br><span class="line">    loss.backward() # 方向传播</span><br><span class="line">    optimizer.step() # 更新参数</span><br><span class="line"></span><br><span class="line">    if (epoch+1) % 20 == 0:</span><br><span class="line">        print(&apos;Epoch[&#123;&#125;/&#123;&#125;], loss: &#123;:.6f&#125;&apos;.format(epoch+1,</span><br><span class="line">                                                  num_epochs,                                             loss.data[0]))</span><br></pre></td></tr></table></figure>
-<p>第一个循环表示每个epoch，接着开始前向传播，然后计算loss，然后反向传播，接着优化参数，特别注意的是在每次反向传播的时候需要将参数的梯度归零，即<code>optimzier.zero_grad()</code></p>
-<h3 id="4-validation"><a href="#4-validation" class="headerlink" title="4. validation"></a>4. validation</h3><p>训练完成之后我们就可以开始测试模型了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model.eval()</span><br><span class="line">predict = model(Variable(x_train))</span><br><span class="line">predict = predict.data.numpy()</span><br></pre></td></tr></table></figure>
-<p>特别注意的是需要用 model.eval()，让model变成测试模式，这主要是对dropout和batch normalization的操作在训练和测试的时候是不一样的.<br>最后可以得到这个结果<br><img src="/2018/12/05/Pytorch快速入门/torch9.png" alt=""><br>以及loss的结果<br><img src="/2018/12/05/Pytorch快速入门/torch10.png" alt=""><br>ok，在这篇文章中我们使用pytorch实现了简单的线性回归模型，掌握了pytorch的一些基本操作，下一节我们将使用logistic回归对MNIST手写字体数据集做识别。</p>
-<h1 id="10分钟快速入门PyTorch-2"><a href="#10分钟快速入门PyTorch-2" class="headerlink" title="10分钟快速入门PyTorch (2)"></a>10分钟快速入门PyTorch (2)</h1><p>上一节介绍了简单的线性回归，如何在pytorch里面用最小二乘来拟合一些离散的点，这一节我们将开始简单的logistic回归，介绍图像分类问题，使用的数据是手写字体数据集MNIST。</p>
-<h2 id="logistic回归"><a href="#logistic回归" class="headerlink" title="logistic回归"></a>logistic回归</h2><p>logistic回归简单来说和线性回归是一样的，要做的运算同样是 <code>y = w * x + b</code>，logistic回归简单的是<strong>做二分类问题</strong>，使用<strong>sigmoid函数将所有的正数和负数都变成0-1之间的数</strong>，这样就可以用这个数来确定到底属于哪一类，可以简单的认为概率大于0.5即为第二类，小于0.5为第一类。<br><img src="/2018/12/05/Pytorch快速入门/torch11.png" alt=""><br>这就是sigmoid的图形<br><img src="/2018/12/05/Pytorch快速入门/torch12.png" alt=""><br>而我们这里要做的是多分类问题，对于每一个数据，我们输出的维数是分类的总数，比如10分类，我们输出的就是一个10维的向量，然后我们使用另外一个激活函数，softmax<br><img src="/2018/12/05/Pytorch快速入门/torch13.png" alt=""><br>这就是softmax函数作用的机制，其实简单的理解就是<strong>确定这10个数每个数对应的概率有多大，因为这10个数有正有负，所以通过指数函数将他们全部变成正数，然后求和，然后这10个数每个数都除以这个和，这样就得到了每个类别的概率</strong>。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="data"><a href="#data" class="headerlink" title="data"></a>data</h3><p>首先导入torch里面专门做图形处理的一个库，torchvision，根据官方安装指南，你在安装pytorch的时候torchvision也会安装。</p>
-<p>我们需要使用的是<code>torchvision.transforms</code>和<code>torchvision.datasets</code>以及<code>torch.utils.data.DataLoader</code></p>
-<p>首先DataLoader是导入图片的操作，里面有一些参数，比如batch_size和shuffle等，默认load进去的图片类型是PIL.Image.open的类型，如果你不知道PIL，简单来说就是一种读取图片的库.</p>
-<p>torchvision.transforms里面的操作是对导入的图片做处理，比如可以随机取(50, 50)这样的窗框大小，或者随机翻转，或者去中间的(50, 50)的窗框大小部分等等，但是里面必须要用的是transforms.ToTensor()，这可以将PIL的图片类型转换成tensor，这样pytorch才可以对其做处理.</p>
-<p>torchvision.datasets里面有很多数据类型，里面有官网处理好的数据，比如我们要使用的MNIST数据集，可以通过torchvision.datasets.MNIST()来得到，还有一个常使用的是torchvision.datasets.ImageFolder()，这个可以让我们按文件夹来取图片，和keras里面的flow_from_directory()类似，具体的可以去看看官方文档的介绍。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 定义超参数</span><br><span class="line">batch_size = 32</span><br><span class="line">learning_rate = 1e-3</span><br><span class="line">num_epoches = 100</span><br><span class="line"></span><br><span class="line"># 下载训练集 MNIST 手写数字训练集</span><br><span class="line">train_dataset = datasets.MNIST(root=&apos;./data&apos;, train=True,</span><br><span class="line">                               transform=transforms.ToTensor(),</span><br><span class="line">                               download=True)</span><br><span class="line"></span><br><span class="line">test_dataset = datasets.MNIST(root=&apos;./data&apos;, train=False,</span><br><span class="line">                              transform=transforms.ToTensor())</span><br><span class="line"></span><br><span class="line">train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)</span><br><span class="line">test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)</span><br></pre></td></tr></table></figure>
-<h2 id="model"><a href="#model" class="headerlink" title="model"></a>model</h2><p>之前讲过模型定义的框架，废话不多说，直接上代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Logstic_Regression(nn.Module):</span><br><span class="line">    def __init__(self, in_dim, n_class):</span><br><span class="line">        super(Logstic_Regression, self).__init__()</span><br><span class="line">        self.logstic = nn.Linear(in_dim, n_class)</span><br><span class="line"></span><br><span class="line">    def forward(self, x):</span><br><span class="line">        out = self.logstic(x)</span><br><span class="line">        return out</span><br><span class="line"></span><br><span class="line">model = Logstic_Regression(28*28, 10)  # 图片大小是28x28</span><br></pre></td></tr></table></figure>
-<p>我们需要向这个模型传入参数，第一个参数定义为数据的维度，第二维数是我们分类的数目。</p>
-<p>接着我们可以在gpu上跑模型，怎么做呢？<br>首先可以判断一下你是否能在gpu上跑<br><code>torh.cuda.is_available()</code><br>如果返回True就说明有gpu支持</p>
-<p>接着你只需要一个简单的命令就可以了<br><code>model = model.cuda()</code><br>或者<br><code>model.cuda()</code><br>都可以</p>
-<p>然后需要定义loss和optimizer<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">criterion = nn.CrossEntropyLoss()</span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr=learning_rate)</span><br></pre></td></tr></table></figure></p>
-<p>这里我们使用的loss是交叉熵，是一种处理分类问题的loss，optimizer我们还是使用随机梯度下降</p>
-<h2 id="train"><a href="#train" class="headerlink" title="train"></a>train</h2><p>接着就可以开始训练了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">for epoch in range(num_epoches):</span><br><span class="line">    print(&apos;epoch &#123;&#125;&apos;.format(epoch+1))</span><br><span class="line">    print(&apos;*&apos;*10)</span><br><span class="line">    running_loss = 0.0</span><br><span class="line">    running_acc = 0.0</span><br><span class="line">    for i, data in enumerate(train_loader, 1):</span><br><span class="line">        img, label = data</span><br><span class="line">        img = img.view(img.size(0), -1)  # 将图片展开成 28x28</span><br><span class="line">        if use_gpu:</span><br><span class="line">            img = Variable(img).cuda()</span><br><span class="line">            label = Variable(label).cuda()</span><br><span class="line">        else:</span><br><span class="line">            img = Variable(img)</span><br><span class="line">            label = Variable(label)</span><br><span class="line">        # 向前传播</span><br><span class="line">        out = model(img)</span><br><span class="line">        loss = criterion(out, label)</span><br><span class="line">        running_loss += loss.data[0] * label.size(0)</span><br><span class="line">        _, pred = torch.max(out, 1)</span><br><span class="line">        num_correct = (pred == label).sum()</span><br><span class="line">        running_acc += num_correct.data[0]</span><br><span class="line">        # 向后传播</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br></pre></td></tr></table></figure>
-<p>注意我们如果将模型放到了gpu上，相应的我们的Variable也要放到gpu上，也很简单</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img = Variable(img).cuda()</span><br><span class="line">label = Variable(label).cuda()</span><br></pre></td></tr></table></figure>
-<p>然后可以测试模型，过程与训练类似，只是注意要将模型改成测试模式<br><code>model.eval()</code><br>这是跑完100 epoch的结果</p>
-<p><img src="/2018/12/05/Pytorch快速入门/torch14.png" alt=""><br>具体的结果多久打印一次，如何打印可以自己在for循环里面去设计</p>
-<p>这一部分我们就讲解了如何用logistic回归去做一个简单的图片分类问题，知道了如何在gpu上跑模型，下一节我们将介绍如何写简单的卷积神经网络，不了解卷积网络的同学可以先去我的专栏看看之前卷积网络的介绍。</p>
-<h1 id="10分钟快速入门PyTorch-3"><a href="#10分钟快速入门PyTorch-3" class="headerlink" title="10分钟快速入门PyTorch (3)"></a>10分钟快速入门PyTorch (3)</h1><p>前面两节讲了最基本的机器学习算法，线性回归和logistic回归，这一节将介绍传统机器学习里面最后一个算法-神经网络，这也是深度学习的基石，所谓的深度学习，也可以理解为很深层的神经网络。说起这里，有一个小段子，神经网络曾经被打入了冷宫，因为SVM派的崛起，SVM不了解的同学可以去google一下，中文叫支持向量机，因为其有着完备的数学解释，并且之前神经网络运算复杂等问题，导致神经网络停步不前，这个时候任何以神经网络为题目的论文都发不出去，反向传播算法的鼻祖hinton为了解决这个问题，于是就想到了用深度学习为题目。</p>
-<p>段子说完，接下来开始我们的简单神经网络。</p>
-<h2 id="Neural-Network"><a href="#Neural-Network" class="headerlink" title="Neural Network"></a>Neural Network</h2><p>其实简单的神经网络说起来很简单，先放图为敬</p>
-<p><img src="/2018/12/05/Pytorch快速入门/torch15.png" alt=""><br>通过图片就能很简答的看出来，其实<strong>每一层网络所做的就是 <code>y=W*X+b</code></strong>，只不过W的维数由X和输出维数决定，比如X是10维向量，想要输出的维数，也就是中间层的神经元个数为20，那么W的维数就是20x10，b的维数就是20x1，这样输出的y的维数就为20。</p>
-<p>中间层的维数可以自己设计，而最后一层输出的维数就是你的分类数目，比如我们等会儿要做的MNIST数据集是10个数字的分类，那么最后输出层的神经元就为10。</p>
-<h2 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a>Code</h2><p>有了前面两节的经验，这一节的代码就很简单了，数据的导入和之前一样<br>定义模型</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Neuralnetwork</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, in_dim, n_hidden_1, n_hidden_2, out_dim)</span>:</span></span><br><span class="line">        super(Neuralnetwork, self).__init__()</span><br><span class="line">        self.layer1 = nn.Linear(in_dim, n_hidden_1)</span><br><span class="line">        self.layer2 = nn.Linear(n_hidden_1, n_hidden_2)</span><br><span class="line">        self.layer3 = nn.Linear(n_hidden_2, out_dim)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        x = self.layer1(x)</span><br><span class="line">        x = self.layer2(x)</span><br><span class="line">        x = self.layer3(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line">model = Neuralnetwork(<span class="number">28</span>*<span class="number">28</span>, <span class="number">300</span>, <span class="number">100</span>, <span class="number">10</span>)</span><br><span class="line"><span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">    model = model.cuda()</span><br><span class="line"></span><br><span class="line">criterion = nn.CrossEntropyLoss()</span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr=learning_rate)</span><br></pre></td></tr></table></figure>
-<p>上面定义了三层神经网络，输入是28x28，因为图片大小是28x28，中间两个隐藏层大小分别是300和100，最后是个10分类问题，所以输出层为10.<br>训练过程与之前完全一样<br>这是50次之后的输出结果，可以和上一节logistic回归比较一下.</p>
-<p>可以发现准确率大大提高，其实logistic回归可以看成简单的一层网络，从这里我们就可以看出为什么多层网络比单层网络的效果要好，这也是为什么深度学习要叫深度的原因。</p>
-<p><img src="/2018/12/05/Pytorch快速入门/torch16.png" alt=""><br>下一节我们将正式进入到深度学习，第一个模型将是计算机视觉领域的王牌模型，卷积神经网络。</p>
-
+          <p class="article-more-link">
+            <a href="/2018/12/05/Pytorch快速入门/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -541,47 +396,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>理解Docker的三个核心概念：镜像，容器，仓库；</p>
 <ol>
 <li>开发人员使用Dockerfile定制镜像，使用docker-compose在<code>.yml</code>文件中配置所有容器的部署方法、文件映射、容器链接等，运行<code>docker-compose up</code>执行安装容器并且自动部署。</li>
-<li>运维人员从仓库下载容器，运行脚本。</li>
-</ol>
-<p>因此下面将介绍具体的操作流程。</p>
-<h1 id="Docker-Compose-项目"><a href="#Docker-Compose-项目" class="headerlink" title="Docker Compose 项目"></a>Docker Compose 项目</h1><p><code>Docker Compose</code> 是 <code>Docker</code> 官方编排（Orchestration）项目之一，负责<strong>快速的部署分布式应用</strong>。</p>
-<h2 id="Compose-简介"><a href="#Compose-简介" class="headerlink" title="Compose 简介"></a>Compose 简介</h2><p>Compose 项目是 Docker 官方的开源项目，负责<strong>实现对 Docker 容器集群的快速编排</strong>。从功能上看，跟 OpenStack 中的 Heat 十分类似。</p>
-<p>Compose 定位是 <strong>「定义和运行多个 Docker 容器的应用（Defining and running multi-container Docker applications）」</strong>，其前身是开源项目 Fig。</p>
-<p>我们知道使用一个 Dockerfile 模板文件，可以让用户很方便的定义一个单独的应用容器。然而，在日常工作中，经常会碰到需要多个容器相互配合来完成某项任务的情况。例如要实现一个 Web 项目，除了 Web 服务容器本身，往往还需要再加上后端的数据库服务容器，甚至还包括负载均衡容器等。</p>
-<p><code>Compose</code> 恰好满足了这样的需求。<strong>它允许用户通过一个单独的 <code>docker-compose.yml</code> 模板文件（<code>YAML</code> 格式）来定义一组相关联的应用容器为一个项目（project）。</strong><br>Compose 中有两个重要的概念：</p>
-<ul>
-<li>服务 (service)：一个应用的容器，实际上可以包括若干<strong>运行相同镜像的容器实例</strong>。</li>
-<li>项目 (project)：<strong>由一组关联的应用容器组成的一个完整业务单元</strong>，在 <code>docker-compose.yml</code> 文件中定义。</li>
-</ul>
-<p><code>Compose</code> 的默认管理对象是项目，通过子命令对项目中的一组容器进行便捷地生命周期管理。</p>
-<p>Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 来对容器进行管理。因此，只要所操作的平台支持 Docker API，就可以在其上利用 Compose 来进行编排管理。</p>
-<h2 id="安装与卸载"><a href="#安装与卸载" class="headerlink" title="安装与卸载"></a>安装与卸载</h2><p>Compose 支持 Linux、macOS、Windows 10 三大平台。</p>
-<p>Compose 可以通过 Python 的包管理工具 pip 进行安装，也可以直接下载编译好的二进制文件使用，甚至能够直接在 Docker 容器中运行。</p>
-<p>前两种方式是传统方式，适合本地环境下安装使用；最后一种方式则不破坏系统环境，更适合云计算场景。</p>
-<p>Docker for Mac 、Docker for Windows 自带 docker-compose 二进制文件，安装 Docker 之后可以直接使用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose --version</span><br><span class="line"></span><br><span class="line">docker-compose version 1.17.1, build 6d101fb</span><br></pre></td></tr></table></figure>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>###术语<br>首先介绍几个术语。</p>
-<ul>
-<li>服务 (service)：一个应用容器，实际上可以运行多个相同镜像的实例。</li>
-<li>项目 (project)：由一组关联的应用容器组成的一个完整业务单元。</li>
-</ul>
-<p>可见，一个项目可以由多个服务（容器）关联而成，Compose 面向项目进行管理。</p>
-<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>最常见的项目是 web 网站，该项目应该包含 web 应用和缓存。</p>
-<p>下面我们用 Python 来建立一个能够记录页面访问次数的 web 网站。</p>
-<h3 id="web-应用"><a href="#web-应用" class="headerlink" title="web 应用"></a>web 应用</h3><p>新建文件夹，在该目录中编写 app.py 文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">from redis import Redis</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">redis = Redis(host=&apos;redis&apos;, port=6379)</span><br><span class="line"></span><br><span class="line">@app.route(&apos;/&apos;)</span><br><span class="line">def hello():</span><br><span class="line">    count = redis.incr(&apos;hits&apos;)</span><br><span class="line">    return &apos;Hello World! 该页面已被访问 &#123;&#125; 次。\n&apos;.format(count)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    app.run(host=&quot;0.0.0.0&quot;, debug=True)</span><br></pre></td></tr></table></figure>
-<h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><p>编写 Dockerfile 文件，内容为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FROM python:3.6-alpine</span><br><span class="line">ADD . /code</span><br><span class="line">WORKDIR /code</span><br><span class="line">RUN pip install redis flask</span><br><span class="line">CMD [&quot;python&quot;, &quot;app.py&quot;]</span><br></pre></td></tr></table></figure>
-<h3 id="docker-compose-yml"><a href="#docker-compose-yml" class="headerlink" title="docker-compose.yml"></a>docker-compose.yml</h3><p>编写 docker-compose.yml 文件，这个是 Compose 使用的主模板文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">version: &apos;3&apos;</span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  web:</span><br><span class="line">    build: .</span><br><span class="line">    ports:</span><br><span class="line">     - &quot;5000:5000&quot;</span><br><span class="line"></span><br><span class="line">  redis:</span><br><span class="line">    image: &quot;redis:alpine&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="运行-compose-项目"><a href="#运行-compose-项目" class="headerlink" title="运行 compose 项目"></a>运行 compose 项目</h3><p><code>$ docker-compose up</code></p>
-<p>此时访问本地 5000 端口，每次刷新页面，计数就会加 1。</p>
-
+<li>运维人员从仓库下载容器，运行脚本。</li></ol>
+        
+          <p class="article-more-link">
+            <a href="/2018/11/28/Docker三剑客/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -766,7 +589,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography-Intro/">Cryptography Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人成长/">个人成长</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习论文阅读/">深度学习论文阅读</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/游戏开发/">游戏开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自我反省/">自我反省</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography-Intro/">Cryptography Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人成长/">个人成长</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/游戏开发/">游戏开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自我反省/">自我反省</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
