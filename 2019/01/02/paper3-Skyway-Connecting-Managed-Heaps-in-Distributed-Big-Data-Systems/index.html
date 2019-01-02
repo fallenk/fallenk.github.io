@@ -13,10 +13,14 @@
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
 <meta property="og:description" content="前言课程所需，才是驱动啊。 标题Skyway: Connecting Managed Heaps in Distributed Big Data SystemsSkyway：连接分布式大数据系统中的托管堆">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-01T17:36:29.928Z">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/02/paper3-Skyway-Connecting-Managed-Heaps-in-Distributed-Big-Data-Systems/paper3-1.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/02/paper3-Skyway-Connecting-Managed-Heaps-in-Distributed-Big-Data-Systems/paper3-2.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/02/paper3-Skyway-Connecting-Managed-Heaps-in-Distributed-Big-Data-Systems/paper3-3.png">
+<meta property="og:updated_time" content="2019-01-02T15:03:07.334Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="paper3:Skyway: Connecting Managed Heaps in Distributed Big Data Systems">
 <meta name="twitter:description" content="前言课程所需，才是驱动啊。 标题Skyway: Connecting Managed Heaps in Distributed Big Data SystemsSkyway：连接分布式大数据系统中的托管堆">
+<meta name="twitter:image" content="https://fallenk.github.io/2019/01/02/paper3-Skyway-Connecting-Managed-Heaps-in-Distributed-Big-Data-Systems/paper3-1.png">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
   
@@ -103,7 +107,40 @@
         
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>课程所需，才是驱动啊。</p>
 <h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>Skyway: Connecting Managed Heaps in Distributed Big Data Systems<br>Skyway：连接分布式大数据系统中的托管堆<br><a id="more"></a></p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>诸如Java和Scala之类的托管语言普遍用于大规模分布式系统的开发。在托管运行时，在跨机器执行数据传输时，这是在大数据系统中经常执行的任务，系统需要在通过网络发送对象之前将对象序列化为字节序列。接收字节的远程节点然后将它们反序列化为对象。这个过程既有性能又省力：（1）对象序列化/反序列化大量使用反射，昂贵的运行时操作和/或（2）序列化/反序列化功能需要手写和容易出错。本文介绍了Skyway，这是一种基于JVM的技术，可以直接连接不同（本地或远程）JVM进程的托管堆。在Skyway下，源堆中的对象可以直接写入远程堆，而无需更改其格式。 Skyway完全消除了调用序列化/反序列化功能的需要（1），从而节省了CPU时间，并且（2）要求开发人员手写串行化功能，从而为任何基于JVM的系统提供性能优势。</p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>诸如Java和Scala之类的托管语言普遍用于大规模分布式系统的开发。在托管运行时，<strong>在跨机器执行数据传输时，这是在大数据系统中经常执行的任务，系统需要在通过网络发送对象之前将对象序列化为字节序列</strong>。接收字节的远程节点然后将它们反序列化为对象。这个过程既有消耗性能又浪费资源：（1）对象序列化/反序列化大量使用反射，昂贵的运行时操作和/或（2）序列化/反序列化功能需要手写和容易出错。<strong>本文介绍了Skyway，这是一种基于JVM的技术，可以直接连接不同（本地或远程）JVM进程的托管堆。</strong>在Skyway下，源堆中的对象可以直接写入远程堆，而无需更改其格式。 Skyway完全消除了调用序列化/反序列化功能的需要（1），从而节省了CPU时间，并且（2）减少要求开发人员手写串行化功能，从而为任何基于JVM的系统提供性能优势。</p>
+<p>CCS Concepts • Information systems → Data manage- ment systems; • Software and its engineering → Mem- ory management;</p>
+<p><strong>Keywords</strong> Big data, distributed systems, data transfer, serialization and deserialization</p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>现代大数据系统需要经常在群集中混洗数据 - 像Hadoop这样的map / reduce框架会在执行减少之前对每个map worker的结果进行洗牌;像Spark这样的数据流系统支持许多需要在节点之间存储数据的RDD转换。由于大多数这些系统都是用托管语言（如Java和Scala）编写的，因此数据表示为托管堆中的对象。跨节点传输对象很复杂，涉及图1所示的三个过程。（1）序列化过程将整个对象图从o转换为二进制序列。此过程重新格式化每个对象 - 除其他外，它提取对象数据，剥离对象标题，删除存储在对象中的所有引用，以及更改某些元数据的表示。 （2）该字节序列被传送到接收机。 （3）反序列化过程读出字节序列，相应地创建对象，最终在接收器机器的托管堆中重建对象图。</p>
+<p><strong>问题</strong><br>虽然已经开发了许多序列化/反序列化（S / D）库[3,22,32]，但在它们的实现中存在很大的不足。 我们自己的经验（§2）和之前工作的证据[27]表明，S / D占Spark中执行时间的30％。 为了解释为什么S / D如此昂贵，我们讨论了处理三个关键信息，这些信息必须从o可以获得的每个对象中提取，传输和重构：（1）对象数据（即原始类型） “elds”，（2）对象引用（即引用类型“elds”），以及（3）对象类型。</p>
+<p>(1)对象数据访问：S / D库需要调用反射函数，例如Reflection.getField和Reflection.setField，在发送方以枚举和访问每个字段来抽取，在接收方然后回写，每个原始对象都是单独的。在大数据系统中，每个数据传输涉及数百万个对象，这些对象会调用这些函数数百万次或更多次。Reflection是一种非常昂贵的运行时操作。它允许程序动态检查或调用类，方法，字段或属性；在没有类型信息静态可用的在以耗时的字符串查找为代价，在性能关键任务中是不可取的。</p>
+<p><img src="/2019/01/02/paper3-Skyway-Connecting-Managed-Heaps-in-Distributed-Big-Data-Systems/paper3-1.png" alt=""></p>
+<p>（2）类型表示：每个类型由托管运行时中的特殊（元）对象表示，并由该类型的对象的标头引用。 但是，类型引用不能用于表示字节序列中的类型，因为表示相同类型的元对象可能在不同的运行时中具有不同的地址。 Java序列化程序通过包含类名及其所有父类的字符串表示每种类型。 该设计使元数据（即，类型字符串）消耗通过网络传输的大部分字节序列。 此外，必须使用反射来在接收器节点上的对象重新创建期间解析每个字符串的类型。<br>（3）参考调整：需要调整传输对象的引用类型字段中包含的引用，因为这些对象将被放置在接收器节点上的不同地址中。Java序列化程序使用rection来获取引用对象的内容并将其内联到引用对象的二进制表示中。它使用反射构造从接收器机器上的o可到达的所有对象，然后通过反射设置参考字段与刚创建的引用对象的地址。</p>
+<p><strong>最近的进展</strong><br>许多第三方库已经开发出来。特别是，Kryo [22]是Spark推荐的库。 Kryo要求开发人员（1）为<strong>数据传输中涉及的类型手动定义S / D函数，这样可以加速对象数据访问</strong>，以及（2）在所有节点上以一致的<strong>顺序手动注册这些类型</strong>，这使得可以使用整数来表示类型。其他图书馆[3,11,32]遵循类似的原则。<br>然而，基本的“数据传输的缺点仍然存在于Kryo中 - 需要为发送方和接收方的每个传输对象调用用户定义的函数。由于这些调用的数量非常大发送和接收，序列化和反序列化期间的S / D功能仍然占用数据处理任务运行时的很大一部分。<br>此外，使用Kryo的开发人员承受着巨大的负担。开发人员<strong>很难理解涉及多少和哪些类型</strong>，更不用说一致地注册这些类型并为每种类型开发正确和有效的S / D功能。例如，考虑一个HashMap对象。它的序列化涉及其键值阵列，所有键/值对以及每个键/值对象。它的反序列化需要重新创建键和值对象，将它们配对，并另外重新设置键值/值对以正确地重新创建键值数组，因为键的哈希值可能已更改。</p>
+<p><strong>Our Solution – Skyway</strong><br>现有S / D库的关键问题在于，对于现有的JVM，除了第一次反汇编并将它们推送到（不同的）二进制格式之外，没有其他路由来<strong>传输对象，然后重新组装和拉动 他们备份到远程堆中</strong>。 在本文中，我们主张在托管堆之间建立一个“kyway”（如图1所示），这样数据对象就不再需要被推送到较低的级别进行传输。</p>
+<p>Skyway增强了JVM，使<strong>对象图可以从堆移动到堆，并在移动后立即在远程节点上使用</strong>。 具体而言，给定应用程序指定的根对象（例如，Spark中的RDD对象），Skyway增强型JVM从o开始执行类似GC的堆遍历，将<strong>每个可到达对象复制到输出缓冲区，并执行轻量级调整存储在对象中的与机器相关的元数据，而无需更改对象格式。 然后可以将此输出缓冲区作为整体直接复制到远程堆中，并在传输后几乎立即使用</strong>。 这为现有和未来的大数据系统提供了以下好处：（1）Skyway完全消除了访问字段和类型的成本，节省了计算成本; （2）开发人员不需要手写任何S / D功能。</p>
+<p>为了实现这些目标，Skyway比所有现有的S / D库更加有效地解决了上述三个问题，如下所述。</p>
+<p>首先，Skyway通过更改JVM，将<strong>每个对象作为一个整体进行传输，这完全消除了访问单个数据字段的需要</strong>。 此外，由于对象的哈希码被高速缓存在对象的头部中，因此传输每个对象的整体保留了对象的原始哈希码，从而可以在接收器节点上使用基于哈希的数据结构而无需重新划分对象。 在传统的S / D中花费大量时间的过程。</p>
+<p>其次，Skyway通过采用<strong>自动全局类型编号过程来表示类型 - 主节点维护所有类型及其ID的注册表</strong>，并且每个工作节点与主服务器通信以在类加载时获得其类的ID。 此过程使群集中的所有类都可以进行全局编号，而无需任何开发人员干预，因此每个ID可用于在不同节点上唯一标识相同的类。</p>
+<p>第三，Skyway采用了一种<strong>有效的“复制”技术来调整参考</strong>。 当对象被复制到输出缓冲区中时，存储在它们中的指针在线性时间中被相对化 - 它们从绝对地址变为相对地址。 在接收到缓冲器时，接收器节点上的Skyway客户端执行输入缓冲器的另一线性扫描，以对该缓冲器中的相对信息进行绝对化。</p>
+<p>Skyway可能会在网络上推送比S / D库更多的字节，因为它传输整个每个对象，但S / D库不传输对象头。 然而，大量证据[44]表明实际系统中的瓶颈正在从I / O转向计算，因此，我们认为这种设计能够实现正确的设计交易 - 计算成本的节省显着超过额外的网络 在现代网络上传输的额外字节所产生的I / O成本。 我们的实证结果表明，即使在1000Mb / s以太网上（例如，大多数数据中心使用带宽较高的网络），在Spark中为真实图形数据集传输50％以上的数据（总共约100GB）只会增加执行力 4％（在网络和读取I / O上），而通过消除S / D调用实现的节省超过20％。</p>
+<p><strong>它为什么有效？</strong><br>值得注意的是，Skyway<strong>不是通用的序列化器</strong>。 我们深入了解Skyway为大数据处理工作的原因是双重的。 首先，<strong>数据处理应用程序经常洗涤数百万个对象，并且在强烈划分的阶段这样做。 因此，批量发送对象而不改变其格式可提供显着的执行效率</strong>。 其次，使用现<strong>代网络技术可以快速传输额外的字节</strong>，而不会产生太多开销。</p>
+<p>我们在OpenJDK 8中实现了Skyway。我们对Java序列化器基准测试集JSBS [34]，Spark [45]和Flink [2]的评估表明，（1）Skyway优于JSBS上所有90个现有的S / D库 ，它使用基于媒体内容的数据集 - 例如，它比Kryo快2.2倍，比Java序列化器快67.3倍; （2）与Kryo和Java序列化器相比，Skyway在四个真实数据集中对四个代表性分析任务的整体Spark性能提高了16％和36％; （3）对于Flink的另一个真实系统，与Flink高度优化的内置串行器相比，Skyway的整体性能提高了19％。</p>
+<h1 id="2-Background-and-Motivation"><a href="#2-Background-and-Motivation" class="headerlink" title="2 Background and Motivation"></a>2 Background and Motivation</h1><h2 id="2-1-Background"><a href="#2-1-Background" class="headerlink" title="2.1 Background"></a>2.1 Background</h2><p><strong>When Does S/D Happen?</strong><br>Spark在整个执行过程中进行S / D. 有两类S / D任务：闭包序列化和数据序列化。 关闭S / D发生在驾驶员和工人之间。 由于驱动程序启动了Spark程序，因此驱动程序需要在远程工作程序上执行部分程序。</p>
+<h2 id="2-2-Motivation"><a href="#2-2-Motivation" class="headerlink" title="2.2 Motivation"></a>2.2 Motivation</h2><p>为了理解现实世界中的S / D成本，我们在Spark上进行了一系列实验。 我们在3个工作节点的小集群上执行Spark，每个节点都有2个Xeon（R）CPU E5-2640 v3处理器，32GB内存，1个SSD，运行CentOS 6.8。 这三个节点是通过In“niBand连接的大型集群的一部分。我们在LiveJournal图[4]上运行TriangleCounting算法，计算图形边缘引起的三角形数量。它被广泛用于社交网络分析，用于分析图形 连接属性[38]。我们使用Oracle JDK 8（build 25.71）并让每个slave运行一个执行器 - 每个slave上的单线程执行使我们可以很容易地测量性能的细分。 输入图大约为1.2GB，我们给每个JVM一个20GB的堆 - 一个足够大的堆来执行内存计算 - 就像Spark中的推荐做法一样。钨排序用于数据。</p>
+<p><img src="/2019/01/02/paper3-Skyway-Connecting-Managed-Heaps-in-Distributed-Big-Data-Systems/paper3-2.png" alt=""><br>图4. Skyway的系统架构。 紫色和橙色矩形分别代表输入（堆内）缓冲区和输出（native）缓冲区; 对象传输沿着红色箭头。</p>
+<p>#3 Design Overview<br>本节概述了Skyway，解释了Skyway如何针对三个目标 - 正确性，高效率和易于集成。</p>
+<p>图4显示了Skyway的系统架构，包括三个主要部分。 首先，为了实现正确的数据传输，Skyway修改JVM<strong>以在每个克隆对象中进行对象遍历，对象克隆和调整</strong>。 其次，为了实现高效的数据传输，Skyway谨慎地<strong>维护输入和输出缓冲区，并跨机器传输内容</strong>。 第三，为了使Skyway易于使用，Skyway库为应用程序开发人员提供了一组易于使用且向后兼容的API。</p>
+<h2 id="3-1-Correctness"><a href="#3-1-Correctness" class="headerlink" title="3.1 Correctness"></a>3.1 Correctness</h2><p>Skyway调整每个传输对象的机器特定部分，以保证执行的正确性。 首先，Skyway<strong>在发送期间使用自动维护的全局类型ID填充对象标题的类型字段，然后在接收节点上使用正确的类型表示替换它</strong>。<br>其次，Skyway<strong>在发送期间用相对化参考替换存储在对象的所有非原始字段中的引用，并在接收期间将它们转回正确的绝对引用</strong>。 详情见§4.2。<br>最后，当对象移动到另一台机器时，<strong>需要重置某些元数据，如GC位和锁定位</strong>。Skyway在发送时重置这些标志，并且在接收时不需要访问它们。</p>
+<p>Skyway还为<strong>异构集群提供支持，其中不同机器上的JVM可支持不同的对象格式</strong>。 如果发送方和接收方节点具有不同的JVM规范，则Skyway会在将其复制到输出缓冲区时调整每个对象的格式（例如，标头大小，指针大小或标头格式）。 这仅在发送方节点上产生额外成本，而接收方节点不支付使用传输对象的额外成本。 对于同构群集，任何节点都不会产生这种平台调整成本。 Skyway使用的唯一假设是发送方和接收方使用每个与传输相关的类的相同版本 - 如果同一类的两个版本具有不同的字段，则对象读取将失败。 但是，这种假设并不是Skyway独有的; 它也需要适用于所有其他序列化器。</p>
+<p>##3.2 Efficiency<br>kyway使用<strong>类似GC的遍历来发现可从一组根对象访问的对象图</strong>。 为了提高效率，Skyway使用缓冲-Skyway将遍历期间遇到的每个对象<strong>复制到发送节点上的缓冲区（即输出缓冲区）</strong>，并将缓冲区内容流式传输到接收节点上的相应缓冲区（即输入缓冲区）。 输出和输入缓冲器都经过精心设计，以提高效率。 还支持多线程数据传输（参见§4）。<br><strong>Skyway输出缓冲区由接收器隔离 - 具有相同目标的对象被放入相同的输出缓冲区</strong>。 每个目标只存在一个这样的输出缓冲区。 发送对象后，可以安全地清除输出缓冲区。 <strong>Skyway输入缓冲区由发送方隔离，因此来自不同发送方的数据对象可以在不同步的情况下同时写入</strong>。 请注意，接收方节点的堆实际上可能包含每个发送方的多个输入缓冲区，每个输入缓冲区都保存在发送方的不同轮次中发送的对象。 除非开发人员使用API明确释放缓冲区，否则Skyway不会重用旧的输入缓冲区 - 例如Spark缓存内存中的所有RDD，因此Skyway会保留所有输入缓冲区。</p>
+<p>输出缓冲区位于堆外本机内存中 - 它们不会干扰GC，如果这些缓冲区位于托管堆中，它可以在发送数据对象之前回收它们。 从托管堆分配输入缓冲区，以便来自远程节点的数据直接写入堆中，并可立即使用。 此外，尽<strong>管每个输入缓冲区在图4中显示为消耗连续的堆空间，但我们允许它跨越多个小内存块</strong>，原因有两个。 首先，由于流式传输，接收器可能不知道发送的字节数，因此，确定输入缓冲器大小是困难的。 其次，分配大的连续空间可能很快导致内存碎片，这可以通过使用较小的内存块来有效地减轻（§4.3）。</p>
+<p>流式Skyway为这些缓冲器提供的一个重要特性：对于输出缓冲器，如果我们在所有对象都进入之前不发送数据，那么它既无时间且又耗费空间。 对于输入缓冲器，流式传输将允许计算与数据传输并行执行。 支持流式传输会带来许多挑战，例如，如何在没有多次扫描的情况下调整指针以及如何管理接收器节点上的内存（4.2）。</p>
+<h2 id="3-3-Ease-of-Integration"><a href="#3-3-Ease-of-Integration" class="headerlink" title="3.3 Ease of Integration"></a>3.3 Ease of Integration</h2><p>Skyway旨在为应用程序开发人员提供简单的界面。 Skyway不仅应该支持全新系统的开发，还应该支持Spark等现有系统的简单S / D库集成。 为此，Skyway提供了一组与标准Java序列化程序直接兼容的高级Java API。</p>
+<p>Skyway提供<code>SkywayObjectOutputStream</code>和<code>SkywayObjectInputStream</code>类，它们是标准<code>ObjectOutputStream</code>和<code>Object- InputStream</code>的子类。 这两个类为Skyway（本机）实现<code>readObject</code>和<code>writeObject</code>方法创建了一个接口。 <code>SkywayObjectOutput- Stream / SkywayObjectInputStream</code>对象与输出/输入缓冲区相关联。 我们还创建了<code>SkywayFileOutputStream / SkywayFileInputStream</code>和<code>SkywaySocketOutputStream / SkywaySocketInputStream</code>类，可以像使用Java序列化程序一样使用Skyway轻松编程。</p>
+<p>将程序从使用其原始库切换到使用Skyway需要修改代码。 例如，我们根本不需要更改对象写入/读取调用，例如stream.writeObject（o）。 唯一的修改是（1）<strong>将流式例化为SkywayFileOutputStream对象</strong>而不是任何其他类型的ObjectOutputStream对象，以及（2）<strong>使用API函数shuffleStart识别混洗阶段</strong>。 由于我们所有的输出数据都需要在下一个调整阶段开始之前被清除（第4步），因此Skyway需要开发人员的标记才能知道何时清除这些数据。 识别分支阶段通常很简单 - 在许多系统中，一个分支阶段由一个shuffle函数实现，开发人员可以简单地在函数的开头调用shuffleStart。 另请注意，编写为在大数据系统上运行的用户程序（如图2中的程序）大多不直接使用S / D库，因此可以在没有更改的情况下从Skyway获益。</p>
+<p>最后，Skyway提供了一个界面，允许开发人员在传输后轻松更新某些对象字段，例如出于语义原因重新初始化某些字段。 例如，下面的代码片段使用用户定义的函数updateTimeStamp在传输Record对象时返回的值更新类Record中的eld时间戳。 当然，我们希望很少使用此接口 - 在我们的实验中从未发生传输后需要更新对象数据内容。</p>
+<p><img src="/2019/01/02/paper3-Skyway-Connecting-Managed-Heaps-in-Distributed-Big-Data-Systems/paper3-3.png" alt=""></p>
+<h1 id="4-Implementation"><a href="#4-Implementation" class="headerlink" title="4 Implementation"></a>4 Implementation</h1><p>我们在Oracle的生产JVM Open-JDK 1.8.0（版本25.71）中实现了Skyway。 除了实现我们的对象传输技术之外，我们还修改了类加载器子系统，对象/堆布局和Parallel Scavenge垃圾收集器，它是OpenJDK 8中的默认GC。我们还为开发人员提供了一个Skyway库。</p>
 
       
     </div>
@@ -163,9 +200,9 @@
 <nav id="article-nav">
   
   
-    <a href="/2018/12/28/2018-12-28-1/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/12/21/Pysyft-Prerequisites/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title"></div>
+      <div class="article-nav-title">Pysyft Prerequisites</div>
     </a>
   
 </nav>
@@ -201,7 +238,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#标题"><span class="toc-number">2.</span> <span class="toc-text">标题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Abstract"><span class="toc-number">3.</span> <span class="toc-text">Abstract</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#标题"><span class="toc-number">2.</span> <span class="toc-text">标题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Abstract"><span class="toc-number">3.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Introduction"><span class="toc-number">4.</span> <span class="toc-text">1 Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Background-and-Motivation"><span class="toc-number">5.</span> <span class="toc-text">2 Background and Motivation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-Background"><span class="toc-number">5.1.</span> <span class="toc-text">2.1 Background</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Motivation"><span class="toc-number">5.2.</span> <span class="toc-text">2.2 Motivation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Correctness"><span class="toc-number">5.3.</span> <span class="toc-text">3.1 Correctness</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Ease-of-Integration"><span class="toc-number">5.4.</span> <span class="toc-text">3.3 Ease of Integration</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Implementation"><span class="toc-number">6.</span> <span class="toc-text">4 Implementation</span></a></li></ol>
           </div>
       </div>
     </div>
