@@ -5,18 +5,18 @@
   
   <title>Communication-Efficient Learning of Deep Networks from Decentralized Data | Fallenk&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: 基于分散数据的深度网络通信高效学习  Abstract现代移动设备可以访问适合学习模型的大量数据，这反过来可以极大地改善设备上的用户体验。例如，语言模型可以改善语音识别和文本输入，图像模型可以自动选择好照片。然而，这种丰富的数据通常是隐私敏感的，数量大或两者兼而有之，这可能妨碍使用传统方法记录到数据中心并在那里进行训练。我们提倡一种替代方案，即将训练数据分布在移动设备上，并通过聚合">
+  <meta name="description" content="title: 基于分散数据的深度网络通信高效学习">
 <meta name="keywords" content="论文阅读">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Communication-Efficient Learning of Deep Networks from Decentralized Data">
 <meta property="og:url" content="https://fallenk.github.io/2019/01/05/Communication-Efficient-Learning-of-Deep-Networks-from-Decentralized-Data/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="title: 基于分散数据的深度网络通信高效学习  Abstract现代移动设备可以访问适合学习模型的大量数据，这反过来可以极大地改善设备上的用户体验。例如，语言模型可以改善语音识别和文本输入，图像模型可以自动选择好照片。然而，这种丰富的数据通常是隐私敏感的，数量大或两者兼而有之，这可能妨碍使用传统方法记录到数据中心并在那里进行训练。我们提倡一种替代方案，即将训练数据分布在移动设备上，并通过聚合">
+<meta property="og:description" content="title: 基于分散数据的深度网络通信高效学习">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-06T08:29:12.550Z">
+<meta property="og:updated_time" content="2019-01-06T13:00:58.554Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Communication-Efficient Learning of Deep Networks from Decentralized Data">
-<meta name="twitter:description" content="title: 基于分散数据的深度网络通信高效学习  Abstract现代移动设备可以访问适合学习模型的大量数据，这反过来可以极大地改善设备上的用户体验。例如，语言模型可以改善语音识别和文本输入，图像模型可以自动选择好照片。然而，这种丰富的数据通常是隐私敏感的，数量大或两者兼而有之，这可能妨碍使用传统方法记录到数据中心并在那里进行训练。我们提倡一种替代方案，即将训练数据分布在移动设备上，并通过聚合">
+<meta name="twitter:description" content="title: 基于分散数据的深度网络通信高效学习">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
   
@@ -104,8 +104,37 @@
         <blockquote>
 <p>title: 基于分散数据的深度网络通信高效学习</p>
 </blockquote>
+<a id="more"></a>
 <h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>现代移动设备可以访问适合学习模型的大量数据，这反过来可以极大地改善设备上的用户体验。例如，语言模型可以改善语音识别和文本输入，图像模型可以自动选择好照片。然而，这种丰富的数据通常是隐私敏感的，数量大或两者兼而有之，这可能妨碍使用传统方法记录到数据中心并在那里进行训练。我们提倡一种替代方案，即将<strong>训练数据分布在移动设备上，并通过聚合本地计算的更新来学习共享模型</strong>。我们将这种分散的方法称为联合学习。</p>
-<p>我们提出了一种基于迭代模型平均的联合学习深度网络的实用方法，并进行了广泛的经验评估，考虑了五种不同的模型结构和四种数据集。这些实验证明该方法对于非平衡和非IID数据分布是稳健的，这是该设置的一个定义特征。通信成本是主要的约束条件，与同步随机梯度下降相比，我们显示所需通信轮次减少了10-100倍。</p>
+<p>我们提出了一种<strong>基于迭代模型平均的联合学习</strong>深度网络的实用方法，并进行了广泛的经验评估，考虑了五种不同的模型结构和四种数据集。这些实验证明该方法对于<strong>非平衡和非IID数据分布</strong>是稳健的，这是该设置的一个定义特征。<strong>通信成本</strong>是主要的约束条件，与同步随机梯度下降相比，我们显示所需通信轮次减少了10-100倍。</p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>手机和平板电脑越来越多地成为许多人的主要计算设备[30,2]。 这些设备上的强大传感器（包括摄像头，麦克风和GPS），加上它们经常携带的事实，意味着它们可以访问前所未有的大量数据，其中大部分是私有的。<br>在这些数据上学到的模型有望通过为更智能的应用程序提供动力来大大提高可用性，但<strong>数据的敏感性意味着将其存储在集中位置存在风险和责任</strong>。</p>
+<p>我们研究了一种学习技术，该技术允许用户集体获得从这些丰富数据训练的共享模型的好处，而无需集中存储它。我们称之为联合学习，因为学习任务是由一个由中央服务器(server)协调的参与设备（我们称之为客户端client）的松散联合解决的。</p>
+<p>每个客户端都有一个从未上传到服务器的<strong>本地训练数据集</strong>。相反，<strong>每个客户端计算服务器维护的当前全局模型的更新，并且仅传递此更新</strong>。 这是2012年白宫关于消费者数据隐私的报告[39]提出的重点收集或数据最小化原则的直接应用。由于这些更新特定于改进当前模型，因此一旦应用它们就没有理由存储它们。</p>
+<p>这种方法的主要优点是<strong>模型训练</strong>与<strong>直接访问原始训练数据</strong>的需要脱钩。显然，仍然需要一些信任的服务器协调训练。但是，对于可以根据每个客户端上可用数据指定培训目标的应用程序，联合学习可以通过将攻击面限制为仅设备而非设备和云来显着降低隐私和安全风险。</p>
+<p>我们的主要贡献：</p>
+<ol>
+<li>确定移动设备分散数据培训问题是一个重要的研究方向;</li>
+<li>选择可应用于此设置的简单实用的算法;</li>
+<li>对拟议方法进行广泛的实证评估。</li>
+</ol>
+<p>更具体地说，我们引入了<strong>FederatedAveraging</strong>算法，该算法将每个客户端上的本地随机梯度下降（SGD）与执行模型平均的服务器相结合。我们对该算法进行了广泛的实验，证明它对非平衡和非IID数据分布具有鲁棒性，并且可以减少在分散数据上训练深度网络所需的通信量。</p>
+<h2 id="Federated-Learning"><a href="#Federated-Learning" class="headerlink" title="Federated Learning"></a>Federated Learning</h2><p>联合学习的理想问题具有以下特性：1）对来自移动设备的真实数据的培训提供了优于数据中心通常可用的代理数据培训的明显优势。 2）该数据对隐私敏感或大尺寸（与模型的大小相比），因此最好不要仅仅为了模型训练（使用聚焦​​收集原则）而将其记录到数据中心。 3）对于监督任务，可以从用户交互中自然地推断出数据上的标签。</p>
+<p>许多支持移动设备智能行为的模型符合上述标准。作为两个例子，我们考虑图像分类，例如预测哪些照片最有可能在未来多次被观看或共享;和语言模型，可以通过改进解码，下一个单词预测，甚至预测整个回复来改善触摸屏键盘上的语音识别和文本输入[10]。这些任务的潜在培训数据（用户拍摄的所有照片以及他们在移动键盘上键入的所有内容，包括密码，URL，消息等）都可能对隐私敏感。绘制这些示例的分布也可能与容易获得的代理数据集大不相同：聊天和文本消息中的语言使用通常与标准语言语料库（例如，维基百科和其他Web文档）大不相同;人们拍摄手机的照片可能与典型的Flickr照片完全不同。最后，这些问题的标签可以直接使用：输入的文本是自我标记的，用于学习语言模型，照片标签可以通过自然用户与照片应用程序的交互来定义（照片被删除，共享或查看）。</p>
+<p>这两项任务都非常适合学习神经网络。对于图像分类，前馈深度网络，特别是卷积网络，众所周知提供最先进的结果[26,25]。对于语言建模任务，递归神经网络，特别是LSTM，已经取得了最先进的结果[20,5,22]。</p>
+<h2 id="Privacy"><a href="#Privacy" class="headerlink" title="Privacy"></a>Privacy</h2><p>与持久数据的数据中心培训相比，联合学习具有明显的隐私优势。持有“匿名”数据集仍然可以通过与其他数据的连接将用户隐私置于风险之中[37]。相反，为联合学习传输的信息是改进特定模型所必需的最小更新（当然，隐私利益的强度取决于更新的内容）更新本身可以（并且应该）是短暂的。它们永远不会包含比原始训练数据更多的信息（通过数据处理不等式），并且通常包含的内容要少得多。此外，聚合算法不需要更新源，因此可以在不通过诸如Tor [7]的混合网络或通过可信第三方识别元数据的情况下发送更新。我们将在本文末尾简要讨论将<strong>联合学习与安全多方计算和差异隐私相结合</strong>的可能性。</p>
+<h2 id="Federated-Optimization"><a href="#Federated-Optimization" class="headerlink" title="Federated Optimization"></a>Federated Optimization</h2><p>我们将联邦学习中<strong>隐含的优化问题称为联合优化</strong>，将连接（和对比）绘制为分布式优化。联合优化具有几个关键属性，可将其与典型的分布式优化问题区分开来：</p>
+<ul>
+<li><strong>Non-IID</strong> 给定客户端上的训练数据通常基于特定用户对移动设备的使用，因此任何特定用户的本地数据集将不代表真实分布。</li>
+<li><strong>Unbalanced</strong> 同样，一些用户将比其他用户更多地使用服务或应用程序，从而导致不同数量的本地培训数据。</li>
+<li><strong>Massively distributed</strong> 我们希望参与优化的客户端数量远远大于每个客户端的平均示例数量。</li>
+<li><strong>Limited communication</strong>移动设备经常处于脱机状态或连接缓慢或昂贵。</li>
+</ul>
+<p>这项工作中，我们的重点是优化的<strong>非IID和不平衡属性</strong>，以及<strong>通信约束的关键性质</strong>。部署的联合优化系统还必须解决许多实际问题：随着数据的添加和删除而变化的客户端数据集;客户可用性与复杂方式的本地数据分布相关（例如，美国英语使用者的电话可能会在不同时间插入英国英语的发言者）;客户端不响应或发送损坏更新。</p>
+<p>这些问题超出了目前的工作范围;相反，我们使用适合实验的受控环境，但仍解决客户端可用性以及不平衡和非IID数据的关键问题。我们假设<strong>一个同步更新方案，进行多轮通信。有一组固定的K客户端，每个客户端都有一个固定的本地数据集。在每轮的开始，选择随机部分C个客户端，并且服务器将当前全局算法状态发送到这些客户端中的每一个（例如，当前模型参数）</strong>。我们只选择一小部分客户来提高效率，因为我们的实验显示，在超过某一点时添加更多客户的收益递减。然后，<strong>每个选定的客户端基于全局状态及其本地数据集执行本地计算，并向服务器发送更新。然后，服务器将这些更新应用于其全局状态，并重复该过程。</strong></p>
+<p>虽然我们关注非凸神经网络目标，但我们考虑的算法适用于表格的任何有限和目标</p>
+<p>$\min _ { w \in \mathbb { R } ^ { d } } f ( w ) \quad \text { where } \quad f ( w ) \stackrel { \text { def } } { = } \frac { 1 } { n } \sum _ { i = 1 } ^ { n } f _ { i } ( w )$         （1）</p>
+<p>对于机器学习问题，我们把 $f _ { i } ( w ) =\ell \left( x _ { i } , y _ { i } ; w \right) $ 由 损失函数 和模型参数 $w$ 组成。</p>
+<p>我们假设数据被分区有$K$个客户端上，$P_{k}$是客户端$k$上的数据点索引集合, $n _ { k } = \left| \mathcal { P } _ { k } \right|$.<br>因此我们重写式子(1)为:<br>$f ( w ) = \sum _ { k = 1 } ^ { K } \frac { n _ { k } } { n } F _ { k } ( w ) \quad$ where $\quad F _ { k } ( w ) = \frac { 1 } { n _ { k } } \sum _ { i \in \mathcal { P } _ { k } } f _ { i } ( w )$</p>
 
       
     </div>
@@ -203,7 +232,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Abstract"><span class="toc-number">1.</span> <span class="toc-text">Abstract</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Abstract"><span class="toc-number">1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Introduction"><span class="toc-number">2.</span> <span class="toc-text">1 Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Federated-Learning"><span class="toc-number">2.1.</span> <span class="toc-text">Federated Learning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Privacy"><span class="toc-number">2.2.</span> <span class="toc-text">Privacy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Federated-Optimization"><span class="toc-number">2.3.</span> <span class="toc-text">Federated Optimization</span></a></li></ol></li></ol>
           </div>
       </div>
     </div>
