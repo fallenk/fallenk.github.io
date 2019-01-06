@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>三维动画与交互技术复习 | Fallenk&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="结构 三维动画编程基础 openGL图形编程 面向三维动画引擎的架构与实现   计算机视觉和智能计算基础 OpenCV计算机视觉的编程 对象识别和对象跟踪技术   前沿人际交互技术 基于视觉和传感器的交互 虚拟现实技术与增强现实技术">
+<meta name="keywords" content="考试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三维动画与交互技术复习">
+<meta property="og:url" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/index.html">
+<meta property="og:site_name" content="Fallenk&#39;s Blog">
+<meta property="og:description" content="结构 三维动画编程基础 openGL图形编程 面向三维动画引擎的架构与实现   计算机视觉和智能计算基础 OpenCV计算机视觉的编程 对象识别和对象跟踪技术   前沿人际交互技术 基于视觉和传感器的交互 虚拟现实技术与增强现实技术">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo1.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo2.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo3.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo4.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo5.png">
+<meta property="og:updated_time" content="2019-01-06T14:56:40.769Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="三维动画与交互技术复习">
+<meta name="twitter:description" content="结构 三维动画编程基础 openGL图形编程 面向三维动画引擎的架构与实现   计算机视觉和智能计算基础 OpenCV计算机视觉的编程 对象识别和对象跟踪技术   前沿人际交互技术 基于视觉和传感器的交互 虚拟现实技术与增强现实技术">
+<meta name="twitter:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fallenk.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fallenk&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">经历，心得，笔记，目标</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-三维动画与交互技术复习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/06/三维动画与交互技术复习/" class="article-date">
+  <time datetime="2019-01-06T13:06:58.000Z" itemprop="datePublished">2019-01-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/游戏开发/">游戏开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      三维动画与交互技术复习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><ul>
+<li>三维动画编程基础<ul>
+<li>openGL图形编程</li>
+<li>面向三维动画引擎的架构与实现</li>
+</ul>
+</li>
+<li>计算机视觉和智能计算基础<ul>
+<li>OpenCV计算机视觉的编程</li>
+<li>对象识别和对象跟踪技术</li>
+</ul>
+</li>
+<li>前沿人际交互技术<ul>
+<li>基于视觉和传感器的交互</li>
+<li>虚拟现实技术与增强现实技术</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h1 id="课程内容"><a href="#课程内容" class="headerlink" title="课程内容"></a>课程内容</h1><ul>
+<li>线性代数； C/C++</li>
+<li>掌握一种GUI框架： glut, glfw,SDL等</li>
+<li>OpenGL编程技术基础</li>
+<li>GPU体系结构</li>
+<li>着色器编程</li>
+<li>三维模型的解析和绘制</li>
+<li>三维几何变化</li>
+<li>光照模型</li>
+<li>纹理贴图</li>
+<li>视觉编程基础</li>
+<li>动作捕捉和人机交互</li>
+</ul>
+<h1 id="第一讲"><a href="#第一讲" class="headerlink" title="第一讲"></a>第一讲</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li>计算机图形学</li>
+<li>数字图形处理</li>
+<li>计算机动画</li>
+<li>计算机视觉</li>
+<li>感知与交互</li>
+</ul>
+<ol>
+<li><p>增强现实技术AR： </p>
+<ul>
+<li>融合了三维动画、立体视觉和图像处理；</li>
+<li>建模、渲染、位置标定、图像融合；</li>
+</ul>
+</li>
+<li>OpenGL是一种用于创建实时3D图像的编程接口。</li>
+<li><p>三维这个术语表示一个正在描述或显示的物体具有三维维度：宽度、高度、深度；</p>
+<ul>
+<li>计算机3D图形实质上也是平面的；</li>
+<li>在计算机屏幕上显示的二维图像，提供深度（或第三维）的错觉；</li>
+<li><strong>2D+透视 = 3D</strong>; 透视使人产生深度的错觉。</li>
+</ul>
+</li>
+<li><p>真正的3D是通过人的两只眼睛观察同一个物体，在视网膜上生成具有<strong>视差</strong>的两个图像，在人的大脑产生真正的3D视觉感受。</p>
+</li>
+<li>名词解释：渲染(Rendering)，将数学和图形数据转换成3D空间图像的操作。</li>
+<li>变换(transformation):平移、旋转和缩放</li>
+<li>投影(Projection)：将3D坐标转换成二维坐标。</li>
+<li>光栅化：使用像素进行图形填充。</li>
+<li>纹理贴图：纹理是一幅贴到三角形或多边形上的图片。</li>
+<li><p>视口映射：</p>
+<ul>
+<li>把<strong>绘图坐标</strong>映射到<strong>窗口坐标</strong>；</li>
+<li>从<strong>逻辑笛卡尔坐标</strong>映射到<strong>物理屏幕像素坐标</strong>；</li>
+<li>视口就是窗口内部用于<strong>绘制裁剪区域的客户区域</strong>；视口不一定就是整个窗口，逻辑坐标的每个单位不一定与屏幕像素一一对应。</li>
+</ul>
+</li>
+<li><p>投影：从3D到2D，两种投影方式：正投影和透视投影。</p>
+<ul>
+<li>正投影：也叫平行投影；特点：没有畸变，视觉不真实；主要用于建筑设计、CAD、2D绘图；</li>
+<li>透视投影：近大远小、视觉真实。</li>
+</ul>
+</li>
+<li><p>着色(shading)：本质概念；绘制物体颜色</p>
+<ul>
+<li>Flat</li>
+<li>Smooth<ul>
+<li>Gouraud</li>
+<li>Phong</li>
+</ul>
+</li>
+<li>flat shading:<ul>
+<li>constant surface shading 单一颜色</li>
+</ul>
+</li>
+<li>Gouraud shading:<ul>
+<li>color interpolation shading 颜色插值</li>
+</ul>
+</li>
+<li>Phong shading:<ul>
+<li>vertex normal interpolation shading 法向插值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>纹理贴图(Textture Mapping)</p>
+<ul>
+<li>纹理是一幅贴到三角形或多边形上的图片</li>
+<li>纹理坐标</li>
+</ul>
+</li>
+<li><p>混合(Blending)</p>
+</li>
+<li><p>总结</p>
+<ul>
+<li>3D计算机推行就是讲顶点连接起来，然后得到三角形光栅化</li>
+<li>这个过程包括了：变换、着色、纹理和混合。。。</li>
+</ul>
+</li>
+<li><p>着色器(shader)</p>
+<ul>
+<li>可编程着色器(Programmable Shading)</li>
+<li>固定管线与可编程着色器</li>
+<li>高度并行</li>
+<li>实现前所未有的实时逼真性</li>
+</ul>
+</li>
+<li><p>什么是OpenGL？</p>
+<ul>
+<li>Open Graphics Library； 定义：图形硬件的一种软件接口；最初由SGI创建，用于在不同硬件体系的图形设备上进行二维、三维图形的绘制。OpenGL不是编程语言，特点是并行浮点运算速度极快，但不能进行流程控制。</li>
+</ul>
+</li>
+<li>ARB：标准扩展；EXT：多家支持的扩展；</li>
+<li>背面剔除：画家算法：将需要绘制的图元排序，首先绘制<strong>最远的，依次靠近</strong>。</li>
+</ol>
+<h2 id="3D编程的基本概念"><a href="#3D编程的基本概念" class="headerlink" title="3D编程的基本概念"></a>3D编程的基本概念</h2><ul>
+<li>坐标系统：2D笛卡尔坐标</li>
+<li>坐标裁剪<ul>
+<li>不可能把整个OpenGL的状态空描述的内容全部呈现</li>
+<li>裁剪区域的两种表示方式<ul>
+<li>指定窗口内部最小和最大的X，Y值</li>
+<li>指定原点的位置</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>视口映射(ViewPort)<ul>
+<li>把<strong>绘图坐标</strong>映射到<strong>窗口坐标</strong></li>
+<li>从逻辑笛卡尔坐标映射到物理屏幕像素坐标</li>
+<li><strong>视口就是窗口内部用于绘制裁剪区域的客户区域</strong><ul>
+<li>视口不一定是整个窗口</li>
+<li>逻辑坐标的每个单位不一定与屏幕像素一一对应</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>视口</p>
+<ol>
+<li><p>被定义为裁剪区域大小的两倍<br><img src="/2019/01/06/三维动画与交互技术复习/demo1.png" alt=""></p>
+</li>
+<li><p>被定义为裁剪区域相同的大小<br><img src="/2019/01/06/三维动画与交互技术复习/demo2.png" alt=""></p>
+</li>
+</ol>
+</li>
+<li><p>3D笛卡尔坐标<br>   <img src="/2019/01/06/三维动画与交互技术复习/demo3.png" alt=""></p>
+</li>
+<li><p>投影(Projection)</p>
+<ul>
+<li>投影：从3D到2D</li>
+<li>两种投影方式: 正投影 和 透视投影</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用OpenGL"><a href="#使用OpenGL" class="headerlink" title="使用OpenGL"></a>使用OpenGL</h2><ul>
+<li>介绍<ul>
+<li>openGL不负责窗口管理、用户交互和文件读写</li>
+<li>在不同的操作系统平台需要调用本地API获取OpenGL绘制上下文(Context)</li>
+<li>操作系统绑定： WGL、GLX、CGL</li>
+<li>跨平台的工具箱：GLUT = OpenGL Utility Toolkit<ul>
+<li>兼容Win/mac</li>
+<li>最新开源的freeglut</li>
+</ul>
+</li>
+<li>处理扩展的包装库: GLEW: The OpenGL Extention Wrangler Library</li>
+<li>一站式的封装：GLTools</li>
+</ul>
+</li>
+<li>OpenGL状态机<ul>
+<li>OpenGL使用了一组<strong>状态变量的集合</strong>来保持图形渲染管线的状态</li>
+<li>OpenGL使用了一种状态模型(状态机)来跟踪所有状态变量</li>
+<li>当值被设置后，就一直保持这个状态<br><img src="/2019/01/06/三维动画与交互技术复习/demo4.png" alt=""></li>
+</ul>
+</li>
+<li>OpenGL状态<ul>
+<li>保存，设置和读取数值<br><img src="/2019/01/06/三维动画与交互技术复习/demo5.png" alt=""></li>
+</ul>
+</li>
+<li>开始一个OpenGL项目<ul>
+<li><ol>
+<li>环境：xcode,GLEW,GLTools,freeglut</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>添加必要的的头文件和lib文件</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>引如GLTools和freeglut</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>开始编写 文件</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/" data-id="cjql0ugv3001qel8oa4e5wckd" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/考试/">考试</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/05/Communication-Efficient-Learning-of-Deep-Networks-from-Decentralized-Data/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Communication-Efficient Learning of Deep Networks from Decentralized Data</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#结构"><span class="toc-number">1.</span> <span class="toc-text">结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#课程内容"><span class="toc-number">2.</span> <span class="toc-text">课程内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一讲"><span class="toc-number">3.</span> <span class="toc-text">第一讲</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">3.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3D编程的基本概念"><span class="toc-number">3.2.</span> <span class="toc-text">3D编程的基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用OpenGL"><span class="toc-number">3.3.</span> <span class="toc-text">使用OpenGL</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2019 Fallenk Liu&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;fallenk_liu@yeah.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "e2fb4051c49842688ce669e634bc983f",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+    
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
