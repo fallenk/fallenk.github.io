@@ -18,7 +18,16 @@
 <meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo3.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo4.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo5.png">
-<meta property="og:updated_time" content="2019-01-06T14:56:40.769Z">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo6.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo7.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo8.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo9.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo10.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo11.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo12.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo13.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/demo14.png">
+<meta property="og:updated_time" content="2019-01-07T13:53:29.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="三维动画与交互技术复习">
 <meta name="twitter:description" content="结构 三维动画编程基础 openGL图形编程 面向三维动画引擎的架构与实现   计算机视觉和智能计算基础 OpenCV计算机视觉的编程 对象识别和对象跟踪技术   前沿人际交互技术 基于视觉和传感器的交互 虚拟现实技术与增强现实技术">
@@ -162,11 +171,11 @@
 </li>
 <li><p>真正的3D是通过人的两只眼睛观察同一个物体，在视网膜上生成具有<strong>视差</strong>的两个图像，在人的大脑产生真正的3D视觉感受。</p>
 </li>
-<li>名词解释：渲染(Rendering)，将数学和图形数据转换成3D空间图像的操作。</li>
+<li>名词解释：渲染(Rendering)，<strong>将数学和图形数据转换成3D空间图像的操作</strong>。</li>
 <li>变换(transformation):平移、旋转和缩放</li>
 <li>投影(Projection)：将3D坐标转换成二维坐标。</li>
-<li>光栅化：使用像素进行图形填充。</li>
-<li>纹理贴图：纹理是一幅贴到三角形或多边形上的图片。</li>
+<li>光栅化：<strong>使用像素进行图形填充</strong>。</li>
+<li>纹理贴图：<strong>纹理是一幅贴到三角形或多边形上的图片</strong>。</li>
 <li><p>视口映射：</p>
 <ul>
 <li>把<strong>绘图坐标</strong>映射到<strong>窗口坐标</strong>；</li>
@@ -212,8 +221,8 @@
 </li>
 <li><p>总结</p>
 <ul>
-<li>3D计算机推行就是讲顶点连接起来，然后得到三角形光栅化</li>
-<li>这个过程包括了：变换、着色、纹理和混合。。。</li>
+<li>3D计算机推行就是讲<strong>顶点连接起来，然后得到三角形光栅化</strong></li>
+<li>这个过程包括了：<strong>变换、着色、纹理和混合</strong>。。。</li>
 </ul>
 </li>
 <li><p>着色器(shader)</p>
@@ -284,7 +293,7 @@
 <li>一站式的封装：GLTools</li>
 </ul>
 </li>
-<li>OpenGL状态机<ul>
+<li><strong>OpenGL状态机</strong><ul>
 <li>OpenGL使用了一组<strong>状态变量的集合</strong>来保持图形渲染管线的状态</li>
 <li>OpenGL使用了一种状态模型(状态机)来跟踪所有状态变量</li>
 <li>当值被设置后，就一直保持这个状态<br><img src="/2019/01/06/三维动画与交互技术复习/demo4.png" alt=""></li>
@@ -314,11 +323,279 @@
 </ul>
 </li>
 </ul>
+<h1 id="第二讲"><a href="#第二讲" class="headerlink" title="第二讲"></a>第二讲</h1><ul>
+<li>计算机动画<ul>
+<li>基本概念</li>
+<li>发展历史</li>
+<li>技术分类</li>
+<li>角色动画</li>
+</ul>
+</li>
+<li>交互技术<ul>
+<li>动作捕捉技术</li>
+<li>体感人机交互技术</li>
+</ul>
+</li>
+</ul>
+<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><ul>
+<li>什么是动画<ul>
+<li>制作层面：不用真人，用技术手段产生的活动影像</li>
+<li>技术层面：动画是一系列静态图像的顺序播放；利用人的视觉残留，产生连续运动的观赏效果</li>
+</ul>
+</li>
+<li>动画分类：1.传统动画：手绘动画  2. 定格动画：黏土动画，木偶动画 3. 计算机：二维动画，三维动画</li>
+<li>传统动画制作流程<ol>
+<li>创建剧本</li>
+<li>创建主要角色</li>
+<li>绘制故事版(story board)</li>
+<li>高级动画师绘制关键帧(key frame)</li>
+<li>初级动画绘制中间帧（in-between）</li>
+<li>使用摄像机逐个图片拍摄</li>
+<li>使用放映机按照一定帧率播放</li>
+</ol>
+</li>
+<li>定格动画<ol>
+<li>创建剧本</li>
+<li>创建主要角色：使用黏土制作模型</li>
+<li>绘制故事版(story board)</li>
+<li>布置场景</li>
+<li>将角色模型摆成各种姿势</li>
+<li>使用摄像机逐个图片拍摄</li>
+<li>使用放映机按照一定帧率播放</li>
+</ol>
+</li>
+<li>二维计算机动画<ol>
+<li>解决传统动画的问题<ol>
+<li>画面颜色的填充</li>
+<li>中间帧的自动生成</li>
+<li>更低的拍摄成本：更短的时间，不使用底片</li>
+</ol>
+</li>
+<li>常见的二维动画工具<ol>
+<li>Adobe Flash</li>
+<li>针对矢量图形进行优化</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>三维计算机动画<ol>
+<li>与二维动画完全不同的制作方式，更接近与定格动画的制作</li>
+<li>三维动画的制作流程<ul>
+<li>角色和环境建模<ul>
+<li>创建三维动画和纹理映射</li>
+</ul>
+</li>
+<li>创建动画</li>
+<li>渲染输出</li>
+</ul>
+</li>
+<li>常见的三维动画制作工具<ul>
+<li>Autodesk Maya/3DS Max/SoftImage XSI</li>
+<li>Motion Builder/Endophin  </li>
+</ul>
+</li>
+</ol>
+</li>
+<li>计算机动画的技术原理<ul>
+<li>动画有多幅画面组成，当画面快速、连续地播放时，由于人类眼睛存在“<strong>视觉滞留效应</strong>”而产生动感。<strong>停留时间为 1/10 s</strong>.</li>
+<li>基本概念： <strong>动作的变化是动画的本质</strong>。</li>
+</ul>
+</li>
+<li>变形动画 vs 骨骼动画<ul>
+<li>变形动画优点：1.精细地控制形状的变化  2. 针对面部表情动画适用</li>
+<li>变形动画缺点：数据量大，制作复杂度高，很难重用</li>
+<li>骨骼动画技术：<ol>
+<li>模型创建</li>
+<li>骨骼创建</li>
+<li>骨骼绑定(Rigging)</li>
+<li>动画设定<ul>
+<li>关键帧</li>
+<li>动作数据</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>三维动画的控制技术<ol>
+<li>过程式动画<ul>
+<li>运动学动画: s=vt</li>
+<li>动力学动画: f=ma</li>
+</ul>
+</li>
+<li>关键帧动画<ul>
+<li>动画师指定少量关键帧的骨骼动画</li>
+<li>计算机通过指定插值算法计算中间的姿势</li>
+</ul>
+</li>
+<li>动作数据驱动的角色动画<ul>
+<li>使用动作捕捉技术获取动作数据</li>
+<li>将动作数据应用到骨骼动画中</li>
+</ul>
+</li>
+<li>表演动画<ul>
+<li>使用真实演员实时控制动画角色</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>动画技术细节<ol>
+<li><strong>关键帧动画</strong><ul>
+<li>使用关键帧的动画<ol>
+<li>肢体动画</li>
+<li>面部表情</li>
+<li>头发和衣物</li>
+<li>光源和摄像机</li>
+</ol>
+</li>
+<li>如何制定关键帧<ul>
+<li>位置(Position)和朝向(Orientation)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>关键帧动画的插值技术</strong><ul>
+<li>线性插值技术<ul>
+<li>Linear interpolation</li>
+<li>优点：实现简单、计算快速</li>
+<li>缺点：运动单一、过渡生硬</li>
+</ul>
+</li>
+<li>非线性插值技术<ul>
+<li>Cubic curve interpolation</li>
+<li>优点：过渡运动连续</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>朝向的插值<ul>
+<li>朝向的表示<ul>
+<li>使用矩阵表示 1. 容易使用计算机处理 2. 不可插值</li>
+<li>使用欧拉角： 1.表示简单直接 2. 万向锁死锁</li>
+<li>使用四元数：球面线性插值</li>
+</ul>
+</li>
+<li>欧拉角：左手定则<ul>
+<li>Roll 翻滚角；</li>
+<li>Yaw 偏航角；</li>
+<li>Pitch 俯仰角<br>  <img src="/2019/01/06/三维动画与交互技术复习/demo6.png" alt=""></li>
+</ul>
+</li>
+<li>欧拉角问题<ul>
+<li>每次旋转都在前一次的改变的局部坐标系中进行</li>
+<li>旋转结果与顺序相关：XYZ、ZXY</li>
+<li>插值的困难：0-360</li>
+<li>万向锁(Gimbal Lock)</li>
+</ul>
+</li>
+<li>四元数：四维空间<ul>
+<li>复数的一种扩展<ul>
+<li>由4个实数组成</li>
+<li>s,x,y,z或[s,V]  s是标量，V是矢量</li>
+<li>形式： s + xi + yj +zk</li>
+<li>i,j,k关系：<br><img src="/2019/01/06/三维动画与交互技术复习/demo7.png" alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>四元数运算法则</strong><ul>
+<li>加法：<br>  <img src="/2019/01/06/三维动画与交互技术复习/demo8.png" alt=""></li>
+<li>乘法表：<br>  ij=k, ij=-k<br>  <img src="/2019/01/06/三维动画与交互技术复习/demo9.png" alt=""></li>
+</ul>
+</li>
+<li>表达<br>  <img src="/2019/01/06/三维动画与交互技术复习/demo10.png" alt=""></li>
+<li>特点<ul>
+<li>包含了足够价值的朝向信息；操作：合成和插值</li>
+<li>旋转的合成可利用四元数乘法实现：<ul>
+<li>Q= Q1*Q2</li>
+<li>先做Q2的旋转，再做Q1的旋转的结果</li>
+<li>多个四元数的旋转也是可以合并的</li>
+<li>两个四元数做一次乘法需要16次乘法和加法</li>
+<li>3*3的矩阵则需要27次运算</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>四元数的插值</strong><ul>
+<li>四元数是一个可以规范化的<strong>4维向量</strong></li>
+<li>最简单的<strong>插值算法就是线性插值</strong><br><img src="/2019/01/06/三维动画与交互技术复习/demo11.png" alt=""></li>
+<li>球形线性插值<br><img src="/2019/01/06/三维动画与交互技术复习/demo12.png" alt=""></li>
+</ul>
+</li>
+<li>四元数的缺点<ul>
+<li>存储多余的动画数据</li>
+<li>四元数不合法</li>
+<li>难以使用</li>
+</ul>
+</li>
+<li>四元数的优点<ul>
+<li>不存在万向节锁的问题</li>
+<li>平滑插值</li>
+</ul>
+</li>
+<li>四元数、欧拉角和旋转矩阵的转换<br>  <img src="/2019/01/06/三维动画与交互技术复习/demo13.png" alt=""><br>  <img src="/2019/01/06/三维动画与交互技术复习/demo14.png" alt=""></li>
+<li>方案选择<ul>
+<li>人机交互：欧拉角</li>
+<li>大量的存储：欧拉角或四元数</li>
+<li>插值：四元数</li>
+<li>运动叠加：四元数或旋转矩阵</li>
+<li>图形绘制：旋转矩阵</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>动作捕捉： 使用设备记录人体的三维动作信息</li>
+</ul>
+<h1 id="第三讲"><a href="#第三讲" class="headerlink" title="第三讲"></a>第三讲</h1><h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><ol>
+<li>计算机动画基本原理<ol>
+<li>从二维动画到三维动画</li>
+<li>动画技术的分类和特征</li>
+</ol>
+</li>
+<li>三维动画的算法基础<ol>
+<li>三维建模技术</li>
+<li>关键帧技术</li>
+<li>四元数和向量表示</li>
+</ol>
+</li>
+<li>前沿研究内容</li>
+</ol>
+<h2 id="人机交互"><a href="#人机交互" class="headerlink" title="人机交互"></a>人机交互</h2><pre><code>- CLI:Command Line Interface
+- 输入：键盘
+- 输出：字符终端
+- 典型系统：DOS/Unix
+- 优点：简洁；缺点：不够直观；
+</code></pre><ul>
+<li>人机交互技术的发展历史<ul>
+<li>CLI系统到GUI系统</li>
+<li>显示技术和控制技术</li>
+</ul>
+</li>
+<li>新一代交互技术：自然人机交互</li>
+<li>字符终端: Unix Shell</li>
+<li>UNIX哲学： 1. 小即美 2. 程序只做一件事 3. 避免使用可定制低下的用户界面 4. 所有程序都是数据的过滤器</li>
+<li>GUI的特点<ul>
+<li>使用WIMP = Window + Icon + Menu + Pointer</li>
+</ul>
+</li>
+<li>触摸屏交互</li>
+<li>体感交互<ul>
+<li>自然人机交互(NUI)</li>
+<li>用户使用身体姿势进行交互<ul>
+<li>技术手段: 传感器、计算机视觉</li>
+<li>主要产品：1. 任天堂Wii remote 2. 索尼PS3 Move 3.微软Kinect</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/" data-id="cjql0ugv3001qel8oa4e5wckd" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/" data-id="cjqme12kj001fn38o1nppcmtw" class="article-share-link">分享</a>
       
       
       
@@ -372,6 +649,15 @@
     
 <nav id="article-nav">
   
+    <a href="/2019/01/07/三维动画与交互技术复习2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          三维动画与交互技术复习2
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/01/05/Communication-Efficient-Learning-of-Deep-Networks-from-Decentralized-Data/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
@@ -411,7 +697,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#结构"><span class="toc-number">1.</span> <span class="toc-text">结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#课程内容"><span class="toc-number">2.</span> <span class="toc-text">课程内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一讲"><span class="toc-number">3.</span> <span class="toc-text">第一讲</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">3.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3D编程的基本概念"><span class="toc-number">3.2.</span> <span class="toc-text">3D编程的基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用OpenGL"><span class="toc-number">3.3.</span> <span class="toc-text">使用OpenGL</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#结构"><span class="toc-number">1.</span> <span class="toc-text">结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#课程内容"><span class="toc-number">2.</span> <span class="toc-text">课程内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一讲"><span class="toc-number">3.</span> <span class="toc-text">第一讲</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">3.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3D编程的基本概念"><span class="toc-number">3.2.</span> <span class="toc-text">3D编程的基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用OpenGL"><span class="toc-number">3.3.</span> <span class="toc-text">使用OpenGL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二讲"><span class="toc-number">4.</span> <span class="toc-text">第二讲</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#动画"><span class="toc-number">4.1.</span> <span class="toc-text">动画</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三讲"><span class="toc-number">5.</span> <span class="toc-text">第三讲</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#回顾"><span class="toc-number">5.1.</span> <span class="toc-text">回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#人机交互"><span class="toc-number">5.2.</span> <span class="toc-text">人机交互</span></a></li></ol></li></ol>
           </div>
       </div>
     </div>
