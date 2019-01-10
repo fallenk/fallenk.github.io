@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>tags | Fallenk&#39;s Blog</title>
+  <title>智能架构 | Fallenk&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不忘初心，努力学习，砥砺前进，自我反省">
-<meta name="keywords" content="经历，心得，笔记，目标">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https://fallenk.github.io/tags/index.html">
+  <meta name="description" content="因特网 vs 物联网 物联网： the Internet of thing; 物物相连的互联网。 技术和应用：以人为核心 嵌入式 vs 物联网 物联网技术并不是一个单独的技术，而是多种已有技术的融合，如互联网、嵌入式系统技术、(无线)传感网络技术等    MQTT协议分析 概述 MQTT(Message Queuing Telemetry Transaport),消息队列遥测传输是一个client">
+<meta name="keywords" content="考试,智能架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能架构">
+<meta property="og:url" content="https://fallenk.github.io/2019/01/09/智能架构/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta property="og:description" content="因特网 vs 物联网 物联网： the Internet of thing; 物物相连的互联网。 技术和应用：以人为核心 嵌入式 vs 物联网 物联网技术并不是一个单独的技术，而是多种已有技术的融合，如互联网、嵌入式系统技术、(无线)传感网络技术等    MQTT协议分析 概述 MQTT(Message Queuing Telemetry Transaport),消息队列遥测传输是一个client">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-16T15:52:58.277Z">
+<meta property="og:updated_time" content="2019-01-09T15:22:36.972Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta name="twitter:title" content="智能架构">
+<meta name="twitter:description" content="因特网 vs 物联网 物联网： the Internet of thing; 物物相连的互联网。 技术和应用：以人为核心 嵌入式 vs 物联网 物联网技术并不是一个单独的技术，而是多种已有技术的融合，如互联网、嵌入式系统技术、(无线)传感网络技术等    MQTT协议分析 概述 MQTT(Message Queuing Telemetry Transaport),消息队列遥测传输是一个client">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
   
@@ -73,12 +73,16 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-智能架构" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/tags/index.html" class="article-date">
-  <time datetime="2018-04-16T15:51:24.000Z" itemprop="datePublished">2018-04-16</time>
+    <a href="/2019/01/09/智能架构/" class="article-date">
+  <time datetime="2019-01-09T14:23:31.000Z" itemprop="datePublished">2019-01-09</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/物联网/">物联网</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -87,7 +91,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      tags
+      智能架构
     </h1>
   
 
@@ -97,14 +101,57 @@
       
         <!-- Table of Contents -->
         
-        
+        <h1 id="因特网-vs-物联网"><a href="#因特网-vs-物联网" class="headerlink" title="因特网 vs 物联网"></a>因特网 vs 物联网</h1><ul>
+<li>物联网： the Internet of thing; 物物相连的互联网。</li>
+<li>技术和应用：以人为核心</li>
+<li>嵌入式 vs 物联网<ul>
+<li>物联网技术并不是一个单独的技术，而是多种已有技术的融合，如互联网、嵌入式系统技术、(无线)传感网络技术等</li>
+</ul>
+</li>
+</ul>
+<h1 id="MQTT协议分析"><a href="#MQTT协议分析" class="headerlink" title="MQTT协议分析"></a>MQTT协议分析</h1><ol>
+<li>概述<br> MQTT(Message Queuing Telemetry Transaport),消息队列遥测传输是一个client(订阅)与Server(发布)之间的消息传输协议。轻量、开源、简单的特性<ol>
+<li>传输格式精小，无应用消息头 </li>
+<li>保证消息的可靠性<br> 服务质量：<ol>
+<li>“至多一次”: 完全依赖底层TCP/IP网络。会发生丢失或重复</li>
+<li>“至少一次”: 确保消息到达，但消息重复可能会发生</li>
+<li>“只有一次”: 确保消息到达一次</li>
+</ol>
+</li>
+<li>MQTT在移动互联网以及移动应用中优势：<ol>
+<li>可靠传输</li>
+<li>消息推送</li>
+<li>低带宽</li>
+<li>低成本<br>2.1 Client</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>连接到Server</li>
+<li>发布消息以供其他client订阅</li>
+<li>订阅其他Client的消息</li>
+<li>取消订阅</li>
+<li>与Server断开连接<br>2.2 Server</li>
+<li>接收个Server的连接请求</li>
+<li>接收各Client发布的请求</li>
+<li>处理各Client的订阅/取消订阅请求</li>
+<li>推送与订阅相匹配的消息到对应Client</li>
+</ul>
+</li>
+</ol>
+<p>2.3 Application Message</p>
+<pre><code>- 通过MQTT协议传输的消息数据
+- 当消息传输时每个消息有一个与关联的Quality of Serive 和 Topic Name
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/tags/index.html" data-id="cjqqijpub0001xk8oz1kyt3nc" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/09/智能架构/" data-id="cjqqijpzr002kxk8oo89sshml" class="article-share-link">分享</a>
       
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/智能架构/">智能架构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/考试/">考试</a></li></ul>
+
     </footer>
   </div>
   
@@ -151,6 +198,16 @@
   </div>
 
     
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/09/三维动画与交互技术复习4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">三维动画与交互技术复习4</div>
+    </a>
+  
+</nav>
+
   
 </article>
  
@@ -176,49 +233,24 @@
 
   
     
-  
+    <div class="widget-wrap">
     
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title tagcloud">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/BigData/" style="font-size: 14px;">BigData</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Cryptography/" style="font-size: 14px;">Cryptography</a> <a href="/tags/Goa入门/" style="font-size: 14px;">Goa入门</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 14px;">Swagger</a> <a href="/tags/coding/" style="font-size: 14px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.75px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/intro/" style="font-size: 14px;">intro</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 19.5px;">代码</a> <a href="/tags/入门/" style="font-size: 22.25px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 16.75px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/智能架构/" style="font-size: 14px;">智能架构</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/禅/" style="font-size: 14px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/考试/" style="font-size: 22.25px;">考试</a> <a href="/tags/自我修炼/" style="font-size: 16.75px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 16.75px;">论文阅读</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#因特网-vs-物联网"><span class="toc-number">1.</span> <span class="toc-text">因特网 vs 物联网</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MQTT协议分析"><span class="toc-number">2.</span> <span class="toc-text">MQTT协议分析</span></a></li></ol>
+          </div>
+      </div>
     </div>
-  </div>
 
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/01/09/智能架构/">智能架构</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/09/三维动画与交互技术复习4/">三维动画与交互技术复习4</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/08/三维动画与交互技术复习3/">三维动画与交互技术复习3</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/07/三维动画与交互技术复习2/">三维动画与交互技术复习2</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/06/三维动画与交互技术复习/">三维动画与交互技术复习</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
+  
+    
+  
+    
   
     
 
