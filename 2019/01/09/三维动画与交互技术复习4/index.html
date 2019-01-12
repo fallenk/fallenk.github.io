@@ -5,13 +5,13 @@
   
   <title>三维动画与交互技术复习4 | Fallenk&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="片段着色器 处理纹理、颜色求和、雾 “纹理”最重要，根据纹理和纹理坐标对每个像素的颜色进行计算   顶点-片段 着色器 顶点为片段着色器提供数据 像素颜色(根据光照计算)，包括主要颜色和辅助颜色 纹理坐标，根据变换矩阵对纹理坐标进行变换 雾因子">
+  <meta name="description" content="片段着色器 处理纹理、颜色求和、雾 “纹理”最重要，根据纹理和纹理坐标对每个像素的颜色进行计算   顶点-片段 着色器 顶点为片段着色器提供数据 像素颜色(根据光照计算)，包括主要颜色和辅助颜色 纹理坐标，根据变换矩阵对纹理坐标进行变换 雾因子      使用片段处理颜色">
 <meta name="keywords" content="考试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="三维动画与交互技术复习4">
 <meta property="og:url" content="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="片段着色器 处理纹理、颜色求和、雾 “纹理”最重要，根据纹理和纹理坐标对每个像素的颜色进行计算   顶点-片段 着色器 顶点为片段着色器提供数据 像素颜色(根据光照计算)，包括主要颜色和辅助颜色 纹理坐标，根据变换矩阵对纹理坐标进行变换 雾因子">
+<meta property="og:description" content="片段着色器 处理纹理、颜色求和、雾 “纹理”最重要，根据纹理和纹理坐标对每个像素的颜色进行计算   顶点-片段 着色器 顶点为片段着色器提供数据 像素颜色(根据光照计算)，包括主要颜色和辅助颜色 纹理坐标，根据变换矩阵对纹理坐标进行变换 雾因子      使用片段处理颜色">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/demo1.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/demo2.png">
@@ -21,10 +21,10 @@
 <meta property="og:image" content="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/demo6.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/demo7.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/demo8.png">
-<meta property="og:updated_time" content="2019-01-12T16:08:48.429Z">
+<meta property="og:updated_time" content="2019-01-12T16:12:12.174Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="三维动画与交互技术复习4">
-<meta name="twitter:description" content="片段着色器 处理纹理、颜色求和、雾 “纹理”最重要，根据纹理和纹理坐标对每个像素的颜色进行计算   顶点-片段 着色器 顶点为片段着色器提供数据 像素颜色(根据光照计算)，包括主要颜色和辅助颜色 纹理坐标，根据变换矩阵对纹理坐标进行变换 雾因子">
+<meta name="twitter:description" content="片段着色器 处理纹理、颜色求和、雾 “纹理”最重要，根据纹理和纹理坐标对每个像素的颜色进行计算   顶点-片段 着色器 顶点为片段着色器提供数据 像素颜色(根据光照计算)，包括主要颜色和辅助颜色 纹理坐标，根据变换矩阵对纹理坐标进行变换 雾因子      使用片段处理颜色">
 <meta name="twitter:image" content="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/demo1.png">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
@@ -125,8 +125,8 @@
 </ul>
 </li>
 </ul>
-<a id="more"></a>
-<h3 id="使用片段处理颜色"><a href="#使用片段处理颜色" class="headerlink" title="使用片段处理颜色"></a>使用片段处理颜色</h3><p><img src="/2019/01/09/三维动画与交互技术复习4/demo1.png" alt=""></p>
+<h3 id="使用片段处理颜色"><a href="#使用片段处理颜色" class="headerlink" title="使用片段处理颜色"></a>使用片段处理颜色</h3><a id="more"></a>
+<p><img src="/2019/01/09/三维动画与交互技术复习4/demo1.png" alt=""></p>
 <h3 id="基于片段着色器的光照"><a href="#基于片段着色器的光照" class="headerlink" title="基于片段着色器的光照"></a>基于片段着色器的光照</h3><p><img src="/2019/01/09/三维动画与交互技术复习4/demo2.png" alt=""></p>
 <h3 id="过程纹理"><a href="#过程纹理" class="headerlink" title="过程纹理"></a>过程纹理</h3><p><img src="/2019/01/09/三维动画与交互技术复习4/demo3.png" alt=""></p>
 <h3 id="纹理映射回顾"><a href="#纹理映射回顾" class="headerlink" title="纹理映射回顾"></a>纹理映射回顾</h3><p><img src="/2019/01/09/三维动画与交互技术复习4/demo4.png" alt=""></p>
