@@ -5,13 +5,13 @@
   
   <title>三维动画与交互技术复习4 | Fallenk&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="片段着色器 处理纹理、颜色求和、雾 “纹理”最重要，根据纹理和纹理坐标对每个像素的颜色进行计算   顶点-片段 着色器 顶点为片段着色器提供数据 像素颜色(根据光照计算)，包括主要颜色和辅助颜色 纹理坐标，根据变换矩阵对纹理坐标进行变换 雾因子      使用片段处理颜色">
+  <meta name="description" content="复习4片段着色器 处理纹理、颜色求和、雾 “纹理”最重要，根据纹理和纹理坐标对每个像素的颜色进行计算   顶点-片段 着色器 顶点为片段着色器提供数据 像素颜色(根据光照计算)，包括主要颜色和辅助颜色 纹理坐标，根据变换矩阵对纹理坐标进行变换 雾因子">
 <meta name="keywords" content="考试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="三维动画与交互技术复习4">
 <meta property="og:url" content="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="片段着色器 处理纹理、颜色求和、雾 “纹理”最重要，根据纹理和纹理坐标对每个像素的颜色进行计算   顶点-片段 着色器 顶点为片段着色器提供数据 像素颜色(根据光照计算)，包括主要颜色和辅助颜色 纹理坐标，根据变换矩阵对纹理坐标进行变换 雾因子      使用片段处理颜色">
+<meta property="og:description" content="复习4片段着色器 处理纹理、颜色求和、雾 “纹理”最重要，根据纹理和纹理坐标对每个像素的颜色进行计算   顶点-片段 着色器 顶点为片段着色器提供数据 像素颜色(根据光照计算)，包括主要颜色和辅助颜色 纹理坐标，根据变换矩阵对纹理坐标进行变换 雾因子">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/demo1.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/demo2.png">
@@ -21,10 +21,10 @@
 <meta property="og:image" content="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/demo6.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/demo7.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/demo8.png">
-<meta property="og:updated_time" content="2019-01-12T16:12:12.174Z">
+<meta property="og:updated_time" content="2019-01-12T16:14:10.699Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="三维动画与交互技术复习4">
-<meta name="twitter:description" content="片段着色器 处理纹理、颜色求和、雾 “纹理”最重要，根据纹理和纹理坐标对每个像素的颜色进行计算   顶点-片段 着色器 顶点为片段着色器提供数据 像素颜色(根据光照计算)，包括主要颜色和辅助颜色 纹理坐标，根据变换矩阵对纹理坐标进行变换 雾因子      使用片段处理颜色">
+<meta name="twitter:description" content="复习4片段着色器 处理纹理、颜色求和、雾 “纹理”最重要，根据纹理和纹理坐标对每个像素的颜色进行计算   顶点-片段 着色器 顶点为片段着色器提供数据 像素颜色(根据光照计算)，包括主要颜色和辅助颜色 纹理坐标，根据变换矩阵对纹理坐标进行变换 雾因子">
 <meta name="twitter:image" content="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/demo1.png">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
@@ -110,7 +110,7 @@
       
         <!-- Table of Contents -->
         
-        <h2 id="片段着色器"><a href="#片段着色器" class="headerlink" title="片段着色器"></a>片段着色器</h2><ul>
+        <h1 id="复习4"><a href="#复习4" class="headerlink" title="复习4"></a>复习4</h1><h2 id="片段着色器"><a href="#片段着色器" class="headerlink" title="片段着色器"></a>片段着色器</h2><ul>
 <li>处理纹理、颜色求和、雾<ul>
 <li>“纹理”最重要，根据纹理和纹理坐标对每个像素的颜色进行计算</li>
 </ul>
@@ -125,8 +125,8 @@
 </ul>
 </li>
 </ul>
-<h3 id="使用片段处理颜色"><a href="#使用片段处理颜色" class="headerlink" title="使用片段处理颜色"></a>使用片段处理颜色</h3><a id="more"></a>
-<p><img src="/2019/01/09/三维动画与交互技术复习4/demo1.png" alt=""></p>
+<a id="more"></a>
+<h3 id="使用片段处理颜色"><a href="#使用片段处理颜色" class="headerlink" title="使用片段处理颜色"></a>使用片段处理颜色</h3><p><img src="/2019/01/09/三维动画与交互技术复习4/demo1.png" alt=""></p>
 <h3 id="基于片段着色器的光照"><a href="#基于片段着色器的光照" class="headerlink" title="基于片段着色器的光照"></a>基于片段着色器的光照</h3><p><img src="/2019/01/09/三维动画与交互技术复习4/demo2.png" alt=""></p>
 <h3 id="过程纹理"><a href="#过程纹理" class="headerlink" title="过程纹理"></a>过程纹理</h3><p><img src="/2019/01/09/三维动画与交互技术复习4/demo3.png" alt=""></p>
 <h3 id="纹理映射回顾"><a href="#纹理映射回顾" class="headerlink" title="纹理映射回顾"></a>纹理映射回顾</h3><p><img src="/2019/01/09/三维动画与交互技术复习4/demo4.png" alt=""></p>
@@ -736,7 +736,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#片段着色器"><span class="toc-number">1.</span> <span class="toc-text">片段着色器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用片段处理颜色"><span class="toc-number">1.1.</span> <span class="toc-text">使用片段处理颜色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于片段着色器的光照"><span class="toc-number">1.2.</span> <span class="toc-text">基于片段着色器的光照</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过程纹理"><span class="toc-number">1.3.</span> <span class="toc-text">过程纹理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#纹理映射回顾"><span class="toc-number">1.4.</span> <span class="toc-text">纹理映射回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#纹理坐标生成"><span class="toc-number">1.5.</span> <span class="toc-text">纹理坐标生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#纹理生成的方法"><span class="toc-number">1.6.</span> <span class="toc-text">纹理生成的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#立方体贴图"><span class="toc-number">1.7.</span> <span class="toc-text">立方体贴图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高度图与凹凸纹理"><span class="toc-number">1.8.</span> <span class="toc-text">高度图与凹凸纹理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结复习"><span class="toc-number"></span> <span class="toc-text">总结复习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一讲"><span class="toc-number"></span> <span class="toc-text">第一讲</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二讲"><span class="toc-number"></span> <span class="toc-text">第二讲</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三讲"><span class="toc-number"></span> <span class="toc-text">第三讲</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第四讲"><span class="toc-number"></span> <span class="toc-text">第四讲</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第五讲"><span class="toc-number"></span> <span class="toc-text">第五讲</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第六讲"><span class="toc-number"></span> <span class="toc-text">第六讲</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第八讲（考试要点复习）"><span class="toc-number"></span> <span class="toc-text">第八讲（考试要点复习）</span></a>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#复习4"><span class="toc-number">1.</span> <span class="toc-text">复习4</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#片段着色器"><span class="toc-number">1.1.</span> <span class="toc-text">片段着色器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用片段处理颜色"><span class="toc-number">1.1.1.</span> <span class="toc-text">使用片段处理颜色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于片段着色器的光照"><span class="toc-number">1.1.2.</span> <span class="toc-text">基于片段着色器的光照</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过程纹理"><span class="toc-number">1.1.3.</span> <span class="toc-text">过程纹理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#纹理映射回顾"><span class="toc-number">1.1.4.</span> <span class="toc-text">纹理映射回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#纹理坐标生成"><span class="toc-number">1.1.5.</span> <span class="toc-text">纹理坐标生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#纹理生成的方法"><span class="toc-number">1.1.6.</span> <span class="toc-text">纹理生成的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#立方体贴图"><span class="toc-number">1.1.7.</span> <span class="toc-text">立方体贴图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高度图与凹凸纹理"><span class="toc-number">1.1.8.</span> <span class="toc-text">高度图与凹凸纹理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结复习"><span class="toc-number">2.</span> <span class="toc-text">总结复习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一讲"><span class="toc-number">3.</span> <span class="toc-text">第一讲</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二讲"><span class="toc-number">4.</span> <span class="toc-text">第二讲</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三讲"><span class="toc-number">5.</span> <span class="toc-text">第三讲</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第四讲"><span class="toc-number">6.</span> <span class="toc-text">第四讲</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第五讲"><span class="toc-number">7.</span> <span class="toc-text">第五讲</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第六讲"><span class="toc-number">8.</span> <span class="toc-text">第六讲</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第八讲（考试要点复习）"><span class="toc-number">9.</span> <span class="toc-text">第八讲（考试要点复习）</span></a></li></ol>
           </div>
       </div>
     </div>
