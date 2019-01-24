@@ -74,6 +74,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-ETHEREUM-A-SECURE-DECENTRALISED-GENERALISED-TRANSACTION-LEDGER" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/23/ETHEREUM-A-SECURE-DECENTRALISED-GENERALISED-TRANSACTION-LEDGER/" class="article-date">
+  <time datetime="2019-01-23T12:14:31.000Z" itemprop="datePublished">2019-01-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/论文阅读/">论文阅读</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/23/ETHEREUM-A-SECURE-DECENTRALISED-GENERALISED-TRANSACTION-LEDGER/">ETHEREUM: A SECURE DECENTRALISED GENERALISED TRANSACTION LEDGER</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ETHEREUM: A SECURE DECENTRALISED GENERALISED TRANSACTION LEDGER</p>
+<blockquote>
+<p>ETHEREUM：一种安全的去中心化广义交易LEDGER</p>
+</blockquote>
+        
+          <p class="article-more-link">
+            <a href="/2019/01/23/ETHEREUM-A-SECURE-DECENTRALISED-GENERALISED-TRANSACTION-LEDGER/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2019/01/23/ETHEREUM-A-SECURE-DECENTRALISED-GENERALISED-TRANSACTION-LEDGER/" data-id="cjraq3wqz000mg38of0gt5k37" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/论文阅读/">论文阅读</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/22/Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets/" class="article-date">
@@ -100,35 +152,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
+        <h1 id="基于区块链的实物资产交付证明解决方案"><a href="#基于区块链的实物资产交付证明解决方案" class="headerlink" title="基于区块链的实物资产交付证明解决方案"></a>基于区块链的实物资产交付证明解决方案</h1>
         
-        <h1 id="基于区块链的实物资产交付证明解决方案"><a href="#基于区块链的实物资产交付证明解决方案" class="headerlink" title="基于区块链的实物资产交付证明解决方案"></a>基于区块链的实物资产交付证明解决方案</h1><h1 id="抽象。"><a href="#抽象。" class="headerlink" title="抽象。"></a>抽象。</h1><p>迄今为止, 建立一个高度可信、可信和分散的交付证明 (pod) 系统来<strong>跟踪和跟踪物理物品</strong>是一项非常具有挑战性的任务。本文提出了一种基于区块链的 pad 解决方案, 该解决方案使用了 ethereum 区块链网络的智能契约, 在该解决方案中, 可以以分散的方式、高完整性地跟踪和跟踪活动、日志和事件,可靠性和不可变性。我们的解决方案激励每个参与实体, 包括卖方、运输商和买方诚实行事, 完全消除了第三方作为托管的需要。我们提出的pod解决方案可确保问责制、准时性、完整性和可审核性。此外, 建议的解决方案使用智能合同认证机构, 以确保代码符合参与实体签署的条款和条件。它还允许卖方、买方和运输商根据合同状态取消交易。此外, 在某些正当情况下, 买方也可以要求退款。完整的代码、与序列图的实现讨论、测试和验证细节都包括在建议的解决方案中。</p>
-<p>#1 Introduction<br>随着技术和互联网的普及, 网上购物或交易已经成为人们日常活动的一部分。通常在舒适的家中, 人们开始寻找一个理想的项目, 并怀疑是否有一个在线供应商, 可以提供该项目在一个完美的条件, 他们的门步骤。为了满足当今世界的需求, 大量的网上商店已经推出并提供了送货服务, 甚至是全球航运。因此, 非常需要有一个解决方案, 提供任何实物的交付证明, 如一件衣服、书、家居必需品等, 在任何双方之间交付。</p>
-<p>交货证明（POD）或“最后一英里”交货至关重要，因为它表明物品已到达其最终和所需目的地。在现实世界中，快递和送货服务公司使用跟踪器和交付系统证明来确保按时满足其客户的需求并且没有延迟。不仅准时是重要的，而且从初始来源交付物品也是至关重要的。</p>
-<p>今天的递送系统证明通常基于签名的文件和文件，这些文件和运输者携带到收件人。其他快递服务可能依赖于用于获得具有有效ID的接收者签名的电子手持设备。这很麻烦，并且不能提供对交付的完全信任，因此快递员不会对签名和可能是假的接收者的ID进行真实和真实的验证。即便如此，快递也无法信任。此外，在线零售商依赖第三方装运。例如，亚马逊依赖于几家地区快递公司的送货服务，如UPS，FedEx，DHL，Pilot等等[1,2]。此外，今天的送货服务完全集中，成本高昂，而且极难管理。一般而言，<strong>集中式系统遭受隐私侵犯，单点故障以及可能导致腐败和攻击的不信任。</strong></p>
-<h2 id="问题陈述。"><a href="#问题陈述。" class="headerlink" title="问题陈述。"></a>问题陈述。</h2><p>迄今为止，如果没有集中的可信第三方，尚未建立两个未知方之间的可信在线交易。非常需要具有高度可信，安全和分散的可追溯性和可审计性的交付和跟踪运输物品的证明。</p>
-<p>Blockchain是一种新的颠覆性技术，拥有许多功能，使其成为跟踪系统的理想选择。因此，使其成为创建交付解决方案的理想选择。<strong>区块链是一个不可变的分布式分类账，可以防止有序日志[3,4]。以太坊智能合约使区块链可编程，因为它允许执行代码，使其更加强大</strong>[4]。理想的递送系统证明应满足以下理想特征</p>
-<p>•<strong>问责制：应该可以将对系统执行的操作追溯到实际的启动实体</strong>。<br>•授权：允许系统中的每一方仅执行某些角色。<br>•可审计性：应该可以跟踪代理实体执行的所有活动，从而追溯项目的状态和路线。<br>•诚信：任何人都无法修改审核并同意条款和条件。<br>•准时：系统应该能够对每个操作进行计时，并按时将项目交付给客户。<br>•<strong>诚实：应鼓励每个参与实体（卖方，运输方和买方）采取诚实行事并合法地履行其职责。</strong></p>
-<p>在本文中，我们提出了一种<strong>区块链解决方案，用于证明物理物品的交付，解决了信任，跟踪，追溯和证明物品到达其最终和合法目的地的问题</strong>。该解决方案可以扩展到包括最终目的地之前的中间目的地，并且可以轻松地与Know Your Customer（KYC）保护集成，以增加额外的安全层。我们在我们的解决方案中表明，合同中涉及的所有各方都具有相同的权限级别。他们的角色允许他们仅执行某些功能，因此使用角色限制来管理合同流。本文的主要贡献可概括如下：</p>
-<p>•我们提出了一种基于区块链的交付解决方案，该解决方案利用防篡改日志实现可审计性和可追溯性。<br>•我们的解决方案利用平等商定的抵押品来激励每个参与实体采取诚实行事。我们的PoD解决方案通过在智能合约中使用InterPlanetary文件系统（IPFS）哈希来确保签名条款和条件的完整性。此外，智能合约代码由智能合约认证机构证明，以确保其遵循签署的条款和条件。<br>•我们通过使用密钥和哈希来验证真正的合法接收器，从而在我们的解决方案中展示问责制。我们还展示了我们的解决方案如何解决与客户忠诚度和交付准时性相关的问题。退款和取消也需要保护卖方，买方和运输商的权利。<br>•我们提供完整的系统架构，序列图和完整的代码以及实现和测试细节。</p>
-<p>本文的其余部分按如下方式进行了组织。<br>第2节提供了相关工作。<br>第三部分介绍了所提出的解决方案的系统体系结构。<br>第4节介绍了实施的重要方面。<br>第五节阐述了智能合同代码的测试和验证,<br>第6节总结了本文的结论。</p>
-<h1 id="2-Related-Work"><a href="#2-Related-Work" class="headerlink" title="2 Related Work"></a>2 Related Work</h1><p><strong>本节介绍了文献中提供的相关工作是可行的在物理项目交付证明的算法和技术。所有区块链解决方案都试图解决卖方，买方和运输方之间的信任问题，同时通过记录的事件跟踪项目的状态。</strong></p>
-<p>例如，[5]建议使用安全散列和卖方给予运输商的密钥以及物品。一旦运输商到达目的地，买方就会输入密钥，并将密钥的散列与合同中已有的散列进行比较。该方法简单易行。它使用合同作为托管。因此，只有在完成散列验证后，才会将物品的价格给予卖方。但是，它涉及信任转运者不操纵钥匙。此外，它的成功取决于所有诚实和值得信赖的政党，这是无法保证的。</p>
-<p>另一方面，ethereum市场localethereum [6]不使用合约作为托管。它使用第三方作为资金托管。卖方和买方或交易商同意受信任的第三方作为托管，他们将信任直到交易结束。此外，如有争议，相关方可以允许localethereum担任仲裁员。虽然使用第三方作为托管费用更高，并且还需要更多的信任和诚实激励，但让仲裁员参与争议会使其更加便利。</p>
-<p>此外，BitBay [7]是一个分散的市场，为用户提供交易和销售平台，使用“双存款托管”。这意味着交易商或买方和卖方存放的抵押品等于交易或出售的商品价格的两倍。 BitBay消除了受信任的第三方作为托管的需要。因此，它使用合约本身作为托管，在交易完成之前收取所有存款。如果出现与localethereum不同的问题，BitBay也不会自己充当主持人。但是，使用BitBay，物理项目的交付需要信任第三方进行运输。无法保证运输商不会操纵交付的物品或造成延误。</p>
-<p>重要的一点是，能够将系统与KYC程序集成，以验证合同中涉及的各方的身份。例如，这可以通过使用认证机构来实现，该认证机构获取用户的签名个人信息并将其散列存储在区块链中。稍后，当用户想要在服务中注册时，服务提供商将使用从认证机构获取的个人信息的散列值来验证所提交的签名散列。如果两个哈希值匹配，那么识别就完成了[8]。</p>
-<h1 id="3-Proposed-Blockchain-Solution"><a href="#3-Proposed-Blockchain-Solution" class="headerlink" title="3 Proposed Blockchain Solution"></a>3 Proposed Blockchain Solution</h1><p>在本节中，我们<strong>提出了一个利用以太坊区块链来创建分散，提供信任并使用不可变日志和事件的系统的解决方案</strong>。该系统是用于销售物理物品的解决方案，其具有交付证明并且不需要诸如经纪人或代理的中间服务。这是通过使用智能合约来完成的，这些合同有助于流程的自动化，并有助于保存所有交易的历史记录而无需更改。</p>
-<h2 id="！3-1-System-Overview-and-Design"><a href="#！3-1-System-Overview-and-Design" class="headerlink" title="！3.1 System Overview and Design"></a>！3.1 System Overview and Design</h2><p>所提出的解决方案侧重于在卖方和感兴趣的买方之间交付物理物品的证据。运输商也是合同的一部分，以确保物品交付，并且所有其他方在交货期间都知道物品的状态。卖方，买方和转让方同意并信任的仲裁员也是合同的一部分，只能在争议中采取行动。每个提到的参与者都拥有以太坊地址，他们都签署了一份协议表，其中包含合同的所有条款和条件。此外，我们解决方案的一个重要部分是来自认证的可信任机构智能合同（SC）认证机构的合同证明。该证明保证所有参与实体智能合约遵循签署的协议条款和条件。以太坊实体在智能合约中的角色如下：<br>卖方：卖方是要出售的物品的所有者。卖方创建合同，签署协议条款和条件，存放抵押品，并为买方和运输方提供钥匙。买方：买方是对所售商品表现出兴趣的实体。买方同意条款和条件，存放抵押品和物品价格，并要求物品钥匙能够在交付时从运输商处取走物品。运输商：运输商的主要作用是在卖方和买方之间交付收到的物品。仲裁员：仲裁员是受信任的第三方，由卖方，买方和运输商商定，只有在发生争议时才能参与解决链条问题。<br>SC认证机构：智能合同认证机构确保智能合同符合协议形式中相关方签署的条款和条件。</p>
-<p><strong>所提出的解决方案的智能合约遵循某种算法，该算法按照参与实体应遵循的顺序进行，以保护每个人的权利。</strong>从链中发生的所有操作都伴随着合同中触发记录事件和通知的功能。合同收到商定的抵押品，在我们的情况下，来自卖方，买方和运输方的物品价格的两倍，因为它们彼此平等地信任并且通过智能合约。抵押品可以是任何合理的价值，只要它在所有实体中是相等的。资金由合同持有，因此合同将作为托管，直到根据事件和验证结果确定付款为止。智能合约包含以下内容：</p>
-<p>•修改者：修改者确保交易和职能由合法的合法实体执行，并且应付职能仅在继续之前接受正确的预期付款。修改器会更改使用它们的功能，以允许它根据在修改器内首先执行的另一个代码的结果执行。例如，要求每个实体的抵押品是物品实际价格的两倍，或者要求仅由卖方，买方，运输商或其中任何一个执行某项功能，使用修改者指定：cost（），OnlySeller （），Only- Buyer（），OnlyTranspoter（），OnlySeller_Buyer_Tranporter（）。 •事件：执行函数后，事件用于创建通知和保存的日志。事件有助于跟踪和通知所有参与方当前的合同状态和当前活动。<br>变量：变量有助于保存重要值，以保持合同状态随着函数的变化而变化。合同中使用的变量包含参与实体的地址，协议条款和条件形式的IPFS哈希，项目的详细信息，如价格和ID，以及当前合同状态。</p>
-<p>区块链解决方案中使用的合同是经证明的合同。因此, 合同代码和流程得到了智能合同 (sc) 认证机构的验证和证明。因此, 经证明的 sc 包括认证机构的 ethereum 地址, 该地址验证了合同代码, 并确保其同意这些条款和条款。</p>
-<h1 id="4-Implementation-Details"><a href="#4-Implementation-Details" class="headerlink" title="4 Implementation Details"></a>4 Implementation Details</h1><h1 id="5-Testing-and-Validation"><a href="#5-Testing-and-Validation" class="headerlink" title="5 Testing and Validation"></a>5 Testing and Validation</h1><p>智能合同代码已针对本节讨论的几个重要方面和测试用例进行了测试。</p>
-<h1 id="6-Conclusion"><a href="#6-Conclusion" class="headerlink" title="6 Conclusion"></a>6 Conclusion</h1><p>本文提出了一个区块链解决方案, 方便双方以分散的方式交易和跟踪出售的物品。该解决方案证明了物理物品的交付, 并利用了区块链提供的安全性和不可变性。我们建议的解决方案足够通用, 可以应用于几乎所有已发货的实物和资产。在本文中, 我们重点提供、实现和测试 pod 解决方案的智能合同代码和算法, 显示案例中的能力, 以证明一个项目的交付使用平等的交存抵押品由卖方, 运输商和买方。在本文中, 我们展示并讨论了我们的解决方案如何提供 pod 的关键特征和要求, 包括诚信、问责、授权、守时和诚实。作为今后的工作, 我们计划扩展我们的解决方案, 以实现与保密和隐私相关的方面。此外, 正在为卖方、买方和运输商开发具有不同视图的完整 dapp。</p>
-
+          <p class="article-more-link">
+            <a href="/2019/01/22/Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/22/Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets/" data-id="cjr6w6ify0001hr8oddsams7j" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/22/Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets/" data-id="cjraq3wpz0000g38ol2bm4md4" class="article-share-link">分享</a>
       
       
       
@@ -184,7 +217,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/09/智能架构/" data-id="cjr6w6ii0002whr8okouq9iqg" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/09/智能架构/" data-id="cjraq3wx5004pg38ojoej08xc" class="article-share-link">分享</a>
       
       
       
@@ -247,7 +280,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/" data-id="cjr6w6ihr002jhr8ob6du5mux" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/" data-id="cjraq3wu3002gg38ojwqsbxqp" class="article-share-link">分享</a>
       
       
       
@@ -309,7 +342,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/08/三维动画与交互技术复习3/" data-id="cjr6w6ihc001vhr8o9dkb0j03" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/08/三维动画与交互技术复习3/" data-id="cjraq3wtl0025g38oesn4fcbv" class="article-share-link">分享</a>
       
       
       
@@ -362,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/07/三维动画与交互技术复习2/" data-id="cjr6w6ihd001whr8o3rl7v2wv" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/07/三维动画与交互技术复习2/" data-id="cjraq3wtr0029g38ohvcqwx8y" class="article-share-link">分享</a>
       
       
       
@@ -427,7 +460,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/" data-id="cjr6w6iha001thr8og0j34v6q" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/" data-id="cjraq3wud002jg38o0vlr4yrl" class="article-share-link">分享</a>
       
       
       
@@ -478,7 +511,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/05/Communication-Efficient-Learning-of-Deep-Networks-from-Decentralized-Data/" data-id="cjr6w6igi000hhr8o3xuzvuts" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/05/Communication-Efficient-Learning-of-Deep-Networks-from-Decentralized-Data/" data-id="cjraq3wqc0006g38o76obaoip" class="article-share-link">分享</a>
       
       
       
@@ -525,7 +558,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/05/FEDERATED-LEARNING-STRATEGIES-FOR-IMPROVING-COMMUNICATION-EFFICIENCY/" data-id="cjr6w6igd000bhr8opbiro9oi" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/05/FEDERATED-LEARNING-STRATEGIES-FOR-IMPROVING-COMMUNICATION-EFFICIENCY/" data-id="cjraq3wqo000cg38olugesgf4" class="article-share-link">分享</a>
       
       
       
@@ -561,60 +594,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/03/2019-01-03/" data-id="cjr6w6ifu0000hr8ocbhvrbty" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/03/2019-01-03/" data-id="cjraq3wq90004g38oybpa1vz0" class="article-share-link">分享</a>
       
       
       
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-paper3-Skyway-Connecting-Managed-Heaps-in-Distributed-Big-Data-Systems" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/02/paper3-Skyway-Connecting-Managed-Heaps-in-Distributed-Big-Data-Systems/" class="article-date">
-  <time datetime="2019-01-01T17:28:15.000Z" itemprop="datePublished">2019-01-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/论文阅读/">论文阅读</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/02/paper3-Skyway-Connecting-Managed-Heaps-in-Distributed-Big-Data-Systems/">paper3:Skyway: Connecting Managed Heaps in Distributed Big Data Systems</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>课程所需，才是驱动啊。</p>
-<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>Skyway: Connecting Managed Heaps in Distributed Big Data Systems<br>Skyway：连接分布式大数据系统中的托管堆<br></p>
-        
-          <p class="article-more-link">
-            <a href="/2019/01/02/paper3-Skyway-Connecting-Managed-Heaps-in-Distributed-Big-Data-Systems/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/02/paper3-Skyway-Connecting-Managed-Heaps-in-Distributed-Big-Data-Systems/" data-id="cjr6w6ih8001phr8oabrf2trg" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BigData/">BigData</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/paper/">paper</a></li></ul>
-
     </footer>
   </div>
   
@@ -661,7 +644,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography-Intro/">Cryptography Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/游戏开发/">游戏开发</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/物联网/">物联网</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">5</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography-Intro/">Cryptography Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/游戏开发/">游戏开发</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/物联网/">物联网</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -671,7 +654,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/BigData/" style="font-size: 14px;">BigData</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Cryptography/" style="font-size: 14px;">Cryptography</a> <a href="/tags/Goa入门/" style="font-size: 14px;">Goa入门</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 14px;">Swagger</a> <a href="/tags/coding/" style="font-size: 14px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.75px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/intro/" style="font-size: 14px;">intro</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 19.5px;">代码</a> <a href="/tags/入门/" style="font-size: 22.25px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 16.75px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/智能架构/" style="font-size: 14px;">智能架构</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/禅/" style="font-size: 14px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/考试/" style="font-size: 22.25px;">考试</a> <a href="/tags/自我修炼/" style="font-size: 16.75px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 19.5px;">论文阅读</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
+      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/BigData/" style="font-size: 14px;">BigData</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Cryptography/" style="font-size: 14px;">Cryptography</a> <a href="/tags/Goa入门/" style="font-size: 14px;">Goa入门</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 14px;">Swagger</a> <a href="/tags/coding/" style="font-size: 14px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.2px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/intro/" style="font-size: 14px;">intro</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 18.4px;">代码</a> <a href="/tags/入门/" style="font-size: 22.8px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 16.2px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/智能架构/" style="font-size: 14px;">智能架构</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/禅/" style="font-size: 14px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/考试/" style="font-size: 22.8px;">考试</a> <a href="/tags/自我修炼/" style="font-size: 16.2px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 20.6px;">论文阅读</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
     </div>
   </div>
 
@@ -681,6 +664,10 @@
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/01/23/ETHEREUM-A-SECURE-DECENTRALISED-GENERALISED-TRANSACTION-LEDGER/">ETHEREUM: A SECURE DECENTRALISED GENERALISED TRANSACTION LEDGER</a>
+          </li>
         
           <li>
             <a href="/2019/01/22/Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets/">Blockchain-Based Solution for Proof of Delivery of Physical Assets</a>
@@ -698,10 +685,6 @@
             <a href="/2019/01/08/三维动画与交互技术复习3/">三维动画与交互技术复习3</a>
           </li>
         
-          <li>
-            <a href="/2019/01/07/三维动画与交互技术复习2/">三维动画与交互技术复习2</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -711,7 +694,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -719,7 +702,7 @@
   
     
 <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
+    <h3 class="widget-title">友情链接</h3>
     <div class="widget">
         <ul>
             
@@ -739,7 +722,7 @@
     <!--微信公众号二维码-->
 
   <div class="widget-wrap">
-    <h3 class="follow-title ">WeChat</h3>
+    <h3 class="follow-title ">微信公众号</h3>
     <div class="widget wechat-widget">
         <img src="http://blog.giscafer.com/static/images/qrcode_giscafer.jpg" alt="扫码关注" width="250"/>
     </div>
