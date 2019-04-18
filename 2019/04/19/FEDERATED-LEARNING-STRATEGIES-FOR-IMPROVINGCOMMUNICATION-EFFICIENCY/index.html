@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
 <meta property="og:description" content="联合学习：提高通信效率的策略摘要">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-18T18:55:53.423Z">
+<meta property="og:updated_time" content="2019-04-18T19:00:28.049Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FEDERATED LEARNING: STRATEGIES FOR IMPROVING COMMUNICATION EFFICIENCY">
 <meta name="twitter:description" content="联合学习：提高通信效率的策略摘要">
@@ -103,7 +103,11 @@
         
         <h1 id="联合学习：提高通信效率的策略"><a href="#联合学习：提高通信效率的策略" class="headerlink" title="联合学习：提高通信效率的策略"></a>联合学习：提高通信效率的策略</h1><h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><a id="more"></a>
 <p>联合学习是一种机器学习设置，其目标是培训高质量的集中模型，同时培训数据仍然分布在大量客户端上，每个客户端都具有不可靠且相对较慢的网络连接。我们考虑针对此设置的学习算法，其中在每一轮中，每个客户端独立地基于其本地数据计算对当前模型的更新，并将该更新传送到中央服务器，其中聚合客户端更新以计算新的全局模式。此设置中的典型客户端是移动电话，通信效率至关重要。<br>在本文中，我们提出了两种降低上行链路通信成本的方法：<strong>结构化更新，我们直接从使用较少数量的变量参数化的受限空间中学习更新</strong>，例如：低级别或随机掩码;另外是sketch update，我们学习完整的模型更新，然后在将其发送到服务器之前使用<strong>量化，随机旋转和子采样的组合进行压缩</strong>。在卷积网络和循环网络上的实验表明，所提出的方法可以将通信成本降低两个数量级。</p>
-<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>随着数据集变得越来越大，模型越来越复杂，训练机器学习模型越来越需要在多台机器上分配模型参数的优化。现有的机器学习算法专为高度受控的环境（如数据中心）而设计，在这些环境中，数据以均衡的方式在i.i.d.中分布。时尚和高吞吐量网络可用。</p>
+<p>最近，联邦学习（以及相关的分散方法）（McMahan＆Ramage，2017; Konecn’y等，2016; McMahan等，2017; Shokri＆Shmatikov，2015）已​​被提议作为替代设置：<strong>共享全球模型在中央服务器的协调下训练，来自参与设备的联合</strong>。参与设备（客户端）通常数量很大并且具有缓慢或不稳定的互联网连接。当培训数据来自用户与移动应用程序的交互时，就会出现联合学习的主要动机示例。联合学习使移动电话能够协作学习共享预测模型，同时将所有培训数据保留在设备上，从而将机器学习的能力与在云中存储数据的需求脱钩。训练数据在本地保存在用户的移动设备上，并且设备用作对其本地数据执行计算的节点，以便更新全局模型。通过对设备进行模型培训，这不仅仅是使用可以在移动设备上进行预测的本地模型。上述框架不同于传统的分布式机器学习（Reddi等，2016; Ma等，2017; Shamir等，2014; Zhang＆Lin，2015; Dean等，2012; Chilimbi等，2014 ）由于客户数量非常多，高度不平衡和非iid每个客户端上可用的数据，以及相对较差的网络连接。在这项工作中，我们的重点是最后一个约束，因为这些不可靠和不对称的连接对实际的联邦学习提出了特殊的挑战。</p>
+<p>为简单起见，我们考虑联合学习的同步算法，其中典型的一轮包括以下步骤：<br>1.选择现有客户端的子集，每个客户端都下载当前模型。<br>2.子集中的每个客户端都根据其本地数据计算更新的模型。<br>3.模型更新从选定的客户端发送到服务器。<br>4.服务器聚合这些模型（通常通过平均）来构建改进的全局模型。</p>
+<p>上述框架的简单实现要求每个客户端在每轮中将完整模型（或完整模型更新）发送回服务器。对于大型模型，由于多种因素，这一步骤很可能成为联邦学习的瓶颈。一个因素是互联网连接速度的不对称属性：上行链路通常比下行链路慢得多。美国平均宽带速度下载为55.0Mbps，而上传速度为18.9Mbps，一些互联网服务提供商明显更加不对称，例如，X网络速率低于125Mbps，低于15Mbps（speedtest.net，2016）。另外，现有的模型压缩方案如Han等人。 （2015）可以减少下载当前模型所需的带宽，并建立加密协议，以确保在平均数百或数千个其他更新（Bonawitz等，2017）之前不会检查个别客户的更新（进一步增加）需要上传的位数。</p>
+
       
     </div>
     <footer class="article-footer">
