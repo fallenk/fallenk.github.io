@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
 <meta property="og:description" content="联合学习：提高通信效率的策略摘要">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-18T19:13:37.338Z">
+<meta property="og:updated_time" content="2019-04-19T18:12:26.009Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FEDERATED LEARNING: STRATEGIES FOR IMPROVING COMMUNICATION EFFICIENCY">
 <meta name="twitter:description" content="联合学习：提高通信效率的策略摘要">
@@ -115,8 +115,8 @@
 <p>我们还尝试了固定B t i和训练A t i，以及训练A t i和B t i;也没有表现得那么好。我们的方法似乎与Denil等人所考虑的最佳技术一样。 （2013年），无需任何手工制作的功能。这种观察的直观解释如下。我们可以将B t i解释为投影矩阵，并将A t i解释为重建矩阵。修复A t i并优化B t i类似于询问“给定给定的随机重建，什么是将恢复大多数信息的投影？”。在这种情况下，如果重建是全等级，则存在恢复由前k个特征向量跨越的空间的投影。然而，如果我们随机地对投影进行搜索并搜索重建，我们可能是不幸的，并且可能已经投射出重要的子空间，这意味着没有尽可能好的重建，或者很难找到。</p>
 <p>随机面具。我们将更新H t i限制为稀疏矩阵，遵循预定义的随机稀疏模式（即，随机掩码）。在每轮中重新生成模式并且为每个客户端独立地生成模式。与低秩方法类似，稀疏模式可以由随机种子完全指定，因此仅需要发送H t i的非零条目的值以及种子。</p>
 <h1 id="3-SKETCHED-UPDATE"><a href="#3-SKETCHED-UPDATE" class="headerlink" title="3. SKETCHED UPDATE"></a>3. SKETCHED UPDATE</h1><p>第二种类型的更新解决了通信成本，我们称之为草绘，首先在没有任何约束的情况下计算本地训练期间的全部H t i，然后在发送到服务器之前以（有损）压缩形式对更新进行近似或编码。服务器在进行聚合之前解码更新。这种草绘方法在许多领域都有应用（Woodruff，2014）。我们尝试使用多个工具来执行草图绘制，它们是相互兼容的，可以联合使用：</p>
-<p>子采样。每个客户端仅传送矩阵H，而不是发送H t i，矩阵H由H t i的（缩放的）值的随机子集形成。然后，服务器对二次采样的更新进行平均，产生全局更新H t。这可以这样做，使得采样更新的平均值是真实平均值的无偏估计：E [H t] = H t。与随机掩码结构更新类似，掩码针对每一轮中的每个客户端独立随机化，并且掩码本身可以存储为同步种子。</p>
-<p>概率量化。压缩更新的另一种方法是量化权重。<br>我们首先描述了将每个标量量化为一位的算法。考虑更新H t i，令h =（h 1，…，h d 1×d 2）= vec（H t i），并且令h max = max j（h j），h min = min j（h j）。由~h表示的h的压缩更新生成如下：</p>
+<p>子采样。每个客户端仅传送矩阵H，而不是发送H ti，矩阵H由Hti的（缩放的）值的随机子集形成。然后，服务器对二次采样的更新进行平均，产生全局更新H t。这可以这样做，使得采样更新的平均值是真实平均值的无偏估计：E [H t] = H t。与随机掩码结构更新类似，掩码针对每一轮中的每个客户端独立随机化，并且掩码本身可以存储为同步种子。</p>
+<p>概率量化。压缩更新的另一种方法是量化权重。<br>我们首先描述了将每个标量量化为一位的算法。考虑更新Hti，令h =（h 1，…，h d 1×d 2）= vec（H t i），并且令h max = max j（h j），h min = min j（h j）。由~h表示的h的压缩更新生成如下：</p>
 
       
     </div>
