@@ -74,6 +74,129 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-iOS学习入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/07/iOS学习入门/" class="article-date">
+  <time datetime="2019-05-07T12:54:41.000Z" itemprop="datePublished">2019-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS编程/">iOS编程</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/07/iOS学习入门/">iOS学习入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="iOS编程"><a href="#iOS编程" class="headerlink" title="iOS编程"></a>iOS编程</h1><h1 id="Objective-C入门教程"><a href="#Objective-C入门教程" class="headerlink" title="Objective-C入门教程"></a>Objective-C入门教程</h1><p>Objective-C 通过提供<strong>类定义，方法以及属性的语法</strong>，还有其他可以提高<strong>类的动态扩展能力的结构</strong>等，扩展了标准的 ANSI C 语言。类的语法和设计主要是基于 Smalltalk。</p>
+<p>##Smalltalk</p>
+<ul>
+<li>基本规则非常简洁优雅。</li>
+<li>所有一切都是物体,所有的计算都通过消息（message）来触发。你向某个物体发送消息，然后就会发生某些事情。</li>
+<li>几乎所有Smalltalk中的可执行表达式都是这样的形式：&lt;接受消息的物体&gt; &lt;消息&gt;。</li>
+<li>消息激发方法（method），一个消息会对应什么方法是由接受消息的物体决定的。</li>
+<li>方法是Smalltalk的代码单元。你可以认为<strong>方法就是你常用的编程语言中的函数或者过程</strong>。方法是计算发生的地方。</li>
+<li>每一个物体都是某类（class）事物的一个<strong>实例</strong>（instance）。例如，物体12属于SmallInteger（小整数）类，物体’abc’属于String(字串)类。一个物体的数据和行为将由它所属的类决定。</li>
+</ul>
+<p><img src="/2019/05/07/iOS学习入门/img1.png" alt=""></p>
+<ul>
+<li>Smalltalk中，类是真实的对象。创建实例，只需向class发送new。针对类的方法称为类方法（类似于Java的staticmethods）。</li>
+<li>Smalltalk没有构造函数。如果你想执行实例初始化,你可以重定义“new”类方法来初始化实例</li>
+<li>Objective-C被描述为盖在C语言上的薄薄一层，因为Objective-C的原意就是在C语言主体上加入面向对象的特性。</li>
+</ul>
+<h2 id="Objective-C代码的文件扩展名"><a href="#Objective-C代码的文件扩展名" class="headerlink" title="Objective-C代码的文件扩展名"></a>Objective-C代码的文件扩展名</h2><table>
+<thead>
+<tr>
+<th>扩展名</th>
+<th>内容类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.h</td>
+<td>头文件。头文件包含类，类型，函数和常数的声明。</td>
+</tr>
+<tr>
+<td>.m</td>
+<td>源代码文件。这是典型的源代码文件扩展名，可以包含 Objective-C 和 C 代码。</td>
+</tr>
+<tr>
+<td>.mm</td>
+<td>源代码文件。带有这种扩展名的源代码文件，除了可以包含Objective-C和C代码以外还可以包含C++代码。仅在你的Objective-C代码中确实需要使用C++类或者特性的时候才用这种扩展名。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>#import</code> 选项和 <code>#include</code> 选项完全相同，只是它可以确保相同的文件只会被包含一次。Objective-C 的例子和文档都倾向于使用 <code>#import</code>，你的代码也应该是这样的。</li>
+</ul>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><ul>
+<li>Objective-C的面向对象语法源于Smalltalk消息传递风格。</li>
+</ul>
+<h2 id="消息传递"><a href="#消息传递" class="headerlink" title="消息传递"></a>消息传递</h2><p>Objective-C最大的特色是承自Smalltalk的消息传递模型（message passing），此机制与今日C++式之主流风格差异甚大。Objective-C里，与其说<strong>对象互相调用方法，不如说对象之间互相传递消息</strong>更为精确。此二种风格的主要差异在于调用方法/消息传递这个动作。C++里<strong>类别与方法的关系严格清楚，一个方法必定属于一个类别，而且在编译时（compile time）就已经紧密绑定，不可能调用一个不存在类别里的方法</strong>。但在Objective-C，类别与消息的关系比较松散，<strong>调用方法视为对对象发送消息，所有方法都被视为对消息的回应。所有消息处理直到运行时（runtime）才会动态决定，并交由类别自行决定如何处理收到的消息。</strong>也就是说，一个类别不保证一定会回应收到的消息，如果类别收到了一个无法处理的消息，程序只会抛出异常，不会出错或崩溃。</p>
+<p>C++里，送一个消息给对象（或者说调用一个方法）的语法如下：<br><code>obj.method(argument);</code></p>
+<p>Objective-C则写成：<br><code>[obj method: argument];</code></p>
+<p>这里以一个汽车类（car class）的简单例子来解释Objective-C的消息传递特性：<br><code>[car fly];</code></p>
+<p>典型的C++意义解读是”<strong>调用car类别的fly方法</strong>“。若car类别里头没有定义fly方法，那编译肯定不会通过。但是Objective-C里，我们应当解读为”<strong>发提交一个fly的消息给car对象</strong>“，<strong>fly是消息，而car是消息的接收者</strong>。car收到消息后会决定如何回应这个消息，若car类别内定义有fly方法就运行方法内之代码，若car内不存在fly方法，则程序依旧可以通过编译，运行期则抛出异常。</p>
+<p>此二种风格各有优劣。C++强制要求<strong>所有的方法都必须有对应的动作，且编译期绑定使得函数调用非常快速</strong>。缺点是<strong>仅能借由virtual关键字提供有限的动态绑定能力</strong>。Objective-C天生即具备鸭子类型之动态绑定能力，因为<strong>运行期才处理消息，允许发送未知消息给对象</strong>。可以送消息给整个对象集合而不需要一一检查每个对象的类型，也具备消息转送机制。同时空对象nil接受消息后默认为不做事，所以送消息给nil也不用担心程序崩溃。</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ul>
+<li>大多数框架把字符串传递给NSString对象。NSString类提供了字符串的类包装.</li>
+<li>因为这种字符串使用的非常频繁，Objective-C提供了一个助记符可以<strong>方便地从常量值创建NSString对象。</strong>要使用这个助记符，你需要做的全部事情，是在普通的双引号字符串前放置一个@符号。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NSString* myString = @&quot;My String\n&quot;;</span><br><span class="line">NSString* anotherString = [NSString stringWithFormat:@&quot;%d %s&quot;, 1, @&quot;String&quot;];</span><br><span class="line"></span><br><span class="line">// 从一个C语言字符串创建Objective-C字符串</span><br><span class="line">NSString*  fromCString = [NSString stringWithCString:&quot;A C string&quot; </span><br><span class="line">encoding:NSASCIIStringEncoding];</span><br></pre></td></tr></table></figure>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>如同所有其他的面向对象语言，<strong>类</strong>是 Objective-C 用来<strong>封装数据，以及操作数据的行为的基础结构</strong>。对象就是类的运行期间实例，它包含了<strong>类声明的实例变量自己的内存拷贝，以及类成员的指针</strong>。Objective-C 的类规格说明包含了两个部分：定义（interface）与实现（implementation）。定义（interface）部分包含了<strong>类声明和实例变量的定义，以及类相关的方法</strong>。实现（implementation）部分包含了<strong>类方法的实际代码</strong>。</p>
+<p>下图展现了声明一个叫做 MyClass 的类的语法，这个类继承自 NSObject 基础类。类声明总是<strong>由 @interface 编译选项开始，由 @end 编译选项结束</strong>。类名之后的（用冒号分隔的）是父类的名字。类的实例（或者成员）变量声明在被大括号包含的代码块中。<strong>实例变量块后面就是类声明的方法的列表。每个实例变量和方法声明都以分号结尾。</strong></p>
+<p>类的定义文件遵循C语言之惯例以.h为后缀，实现文件以.m为后缀。<br><img src="/2019/05/07/iOS学习入门/img2.png" alt=""></p>
+<h3 id="Interface"><a href="#Interface" class="headerlink" title="Interface"></a>Interface</h3><p>定义部分，清楚定义了<strong>类的名称、数据成员和方法</strong>。 以关键字@interface作为开始，@end作为结束。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@interface MyObject: NSObject </span><br><span class="line">&#123;</span><br><span class="line">    int memberVar1; //实例变量</span><br><span class="line">    int memberVar2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+(return_type) class_method; 类方法</span><br><span class="line">-(return_type) instance_method1; //实例方法</span><br><span class="line">-(return_type) instance_method2: (int) p1;</span><br><span class="line">-(return_type) instance_method3: (int) p1 andPar: (int) p2;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>方法前面的 +/- 号代表函数的类型：加号（+）代表类方法（class method），不需要实例就可以调用，与C++ 的静态函数（static member function）相似。减号（-）即是一般的实例方法（instance method）。</p>
+<p>Objective-C定义一个新的方法时，<strong>名称内的冒号（:）代表参数传递，不同于C语言以数学函数的括号来传递参数</strong>。Objective-C方法使得参数可以夹杂于名称中间，不必全部附缀于方法名称的尾端，可以提高程序可读性。设定颜色RGB值的方法为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (void) setColorToRed: (float)red Green: (float)green Blue:(float)blue; /* 宣告方法*/</span><br><span class="line">[myColor setColorToRed: 1.0 Green: 0.8 Blue: 0.2]; /* 呼叫方法*/</span><br></pre></td></tr></table></figure>
+<p>这个方法的签名是setColorToRed:Green:Blue:。每个冒号后面都带着一个float类别的参数，分别代表红，绿，蓝三色。</p>
+<h3 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h3><p>实现区块则<strong>包含了公开方法的实现，以及定义私有（private）变量及方法</strong>。 以关键字@implementation作为区块起头，@end结尾。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Implementation MyObject &#123;</span><br><span class="line">    int memberVar3; //私有变量</span><br><span class="line">&#125;</span><br><span class="line">+(return_type) class_method &#123;</span><br><span class="line">    .... //method implementation</span><br><span class="line">&#125;</span><br><span class="line">-(return_type) instance_method1 &#123;</span><br><span class="line">     ....</span><br><span class="line">&#125;</span><br><span class="line">-(return_type) instance_method2: (int) p1 &#123;</span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br><span class="line">-(return_type) instance_method3: (int) p1 andPar: (int) p2 &#123;</span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>值得一提的是不只Interface区块可定义实体变量，Implementation区块也可以定义实体变量，两者的差别在于访问权限的不同，Interface区块内的实体变量默认权限为protected，宣告于implementation区块的实体变量则默认为private，故在Implementation区块定义私有成员更匹配面向对象之封装原则，因为如此类别之私有信息就不需曝露于公开interface（.h文件）中。</p>
+<h3 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h3><p>Objective-C创建对象需通过alloc以及init两个消息。<strong>alloc的作用是分配内存，init则是初始化对象。</strong> init与alloc都是定义在NSObject里的方法，<strong>父对象收到这两个信息并做出正确回应后，新对象才创建完毕</strong>。以下为范例：</p>
+<p><code>MyObject * my = [[MyObject alloc] init];</code></p>
+<p>在Objective-C 2.0里，若创建对象不需要参数，则可直接使用new<br><code>MyObject * my = [MyObject new];</code><br>仅仅是语法上的精简，效果完全相同。</p>
+<p>若要自己定义初始化的过程，可以重写init方法，来添加额外的工作。（用途类似C++ 的构造函数constructor）</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>Objective-C 中的类可以声明两种类型的方法：实例方法和类方法。<strong>实例方法就是一个方法，它在类的一个具体实例的范围内执行</strong>。也就是说，在你调用一个实例方法前，你必须首先创建类的一个实例。而类方法，比较起来，也就是说，不需要你创建一个实例。</p>
+<p>方法声明包括<strong>方法类型标识符，返回值类型，一个或多个方法标识关键字，参数类型和名信息</strong>。下图展示 insertObject:atIndex: 实例方法的声明。声明由一个减号(-)开始，这表明这是一个实例方法。方法实际的名字(insertObject:atIndex:)是所有方法标识关键的级联，包含了冒号。冒号表明了参数的出现。如果方法没有参数，你可以省略第一个(也是唯一的)方法标识关键字后面的冒号。本例中，这个方法有两个参数。</p>
+<p><img src="/2019/05/07/iOS学习入门/img3.png" alt=""><br>当你想<strong>调用一个方法，你传递消息到对应的对象</strong>。这里<strong>消息就是方法标识符，以及传递给方法的参数信息</strong>。发送给对象的所有消息都会动态分发，这样有利于实现Objective-C类的多态行为。也就是说，如果<strong>子类定义了跟父类的具有相同标识符的方法，那么子类首先收到消息，然后可以有选择的把消息转发（也可以不转发）给他的父类</strong>。</p>
+<p>消息被中括号( [ 和 ] )包括。中括号中间，接收消息的对象在左边，消息（包括消息需要的任何参数）在右边。例如，给myArray变量传递消息insertObject:atIndex:消息，你需要使用如下的语法：</p>
+<p><code>[myArray insertObject:anObj atIndex:0];</code></p>
+<p>为了避免声明过多的本地变量保存临时结果，Objective-C允许你使用<strong>嵌套消息</strong>。<strong>每个嵌套消息的返回值可以作为其他消息的参数或者目标</strong>。例如，你可以用任何获取这种值的消息来代替前面例子里面的任何变量。所以，如果你有另外一个对象叫做myAppObject拥有方法，可以访问数组对象，以及插入对象到一个数组，你可以把前面的例子写成如下的样子：<br><code>[[myAppObject getArray] insertObject:[myAppObject getObjectToInsert] atIndex:0];</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2019/05/07/iOS学习入门/" data-id="cjvduoged001txc8o636u26zi" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coding/">coding</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-Java入门" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/04/29/Java入门/" class="article-date">
@@ -117,15 +240,21 @@
 <li>了解设计模式，编写程序代码，要学习设计模式！可读性</li>
 <li>不要死记语法，理解，类比记忆</li>
 <li>多实践，多思考，多请教，手动编写，运行程序，分析结构；编程思想，请教他人，不耻下问！！！</li>
-<li>！！多阅读源代码，多了解他人的程序代码，分析编程者的编程思想和设计模式</li>
+<li>！！多阅读源代码，<em>多了解他人的程序代码，分析编程者的编程思想和设计模式</em></li>
 </ol>
 </li>
+</ol>
+<h2 id="Java语言的特性"><a href="#Java语言的特性" class="headerlink" title="Java语言的特性"></a>Java语言的特性</h2><ol>
+<li>简单：与C++类似；自动回收</li>
+<li>面相对象</li>
+<li>解释器：java字节码解释器</li>
+<li>多线程</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/04/29/Java入门/" data-id="cjv2680hq000pdn8ot1u034db" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/04/29/Java入门/" data-id="cjvduogdq000qxc8o4kbj19n3" class="article-share-link">分享</a>
       
       
       
@@ -174,7 +303,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/04/19/FEDERATED-LEARNING-STRATEGIES-FOR-IMPROVINGCOMMUNICATION-EFFICIENCY/" data-id="cjv2680hy000wdn8oe4unrk3n" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/04/19/FEDERATED-LEARNING-STRATEGIES-FOR-IMPROVINGCOMMUNICATION-EFFICIENCY/" data-id="cjvduogdo000lxc8on4cg5l8u" class="article-share-link">分享</a>
       
       
       
@@ -226,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/23/ETHEREUM-A-SECURE-DECENTRALISED-GENERALISED-TRANSACTION-LEDGER/" data-id="cjv2680hu000sdn8oj9u4dk7u" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/23/ETHEREUM-A-SECURE-DECENTRALISED-GENERALISED-TRANSACTION-LEDGER/" data-id="cjvduogdd0008xc8o08l6ksp9" class="article-share-link">分享</a>
       
       
       
@@ -275,7 +404,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/22/Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets/" data-id="cjv2680gl0002dn8o6ykmp47r" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/22/Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets/" data-id="cjvduogd40003xc8o8mbcs4ch" class="article-share-link">分享</a>
       
       
       
@@ -331,7 +460,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/09/智能架构/" data-id="cjv2680na003fdn8o1ymdjwbt" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/09/智能架构/" data-id="cjvduogff003gxc8olkrl75z8" class="article-share-link">分享</a>
       
       
       
@@ -394,7 +523,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/" data-id="cjv2680lo002rdn8odwvrj3ng" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/" data-id="cjvduogf3002vxc8o2bn4h7gt" class="article-share-link">分享</a>
       
       
       
@@ -456,7 +585,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/08/三维动画与交互技术复习3/" data-id="cjv2680l2002gdn8orw1gp1q2" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/08/三维动画与交互技术复习3/" data-id="cjvduogem002axc8ofbra2ja0" class="article-share-link">分享</a>
       
       
       
@@ -509,7 +638,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/07/三维动画与交互技术复习2/" data-id="cjv2680kp0029dn8o8jvmegso" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/07/三维动画与交互技术复习2/" data-id="cjvduogex002kxc8odnkww2g1" class="article-share-link">分享</a>
       
       
       
@@ -574,62 +703,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/" data-id="cjv2680kj0026dn8o7mqc0st7" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/" data-id="cjvduogek0027xc8ow5d5tpt5" class="article-share-link">分享</a>
       
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/考试/">考试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-Communication-Efficient-Learning-of-Deep-Networks-from-Decentralized-Data" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/05/Communication-Efficient-Learning-of-Deep-Networks-from-Decentralized-Data/" class="article-date">
-  <time datetime="2019-01-05T14:13:38.000Z" itemprop="datePublished">2019-01-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/论文阅读/">论文阅读</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/05/Communication-Efficient-Learning-of-Deep-Networks-from-Decentralized-Data/">Communication-Efficient Learning of Deep Networks from Decentralized Data</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>title: 基于分散数据的深度网络通信高效学习</p>
-</blockquote>
-        
-          <p class="article-more-link">
-            <a href="/2019/01/05/Communication-Efficient-Learning-of-Deep-Networks-from-Decentralized-Data/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/05/Communication-Efficient-Learning-of-Deep-Networks-from-Decentralized-Data/" data-id="cjv2680h4000cdn8opf6r0uvr" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/论文阅读/">论文阅读</a></li></ul>
 
     </footer>
   </div>
@@ -677,7 +755,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography-Intro/">Cryptography Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/游戏开发/">游戏开发</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/物联网/">物联网</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography-Intro/">Cryptography Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS编程/">iOS编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/游戏开发/">游戏开发</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/物联网/">物联网</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -687,7 +765,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/BigData/" style="font-size: 14px;">BigData</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Cryptography/" style="font-size: 14px;">Cryptography</a> <a href="/tags/Goa入门/" style="font-size: 14px;">Goa入门</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 14px;">Swagger</a> <a href="/tags/coding/" style="font-size: 16.2px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.2px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/intro/" style="font-size: 14px;">intro</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 14px;">paper reading</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 18.4px;">代码</a> <a href="/tags/入门/" style="font-size: 22.8px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 16.2px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/智能架构/" style="font-size: 14px;">智能架构</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/禅/" style="font-size: 14px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/考试/" style="font-size: 22.8px;">考试</a> <a href="/tags/自我修炼/" style="font-size: 16.2px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 20.6px;">论文阅读</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
+      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/BigData/" style="font-size: 14px;">BigData</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Cryptography/" style="font-size: 14px;">Cryptography</a> <a href="/tags/Goa入门/" style="font-size: 14px;">Goa入门</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 14px;">Swagger</a> <a href="/tags/coding/" style="font-size: 18.4px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.2px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/intro/" style="font-size: 14px;">intro</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 14px;">paper reading</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 18.4px;">代码</a> <a href="/tags/入门/" style="font-size: 22.8px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 16.2px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/智能架构/" style="font-size: 14px;">智能架构</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/禅/" style="font-size: 14px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/考试/" style="font-size: 22.8px;">考试</a> <a href="/tags/自我修炼/" style="font-size: 16.2px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 20.6px;">论文阅读</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
     </div>
   </div>
 
@@ -697,6 +775,10 @@
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/05/07/iOS学习入门/">iOS学习入门</a>
+          </li>
         
           <li>
             <a href="/2019/04/29/Java入门/">Java入门</a>
@@ -714,10 +796,6 @@
             <a href="/2019/01/22/Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets/">Blockchain-Based Solution for Proof of Delivery of Physical Assets</a>
           </li>
         
-          <li>
-            <a href="/2019/01/09/智能架构/">智能架构</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -727,7 +805,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
