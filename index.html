@@ -74,6 +74,109 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-iOS之LighterviewController" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/07/iOS之LighterviewController/" class="article-date">
+  <time datetime="2019-05-07T15:09:00.000Z" itemprop="datePublished">2019-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS编程/">iOS编程</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/07/iOS之LighterviewController/">iOS之LighterviewController</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="被误解的-MVC-和被神化的-MVVM"><a href="#被误解的-MVC-和被神化的-MVVM" class="headerlink" title="被误解的 MVC 和被神化的 MVVM"></a>被误解的 MVC 和被神化的 MVVM</h1><h1 id="被误解的-MVC"><a href="#被误解的-MVC" class="headerlink" title="被误解的 MVC"></a>被误解的 MVC</h1><p>MVC，全称是 Model View Controller，是模型 (model)－视图 (view)－控制器 (controller) 的缩写。它表示的是一种常见的客户端软件开发框架。</p>
+<h2 id="Controller-的臃肿问题何解？"><a href="#Controller-的臃肿问题何解？" class="headerlink" title="Controller 的臃肿问题何解？"></a>Controller 的臃肿问题何解？</h2><ul>
+<li>「什么样的内容才应该放到 Controller 中？」</li>
+<li>我们来看看 MVC 这种架构的特点。其实设计模式很多时候是为了 Don’t repeat yourself 原则来做的，<strong>该原则要求能够复用的代码要尽量复用，来保证重用。</strong>在 MVC 这种设计模式中，我们发现 View 和 Model 都是符合这种原则的。</li>
+</ul>
+<p>对于 View 来说，你如果抽象得好，那么一个 App 的动画效果可以很方便地移植到别的 App 上，而 Github 上也有很多 UI 控件，这些控件都是在 View 层做了很好的封装设计，使得它能够方便地开源给大家复用。</p>
+<p>对于 Model 来说，它其实是用来存储业务的数据的，如果做得好，它也可以方便地复用。比如我当时在做有道云笔记 iPad 版的时候，我们就直接和 iOS 版复用了所有的 Model 层的代码。在创业做猿题库客户端时，iOS 和 iPad 版的 Model 层代码再次被复用上了。当然，因为和业务本身的数据意义相关，Model 层的复用大多数是在一个产品内部，不太可能像 View 层那样开源给社区。</p>
+<p>说完 View 和 Model 了，那我们想想 Controller，Controller 有多少可以复用的？我们写完了一个 Controller 之后，可以很方便地复用它吗？结论是：非常难复用。在某些场景下，我们可能可以用 addSubViewController 之类的方式复用 Controller，但它的复用场景还是非常非常少的。</p>
+<p>如果我们能够意识到 Controller 里面的代码不便于复用，我们就能知道什么代码应该写在 Controller 里面了，那就是那些不能复用的代码。在我看来，<strong>Controller 里面就只应该存放这些不能复用的代码</strong>，这些代码包括：</p>
+<ul>
+<li>在初始化时，构造相应的 View 和 Model。</li>
+<li>监听 Model 层的事件，将 Model 层的数据传递到 View 层。</li>
+<li>监听 View 层的事件，并且将 View 层的事件转发到 Model 层。<br>如果 Controller 只有以上的这些代码，那么它的逻辑将非常简单，而且也会非常短。</li>
+</ul>
+<h3 id="如何对-ViewController-瘦身？"><a href="#如何对-ViewController-瘦身？" class="headerlink" title="如何对 ViewController 瘦身？"></a>如何对 ViewController 瘦身？</h3><p>objc.io 是一个非常有名的 iOS 开发博客，它上面的第一课 《Lighter View Controllers》 上就讲了很多这样的技巧，我们先总结一下它里面的观点：</p>
+<ul>
+<li>将 UITableView 的 Data Source 分离到另外一个类中。</li>
+<li>将数据获取和转换的逻辑分别到另外一个类中。</li>
+<li>将拼装控件的逻辑，分离到另外一个类中。</li>
+</ul>
+<p>其实 MVC 虽然只有三层，但是它并没有限制你只能有三层。所以，我们可以将 Controller 里面过于臃肿的逻辑抽取出来，形成新的可复用模块或架构层次。</p>
+<h3 id="将网络请求抽象到单独的类中"><a href="#将网络请求抽象到单独的类中" class="headerlink" title="将网络请求抽象到单独的类中"></a>将网络请求抽象到单独的类中</h3><p>新手写代码，直接就在 Controller 里面用 AFNetworking 发一个请求，请求的完数据直接就传递给 View。入门一些的同学，知道把这些请求代码移到另外一个静态类里面。但是我觉得还不够，所以我建议将<strong>每一个网络请求直接封装成类</strong>。</p>
+<p>把每一个网络请求封装成对象其实是使用了设计模式中的 Command 模式，它有以下好处：</p>
+<ul>
+<li>将网络请求与具体的第三方库依赖隔离，方便以后更换底层的网络库。实际上我们公司的 iOS 客户端最初是基于 ASIHttpRequest 的，我们只花了两天，就很轻松地切换到了 AFNetworking。</li>
+<li>方便在<strong>基类中处理公共逻辑</strong>，例如猿题库的数据版本号信息就统一在基类中处理。</li>
+<li>方便在基类中处理缓存逻辑，以及其它一些公共逻辑。</li>
+<li>方便做对象的持久化。</li>
+</ul>
+<p>大家如果感兴趣，可以看我们公司开源的 iOS 网络库：YTKNetwork。它在这种思考的指导下，不但将 Controller 中的代码瘦身，而且进一步演化和加强，现在它<strong>还支持诸如复杂网络请求管理，断点续传，插件机制，JSON 合法</strong>性检查等功能。<br>这部分代码从 Controller 中剥离出来后，不但简化了 Controller 中的逻辑，也达到了网络层的代码复用的效果。</p>
+<h3 id="将界面的拼装抽象到专门的类中"><a href="#将界面的拼装抽象到专门的类中" class="headerlink" title="将界面的拼装抽象到专门的类中"></a>将界面的拼装抽象到专门的类中</h3><p>新手写代码，喜欢在 Controller 中把一个个 UILabel ，UIButton，UITextField 往 self.view 上用 addSubView 方法放。我建议大家可以用两种办法把这些代码从 Controller 中剥离。</p>
+<p>方法一：构造专门的 UIView 的子类，来负责这些控件的拼装。这是最彻底和优雅的方式，不过稍微麻烦一些的是，你需要把这些控件的事件回调先接管，再都一一暴露回 Controller。</p>
+<p>方法二：用一个静态的 Util 类，帮助你做 UIView 的拼装工作。这种方式稍微做得不太彻底，但是比较简单。</p>
+<p>对于一些能复用的 UI 控件，我建议用方法一。如果项目工程比较复杂，我也建议用方法一。如果项目太紧，另外相关项目的代码量也不多，可以尝试方法二。</p>
+<h3 id="构造-ViewModel"><a href="#构造-ViewModel" class="headerlink" title="构造 ViewModel"></a>构造 ViewModel</h3><p>谁说 MVC 就不能用 ViewModel 的？MVVM 的优点我们一样可以借鉴。<strong>具体做法就是将 ViewController 给 View 传递数据这个过程，抽象成构造 ViewModel 的过程</strong>。</p>
+<p>这样抽象之后，View 只接受 ViewModel，而 Controller 只需要传递 ViewModel 这么一行代码。而另外<strong>构造 ViewModel 的过程，我们就可以移动到另外的类中了</strong>。</p>
+<p>在具体实践中，我建议大家专门<strong>创建构造 ViewModel 工厂类</strong>，参见 工厂模式。另外，也可以专门将数据存取都抽将到一个 Service 层，由这<strong>层来提供 ViewModel 的获取</strong>。</p>
+<h3 id="专门构造存储类"><a href="#专门构造存储类" class="headerlink" title="专门构造存储类"></a>专门构造存储类</h3><p>刚刚说到 ViewModel 的构造可以抽奖到一个 Service 层。与此相应的，数据的存储也应该由专门的对象来做。在小猿搜题项目中，我们由一个叫 UserAgent 的类，专门来处理本地数据的存取。</p>
+<p>数据存取放在专门的类中，就可以针对存取做额外的事情了。比如：</p>
+<ul>
+<li>对一些热点数据增加缓存</li>
+<li>处理数据迁移相关的逻辑<br>如果要做得更细，可以把存储引擎再抽象出一层。这样你就可以方便地切换存储的底层，例如从 sqlite 切换到 key-value 的存储引擎等。</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>通过代码的抽取，我们可以将原本的 MVC 设计模式中的 ViewController 进一步拆分，构造出 <strong>网络请求层</strong>、<strong>ViewModel 层</strong>、<strong>Service 层</strong>、<strong>Storage 层</strong>等其它类，来配合 Controller 工作，从而使 Controller 更加简单，我们的 App 更容易维护。</p>
+<h2 id="被神化的-MVVM"><a href="#被神化的-MVVM" class="headerlink" title="被神化的 MVVM"></a>被神化的 MVVM</h2><p>MVVM 是 Model-View-ViewModel 的简写。</p>
+<p>MVVM 在使用当中，通常还会利用双向绑定技术，使得 Model 变化时，ViewModel 会自动更新，而 ViewModel 变化时，View 也会自动变化。所以，MVVM 模式有些时候又被称作：model-view-binder 模式。<br>具体在 iOS 中，可以使用 KVO 或 Notification 技术达到这种效果。</p>
+<p>第一点：<strong>数据绑定使得 Bug 很难被调试</strong>。你看到界面异常了，有可能是你 View 的代码有 Bug，也可能是 Model 的代码有问题。数据绑定使得一个位置的 Bug 被快速传递到别的位置，要定位原始出问题的地方就变得不那么容易了。</p>
+<p>第二点：对于过大的项目，<strong>数据绑定需要花费更多的内存</strong>。</p>
+<p>某种意义上来说，我认为就是数据绑定使得 MVVM 变得复杂和难用了。但是，这个缺点同时也被很多人认为是优点。</p>
+<h2 id="ReactiveCocoa"><a href="#ReactiveCocoa" class="headerlink" title="ReactiveCocoa"></a>ReactiveCocoa</h2><p>函数式编程（Functional Programming）和响应式编程（React Programming）也是当前很火的两个概念，它们的结合可以很方便地实现数据的绑定。</p>
+<ul>
+<li>函数式编程（Functional Programming），函数也变成一等公民了，可以拥有和对象同样的功能，例如当成参数传递，当作返回值等。看看 Swift 语言带来的众多函数式编程的特性，就你知道这多 Cool 了。</li>
+<li>响应式编程（React Programming），原来我们基于事件（Event）的处理方式都弱了，现在是基于输入（在 ReactiveCocoa 里叫 Signal）的处理方式。输入还可以通过函数式编程进行各种 Combine 或 Filter，尽显各种灵活的处理。</li>
+<li>无状态（Stateless），状态是函数的魔鬼，无状态使得函数能更好地测试。</li>
+<li>不可修改（Immutable），数据都是不可修改的，使得软件逻辑简单，也可以更好地测试。</li>
+</ul>
+<p>而我想说，我们需要保持的是一个拥抱变化的心，以及理性分析的态度。在新技术的面前，不盲从，也不守旧，一切的决策都应该建立在认真分析的基础上，这样才能应对技术的变化。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2019/05/07/iOS之LighterviewController/" data-id="cjve07skw001rnb8o0znxeeym" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coding/">coding</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-iOS学习入门" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/05/07/iOS学习入门/" class="article-date">
@@ -102,7 +205,7 @@
       
         <!-- Table of Contents -->
         
-        <h1 id="iOS编程"><a href="#iOS编程" class="headerlink" title="iOS编程"></a>iOS编程</h1><h1 id="Objective-C入门教程"><a href="#Objective-C入门教程" class="headerlink" title="Objective-C入门教程"></a>Objective-C入门教程</h1><p>Objective-C 通过提供<strong>类定义，方法以及属性的语法</strong>，还有其他可以提高<strong>类的动态扩展能力的结构</strong>等，扩展了标准的 ANSI C 语言。类的语法和设计主要是基于 Smalltalk。</p>
+        <h1 id="Objective-C入门教程"><a href="#Objective-C入门教程" class="headerlink" title="Objective-C入门教程"></a>Objective-C入门教程</h1><p>Objective-C 通过提供<strong>类定义，方法以及属性的语法</strong>，还有其他可以提高<strong>类的动态扩展能力的结构</strong>等，扩展了标准的 ANSI C 语言。类的语法和设计主要是基于 Smalltalk。</p>
 <p>##Smalltalk</p>
 <ul>
 <li>基本规则非常简洁优雅。</li>
@@ -317,7 +420,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/05/07/iOS学习入门/" data-id="cjvduoged001txc8o636u26zi" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/05/07/iOS学习入门/" data-id="cjve07sm00021nb8ocelatfjz" class="article-share-link">分享</a>
       
       
       
@@ -388,7 +491,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/04/29/Java入门/" data-id="cjvduogdq000qxc8o4kbj19n3" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/04/29/Java入门/" data-id="cjve07sho000onb8osi4jd86t" class="article-share-link">分享</a>
       
       
       
@@ -437,7 +540,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/04/19/FEDERATED-LEARNING-STRATEGIES-FOR-IMPROVINGCOMMUNICATION-EFFICIENCY/" data-id="cjvduogdo000lxc8on4cg5l8u" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/04/19/FEDERATED-LEARNING-STRATEGIES-FOR-IMPROVINGCOMMUNICATION-EFFICIENCY/" data-id="cjve07shx000vnb8og3r8xevf" class="article-share-link">分享</a>
       
       
       
@@ -489,7 +592,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/23/ETHEREUM-A-SECURE-DECENTRALISED-GENERALISED-TRANSACTION-LEDGER/" data-id="cjvduogdd0008xc8o08l6ksp9" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/23/ETHEREUM-A-SECURE-DECENTRALISED-GENERALISED-TRANSACTION-LEDGER/" data-id="cjve07sh2000dnb8o3k7iq1q7" class="article-share-link">分享</a>
       
       
       
@@ -538,7 +641,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/22/Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets/" data-id="cjvduogd40003xc8o8mbcs4ch" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/22/Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets/" data-id="cjve07sgd0001nb8o9rbw0f6m" class="article-share-link">分享</a>
       
       
       
@@ -594,7 +697,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/09/智能架构/" data-id="cjvduogff003gxc8olkrl75z8" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/09/智能架构/" data-id="cjve07sr8003mnb8otesz8rnt" class="article-share-link">分享</a>
       
       
       
@@ -657,7 +760,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/" data-id="cjvduogf3002vxc8o2bn4h7gt" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/" data-id="cjve07soq002unb8o0ecbtswn" class="article-share-link">分享</a>
       
       
       
@@ -719,7 +822,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/08/三维动画与交互技术复习3/" data-id="cjvduogem002axc8ofbra2ja0" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/08/三维动画与交互技术复习3/" data-id="cjve07sng002knb8oawh67qx3" class="article-share-link">分享</a>
       
       
       
@@ -772,72 +875,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/07/三维动画与交互技术复习2/" data-id="cjvduogex002kxc8odnkww2g1" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/考试/">考试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-三维动画与交互技术复习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/06/三维动画与交互技术复习/" class="article-date">
-  <time datetime="2019-01-06T13:06:58.000Z" itemprop="datePublished">2019-01-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/游戏开发/">游戏开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/06/三维动画与交互技术复习/">三维动画与交互技术复习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><ul>
-<li>三维动画编程基础<ul>
-<li>openGL图形编程</li>
-<li>面向三维动画引擎的架构与实现</li>
-</ul>
-</li>
-<li>计算机视觉和智能计算基础<ul>
-<li>OpenCV计算机视觉的编程</li>
-<li>对象识别和对象跟踪技术</li>
-</ul>
-</li>
-<li>前沿人际交互技术<ul>
-<li>基于视觉和传感器的交互</li>
-<li>虚拟现实技术与增强现实技术</li>
-</ul>
-</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2019/01/06/三维动画与交互技术复习/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/06/三维动画与交互技术复习/" data-id="cjvduogek0027xc8ow5d5tpt5" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/07/三维动画与交互技术复习2/" data-id="cjve07smq002cnb8oc26gq3hi" class="article-share-link">分享</a>
       
       
       
@@ -889,7 +927,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography-Intro/">Cryptography Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS编程/">iOS编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/游戏开发/">游戏开发</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/物联网/">物联网</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography-Intro/">Cryptography Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS编程/">iOS编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/游戏开发/">游戏开发</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/物联网/">物联网</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -899,7 +937,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/BigData/" style="font-size: 14px;">BigData</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Cryptography/" style="font-size: 14px;">Cryptography</a> <a href="/tags/Goa入门/" style="font-size: 14px;">Goa入门</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 14px;">Swagger</a> <a href="/tags/coding/" style="font-size: 18.4px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.2px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/intro/" style="font-size: 14px;">intro</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 14px;">paper reading</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 18.4px;">代码</a> <a href="/tags/入门/" style="font-size: 22.8px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 16.2px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/智能架构/" style="font-size: 14px;">智能架构</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/禅/" style="font-size: 14px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/考试/" style="font-size: 22.8px;">考试</a> <a href="/tags/自我修炼/" style="font-size: 16.2px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 20.6px;">论文阅读</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
+      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/BigData/" style="font-size: 14px;">BigData</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Cryptography/" style="font-size: 14px;">Cryptography</a> <a href="/tags/Goa入门/" style="font-size: 14px;">Goa入门</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 14px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20.6px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.2px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/intro/" style="font-size: 14px;">intro</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 14px;">paper reading</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 18.4px;">代码</a> <a href="/tags/入门/" style="font-size: 22.8px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 16.2px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/智能架构/" style="font-size: 14px;">智能架构</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/禅/" style="font-size: 14px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/考试/" style="font-size: 22.8px;">考试</a> <a href="/tags/自我修炼/" style="font-size: 16.2px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 20.6px;">论文阅读</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
     </div>
   </div>
 
@@ -909,6 +947,10 @@
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/05/07/iOS之LighterviewController/">iOS之LighterviewController</a>
+          </li>
         
           <li>
             <a href="/2019/05/07/iOS学习入门/">iOS学习入门</a>
@@ -926,10 +968,6 @@
             <a href="/2019/01/23/ETHEREUM-A-SECURE-DECENTRALISED-GENERALISED-TRANSACTION-LEDGER/">ETHEREUM: A SECURE DECENTRALISED GENERALISED TRANSACTION LEDGER</a>
           </li>
         
-          <li>
-            <a href="/2019/01/22/Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets/">Blockchain-Based Solution for Proof of Delivery of Physical Assets</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -939,7 +977,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
