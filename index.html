@@ -74,6 +74,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-iOS路由设计" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/08/iOS路由设计/" class="article-date">
+  <time datetime="2019-05-07T16:28:26.000Z" itemprop="datePublished">2019-05-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS编程/">iOS编程</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/08/iOS路由设计/">iOS路由设计</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="路由设计"><a href="#路由设计" class="headerlink" title="路由设计"></a>路由设计</h1><h1 id="移动端路由层设计"><a href="#移动端路由层设计" class="headerlink" title="移动端路由层设计"></a>移动端路由层设计</h1><blockquote>
+<p>什么是移动端路由层：</p>
+</blockquote>
+<p>路由层的概念在服务端是指<strong>url请求的分层解析，将一个请求分发到对应的应用处理程序</strong>。移动端的路由层指的是将<strong>诸如App内页面访问、H5与App访问的访问请求和App间的访问请求，进行分发处理的逻辑层</strong>。</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/05/08/iOS路由设计/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2019/05/08/iOS路由设计/" data-id="cjve1mt1p001y608o5wyw8932" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coding/">coding</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-iOS之LighterviewController" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/05/07/iOS之LighterviewController/" class="article-date">
@@ -100,70 +152,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <h1 id="被误解的-MVC-和被神化的-MVVM"><a href="#被误解的-MVC-和被神化的-MVVM" class="headerlink" title="被误解的 MVC 和被神化的 MVVM"></a>被误解的 MVC 和被神化的 MVVM</h1><h1 id="被误解的-MVC"><a href="#被误解的-MVC" class="headerlink" title="被误解的 MVC"></a>被误解的 MVC</h1><p>MVC，全称是 Model View Controller，是模型 (model)－视图 (view)－控制器 (controller) 的缩写。它表示的是一种常见的客户端软件开发框架。</p>
-<h2 id="Controller-的臃肿问题何解？"><a href="#Controller-的臃肿问题何解？" class="headerlink" title="Controller 的臃肿问题何解？"></a>Controller 的臃肿问题何解？</h2><ul>
-<li>「什么样的内容才应该放到 Controller 中？」</li>
-<li>我们来看看 MVC 这种架构的特点。其实设计模式很多时候是为了 Don’t repeat yourself 原则来做的，<strong>该原则要求能够复用的代码要尽量复用，来保证重用。</strong>在 MVC 这种设计模式中，我们发现 View 和 Model 都是符合这种原则的。</li>
-</ul>
-<p>对于 View 来说，你如果抽象得好，那么一个 App 的动画效果可以很方便地移植到别的 App 上，而 Github 上也有很多 UI 控件，这些控件都是在 View 层做了很好的封装设计，使得它能够方便地开源给大家复用。</p>
-<p>对于 Model 来说，它其实是用来存储业务的数据的，如果做得好，它也可以方便地复用。比如我当时在做有道云笔记 iPad 版的时候，我们就直接和 iOS 版复用了所有的 Model 层的代码。在创业做猿题库客户端时，iOS 和 iPad 版的 Model 层代码再次被复用上了。当然，因为和业务本身的数据意义相关，Model 层的复用大多数是在一个产品内部，不太可能像 View 层那样开源给社区。</p>
-<p>说完 View 和 Model 了，那我们想想 Controller，Controller 有多少可以复用的？我们写完了一个 Controller 之后，可以很方便地复用它吗？结论是：非常难复用。在某些场景下，我们可能可以用 addSubViewController 之类的方式复用 Controller，但它的复用场景还是非常非常少的。</p>
-<p>如果我们能够意识到 Controller 里面的代码不便于复用，我们就能知道什么代码应该写在 Controller 里面了，那就是那些不能复用的代码。在我看来，<strong>Controller 里面就只应该存放这些不能复用的代码</strong>，这些代码包括：</p>
-<ul>
-<li>在初始化时，构造相应的 View 和 Model。</li>
-<li>监听 Model 层的事件，将 Model 层的数据传递到 View 层。</li>
-<li>监听 View 层的事件，并且将 View 层的事件转发到 Model 层。<br>如果 Controller 只有以上的这些代码，那么它的逻辑将非常简单，而且也会非常短。</li>
-</ul>
-<h3 id="如何对-ViewController-瘦身？"><a href="#如何对-ViewController-瘦身？" class="headerlink" title="如何对 ViewController 瘦身？"></a>如何对 ViewController 瘦身？</h3><p>objc.io 是一个非常有名的 iOS 开发博客，它上面的第一课 《Lighter View Controllers》 上就讲了很多这样的技巧，我们先总结一下它里面的观点：</p>
-<ul>
-<li>将 UITableView 的 Data Source 分离到另外一个类中。</li>
-<li>将数据获取和转换的逻辑分别到另外一个类中。</li>
-<li>将拼装控件的逻辑，分离到另外一个类中。</li>
-</ul>
-<p>其实 MVC 虽然只有三层，但是它并没有限制你只能有三层。所以，我们可以将 Controller 里面过于臃肿的逻辑抽取出来，形成新的可复用模块或架构层次。</p>
-<h3 id="将网络请求抽象到单独的类中"><a href="#将网络请求抽象到单独的类中" class="headerlink" title="将网络请求抽象到单独的类中"></a>将网络请求抽象到单独的类中</h3><p>新手写代码，直接就在 Controller 里面用 AFNetworking 发一个请求，请求的完数据直接就传递给 View。入门一些的同学，知道把这些请求代码移到另外一个静态类里面。但是我觉得还不够，所以我建议将<strong>每一个网络请求直接封装成类</strong>。</p>
-<p>把每一个网络请求封装成对象其实是使用了设计模式中的 Command 模式，它有以下好处：</p>
-<ul>
-<li>将网络请求与具体的第三方库依赖隔离，方便以后更换底层的网络库。实际上我们公司的 iOS 客户端最初是基于 ASIHttpRequest 的，我们只花了两天，就很轻松地切换到了 AFNetworking。</li>
-<li>方便在<strong>基类中处理公共逻辑</strong>，例如猿题库的数据版本号信息就统一在基类中处理。</li>
-<li>方便在基类中处理缓存逻辑，以及其它一些公共逻辑。</li>
-<li>方便做对象的持久化。</li>
-</ul>
-<p>大家如果感兴趣，可以看我们公司开源的 iOS 网络库：YTKNetwork。它在这种思考的指导下，不但将 Controller 中的代码瘦身，而且进一步演化和加强，现在它<strong>还支持诸如复杂网络请求管理，断点续传，插件机制，JSON 合法</strong>性检查等功能。<br>这部分代码从 Controller 中剥离出来后，不但简化了 Controller 中的逻辑，也达到了网络层的代码复用的效果。</p>
-<h3 id="将界面的拼装抽象到专门的类中"><a href="#将界面的拼装抽象到专门的类中" class="headerlink" title="将界面的拼装抽象到专门的类中"></a>将界面的拼装抽象到专门的类中</h3><p>新手写代码，喜欢在 Controller 中把一个个 UILabel ，UIButton，UITextField 往 self.view 上用 addSubView 方法放。我建议大家可以用两种办法把这些代码从 Controller 中剥离。</p>
-<p>方法一：构造专门的 UIView 的子类，来负责这些控件的拼装。这是最彻底和优雅的方式，不过稍微麻烦一些的是，你需要把这些控件的事件回调先接管，再都一一暴露回 Controller。</p>
-<p>方法二：用一个静态的 Util 类，帮助你做 UIView 的拼装工作。这种方式稍微做得不太彻底，但是比较简单。</p>
-<p>对于一些能复用的 UI 控件，我建议用方法一。如果项目工程比较复杂，我也建议用方法一。如果项目太紧，另外相关项目的代码量也不多，可以尝试方法二。</p>
-<h3 id="构造-ViewModel"><a href="#构造-ViewModel" class="headerlink" title="构造 ViewModel"></a>构造 ViewModel</h3><p>谁说 MVC 就不能用 ViewModel 的？MVVM 的优点我们一样可以借鉴。<strong>具体做法就是将 ViewController 给 View 传递数据这个过程，抽象成构造 ViewModel 的过程</strong>。</p>
-<p>这样抽象之后，View 只接受 ViewModel，而 Controller 只需要传递 ViewModel 这么一行代码。而另外<strong>构造 ViewModel 的过程，我们就可以移动到另外的类中了</strong>。</p>
-<p>在具体实践中，我建议大家专门<strong>创建构造 ViewModel 工厂类</strong>，参见 工厂模式。另外，也可以专门将数据存取都抽将到一个 Service 层，由这<strong>层来提供 ViewModel 的获取</strong>。</p>
-<h3 id="专门构造存储类"><a href="#专门构造存储类" class="headerlink" title="专门构造存储类"></a>专门构造存储类</h3><p>刚刚说到 ViewModel 的构造可以抽奖到一个 Service 层。与此相应的，数据的存储也应该由专门的对象来做。在小猿搜题项目中，我们由一个叫 UserAgent 的类，专门来处理本地数据的存取。</p>
-<p>数据存取放在专门的类中，就可以针对存取做额外的事情了。比如：</p>
-<ul>
-<li>对一些热点数据增加缓存</li>
-<li>处理数据迁移相关的逻辑<br>如果要做得更细，可以把存储引擎再抽象出一层。这样你就可以方便地切换存储的底层，例如从 sqlite 切换到 key-value 的存储引擎等。</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>通过代码的抽取，我们可以将原本的 MVC 设计模式中的 ViewController 进一步拆分，构造出 <strong>网络请求层</strong>、<strong>ViewModel 层</strong>、<strong>Service 层</strong>、<strong>Storage 层</strong>等其它类，来配合 Controller 工作，从而使 Controller 更加简单，我们的 App 更容易维护。</p>
-<h2 id="被神化的-MVVM"><a href="#被神化的-MVVM" class="headerlink" title="被神化的 MVVM"></a>被神化的 MVVM</h2><p>MVVM 是 Model-View-ViewModel 的简写。</p>
-<p>MVVM 在使用当中，通常还会利用双向绑定技术，使得 Model 变化时，ViewModel 会自动更新，而 ViewModel 变化时，View 也会自动变化。所以，MVVM 模式有些时候又被称作：model-view-binder 模式。<br>具体在 iOS 中，可以使用 KVO 或 Notification 技术达到这种效果。</p>
-<p>第一点：<strong>数据绑定使得 Bug 很难被调试</strong>。你看到界面异常了，有可能是你 View 的代码有 Bug，也可能是 Model 的代码有问题。数据绑定使得一个位置的 Bug 被快速传递到别的位置，要定位原始出问题的地方就变得不那么容易了。</p>
-<p>第二点：对于过大的项目，<strong>数据绑定需要花费更多的内存</strong>。</p>
-<p>某种意义上来说，我认为就是数据绑定使得 MVVM 变得复杂和难用了。但是，这个缺点同时也被很多人认为是优点。</p>
-<h2 id="ReactiveCocoa"><a href="#ReactiveCocoa" class="headerlink" title="ReactiveCocoa"></a>ReactiveCocoa</h2><p>函数式编程（Functional Programming）和响应式编程（React Programming）也是当前很火的两个概念，它们的结合可以很方便地实现数据的绑定。</p>
-<ul>
-<li>函数式编程（Functional Programming），函数也变成一等公民了，可以拥有和对象同样的功能，例如当成参数传递，当作返回值等。看看 Swift 语言带来的众多函数式编程的特性，就你知道这多 Cool 了。</li>
-<li>响应式编程（React Programming），原来我们基于事件（Event）的处理方式都弱了，现在是基于输入（在 ReactiveCocoa 里叫 Signal）的处理方式。输入还可以通过函数式编程进行各种 Combine 或 Filter，尽显各种灵活的处理。</li>
-<li>无状态（Stateless），状态是函数的魔鬼，无状态使得函数能更好地测试。</li>
-<li>不可修改（Immutable），数据都是不可修改的，使得软件逻辑简单，也可以更好地测试。</li>
-</ul>
-<p>而我想说，我们需要保持的是一个拥抱变化的心，以及理性分析的态度。在新技术的面前，不盲从，也不守旧，一切的决策都应该建立在认真分析的基础上，这样才能应对技术的变化。</p>
-
+        
+          <p class="article-more-link">
+            <a href="/2019/05/07/iOS之LighterviewController/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/05/07/iOS之LighterviewController/" data-id="cjve07skw001rnb8o0znxeeym" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/05/07/iOS之LighterviewController/" data-id="cjve1mt1c001r608ojcuivxsu" class="article-share-link">分享</a>
       
       
       
@@ -203,224 +201,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <h1 id="Objective-C入门教程"><a href="#Objective-C入门教程" class="headerlink" title="Objective-C入门教程"></a>Objective-C入门教程</h1><p>Objective-C 通过提供<strong>类定义，方法以及属性的语法</strong>，还有其他可以提高<strong>类的动态扩展能力的结构</strong>等，扩展了标准的 ANSI C 语言。类的语法和设计主要是基于 Smalltalk。</p>
-<p>##Smalltalk</p>
-<ul>
-<li>基本规则非常简洁优雅。</li>
-<li>所有一切都是物体,所有的计算都通过消息（message）来触发。你向某个物体发送消息，然后就会发生某些事情。</li>
-<li>几乎所有Smalltalk中的可执行表达式都是这样的形式：&lt;接受消息的物体&gt; &lt;消息&gt;。</li>
-<li>消息激发方法（method），一个消息会对应什么方法是由接受消息的物体决定的。</li>
-<li>方法是Smalltalk的代码单元。你可以认为<strong>方法就是你常用的编程语言中的函数或者过程</strong>。方法是计算发生的地方。</li>
-<li>每一个物体都是某类（class）事物的一个<strong>实例</strong>（instance）。例如，物体12属于SmallInteger（小整数）类，物体’abc’属于String(字串)类。一个物体的数据和行为将由它所属的类决定。</li>
-</ul>
-<p><img src="/2019/05/07/iOS学习入门/img1.png" alt=""></p>
-<ul>
-<li>Smalltalk中，类是真实的对象。创建实例，只需向class发送new。针对类的方法称为类方法（类似于Java的staticmethods）。</li>
-<li>Smalltalk没有构造函数。如果你想执行实例初始化,你可以重定义“new”类方法来初始化实例</li>
-<li>Objective-C被描述为盖在C语言上的薄薄一层，因为Objective-C的原意就是在C语言主体上加入面向对象的特性。</li>
-</ul>
-<h2 id="Objective-C代码的文件扩展名"><a href="#Objective-C代码的文件扩展名" class="headerlink" title="Objective-C代码的文件扩展名"></a>Objective-C代码的文件扩展名</h2><table>
-<thead>
-<tr>
-<th>扩展名</th>
-<th>内容类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.h</td>
-<td>头文件。头文件包含类，类型，函数和常数的声明。</td>
-</tr>
-<tr>
-<td>.m</td>
-<td>源代码文件。这是典型的源代码文件扩展名，可以包含 Objective-C 和 C 代码。</td>
-</tr>
-<tr>
-<td>.mm</td>
-<td>源代码文件。带有这种扩展名的源代码文件，除了可以包含Objective-C和C代码以外还可以包含C++代码。仅在你的Objective-C代码中确实需要使用C++类或者特性的时候才用这种扩展名。</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><code>#import</code> 选项和 <code>#include</code> 选项完全相同，只是它可以确保相同的文件只会被包含一次。Objective-C 的例子和文档都倾向于使用 <code>#import</code>，你的代码也应该是这样的。</li>
-</ul>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><ul>
-<li>Objective-C的面向对象语法源于Smalltalk消息传递风格。</li>
-</ul>
-<h2 id="消息传递"><a href="#消息传递" class="headerlink" title="消息传递"></a>消息传递</h2><p>Objective-C最大的特色是承自Smalltalk的消息传递模型（message passing），此机制与今日C++式之主流风格差异甚大。Objective-C里，与其说<strong>对象互相调用方法，不如说对象之间互相传递消息</strong>更为精确。此二种风格的主要差异在于调用方法/消息传递这个动作。C++里<strong>类别与方法的关系严格清楚，一个方法必定属于一个类别，而且在编译时（compile time）就已经紧密绑定，不可能调用一个不存在类别里的方法</strong>。但在Objective-C，类别与消息的关系比较松散，<strong>调用方法视为对对象发送消息，所有方法都被视为对消息的回应。所有消息处理直到运行时（runtime）才会动态决定，并交由类别自行决定如何处理收到的消息。</strong>也就是说，一个类别不保证一定会回应收到的消息，如果类别收到了一个无法处理的消息，程序只会抛出异常，不会出错或崩溃。</p>
-<p>C++里，送一个消息给对象（或者说调用一个方法）的语法如下：<br><code>obj.method(argument);</code></p>
-<p>Objective-C则写成：<br><code>[obj method: argument];</code></p>
-<p>这里以一个汽车类（car class）的简单例子来解释Objective-C的消息传递特性：<br><code>[car fly];</code></p>
-<p>典型的C++意义解读是”<strong>调用car类别的fly方法</strong>“。若car类别里头没有定义fly方法，那编译肯定不会通过。但是Objective-C里，我们应当解读为”<strong>发提交一个fly的消息给car对象</strong>“，<strong>fly是消息，而car是消息的接收者</strong>。car收到消息后会决定如何回应这个消息，若car类别内定义有fly方法就运行方法内之代码，若car内不存在fly方法，则程序依旧可以通过编译，运行期则抛出异常。</p>
-<p>此二种风格各有优劣。C++强制要求<strong>所有的方法都必须有对应的动作，且编译期绑定使得函数调用非常快速</strong>。缺点是<strong>仅能借由virtual关键字提供有限的动态绑定能力</strong>。Objective-C天生即具备鸭子类型之动态绑定能力，因为<strong>运行期才处理消息，允许发送未知消息给对象</strong>。可以送消息给整个对象集合而不需要一一检查每个对象的类型，也具备消息转送机制。同时空对象nil接受消息后默认为不做事，所以送消息给nil也不用担心程序崩溃。</p>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ul>
-<li>大多数框架把字符串传递给NSString对象。NSString类提供了字符串的类包装.</li>
-<li>因为这种字符串使用的非常频繁，Objective-C提供了一个助记符可以<strong>方便地从常量值创建NSString对象。</strong>要使用这个助记符，你需要做的全部事情，是在普通的双引号字符串前放置一个@符号。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NSString* myString = @&quot;My String\n&quot;;</span><br><span class="line">NSString* anotherString = [NSString stringWithFormat:@&quot;%d %s&quot;, 1, @&quot;String&quot;];</span><br><span class="line"></span><br><span class="line">// 从一个C语言字符串创建Objective-C字符串</span><br><span class="line">NSString*  fromCString = [NSString stringWithCString:&quot;A C string&quot; </span><br><span class="line">encoding:NSASCIIStringEncoding];</span><br></pre></td></tr></table></figure>
-<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>如同所有其他的面向对象语言，<strong>类</strong>是 Objective-C 用来<strong>封装数据，以及操作数据的行为的基础结构</strong>。对象就是类的运行期间实例，它包含了<strong>类声明的实例变量自己的内存拷贝，以及类成员的指针</strong>。Objective-C 的类规格说明包含了两个部分：定义（interface）与实现（implementation）。定义（interface）部分包含了<strong>类声明和实例变量的定义，以及类相关的方法</strong>。实现（implementation）部分包含了<strong>类方法的实际代码</strong>。</p>
-<p>下图展现了声明一个叫做 MyClass 的类的语法，这个类继承自 NSObject 基础类。类声明总是<strong>由 @interface 编译选项开始，由 @end 编译选项结束</strong>。类名之后的（用冒号分隔的）是父类的名字。类的实例（或者成员）变量声明在被大括号包含的代码块中。<strong>实例变量块后面就是类声明的方法的列表。每个实例变量和方法声明都以分号结尾。</strong></p>
-<p>类的定义文件遵循C语言之惯例以.h为后缀，实现文件以.m为后缀。<br><img src="/2019/05/07/iOS学习入门/img2.png" alt=""></p>
-<h3 id="Interface"><a href="#Interface" class="headerlink" title="Interface"></a>Interface</h3><p>定义部分，清楚定义了<strong>类的名称、数据成员和方法</strong>。 以关键字@interface作为开始，@end作为结束。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@interface MyObject: NSObject </span><br><span class="line">&#123;</span><br><span class="line">    int memberVar1; //实例变量</span><br><span class="line">    int memberVar2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+(return_type) class_method; 类方法</span><br><span class="line">-(return_type) instance_method1; //实例方法</span><br><span class="line">-(return_type) instance_method2: (int) p1;</span><br><span class="line">-(return_type) instance_method3: (int) p1 andPar: (int) p2;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>方法前面的 +/- 号代表函数的类型：加号（+）代表类方法（class method），不需要实例就可以调用，与C++ 的静态函数（static member function）相似。减号（-）即是一般的实例方法（instance method）。</p>
-<p>Objective-C定义一个新的方法时，<strong>名称内的冒号（:）代表参数传递，不同于C语言以数学函数的括号来传递参数</strong>。Objective-C方法使得参数可以夹杂于名称中间，不必全部附缀于方法名称的尾端，可以提高程序可读性。设定颜色RGB值的方法为例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (void) setColorToRed: (float)red Green: (float)green Blue:(float)blue; /* 宣告方法*/</span><br><span class="line">[myColor setColorToRed: 1.0 Green: 0.8 Blue: 0.2]; /* 呼叫方法*/</span><br></pre></td></tr></table></figure>
-<p>这个方法的签名是setColorToRed:Green:Blue:。每个冒号后面都带着一个float类别的参数，分别代表红，绿，蓝三色。</p>
-<h3 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h3><p>实现区块则<strong>包含了公开方法的实现，以及定义私有（private）变量及方法</strong>。 以关键字@implementation作为区块起头，@end结尾。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Implementation MyObject &#123;</span><br><span class="line">    int memberVar3; //私有变量</span><br><span class="line">&#125;</span><br><span class="line">+(return_type) class_method &#123;</span><br><span class="line">    .... //method implementation</span><br><span class="line">&#125;</span><br><span class="line">-(return_type) instance_method1 &#123;</span><br><span class="line">     ....</span><br><span class="line">&#125;</span><br><span class="line">-(return_type) instance_method2: (int) p1 &#123;</span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br><span class="line">-(return_type) instance_method3: (int) p1 andPar: (int) p2 &#123;</span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>值得一提的是不只Interface区块可定义实体变量，Implementation区块也可以定义实体变量，两者的差别在于访问权限的不同，Interface区块内的实体变量默认权限为protected，宣告于implementation区块的实体变量则默认为private，故在Implementation区块定义私有成员更匹配面向对象之封装原则，因为如此类别之私有信息就不需曝露于公开interface（.h文件）中。</p>
-<h3 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h3><p>Objective-C创建对象需通过alloc以及init两个消息。<strong>alloc的作用是分配内存，init则是初始化对象。</strong> init与alloc都是定义在NSObject里的方法，<strong>父对象收到这两个信息并做出正确回应后，新对象才创建完毕</strong>。以下为范例：</p>
-<p><code>MyObject * my = [[MyObject alloc] init];</code></p>
-<p>在Objective-C 2.0里，若创建对象不需要参数，则可直接使用new<br><code>MyObject * my = [MyObject new];</code><br>仅仅是语法上的精简，效果完全相同。</p>
-<p>若要自己定义初始化的过程，可以重写init方法，来添加额外的工作。（用途类似C++ 的构造函数constructor）</p>
-<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>Objective-C 中的类可以声明两种类型的方法：实例方法和类方法。<strong>实例方法就是一个方法，它在类的一个具体实例的范围内执行</strong>。也就是说，在你调用一个实例方法前，你必须首先创建类的一个实例。而类方法，比较起来，也就是说，不需要你创建一个实例。</p>
-<p>方法声明包括<strong>方法类型标识符，返回值类型，一个或多个方法标识关键字，参数类型和名信息</strong>。下图展示 insertObject:atIndex: 实例方法的声明。声明由一个减号(-)开始，这表明这是一个实例方法。方法实际的名字(insertObject:atIndex:)是所有方法标识关键的级联，包含了冒号。冒号表明了参数的出现。如果方法没有参数，你可以省略第一个(也是唯一的)方法标识关键字后面的冒号。本例中，这个方法有两个参数。</p>
-<p><img src="/2019/05/07/iOS学习入门/img3.png" alt=""><br>当你想<strong>调用一个方法，你传递消息到对应的对象</strong>。这里<strong>消息就是方法标识符，以及传递给方法的参数信息</strong>。发送给对象的所有消息都会动态分发，这样有利于实现Objective-C类的多态行为。也就是说，如果<strong>子类定义了跟父类的具有相同标识符的方法，那么子类首先收到消息，然后可以有选择的把消息转发（也可以不转发）给他的父类</strong>。</p>
-<p>消息被中括号( [ 和 ] )包括。中括号中间，接收消息的对象在左边，消息（包括消息需要的任何参数）在右边。例如，给myArray变量传递消息insertObject:atIndex:消息，你需要使用如下的语法：</p>
-<p><code>[myArray insertObject:anObj atIndex:0];</code></p>
-<p>为了避免声明过多的本地变量保存临时结果，Objective-C允许你使用<strong>嵌套消息</strong>。<strong>每个嵌套消息的返回值可以作为其他消息的参数或者目标</strong>。例如，你可以用任何获取这种值的消息来代替前面例子里面的任何变量。所以，如果你有另外一个对象叫做myAppObject拥有方法，可以访问数组对象，以及插入对象到一个数组，你可以把前面的例子写成如下的样子：<br><code>[[myAppObject getArray] insertObject:[myAppObject getObjectToInsert] atIndex:0];</code></p>
-<p>虽然前面的例子都是传递消息给某个类的实例，但是你也可以传递消息给类本身。当给类发消息，你指定的方法必须被定义为类方法，而不是实例方法。你可以认为类方法跟C++类里面的静态成员有点像（但是不是完全相同的）。</p>
-<p>类方法的典型用途是<strong>用做创建新的类实例的工厂方法，或者是访问类相关的共享信息的途径</strong>。类方法声明的语法跟实例方法的几乎完全一样，只有一点小差别。与实例方法使用减号作为方法类型标识符不同，类方法使用加号( + )。</p>
-<p>下面的例子演示了一个类方法如何作为类的工厂方法。在这里，arrayWithCapacity是NSMutableArray类的类方法，为类的新实例分配内容并初始化，然后返回给你。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSMutableArray*   myArray = nil; // nil 基本上等同于 NULL</span><br><span class="line"></span><br><span class="line">// 创建一个新的数组，并把它赋值给 myArray 变量</span><br><span class="line">myArray = [NSMutableArray arrayWithCapacity:0];</span><br></pre></td></tr></table></figure>
-<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>属性是用来代替<strong>声明存取方法的便捷方式</strong>。属性不会在你的类声明中创建一个新的实例变量。他们<strong>仅仅是定义方法访问已有的实例变量的速记方式而已。</strong>暴露实例变量的类，可以使用属性记号代替getter和setter语法。类还可以使用属性暴露一些“虚拟”的实例变量，他们是部分数据动态计算的结果，而不是确实保存在实例变量内的。</p>
-<p>实际上可以说，属性节约了你必须要写的大量多余的代码。因为大多数存取方法都是用类似的方式实现的，属性避免了为类暴露的每个实例变量提供不同的getter和setter的需求。取而代之的是，你用属性声明指定你希望的行为，然后在编译期间合成基于声明的实际的getter和setter方法。</p>
-<p>属性声明应该放在类接口interface的方法声明那里。基本的定义使用<strong>@property编译选项</strong>，紧跟着<strong>类型信息和属性的名字</strong>。你还可以用定制选项对属性进行配置，这决定了存取方法的行为。下面的例子展示了一些简单的属性声明：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@interface Person : NSObject &#123;</span><br><span class="line">    @public</span><br><span class="line">        NSString *name;</span><br><span class="line">    @private</span><br><span class="line">        int age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@property(copy) NSString *name;</span><br><span class="line">@property(readonly) int age;</span><br><span class="line"></span><br><span class="line">-(id)initWithAge:(int)age;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>属性的访问方法由@synthesize关键字来实现，它由属性的声明自动的产生一对访问方法。另外，也可以选择使用@dynamic关键字表明访问方法会由程序员手工提供。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@implementation Person</span><br><span class="line">@synthesize name;</span><br><span class="line">@dynamic age;</span><br><span class="line"></span><br><span class="line">-(id)initWithAge:(int)initAge</span><br><span class="line">&#123;</span><br><span class="line">    age = initAge; // 注意：直接赋给成员变量，而非属性</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(int)age</span><br><span class="line">&#123;</span><br><span class="line">    return 29; // 注意：并非返回真正的年龄</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>属性可以利用传统的<strong>消息表达式</strong>、<strong>点表达式</strong>或<strong>“valueForKey:”</strong>/<strong>“setValue:forKey:”</strong>方法对来访问。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Person *aPerson = [[Person alloc] initWithAge: 53];</span><br><span class="line">aPerson.name = @&quot;Steve&quot;; // 注意：点表达式，等于[aPerson setName: @&quot;Steve&quot;];</span><br><span class="line">NSLog(@&quot;Access by message (%@), dot notation(%@), property name(%@) and direct instance variable access (%@)&quot;,</span><br><span class="line">      [aPerson name], aPerson.name, [aPerson valueForKey:@&quot;name&quot;], aPerson-&gt;name);</span><br></pre></td></tr></table></figure>
-<p>为了利用<strong>点表达式来访问实例的属性</strong>，需要使用”self”关键字：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-(void) introduceMyselfWithProperties:(BOOL)useGetter</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;Hi, my name is %@.&quot;, (useGetter ? self.name : name)); // NOTE: getter vs. ivar access</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>类或协议的属性可以被动态的读取。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int i;</span><br><span class="line">int propertyCount = 0;</span><br><span class="line">objc_property_t *propertyList = class_copyPropertyList([aPerson class], &amp;propertyCount);</span><br><span class="line"></span><br><span class="line">for ( i=0; i &lt; propertyCount; i++ ) &#123;</span><br><span class="line">    objc_property_t *thisProperty = propertyList + i;</span><br><span class="line">    const char* propertyName = property_getName(*thisProperty);</span><br><span class="line">    NSLog(@&quot;Person has a property: &apos;%s&apos;&quot;, propertyName);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="快速枚举"><a href="#快速枚举" class="headerlink" title="快速枚举"></a>快速枚举</h2><p>比起利用NSEnumerator对象或在集合中依次枚举，Objective-C 2.0提供了<strong>快速枚举的语法</strong>。在Objective-C 2.0中，以下循环的功能是相等的，但性能特性不同。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 使用NSEnumerator</span><br><span class="line">NSEnumerator *enumerator = [thePeople objectEnumerator];</span><br><span class="line">Person *p;</span><br><span class="line"></span><br><span class="line">while ( (p = [enumerator nextObject]) != nil ) &#123;</span><br><span class="line">    NSLog(@&quot;%@ is %i years old.&quot;, [p name], [p age]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 使用依次枚举</span><br><span class="line">for ( int i = 0; i &lt; [thePeople count]; i++ ) &#123;</span><br><span class="line">    Person *p = [thePeople objectAtIndex:i];</span><br><span class="line">    NSLog(@&quot;%@ is %i years old.&quot;, [p name], [p age]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 使用快速枚举</span><br><span class="line">for (Person *p in thePeople) &#123;</span><br><span class="line">    NSLog(@&quot;%@ is %i years old.&quot;, [p name], [p age]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>快速枚举可以比标准枚举产生更有效的代码，由于枚举所调用的方法被使用NSFastEnumeration协议提供的指针算术运算所代替了。</p>
-<h2 id="协议（Protocol）"><a href="#协议（Protocol）" class="headerlink" title="协议（Protocol）"></a>协议（Protocol）</h2><p>协议是<strong>一组没有实现的方法列表</strong>，任何的类均<strong>可采纳协议并具体实现</strong>这组方法。</p>
-<p>协议类似于Java与C#语言中的”接口”。在Objective-C中，有两种定义协议的方式：由编译器保证的”正式协议”，以及为特定目的设定的”非正式协议”。</p>
-<ul>
-<li>非正式协议为一个可以选择性实现的一系列方法列表。optional 非正式协议已经被废弃不再使用。</li>
-<li>正式协议类似于Java中的”接口”，它是一系列方法的列表，任何类都<strong>可以声明自身实现了某个协议</strong>。在Objective-C 2.0之前，一个类必须实现它声明匹配的协议中的所有方法，否则编译器会报告错误，表明这个类没有实现它声明匹配的协议中的全部方法。Objective-C 2.0版本允许标记协议中某些方法为可选的（Optional），这样编译器就不会强制实现这些可选的方法。协议经常应用于<strong>Cocoa中的委托及事件触发</strong>。例如文本框类通常会包括一个委托（delegate）对象，该对象可以实现一个协议，该协议中可能包含一个实现文字输入的自动完成方法。若这个委托对象实现了这个方法，那么文本框类就会在适当的时候触发自动完成事件，并调用这个方法用于自动完成功能。</li>
-<li>Objective-C中协议的概念与Java中接口的概念并不完全相同，即一个类可以在不声明它匹配某个协议的情况下，实现这个协议所包含的方法，也即实质上匹配这个协议，而这种差别对外部代码而言是不可见的。<strong>正式协议的声明不提供实现，它只是简单地表明匹配该协议的类实现了该协议的方法，保证调用端可以安全调用方法</strong>。</li>
-</ul>
-<h3 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h3><p>协议以关键字@protocol作为区块起始，@end结束，中间为方法列表。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@protocol Locking</span><br><span class="line">- (void)lock;</span><br><span class="line">- (void)unlock;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>这是一个协议的例子，多线程编程中经常要确保一份共享资源同时只有一个线程可以使用，会在使用前给该资源挂上锁 ，以上即为一个表明有”锁”的概念的协议，<strong>协议中有两个方法，只有名称但尚未实现</strong>。<br>下面的SomeClass宣称他采纳了Locking协议：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@interface SomeClass : SomeSuperClass &lt;Locking&gt;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>一旦SomeClass表明他采纳了Locking协议，SomeClass就有义务实现Locking协议中的两个方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@implementation SomeClass</span><br><span class="line">- (void)lock &#123;</span><br><span class="line">  // 實現lock方法...</span><br><span class="line">&#125;</span><br><span class="line">- (void)unlock &#123;</span><br><span class="line">  // 實現unlock方法...</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>由于SomeClass已经确实遵从了Locking协议，故调用端可以安全的发送lock或unlock消息给SomeClass实体变量，不需担心他没有办法回应消息。</p>
-<p>插件是另一个使用抽象定义的例子，可以在不关心插件的实现的情况下定义其希望的行为。</p>
-<h2 id="动态类型"><a href="#动态类型" class="headerlink" title="动态类型"></a>动态类型</h2><p>类似于Smalltalk，Objective-C具备动态类型：即<strong>消息可以发送给任何对象实体，无论该对象实体的公开接口中有没有对应的方法。</strong>对比于C++这种静态类型的语言，编译器会挡下对（void<em>）指针调用方法的行为。但在Objective-C中，你可以对id发送任何消息（id很像void</em>，但是被严格限制只能使用在对象上），编译器仅会发出”该对象可能无法回应消息”的警告，程序可以通过编译，而实际发生的事则取决于运行期该对象的真正形态，若该对象的确可以回应消息，则依旧运行对应的方法。</p>
-<p>一个对象收到消息之后，他有三种处理消息的可能手段，<strong>第一是回应该消息并运行方法，若无法回应，则可以转发消息给其他对象，若以上两者均无，就要处理无法回应而抛出的例外。只要进行三者之其一，该消息就算完成任务而被丢弃。若对”nil”（空对象指针）发送消息，该消息通常会被忽略，取决于编译器选项可能会抛出例外。</strong></p>
-<p>虽然Objective-C具备动态类型的能力，但编译期的静态类型检查依旧可以应用到变量上。以下三种声明在运行时效果是完全相同的，但是三种声明提供了一个比一个更明显的类型信息，附加的类型信息让编译器在编译时可以检查变量类型，并对类型不符的变量提出警告。</p>
-<p>下面三个方法，差异仅在于参数的形态：<br><code>- setMyValue:(id) foo;</code><br>id形态表示参数”foo”可以是任何类的实例。<br><code>- setMyValue:(id &lt;aProtocol&gt;) foo;</code><br>id<aprotocol>表示”foo”可以是任何类的实例，但必须采纳”aProtocol”协议。<br><code>- setMyValue:(NSNumber*) foo;</code><br>该声明表示”foo”必须是”NSNumber”的实例。</aprotocol></p>
-<p>动态类型是一种强大的特性。在缺少泛型的静态类型语言（如Java 5以前的版本）中实现容器类时，程序员需要写一种针对通用类型对象的容器类，然后在通用类型和实际类型中不停的强制类型转换。无论如何，类型转换会破坏静态类型，例如写入一个”整数”而将其读取为”字符串”会产生运行时错误。这样的问题被泛型解决，但容器类需要其内容对象的类型一致，而对于动态类型语言则完全没有这方面的问题。</p>
-<h2 id="转发"><a href="#转发" class="headerlink" title="转发"></a>转发</h2><p>Objective-C允许对一个对象发送消息，不管它是否能够响应之。除了<strong>响应或丢弃消息</strong>以外，对象也可以<strong>将消息转发到可以响应该消息的对象</strong>。转发可以用于简化特定的设计模式，例如观测器模式或代理模式。<br>Objective-C运行时在Object中定义了一对方法：</p>
-<p>转发方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (retval_t) forward:(SEL) sel :(arglist_t) args; // with GCC</span><br><span class="line">- (id) forward:(SEL) sel :(marg_list) args; // with NeXT/Apple systems</span><br></pre></td></tr></table></figure>
-<p>响应方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (retval_t) performv:(SEL) sel :(arglist_t) args;  // with GCC</span><br><span class="line">- (id) performv:(SEL) sel :(marg_list) args; // with NeXT/Apple systems</span><br></pre></td></tr></table></figure>
-<p>希望实现转发的对象<strong>只需用新的方法覆盖以上方法来定义其转发行为</strong>。无需重写响应方法performv::，由于该方法<strong>只是单纯的对响应对象发送消息并传递参数</strong>。其中，SEL类型是Objective-C中消息的类型。</p>
-<p>以下代码演示了转发的基本概念：<br>Forwarder.h 文件代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;objc/Object.h&gt;</span><br><span class="line"></span><br><span class="line">@interface Forwarder : Object</span><br><span class="line">&#123;</span><br><span class="line">    id recipient; //该对象是我们希望转发到的对象。</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@property (assign, nonatomic) id recipient;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>Forwarder.m 文件代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Forwarder.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation Forwarder</span><br><span class="line"></span><br><span class="line">@synthesize recipient;</span><br><span class="line"></span><br><span class="line">- (retval_t) forward: (SEL) sel : (arglist_t) args</span><br><span class="line">&#123;</span><br><span class="line">    /*</span><br><span class="line">     *检查转发对象是否响应该消息。</span><br><span class="line">     *若转发对象不响应该消息，则不会转发，而产生一个错误。</span><br><span class="line">     */</span><br><span class="line">    if([recipient respondsTo:sel])</span><br><span class="line">       return [recipient performv: sel : args];</span><br><span class="line">    else</span><br><span class="line">       return [self error:&quot;Recipient does not respond&quot;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Recipient.h 文件代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;objc/Object.h&gt;</span><br><span class="line"></span><br><span class="line">// A simple Recipient object.</span><br><span class="line">@interface Recipient : Object</span><br><span class="line">- (id) hello;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>Recipient.m 文件代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Recipient.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation Recipient</span><br><span class="line"></span><br><span class="line">- (id) hello</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;Recipient says hello!\n&quot;);</span><br><span class="line"></span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>main.m 文件代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Forwarder.h&quot;</span><br><span class="line">#import &quot;Recipient.h&quot;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    Forwarder *forwarder = [Forwarder new];</span><br><span class="line">    Recipient *recipient = [Recipient new];</span><br><span class="line"></span><br><span class="line">    forwarder.recipient = recipient; //Set the recipient.</span><br><span class="line">    /*</span><br><span class="line">     *转发者不响应hello消息！该消息将被转发到转发对象。</span><br><span class="line">     *（若转发对象响应该消息）</span><br><span class="line">     */</span><br><span class="line">    [forwarder hello];</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>利用GCC编译时，编译器报告：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -x objective-c -Wno-import Forwarder.m Recipient.m main.m -lobjc</span><br><span class="line">main.m: In function `main&apos;:</span><br><span class="line">main.m:12: warning: `Forwarder&apos; does not respond to `hello&apos;</span><br></pre></td></tr></table></figure>
-<p>如前文所提到的，编译器报告Forwarder类不响应hello消息。在这种情况下，由于实现了转发，可以忽略这个警告。 运行该程序产生如下输出：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./a.out</span><br><span class="line">Recipient says hello!</span><br></pre></td></tr></table></figure>
-<h2 id="类别-Category"><a href="#类别-Category" class="headerlink" title="类别 (Category)"></a>类别 (Category)</h2><p>在Objective-C的设计中，一个主要的考虑即为大型代码框架的维护。结构化编程的经验显示，改进代码的一种主要方法即为将其分解为更小的片段。Objective-C借用并扩展了Smalltalk<strong>并扩展了Smalltalk实现中的”分类”</strong>的目的。</p>
-<p>一个分类可以将<strong>方法的实现分解进一系列分离的文件</strong>。程序员可以将<strong>一组相关的方法放进一个分类，使程序更具可读性</strong>。举例来讲，可以在<strong>字符串类中增加一个名为”拼写检查”的分类</strong>，并将拼写检查的相关代码放进这个分类中。</p>
-<p>进一步的，<strong>分类中的方法是在运行时被加入类中的，这一特性允许程序员向现存的类中增加方法，而无需持有原有的代码</strong>，或是重新编译原有的类。例如若系统提供的字符串类的实现中不包含拼写检查的功能，可以增加这样的功能而无需更改原有的字符串类的代码。</p>
-<p>在运行时，分类中的方法与类原有的方法并无区别，其代码可以访问包括私有类成员变量在内的所有成员变量。</p>
-<p>分类<strong>声明了与类中原有方法同名的函数，则分类中的方法会被调用</strong>。因此分类不仅可以增加类的方法，也可以代替原有的方法。这个特性可以用于修正原有代码中的错误，更可以从根本上改变程序中原有类的行为。若两个分类中的方法同名，则被调用的方法是不可预测的。</p>
-<h3 id="使用分类的例子"><a href="#使用分类的例子" class="headerlink" title="使用分类的例子"></a>使用分类的例子</h3><p>这个例子创建了Integer类，其本身只定义了integer属性，然后增加了两个分类Arithmetic与Display以扩展类的功能。虽然分类可以访问类的私有成员，但通常利用属性的访问方法来访问是一种更好的做法，可以使得分类与原有类更加独立。这是分类的一种典型应用—另外的应用是利用分类来替换原有类中的方法，虽然用分类而不是继承来替换方法不被认为是一种好的做法。</p>
-<p>Integer.h 文件代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;objc/Object.h&gt;</span><br><span class="line"></span><br><span class="line">@interface Integer : Object</span><br><span class="line">&#123;</span><br><span class="line">@private</span><br><span class="line">    int integer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@property (assign, nonatomic) integer;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>Integer.m 文件代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Integer.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation Integer</span><br><span class="line"></span><br><span class="line">@synthesize integer;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>Arithmetic.h 文件代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Integer.h&quot;</span><br><span class="line"></span><br><span class="line">@interface Integer(Arithmetic)</span><br><span class="line">- (id) add: (Integer *) addend;</span><br><span class="line">- (id) sub: (Integer *) subtrahend;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>Arithmetic.m 文件代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Arithmetic.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation Integer(Arithmetic)</span><br><span class="line">- (id) add: (Integer *) addend</span><br><span class="line">&#123;</span><br><span class="line">    self.integer = self.integer + addend.integer;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (id) sub: (Integer *) subtrahend</span><br><span class="line">&#123;</span><br><span class="line">    self.integer = self.integer - subtrahend.integer;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>Display.h 文件代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Integer.h&quot;</span><br><span class="line"></span><br><span class="line">@interface Integer(Display)</span><br><span class="line">- (id) showstars;</span><br><span class="line">- (id) showint;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>Display.m 文件代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Display.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation Integer(Display)</span><br><span class="line">- (id) showstars</span><br><span class="line">&#123;</span><br><span class="line">    int i, x = self.integer;</span><br><span class="line">    for(i=0; i &lt; x; i++)</span><br><span class="line">       printf(&quot;*&quot;);</span><br><span class="line">    printf(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (id) showint</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;%d\n&quot;, self.integer);</span><br><span class="line"></span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>main.m 文件代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Integer.h&quot;</span><br><span class="line">#import &quot;Arithmetic.h&quot;</span><br><span class="line">#import &quot;Display.h&quot;</span><br><span class="line"></span><br><span class="line">int</span><br><span class="line">main(void)</span><br><span class="line">&#123;</span><br><span class="line">    Integer *num1 = [Integer new], *num2 = [Integer new];</span><br><span class="line">    int x;</span><br><span class="line"></span><br><span class="line">    printf(&quot;Enter an integer: &quot;);</span><br><span class="line">    scanf(&quot;%d&quot;, &amp;x);</span><br><span class="line"></span><br><span class="line">    num1.integer = x;</span><br><span class="line">    [num1 showstars];</span><br><span class="line"></span><br><span class="line">    printf(&quot;Enter an integer: &quot;);</span><br><span class="line">    scanf(&quot;%d&quot;, &amp;x);</span><br><span class="line"></span><br><span class="line">    num2.integer = x;</span><br><span class="line">    [num2 showstars];</span><br><span class="line"></span><br><span class="line">    [num1 add:num2];</span><br><span class="line">    [num1 showint];</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>利用以下命令来编译：</p>
-<p><code>gcc -x objective-c main.m Integer.m Arithmetic.m Display.m -lobjc</code><br>在编译时间，可以利用省略#import “Arithmetic.h” 与[num1 add:num2]命令，以及Arithmetic.m文件来实验。程序仍然可以运行，这表明了允许动态的、按需的加载分类；若不需要某一分类提供的功能，可以简单的不编译之。</p>
-<h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><p>Objective-C运行时会将引用计数操作.当垃圾收集启用时，所有的对象都是收集器的工作对象。普通的C指针可以以”<strong>strong”修饰，标记指针指向的对象仍在使用中。被标记为”</strong>weak”的指针不被计入收集器的计数中，并在对象被回收时改写为”nil”。</p>
-<ul>
-<li>OC是支持垃圾回收机制的(Garbage collection简称GC),</li>
-<li>iOS开发只支持手动内存管理和ARC；如果两个对象互相强引用（strong references）将导致它们永远不会被释放，甚至没有任何对象引用它们。</li>
-</ul>
-<h3 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h3><p>引用计数（Reference Count）是一个简单而有效的管理对象生命周期的方式。当我们<strong>创建</strong>一个新对象的时候，它的引用计数为 1，当有一个<strong>新的指针指向这个对象</strong>时，我们将其引用计数加 1，当<strong>某个指针不再指向这个对象</strong>是，我们将其引用计数减 1，当对象的引用计数变为 0 时，说明这个对象不再被任何指针指向了，这个时候我们就可以将对象销毁，回收内存。由于引用计数简单有效。</p>
-<p>引用计数真正派上用场的场景是在面向对象的程序设计架构中，用于对象之间传递和共享数据。</p>
-<h3 id="ARC-下的内存管理问题"><a href="#ARC-下的内存管理问题" class="headerlink" title="ARC 下的内存管理问题"></a>ARC 下的内存管理问题</h3><p>对于 ARC 盲目依赖的 iOS 新人们，由于不知道引用计数，他们的问题主要体现在：</p>
-<ol>
-<li>过度使用 block 之后，无法解决循环引用问题。</li>
-<li>遇到底层 Core Foundation 对象，需要自己手工管理它们的引用计数时，显得一筹莫展。</li>
-</ol>
-<ul>
-<li>循环引用（Reference Cycle）问题</li>
-</ul>
-<p>引用计数这种管理内存的方式虽然很简单，但是有一个比较大的瑕疵，即它不能很好的解决循环引用问题。如下图所示：对象 A 和对象 B，相互引用了对方作为自己的成员变量，只有当自己销毁时，才会将成员变量的引用计数减 1。因为对象 A 的销毁依赖于对象 B 销毁，而对象 B 的销毁与依赖于对象 A 的销毁，这样就造成了我们称之为循环引用（Reference Cycle）的问题，这两个对象即使在外界已经没有任何指针能够访问到它们了，它们也无法被释放。</p>
-<p>解决循环引用问题主要有两个办法，第一个办法是我明确知道这里会存在循环引用，在合理的位置主动断开环中的一个引用，使得对象得以回收。<br>主动断开循环引用这种方式常见于各种与 block 相关的代码逻辑中。例如在我开源的 YTKNetwork 网络库中，网络请求的回调 block 是被持有的，但是如果这个 block 中又存在对于 View Controller 的引用，就很容易产生从循环引用，因为：</p>
-<p>Controller 持有了网络请求对象<br>网络请求对象持有了回调的 block<br>回调的 block 里面使用了 self，所以持有了 Controller</p>
-<p>解决办法就是，在网络请求结束后，网络请求对象执行完 block 之后，主动释放对于 block 的持有，以便打破循环引用。相关的代码见：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// https://github.com/yuantiku/YTKNetwork/blob/master/YTKNetwork/YTKBaseRequest.m</span><br><span class="line">// 第 147 行：</span><br><span class="line">- (void)clearCompletionBlock &#123;</span><br><span class="line">    // 主动释放掉对于 block 的引用</span><br><span class="line">    self.successCompletionBlock = nil;</span><br><span class="line">    self.failureCompletionBlock = nil;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不过，主动断开循环引用这种操作依赖于程序员自己手工显式地控制，相当于回到了以前 “谁申请谁释放” 的内存管理年代，它依赖于程序员自己有能力发现循环引用并且知道在什么时机断开循环引用回收内存（这通常与具体的业务逻辑相关），所以这种解决方法并不常用，更常见的办法是使用弱引用 (weak reference) 的办法。</p>
-<h3 id="使用弱引用"><a href="#使用弱引用" class="headerlink" title="使用弱引用"></a>使用弱引用</h3><p>弱引用虽然持有对象，但是并不增加引用计数，这样就避免了循环引用的产生。在 iOS 开发中，弱引用通常在 delegate 模式中使用。举个例子来说，两个 ViewController A 和 B，ViewController A 需要弹出 ViewController B，让用户输入一些内容，当用户输入完成后，ViewController B 需要将内容返回给 ViewController A。这个时候，View Controller 的 delegate 成员变量通常是一个弱引用，以避免两个 ViewController 相互引用对方造成循环引用问题，</p>
-<p><img src="/2019/05/07/iOS学习入门/img4.png" alt=""><br>弱引用的实现原理</p>
-<p>弱引用的实现原理是这样，系统对于每一个有弱引用的对象，都维护一个表来记录它所有的弱引用的指针地址。这样，当一个对象的引用计数为 0 时，系统就通过这张表，找到所有的弱引用指针，继而把它们都置成 nil。</p>
-<p>从这个原理中，我们可以看出，弱引用的使用是有额外的开销的。虽然这个开销很小，但是如果一个地方我们肯定它不需要弱引用的特性，就不应该盲目使用弱引用。举个例子，有人喜欢在手写界面的时候，将所有界面元素都设置成 weak 的，这某种程度上与 Xcode 通过 Storyboard 拖拽生成的新变量是一致的。但是我个人认为这样做并不太合适。因为：</p>
-<ol>
-<li>我们在创建这个对象时，需要注意临时使用一个强引用持有它，否则因为 weak 变量并不持有对象，就会造成一个对象刚被创建就销毁掉。</li>
-<li>大部分 ViewController 的视图对象的生命周期与 ViewController 本身是一致的，没有必要额外做这个事情。</li>
-</ol>
-<h3 id="Core-Foundation-对象的内存管理"><a href="#Core-Foundation-对象的内存管理" class="headerlink" title="Core Foundation 对象的内存管理"></a>Core Foundation 对象的内存管理</h3><p>下面我们就来简单介绍一下对底层 Core Foundation 对象的内存管理。底层的 Core Foundation 对象，在创建时大多以 XxxCreateWithXxx 这样的方式创建，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 创建一个 CFStringRef 对象</span><br><span class="line">CFStringRef str= CFStringCreateWithCString(kCFAllocatorDefault, “hello world&quot;, kCFStringEncodingUTF8);</span><br><span class="line">// 创建一个 CTFontRef 对象</span><br><span class="line">CTFontRef fontRef = CTFontCreateWithName((CFStringRef)@&quot;ArialMT&quot;, fontSize, NULL);</span><br></pre></td></tr></table></figure>
-<p>对于这些对象的引用计数的修改，要相应的使用 CFRetain 和 CFRelease 方法。如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 创建一个 CTFontRef 对象</span><br><span class="line">CTFontRef fontRef = CTFontCreateWithName((CFStringRef)@&quot;ArialMT&quot;, fontSize, NULL);</span><br><span class="line">// 引用计数加 1</span><br><span class="line">CFRetain(fontRef);</span><br><span class="line">// 引用计数减 1</span><br><span class="line">CFRelease(fontRef);</span><br></pre></td></tr></table></figure>
-<p>对于 CFRetain 和 CFRelease 两个方法，读者可以直观地认为，这与 Objective-C 对象的 retain 和 release 方法等价。</p>
-<p>所以对于底层 Core Foundation 对象，我们只需要延续以前手工管理引用计数的办法即可。</p>
-<p>除此之外，还有另外一个问题需要解决。在 ARC 下，我们有时需要将一个 Core Foundation 对象转换成一个 Objective-C 对象，这个时候我们需要告诉编译器，转换过程中的引用计数需要做如何的调整。这就引入了bridge相关的关键字，以下是这些关键字的说明：</p>
-<ul>
-<li>__bridge: 只做类型转换，不修改相关对象的引用计数，原来的 Core Foundation 对象在不用时，需要调用 CFRelease 方法。</li>
-<li>__bridge_retained：类型转换后，将相关对象的引用计数加 1，原来的 Core Found-ation 对象在不用时，需要调用 CFRelease 方法。</li>
-<li>__bridge_transfer：类型转换后，将该对象的引用计数交给 ARC 管理，Core Foundation 对象在不用时，不再需要调用 CFRelease 方法。</li>
-</ul>
-<h2 id="OC-property-指示符"><a href="#OC-property-指示符" class="headerlink" title="OC @property 指示符"></a>OC @property 指示符</h2><p>常用的指示符有assign、atomic、copy、retain、strong、week、等。下面对它们的用途和常常对应的属性讲解一下。</p>
-<ul>
-<li>assign：该指示符号对属性只是<strong>简单的赋值，不更改引用计数</strong>。<strong>常用于NSInteger等OC基础类型，以及short、int、double、结构体等C数据类型</strong>，因为这些类型不存在被内存回收的问题。</li>
-<li>atomic、nonatomic：指定setter和getter是否是原子操作，即是否线程安全。如果是atomic，那么存取方法都是线程安全的，即某一线程访问存或者取方法，其他线程不可以进入该存、取方法。nonatomic则不具备线程安全的功能。需要指出的是atomic是默认值，可以保证数据的完整性，但是相应的降低了性能，所以在单线程环境中建议使用nonatomic来提升性能。</li>
-<li>copy：如果使用copy指示符，当调用setter方法对成员变量赋值时，会将被赋值的对象复制的一个副本，再将该副本给成员变量，相应的原先的被赋值的对象的引用计数加1。当成员变量的类型是可变类型，或其子类是可变类型，被赋值的对象在赋值后有可能再被修改，如果不需要这种修改，则可以考虑copy指示符。</li>
-<li>getter、setter：用于为getter方法、setter方法指定自定义方法名。比如getter＝myName,setter=setName:，我们可以看到setter方法后面有一个（:）,这是因为我们需要在后面添加参数。</li>
-<li>readonly、readwrite：readonly指示系统只合成getter方法，不合成setter方法；readwrite是默认值，指示系统需要合成setter方法和getter方法。</li>
-<li>retain：当把某个对象赋值给该属性时，该属性原来所引用的对象的引用计数减1，被赋值对象的引用计数加1。在未启用ARC机制的的情况下，retain可以保证一个对象的引用计数大于1时，该对象不会被回收。启用ARC后一般较少使用retain</li>
-<li>strong、weak：strong指示符该属性对被赋值对象持有强引用，而weak指示符指定该属性对被赋值对象持有弱引用。强引用的意思是：只要该强引用指向被赋值的对象，那么该对象就不会自动回收。弱引用的意思是：即使该弱引用指向被赋值的对象，该对象也可能被回收。如果不希望对象被回收，可以使用strong指示符。如果需要保证程序性能，避免内存溢出，可以使用weak，内存一旦被回收，指针会被赋值为nil。</li>
-</ul>
-<p>1、atomic是默认行为，assign是默认行为，readwrite是默认行为<br>2、推荐做法是NSString用copy<br>3、delegate用assign（且一定要用assign）<br>4、非objc数据类型，比如int，float等基本数据类型用assign（默认就是assign）<br>5、其它objc类型，比如NSArray，NSDate用retain。retain就如2中所述，使用了引用计数，retain引起引用计数加1, release引起引用计数减1，当引用计数为0时，dealloc函数被调用，内存被回收。</p>
-<p>assign： 简单赋值，不更改索引计数<br>copy： 建立一个索引计数为1的对象，然后释放旧对象<br>retain：释放旧的对象，将旧对象的值赋予输入对象，再提高输入对象的索引计数为1</p>
-
+        
+          <p class="article-more-link">
+            <a href="/2019/05/07/iOS学习入门/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/05/07/iOS学习入门/" data-id="cjve07sm00021nb8ocelatfjz" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/05/07/iOS学习入门/" data-id="cjve1mt1h001t608obx4hzg47" class="article-share-link">分享</a>
       
       
       
@@ -491,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/04/29/Java入门/" data-id="cjve07sho000onb8osi4jd86t" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/04/29/Java入门/" data-id="cjve1mszy000t608oxo7f2rcs" class="article-share-link">分享</a>
       
       
       
@@ -540,7 +330,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/04/19/FEDERATED-LEARNING-STRATEGIES-FOR-IMPROVINGCOMMUNICATION-EFFICIENCY/" data-id="cjve07shx000vnb8og3r8xevf" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/04/19/FEDERATED-LEARNING-STRATEGIES-FOR-IMPROVINGCOMMUNICATION-EFFICIENCY/" data-id="cjve1mszs000q608o1sc8xwv5" class="article-share-link">分享</a>
       
       
       
@@ -592,7 +382,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/23/ETHEREUM-A-SECURE-DECENTRALISED-GENERALISED-TRANSACTION-LEDGER/" data-id="cjve07sh2000dnb8o3k7iq1q7" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/23/ETHEREUM-A-SECURE-DECENTRALISED-GENERALISED-TRANSACTION-LEDGER/" data-id="cjve1msza000f608oa3u8tagm" class="article-share-link">分享</a>
       
       
       
@@ -641,7 +431,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/22/Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets/" data-id="cjve07sgd0001nb8o9rbw0f6m" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/22/Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets/" data-id="cjve1msys0003608oozpax22w" class="article-share-link">分享</a>
       
       
       
@@ -697,7 +487,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/09/智能架构/" data-id="cjve07sr8003mnb8otesz8rnt" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/09/智能架构/" data-id="cjve1mt58003g608oex51vi3c" class="article-share-link">分享</a>
       
       
       
@@ -760,7 +550,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/" data-id="cjve07soq002unb8o0ecbtswn" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/" data-id="cjve1mt41002v608oame89iqy" class="article-share-link">分享</a>
       
       
       
@@ -822,60 +612,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/08/三维动画与交互技术复习3/" data-id="cjve07sng002knb8oawh67qx3" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/考试/">考试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-三维动画与交互技术复习2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/07/三维动画与交互技术复习2/" class="article-date">
-  <time datetime="2019-01-07T13:54:10.000Z" itemprop="datePublished">2019-01-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/游戏开发/">游戏开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/07/三维动画与交互技术复习2/">三维动画与交互技术复习2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="第四讲"><a href="#第四讲" class="headerlink" title="第四讲"></a>第四讲</h1><h2 id="OpenGL核心编程"><a href="#OpenGL核心编程" class="headerlink" title="OpenGL核心编程"></a>OpenGL核心编程</h2><ol>
-<li>可编程管线介绍</li>
-<li>顶点着色器</li>
-<li>像素着色器</li>
-</ol>
-        
-          <p class="article-more-link">
-            <a href="/2019/01/07/三维动画与交互技术复习2/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/07/三维动画与交互技术复习2/" data-id="cjve07smq002cnb8oc26gq3hi" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/08/三维动画与交互技术复习3/" data-id="cjve1mt2e002a608okxlm3qox" class="article-share-link">分享</a>
       
       
       
@@ -927,7 +664,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography-Intro/">Cryptography Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS编程/">iOS编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/游戏开发/">游戏开发</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/物联网/">物联网</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography-Intro/">Cryptography Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS编程/">iOS编程</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/游戏开发/">游戏开发</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/物联网/">物联网</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -937,7 +674,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/BigData/" style="font-size: 14px;">BigData</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Cryptography/" style="font-size: 14px;">Cryptography</a> <a href="/tags/Goa入门/" style="font-size: 14px;">Goa入门</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 14px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20.6px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.2px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/intro/" style="font-size: 14px;">intro</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 14px;">paper reading</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 18.4px;">代码</a> <a href="/tags/入门/" style="font-size: 22.8px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 16.2px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/智能架构/" style="font-size: 14px;">智能架构</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/禅/" style="font-size: 14px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/考试/" style="font-size: 22.8px;">考试</a> <a href="/tags/自我修炼/" style="font-size: 16.2px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 20.6px;">论文阅读</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
+      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/BigData/" style="font-size: 14px;">BigData</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Cryptography/" style="font-size: 14px;">Cryptography</a> <a href="/tags/Goa入门/" style="font-size: 14px;">Goa入门</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 14px;">Swagger</a> <a href="/tags/coding/" style="font-size: 22.8px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.2px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/intro/" style="font-size: 14px;">intro</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 14px;">paper reading</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 18.4px;">代码</a> <a href="/tags/入门/" style="font-size: 22.8px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 16.2px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/智能架构/" style="font-size: 14px;">智能架构</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/禅/" style="font-size: 14px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/考试/" style="font-size: 22.8px;">考试</a> <a href="/tags/自我修炼/" style="font-size: 16.2px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 20.6px;">论文阅读</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
     </div>
   </div>
 
@@ -947,6 +684,10 @@
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/05/08/iOS路由设计/">iOS路由设计</a>
+          </li>
         
           <li>
             <a href="/2019/05/07/iOS之LighterviewController/">iOS之LighterviewController</a>
@@ -964,10 +705,6 @@
             <a href="/2019/04/19/FEDERATED-LEARNING-STRATEGIES-FOR-IMPROVINGCOMMUNICATION-EFFICIENCY/">FEDERATED LEARNING: STRATEGIES FOR IMPROVING COMMUNICATION EFFICIENCY</a>
           </li>
         
-          <li>
-            <a href="/2019/01/23/ETHEREUM-A-SECURE-DECENTRALISED-GENERALISED-TRANSACTION-LEDGER/">ETHEREUM: A SECURE DECENTRALISED GENERALISED TRANSACTION LEDGER</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -977,7 +714,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 

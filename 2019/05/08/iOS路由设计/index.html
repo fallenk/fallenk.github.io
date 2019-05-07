@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS路由设计 | Fallenk&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="路由设计移动端路由层设计 什么是移动端路由层：  路由层的概念在服务端是指url请求的分层解析，将一个请求分发到对应的应用处理程序。移动端的路由层指的是将诸如App内页面访问、H5与App访问的访问请求和App间的访问请求，进行分发处理的逻辑层。">
+<meta name="keywords" content="coding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS路由设计">
+<meta property="og:url" content="https://fallenk.github.io/2019/05/08/iOS路由设计/index.html">
+<meta property="og:site_name" content="Fallenk&#39;s Blog">
+<meta property="og:description" content="路由设计移动端路由层设计 什么是移动端路由层：  路由层的概念在服务端是指url请求的分层解析，将一个请求分发到对应的应用处理程序。移动端的路由层指的是将诸如App内页面访问、H5与App访问的访问请求和App间的访问请求，进行分发处理的逻辑层。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://fallenk.github.io/2019/05/08/iOS路由设计/img1.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/05/08/iOS路由设计/img2.png">
+<meta property="og:updated_time" content="2019-05-07T17:03:41.725Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS路由设计">
+<meta name="twitter:description" content="路由设计移动端路由层设计 什么是移动端路由层：  路由层的概念在服务端是指url请求的分层解析，将一个请求分发到对应的应用处理程序。移动端的路由层指的是将诸如App内页面访问、H5与App访问的访问请求和App间的访问请求，进行分发处理的逻辑层。">
+<meta name="twitter:image" content="https://fallenk.github.io/2019/05/08/iOS路由设计/img1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fallenk.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fallenk&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">经历，心得，笔记，目标</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-iOS路由设计" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/08/iOS路由设计/" class="article-date">
+  <time datetime="2019-05-07T16:28:26.000Z" itemprop="datePublished">2019-05-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS编程/">iOS编程</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS路由设计
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="路由设计"><a href="#路由设计" class="headerlink" title="路由设计"></a>路由设计</h1><h1 id="移动端路由层设计"><a href="#移动端路由层设计" class="headerlink" title="移动端路由层设计"></a>移动端路由层设计</h1><blockquote>
+<p>什么是移动端路由层：</p>
+</blockquote>
+<p>路由层的概念在服务端是指<strong>url请求的分层解析，将一个请求分发到对应的应用处理程序</strong>。移动端的路由层指的是将<strong>诸如App内页面访问、H5与App访问的访问请求和App间的访问请求，进行分发处理的逻辑层</strong>。</p>
+<a id="more"></a>
+<blockquote>
+<p>移动端路由层需要解决的问题：</p>
+</blockquote>
+<ol>
+<li><strong>对外部提供远程访问的功能</strong>，实现跨应用调用响应，包括H5应用调用、其他App应用调用、系统访问调用等</li>
+<li><strong>原生页面、模块、组件等定义，统称为资源</strong>(Resource)，在跨应用调用和路由层在不同端实现的业务表现需要一致的前提下，需要对资源进行定义，在路由提供内部请求分发的时候则可以提供不依赖对外进行资源定义的功能</li>
+<li>外部调用如何使用统一标示(Uniform)进行表示资源</li>
+<li><strong>如何在移动端统一定义访问请求的过程</strong>，从而达成移动端与web端的统一性</li>
+<li>如何更好的兼容iOS、Android的系统访问机制、App链接协议、web端路由机制与前端开发规范等</li>
+<li>如何兼容各平台(Android、iOS)App页面导航机制</li>
+<li>如何解决安全访问问题</li>
+<li>移动端在客户端进行动态配置</li>
+</ol>
+<blockquote>
+<p>移动端路由所应用的场景：</p>
+</blockquote>
+<ul>
+<li>H5页面与App原生页面、模块与组件的交互</li>
+<li>App与App之间的相互访问</li>
+<li>App内部页面跳转、模块调度与组件加载等</li>
+<li><strong>推送与通知系统解除硬编码的逻辑</strong>，动态访问原生资源，更好的支持通过通知和推送完成动态页面访问和逻辑执行</li>
+<li>Extension等动态调用主App的资源</li>
+<li>App实现更复杂的架构MVVM或者是VIPER架构，提供解除业务相互依赖的能力</li>
+<li>以组件化为目的的工程改造，隔离各个业务，以制作单独的组件</li>
+</ul>
+<blockquote>
+<p>对外如何定义资源</p>
+</blockquote>
+<p>在路由提供对外的资源请求转发的时候，因为要照顾到其他应用的请求表达方式，比如H5应用或者是其他App的应用的访问请求，定义单纯依赖业务的资源定义就显得有些必要了。</p>
+<p>举个例子，一个H5的商品详情页，被用户分享，当其他用户看到这个H5应用的页面的时候，点击，如果该用户装了有对应这个H5商品详情页的App的时候，应该跳转到该App的原生商品详情页，如果没有安装则加载这个H5页面，在这个过程中，H5的页面是通过URL进行标识的，那这个URL的标识也应该对照到App的原生页面，但是要只依赖业务标识而不能依赖App的代码实现，比如说iOS端的App的商品详情页叫做DetailViewController，那这个URL是不能包含这个名字的，Android端可能叫DetailActivity，如果不单纯依赖业务，那H5应用就要根据平台来重新发送不同的资源定义的URL，就造成了硬编码问题，H5应用要依赖App的实现逻辑，如果有一天，原生App的页面代码实现变成了GoodDetailViewController，所有依赖DetailViewController这个资源标示的H5应用都要进行更改，就会出现问题。所以<strong>路由层的设计应该具备根据业务定义来映射App内的资源定义</strong>。<br>常常在设计路由层的时候，我们会更加关注通信行为的细节、如何改进特定通信机制的表现，常常忽略了一个事实，那就是改变应用程序的互动风格比改变协议对整体的表现有更大的影响。</p>
+<p>所谓资源，就是<strong>一个应用程序提供的不可分割的服务</strong>，从这个层面上看，App的资源即是一种实体的存在，可以进行获取和访问，必须进行良好的表示，在有些必要的情况下，必须是独一无二的识别符来表示一个应用程序所提供的服务是什么。<strong>表示资源我们更倾向于使用URI进行标示</strong>，因为移动端没有一个横跨iOS、Android、Web后端与H5应用的资源标示方式，而URI是web service模式的资源通用表示方式，包括后面将<strong>要提到的Android与iOS统一支持的universal link(通用链接)也是借用URI的概念</strong>，App路由层所涉及到的<strong>资源表示方法还是建议使用URI的标示方式</strong>，同时更应该借鉴RESTful风格来架构这一层，原因是App的页面、组件或者说一整套功能性的服务是非常复杂的，相比于H5有更加多与复杂的交互，相比于后端存在更加苛刻的网络环境与多设备多平台的技术考量，所以URI在标示横跨多平台多版本的资源的情况下，能够更好的表示某一个资源实体而不是资源的表现形式。</p>
+<p>在Android与iOS系统中，均支持URL Scheme，所以资源的标示通常会是这个样子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AppScheme://path</span><br><span class="line">//例如qq app:</span><br><span class="line">mqq:// </span><br><span class="line">//支付宝:</span><br><span class="line">支付宝alipay://</span><br></pre></td></tr></table></figure>
+<p>如果协议是Http或者是Https标示的是Web应用或者是H5应用，你的App也是一个与WebService相同级别的应用，那么URL的协议部分应该是App的唯一标示符，这个主机部分和路径部分则需要我们使用RESTful的风格进行重新设计。<br>重点是如何标示资源，例如表示App中的登录服务，那可以表示为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AppScheme://host/login</span><br></pre></td></tr></table></figure>
+<p>host为主机部分，在一般的WebService上，在业务表现形式上一般是比较大的业务条线的标示，比方说 <a href="https://news.sina.com.cn" target="_blank" rel="noopener">https://news.sina.com.cn</a> ，主机部分是news.sina.com.cn，则标示新浪新闻这条业务线，在App内你的业务条线也应该是清晰的，假如移动App的主UI框架是Tab分栏，那么每个Tab分栏就是你的业务条线的分割，这点跟WebService应用的导航栏类似，App的资源大多是页面或者是可交互的组件，与UI关系比较大，假如你的Tab有四个：分别叫首页、商品、发现、我的，那么我们可以这样定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AppScheme://index/</span><br><span class="line">AppScheme://goods/</span><br><span class="line">AppScheme://discover/</span><br><span class="line">AppScheme://user/</span><br></pre></td></tr></table></figure>
+<p>当然，也可以有额外的定义，比方说App有Api服务，Api提供实现一个纯数据同步的服务标示，那么这个URL可以设计为：</p>
+<p><code>AppScheme://api-asycn/collections?action=&#39;insert&#39;&amp;value=&#39;***&#39;&amp;&amp;userUoken=&#39;*******&#39;&amp;&amp;source=&quot;https//***.***.com/collection.html&quot;</code><br>由于RESTful风格强调URL的资源标示而不是行为表示，所以”AppScheme://api-asycn/collections” 是一个良好的资源标示，表示了一个收藏功能的实体，而”?”后面的GET方式的参数实际上是不得已为之，因为实际上没有Web的http request的实体，所以只能勉强借助GET参数来替代RESTful风格中强调的Accept和Content-Type字段来标示表现层的行为描述。<br>当然action与value这样的描述可以根据业务划分，但是重点是要用参数表现形式。</p>
+<h2 id="iOS与Android的系统访问机制、统一的链接协议"><a href="#iOS与Android的系统访问机制、统一的链接协议" class="headerlink" title="iOS与Android的系统访问机制、统一的链接协议"></a>iOS与Android的系统访问机制、统一的链接协议</h2><p>苹果的URL Scheme由来已久： Apple URLScheme，Android平台同样也实现了该功能，使得App能够在沙盒机制的前提下，能够相互调用声明过的服务。由于URL Scheme天生没有返回的callBack机制，著名的App Drafts的作者联合Marco Arment、Justin Williams 等人开发了x-callback-URL来做出统一跳转的协议: x-callback-url，在此不过多表述。<br>利用URL-Scheme的机制，可以定义如下的统一链接协议：</p>
+<ol>
+<li><strong>协议部分来标示App应用</strong></li>
+<li><strong>主机Host部分用于标示业务线或者是应用提供的划分好的服务实体</strong>，比方说index、discover是业务条线，api-asycn是对外提供的api，pushService是App内部的推送服务等。</li>
+<li><strong>路径部分则可以是细分的页面、组件或者服务的标示</strong></li>
+<li><strong>参数定义有一些是必要的</strong>，比如说action来标示动作，比方说可以使用get标示获取、insert增加，userToken表示安全的用户令牌，source表示来源，当然像是userToken与source这些都是路由层需要进行解析和验证的，而action则是业务相关的参数，这一点在路由曾设计的时候需要进行详细区分</li>
+</ol>
+<h2 id="统一访问请求过程"><a href="#统一访问请求过程" class="headerlink" title="统一访问请求过程"></a>统一访问请求过程</h2><p><img src="/2019/05/08/iOS路由设计/img1.png" alt=""><br>整个统一的访问请求过程如图，关于最后的response返回有一些说明：<br>在WebService的工作栈中，http的request与response是有标准协议规范的，而App的路由层<strong>只是套用的URI的资源标示和RESTFul风格的交互，没有标准的request和response结构，这部分实现在App内部</strong>，response对外部调用系统而言关心的有三个重要元素，<strong>资源状态码、返回值与错误</strong>，在路由层在响应外部调用的时候需要返回这三种元素</p>
+<h2 id="路由层逻辑结构"><a href="#路由层逻辑结构" class="headerlink" title="路由层逻辑结构"></a>路由层逻辑结构</h2><p><img src="/2019/05/08/iOS路由设计/img2.png" alt=""></p>
+<blockquote>
+<p>路由层安全</p>
+</blockquote>
+<p>路由层的安全包含两个方面：</p>
+<ol>
+<li><strong>跨应用时，需要注意注入攻击</strong>，做到敏感参数加密防篡改，同时需要注意路由层应提供能够实现风控的机制</li>
+<li>跨业务系统的时候，需要开启会话访问机制，通过令牌或者是session会话等来实现路由层身份认证</li>
+</ol>
+<h1 id="一步步构建iOS路由-实战篇"><a href="#一步步构建iOS路由-实战篇" class="headerlink" title="一步步构建iOS路由 实战篇"></a>一步步构建iOS路由 实战篇</h1><blockquote>
+<p>这个路由究竟是什么鬼？能解决什么问题？</p>
+</blockquote>
+<p>场景1：一个App项目中团队人员比较多，不同的人负责不同的模块开发，有的人直接使用资源文件设计的，有的人用代码直接写的，有的人负责登录，有的人负责订单，突然有一天搞订单的开发A找搞登录的开发B说要调一下登录，登录成功以后你要再回调下我写的模块的方法告诉我成功登录，我要刷新一下订单页面，B傻傻的就答应了，找B的人C、D、F….越来越多，B负责的代码越写越多，同时A也不怎么开心，因为A发现调B写的登录要通过类实例化函数获取模块，调C写的支付使用工厂方法，调D写的计算器组件又是另外一种写法，结果A自己的代码也越来越丑。</p>
+<p>我想上面的两个场景出现的问题大家或多或少都会遇见，总结一下就是：</p>
+<ol>
+<li>因为不同人负责不同模块，调用他人必须了解他人编写的模块如何调用，对象是啥，初始化方式是啥，这违背了面向对象的封装原则</li>
+<li>引入不同的模块头文件，多了以后，所依赖的外部发生一丁点变化你就要跟着变，逻辑变得越来越耦合，不利于维护</li>
+<li>调用不同模块要反复与他人沟通传参、回调流程、接口定义等等，沟通效率低下</li>
+<li>产品提出各种需求，但是我写的代码都是差不多的，来一个页面我需要写一些相同逻辑的代码，而且产品还抱怨每次加相同的东西就要改代码发版，这显然不能满足复用的要求。</li>
+</ol>
+<p>总结:<br>依赖多、耦合高、复用低。<br>可我们都知道有这么句话啊：高内聚、低耦合，职责单一逻辑清晰。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2019/05/08/iOS路由设计/" data-id="cjve1mt1p001y608o5wyw8932" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coding/">coding</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/07/iOS之LighterviewController/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">iOS之LighterviewController</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#路由设计"><span class="toc-number">1.</span> <span class="toc-text">路由设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#移动端路由层设计"><span class="toc-number">2.</span> <span class="toc-text">移动端路由层设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS与Android的系统访问机制、统一的链接协议"><span class="toc-number">2.1.</span> <span class="toc-text">iOS与Android的系统访问机制、统一的链接协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#统一访问请求过程"><span class="toc-number">2.2.</span> <span class="toc-text">统一访问请求过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路由层逻辑结构"><span class="toc-number">2.3.</span> <span class="toc-text">路由层逻辑结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一步步构建iOS路由-实战篇"><span class="toc-number">3.</span> <span class="toc-text">一步步构建iOS路由 实战篇</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2019 Fallenk Liu&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;fallenk_liu@yeah.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "e2fb4051c49842688ce669e634bc983f",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+    
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
