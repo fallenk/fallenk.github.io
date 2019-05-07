@@ -301,6 +301,18 @@
 <li>__bridge_retained：类型转换后，将相关对象的引用计数加 1，原来的 Core Found-ation 对象在不用时，需要调用 CFRelease 方法。</li>
 <li>__bridge_transfer：类型转换后，将该对象的引用计数交给 ARC 管理，Core Foundation 对象在不用时，不再需要调用 CFRelease 方法。</li>
 </ul>
+<h2 id="OC-property-指示符"><a href="#OC-property-指示符" class="headerlink" title="OC @property 指示符"></a>OC @property 指示符</h2><p>常用的指示符有assign、atomic、copy、retain、strong、week、等。下面对它们的用途和常常对应的属性讲解一下。</p>
+<ul>
+<li>assign：该指示符号对属性只是<strong>简单的赋值，不更改引用计数</strong>。<strong>常用于NSInteger等OC基础类型，以及short、int、double、结构体等C数据类型</strong>，因为这些类型不存在被内存回收的问题。</li>
+<li>atomic、nonatomic：指定setter和getter是否是原子操作，即是否线程安全。如果是atomic，那么存取方法都是线程安全的，即某一线程访问存或者取方法，其他线程不可以进入该存、取方法。nonatomic则不具备线程安全的功能。需要指出的是atomic是默认值，可以保证数据的完整性，但是相应的降低了性能，所以在单线程环境中建议使用nonatomic来提升性能。</li>
+<li>copy：如果使用copy指示符，当调用setter方法对成员变量赋值时，会将被赋值的对象复制的一个副本，再将该副本给成员变量，相应的原先的被赋值的对象的引用计数加1。当成员变量的类型是可变类型，或其子类是可变类型，被赋值的对象在赋值后有可能再被修改，如果不需要这种修改，则可以考虑copy指示符。</li>
+<li>getter、setter：用于为getter方法、setter方法指定自定义方法名。比如getter＝myName,setter=setName:，我们可以看到setter方法后面有一个（:）,这是因为我们需要在后面添加参数。</li>
+<li>readonly、readwrite：readonly指示系统只合成getter方法，不合成setter方法；readwrite是默认值，指示系统需要合成setter方法和getter方法。</li>
+<li>retain：当把某个对象赋值给该属性时，该属性原来所引用的对象的引用计数减1，被赋值对象的引用计数加1。在未启用ARC机制的的情况下，retain可以保证一个对象的引用计数大于1时，该对象不会被回收。启用ARC后一般较少使用retain</li>
+<li>strong、weak：strong指示符该属性对被赋值对象持有强引用，而weak指示符指定该属性对被赋值对象持有弱引用。强引用的意思是：只要该强引用指向被赋值的对象，那么该对象就不会自动回收。弱引用的意思是：即使该弱引用指向被赋值的对象，该对象也可能被回收。如果不希望对象被回收，可以使用strong指示符。如果需要保证程序性能，避免内存溢出，可以使用weak，内存一旦被回收，指针会被赋值为nil。</li>
+</ul>
+<p>1、atomic是默认行为，assign是默认行为，readwrite是默认行为<br>2、推荐做法是NSString用copy<br>3、delegate用assign（且一定要用assign）<br>4、非objc数据类型，比如int，float等基本数据类型用assign（默认就是assign）<br>5、其它objc类型，比如NSArray，NSDate用retain。retain就如2中所述，使用了引用计数，retain引起引用计数加1, release引起引用计数减1，当引用计数为0时，dealloc函数被调用，内存被回收。</p>
+<p>assign： 简单赋值，不更改索引计数<br>copy： 建立一个索引计数为1的对象，然后释放旧对象<br>retain：释放旧的对象，将旧对象的值赋予输入对象，再提高输入对象的索引计数为1</p>
 
       
     </div>
