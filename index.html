@@ -100,28 +100,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>TensorFlow联合（TFF）平台由两层组成：</p>
 <ul>
 <li>联合学习（FL），将现有Keras或非Keras机器学习模型插入TFF框架的高级接口。您可以执行基本任务，例如<strong>联合训练或评估</strong>，而无需研究联合学习算法的详细节。</li>
 <li>联合核心（FC），通过在强类型函数编程环境中将<strong>TensorFlow与分布式通信运算符</strong>相结合，简洁地表达自定义联合算法的低级接口。</li>
 </ul>
-<p>首先阅读以下教程，使用实际示例向您介绍主要的TFF概念和API。确保按照安装说明配置环境以与TFF一起使用。</p>
-<ul>
-<li>用图像分类的<strong>联合学习介绍了联合学习</strong>（FL）API的关键部分，并演示了如何使用TFF模拟联合类MNIST数据的联合学习。</li>
-<li>用于文本生成的联合学习进一步演示了如何使用TFF的FL API来优化语言建模任务的序列化预训练模型。</li>
-<li>自定义联合算法，第1部分：联合核心简介和第2部分：实现联合平均，介绍了<strong>联合核心API（FC API）提供的关键概念和接口</strong>，并演示了如何实现简单的联合平均训练算法以及如何执行联合评估。</li>
-</ul>
-<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">virtualenv --python python3 <span class="string">"venv"</span></span><br><span class="line">source <span class="string">"venv/bin/activate"</span></span><br><span class="line">pip install --upgrade pip</span><br><span class="line">pip install --upgrade tensorflow_federated</span><br></pre></td></tr></table></figure>
-<h1 id="Federated-Learning"><a href="#Federated-Learning" class="headerlink" title="Federated Learning"></a>Federated Learning</h1><h2 id="Overview-1"><a href="#Overview-1" class="headerlink" title="Overview"></a>Overview</h2><p>本文档介绍了促进联合学习任务的接口，例如联合训练或使用TensorFlow中实现的现有机器学习模型进行评估。在设计这些接口时，我们的主<strong>要目标是使其能够在不需要了解其工作原理的情况下进行联邦学习</strong>的实验，并评估在各种现有模型和数据上实施的联合学习算法。我们鼓励您回馈该平台。 TFF的设计考虑了可扩展性和可组合性，我们欢迎贡献;我们很高兴看到你想出了什么！</p>
-<p>该层提供的接口包括以下三个关键部分：</p>
-<ul>
-<li><strong>Models</strong>: <strong>Classes and helper functions that allow you to wrap your existing models for use with TFF</strong>。包装模型可以像调用单个包装函数（例如，tff.learning.from_keras_model）一样简单，也可以定义tff.learning.Model接口的子类以实现完全可定制性。</li>
-<li><strong>Federated Computation Builders</strong>. 辅助函数，使用<strong>现有模型</strong>构建用于训练或评估的联合计算。</li>
-<li>Datasets: 可以在Python中下载和访问的罐装数据集，用于模拟联合学习方案。虽然联邦学习设计用于分散数据，无法简单地在集中位置下载，但在研究和开发阶段，使用可在本地下载和操作的数据进行初始实验通常很方便，特别是对于可能是方法的新手。</li>
-</ul>
-
+        
+          <p class="article-more-link">
+            <a href="/2019/05/09/TensorflowFederatedGuide/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
