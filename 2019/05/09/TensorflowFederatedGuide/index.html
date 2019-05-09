@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
 <meta property="og:description" content="OverviewTensorFlow联合（TFF）平台由两层组成：  联合学习（FL），将现有Keras或非Keras机器学习模型插入TFF框架的高级接口。您可以执行基本任务，例如联合训练或评估，而无需研究联合学习算法的详细节。 联合核心（FC），通过在强类型函数编程环境中将TensorFlow与分布式通信运算符相结合，简洁地表达自定义联合算法的低级接口。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-09T11:39:07.403Z">
+<meta property="og:updated_time" content="2019-05-09T12:33:55.806Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorflowFederatedGuide">
 <meta name="twitter:description" content="OverviewTensorFlow联合（TFF）平台由两层组成：  联合学习（FL），将现有Keras或非Keras机器学习模型插入TFF框架的高级接口。您可以执行基本任务，例如联合训练或评估，而无需研究联合学习算法的详细节。 联合核心（FC），通过在强类型函数编程环境中将TensorFlow与分布式通信运算符相结合，简洁地表达自定义联合算法的低级接口。">
@@ -114,13 +114,61 @@
 <li>自定义联合算法，第1部分：联合核心简介和第2部分：实现联合平均，介绍了<strong>联合核心API（FC API）提供的关键概念和接口</strong>，并演示了如何实现简单的联合平均训练算法以及如何执行联合评估。</li>
 </ul>
 <h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">virtualenv --python python3 <span class="string">"venv"</span></span><br><span class="line">source <span class="string">"venv/bin/activate"</span></span><br><span class="line">pip install --upgrade pip</span><br><span class="line">pip install --upgrade tensorflow_federated</span><br></pre></td></tr></table></figure>
-<h1 id="Federated-Learning"><a href="#Federated-Learning" class="headerlink" title="Federated Learning"></a>Federated Learning</h1><h2 id="Overview-1"><a href="#Overview-1" class="headerlink" title="Overview"></a>Overview</h2><p>本文档介绍了促进联合学习任务的接口，例如联合训练或使用TensorFlow中实现的现有机器学习模型进行评估。在设计这些接口时，我们的主<strong>要目标是使其能够在不需要了解其工作原理的情况下进行联邦学习</strong>的实验，并评估在各种现有模型和数据上实施的联合学习算法。我们鼓励您回馈该平台。 TFF的设计考虑了可扩展性和可组合性，我们欢迎贡献;我们很高兴看到你想出了什么！</p>
+<h1 id="Federated-Learning"><a href="#Federated-Learning" class="headerlink" title="Federated Learning"></a>Federated Learning</h1><h3 id="Overview-1"><a href="#Overview-1" class="headerlink" title="Overview"></a>Overview</h3><p>本文档介绍了促进联合学习任务的接口，例如联合训练或使用TensorFlow中实现的现有机器学习模型进行评估。在设计这些接口时，我们的主<strong>要目标是使其能够在不需要了解其工作原理的情况下进行联邦学习</strong>的实验，并评估在各种现有模型和数据上实施的联合学习算法。我们鼓励您回馈该平台。 TFF的设计考虑了可扩展性和可组合性，我们欢迎贡献;我们很高兴看到你想出了什么！</p>
 <p>该层提供的接口包括以下三个关键部分：</p>
 <ul>
 <li><strong>Models</strong>: <strong>Classes and helper functions that allow you to wrap your existing models for use with TFF</strong>。包装模型可以像调用单个包装函数（例如，tff.learning.from_keras_model）一样简单，也可以定义tff.learning.Model接口的子类以实现完全可定制性。</li>
 <li><strong>Federated Computation Builders</strong>. 辅助函数，使用<strong>现有模型</strong>构建用于训练或评估的联合计算。</li>
 <li>Datasets: 可以在Python中下载和访问的罐装数据集，用于模拟联合学习方案。虽然联邦学习设计用于分散数据，无法简单地在集中位置下载，但在研究和开发阶段，使用可在本地下载和操作的数据进行初始实验通常很方便，特别是对于可能是方法的新手。</li>
 </ul>
+<p>这些<strong>接口主要在tff.learning命名空间中定义</strong>，但除研究数据集和已在tff.simulation中分组的其他模拟相关功能外。该层FL使用Federated Core（FC）提供的低级接口实现，该接口还提供运行时环境。</p>
+<p>在继续之前，我们建议您首先查看有关图像分类和文本生成的教程，因为它们使用具体示例介绍了此处描述的大多数概念。如果您有兴趣了解有关TFF如何工作的更多信息，您可能希望略过自定义算法教程and作为我们用来表达联邦计算逻辑的低级接口的介绍，并研究现有的实现。 tff.learning接口。</p>
+<h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h3><h3 id="Architectural-assumptions"><a href="#Architectural-assumptions" class="headerlink" title="Architectural assumptions"></a>Architectural assumptions</h3><h4 id="Serialization序列化"><a href="#Serialization序列化" class="headerlink" title="Serialization序列化"></a>Serialization序列化</h4><p>TFF旨在支持各种分布式学习场景，其中您编写的机器学习模型代码可能在具有不同功能的大量异构客户端上执行。虽然在一端，但在某些应用中，这些客户端可能是功能强大的数据库服务器，我们平台打算支持的许多重要用途涉及资源有限的移动和嵌入式设备。我们不能假设这些设备能够托管Python运行时;我们现在唯一可以假设的是它们能够托管本地TensorFlow运行时。因此，我们在TFF中做出的基本架构假设是您的<strong>模型代码必须可序列化为TensorFlow图</strong>。</p>
+<p>您可以（并且应该）按照最新的最佳实践（如使用预先模式）开发TF代码。但是，<strong>最终代码必须是可序列化的</strong>（例如，可以包装为eager-mode代码的tf.function）。这可以确保执行时所需的任何Python状态或控制流都可以序列化（可能在Autograph的帮助下）。</p>
+<p>Currently, TensorFlow does not fully support serializing and deserializing eager-mode TensorFlow. 因此，TFF中的序列化目前遵循TF 1.0模式，其中<strong>所有代码必须在TFF控制的tf.Graph内构建</strong>。这意味着<strong>目前TFF不能使用已经构建的模型;相反，模型定义逻辑打包在一个返回tff.learning.Model的无参数函数中。然后，TFF调用此函数以确保模型的所有组件都已序列化</strong>。此外，作为强类型环境，TFF将需要一些额外的元数据，例如模型输入类型的规范。 <em>使用 tff.learning.Model来包装模型</em></p>
+<h4 id="Aggregation"><a href="#Aggregation" class="headerlink" title="Aggregation"></a>Aggregation</h4><p>我们强烈建议大多数用户使用Keras构建模型，请参阅下面的Converters for Keras部分。这些包装器自动化处理<strong>模型更新的聚合以及模型定义的任何度量</strong>。但是，了解如何处理常规<strong>tff.learning.Model</strong>的聚合可能仍然有用。</p>
+<p>联合学习中始终至少有两层聚合：本地设备上聚合和跨设备（或联合）聚合：</p>
+<ul>
+<li><p><strong>本地聚合</strong>。此聚合级别是指由<strong>单个客户端拥有的多批示例之间的聚合</strong>。它适用于模型参数（变量），它们随着模型的本地训练而继续顺序演变，以及您计算的统计数据（例如平均损失，准确度和其他指标），您的模型将再次在本地更新因为它遍历每个客户端的本地数据流。</p>
+<ul>
+<li>在此级别执行<strong>聚合是模型代码的责任，并使用标准TensorFlow构造完成</strong></li>
+<li>处理的一般结构如下：<ul>
+<li>该模型<strong>首先构造tf.Variables以保存聚合</strong>，例如batches次数或处理的示例数，每批或每例损失的总和等。</li>
+<li>TFF多次在TF模型上调用forward_pass方法，依次在后续批次的客户端数据上调用，这<strong>允许您更新包含各种聚合的变量作为副作用</strong>。</li>
+<li>最后，<strong>TFF在您的模型上调用<code>report_local_outputs</code>方法</strong>，以允许您的模型将其收集的所有摘要统计的信息编译为一组紧凑的度量标准，以供客户端导出。例如，<strong>您的模型代码可以将损失总和除以处理的示例数量，以输出平均损失等</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>联合聚合</strong>。此聚合级别是指系统中多<strong>个客户端（设备）之间的聚合</strong>。同样，它适用于在客户端之间上进行平均的模型参数（变量）和模型作为本地聚合的结果导出的度量。</p>
+<ul>
+<li>在此级别<strong>执行聚合是TFF的责任</strong>。但是，作为模型创建者，您可以控制此过程（以下更多内容）。</li>
+<li>处理的一般结构如下：<ul>
+<li>初<strong>始模型和培训所需的任何参数</strong>由服务器<strong>分发</strong>给将参与一轮培训或评估的客户端子集。</li>
+<li>在<strong>每个客户端上</strong>，独立地并行地，<strong>在本地数据批次流上重复调用模型代码以生成一组新的模型参数</strong>（在培训时），以及一组新的本地度量标准，如上所述（这是本地的聚合）。</li>
+<li><strong>TFF运行分布式聚合协议</strong>，以在整个系统中<strong>累积和聚合模型参数和本地导出的指标</strong>。<strong>在Model的<code>federated_output_computation</code>中，使用TFF自己的联合计算语言（不在TensorFlow中）以声明方式表示此逻辑</strong>。有关聚合API的更多信息，请参阅<a href="https://www.tensorflow.org/federated/tutorials/custom_federated_algorithms_1" target="_blank" rel="noopener">custom algorithms</a> 。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Abstract-interfaces"><a href="#Abstract-interfaces" class="headerlink" title="Abstract interfaces"></a>Abstract interfaces</h3><p>此基本构造函数+元数据接口由<strong>接口tff.learning.Model</strong>表示实现，如下所示：</p>
+<ul>
+<li>The constructor，<code>forward_pass和report_local_outputs</code>方法应相应地<strong>构造和导出的模型变量，正向传递和统计信息</strong>。如上所述，由这些方法构造的TensorFlow必须是可序列化的。</li>
+<li><strong>input_spec属性</strong>以及返回<strong>可训练</strong>，<strong>不可训练</strong>和<strong>本地变量</strong>子集的3个属性表示元数据。 TFF使用此信息来<strong>确定如何将模型的各个部分连接到联合优化算法</strong>，以及<strong>定义内部类型签名以帮助验证构造系统的正确性</strong>（以便您的模型不能通过与不匹配的数据相匹配的数据进行实例化该模型旨在消费）。</li>
+</ul>
+<p>此外，抽象接口tff.learning.Model公开了一个属性<code>federated_output_computation</code>，它与前面提到的<code>report_local_outputs</code>属性一起去控制聚合摘要统计信息的过程。</p>
+<p>最后，派生的抽象接口<code>tff.learning.TrainableModel</code><strong>允许您自定义TFF执行各个训练步骤的方式</strong>，例如通过指定自己的优化器，或定义在训练之前和之后计算的单独度量。您可以通过覆盖新引入的抽象方法<code>train_on_batch</code>来自定义它。但是，如果您只打算使用模型进行评估，或者您满意TFF为您选择标准优化器，则不必这样做。</p>
+<p>您可以在我们的<a href="https://www.tensorflow.org/federated/tutorials/federated_learning_for_image_classification" target="_blank" rel="noopener">image classification</a>教程的第二部分以及我们用于在<a href="https://github.com/tensorflow/federated/blob/master/tensorflow_federated/python/learning/model_examples.py" target="_blank" rel="noopener"><code>model_examples.py</code></a>中进行测试的示例模型中找到如何定义自己的自定义tf.learning.Model的示例。</p>
+<h3 id="Converters-for-Keras"><a href="#Converters-for-Keras" class="headerlink" title="Converters for Keras"></a>Converters for Keras</h3><p>几乎所有TFF所需的信息都可以通过调用tf.keras接口来获得，所以如果你有一个Keras模型，你可以依赖以下两种方法之一为你构建一个tff.learning.TrainableModel实例：</p>
+<ul>
+<li><code>tff.learning.from_keras_model</code></li>
+<li><code>tff.learning.from_compiled_keras_model</code></li>
+</ul>
+<p>请注意，TFF仍然希望您提供构造函数 - 无参数模型函数，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model_fn</span><span class="params">()</span>:</span></span><br><span class="line">  keras_model = ...</span><br><span class="line">  keras_model.compile(...)</span><br><span class="line">  <span class="keyword">return</span> tff.learning.from_compiled_keras_model(keras_model, sample_batch)</span><br></pre></td></tr></table></figure>
+<p>除了模型本身，您还需要<strong>提供一组样本数据</strong>，TFF使用这些数据来<strong>确定模型输入的类型和形状</strong>。这确保了<strong>TFF可以正确地实例化实际存在于客户端设备上的数据的模型</strong>（因为我们假设在构建要序列化的TensorFlow时，这些数据通常不可用）。</p>
+<p>The use of Keras wrappers is illustrated in our <a href="https://www.tensorflow.org/federated/tutorials/federated_learning_for_image_classification" target="_blank" rel="noopener">image classification</a> and <a href="https://www.tensorflow.org/federated/tutorials/federated_learning_for_text_generation" target="_blank" rel="noopener">text generation</a> tutorials.</p>
 
       
     </div>
@@ -218,7 +266,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Overview"><span class="toc-number">1.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Installation"><span class="toc-number">2.</span> <span class="toc-text">Installation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Federated-Learning"><span class="toc-number">3.</span> <span class="toc-text">Federated Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview-1"><span class="toc-number">3.1.</span> <span class="toc-text">Overview</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Overview"><span class="toc-number">1.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Installation"><span class="toc-number">2.</span> <span class="toc-text">Installation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Federated-Learning"><span class="toc-number">3.</span> <span class="toc-text">Federated Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Overview-1"><span class="toc-number">3.0.1.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Models"><span class="toc-number">3.0.2.</span> <span class="toc-text">Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Architectural-assumptions"><span class="toc-number">3.0.3.</span> <span class="toc-text">Architectural assumptions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Serialization序列化"><span class="toc-number">3.0.3.1.</span> <span class="toc-text">Serialization序列化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Aggregation"><span class="toc-number">3.0.3.2.</span> <span class="toc-text">Aggregation</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Abstract-interfaces"><span class="toc-number">3.0.4.</span> <span class="toc-text">Abstract interfaces</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Converters-for-Keras"><span class="toc-number">3.0.5.</span> <span class="toc-text">Converters for Keras</span></a></li></ol></li></ol></li></ol>
           </div>
       </div>
     </div>
