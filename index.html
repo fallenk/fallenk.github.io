@@ -74,6 +74,71 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-TensorflowFederatedGuide" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/09/TensorflowFederatedGuide/" class="article-date">
+  <time datetime="2019-05-09T08:27:39.000Z" itemprop="datePublished">2019-05-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tensorflow/">Tensorflow</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/09/TensorflowFederatedGuide/">TensorflowFederatedGuide</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>TensorFlow联合（TFF）平台由两层组成：</p>
+<ul>
+<li>联合学习（FL），将现有Keras或非Keras机器学习模型插入TFF框架的高级接口。您可以执行基本任务，例如<strong>联合训练或评估</strong>，而无需研究联合学习算法的详细节。</li>
+<li>联合核心（FC），通过在强类型函数编程环境中将<strong>TensorFlow与分布式通信运算符</strong>相结合，简洁地表达自定义联合算法的低级接口。</li>
+</ul>
+<p>首先阅读以下教程，使用实际示例向您介绍主要的TFF概念和API。确保按照安装说明配置环境以与TFF一起使用。</p>
+<ul>
+<li>用图像分类的<strong>联合学习介绍了联合学习</strong>（FL）API的关键部分，并演示了如何使用TFF模拟联合类MNIST数据的联合学习。</li>
+<li>用于文本生成的联合学习进一步演示了如何使用TFF的FL API来优化语言建模任务的序列化预训练模型。</li>
+<li>自定义联合算法，第1部分：联合核心简介和第2部分：实现联合平均，介绍了<strong>联合核心API（FC API）提供的关键概念和接口</strong>，并演示了如何实现简单的联合平均训练算法以及如何执行联合评估。</li>
+</ul>
+<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">virtualenv --python python3 <span class="string">"venv"</span></span><br><span class="line">source <span class="string">"venv/bin/activate"</span></span><br><span class="line">pip install --upgrade pip</span><br><span class="line">pip install --upgrade tensorflow_federated</span><br></pre></td></tr></table></figure>
+<h1 id="Federated-Learning"><a href="#Federated-Learning" class="headerlink" title="Federated Learning"></a>Federated Learning</h1><h2 id="Overview-1"><a href="#Overview-1" class="headerlink" title="Overview"></a>Overview</h2><p>本文档介绍了促进联合学习任务的接口，例如联合训练或使用TensorFlow中实现的现有机器学习模型进行评估。在设计这些接口时，我们的主<strong>要目标是使其能够在不需要了解其工作原理的情况下进行联邦学习</strong>的实验，并评估在各种现有模型和数据上实施的联合学习算法。我们鼓励您回馈该平台。 TFF的设计考虑了可扩展性和可组合性，我们欢迎贡献;我们很高兴看到你想出了什么！</p>
+<p>该层提供的接口包括以下三个关键部分：</p>
+<ul>
+<li><strong>Models</strong>: <strong>Classes and helper functions that allow you to wrap your existing models for use with TFF</strong>。包装模型可以像调用单个包装函数（例如，tff.learning.from_keras_model）一样简单，也可以定义tff.learning.Model接口的子类以实现完全可定制性。</li>
+<li><strong>Federated Computation Builders</strong>. 辅助函数，使用<strong>现有模型</strong>构建用于训练或评估的联合计算。</li>
+<li>Datasets: 可以在Python中下载和访问的罐装数据集，用于模拟联合学习方案。虽然联邦学习设计用于分散数据，无法简单地在集中位置下载，但在研究和开发阶段，使用可在本地下载和操作的数据进行初始实验通常很方便，特别是对于可能是方法的新手。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2019/05/09/TensorflowFederatedGuide/" data-id="cjvgkvdc4001dzi8o1k4rjzmp" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/联合学习/">联合学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-iOS路由设计" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/05/08/iOS路由设计/" class="article-date">
@@ -112,7 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/05/08/iOS路由设计/" data-id="cjve1mt1p001y608o5wyw8932" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/05/08/iOS路由设计/" data-id="cjvgkvdiu003szi8olf1hu5l7" class="article-share-link">分享</a>
       
       
       
@@ -161,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/05/07/iOS之LighterviewController/" data-id="cjve1mt1c001r608ojcuivxsu" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/05/07/iOS之LighterviewController/" data-id="cjvgkvdcm001kzi8orrvhpudm" class="article-share-link">分享</a>
       
       
       
@@ -210,7 +275,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/05/07/iOS学习入门/" data-id="cjve1mt1h001t608obx4hzg47" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/05/07/iOS学习入门/" data-id="cjvgkvdcv001pzi8o1w3kekat" class="article-share-link">分享</a>
       
       
       
@@ -259,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/04/29/Java入门/" data-id="cjve1mszy000t608oxo7f2rcs" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/04/29/Java入门/" data-id="cjvgkvdal000ozi8ol7yixohy" class="article-share-link">分享</a>
       
       
       
@@ -308,7 +373,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/04/19/FEDERATED-LEARNING-STRATEGIES-FOR-IMPROVINGCOMMUNICATION-EFFICIENCY/" data-id="cjve1mszs000q608o1sc8xwv5" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/04/19/FEDERATED-LEARNING-STRATEGIES-FOR-IMPROVINGCOMMUNICATION-EFFICIENCY/" data-id="cjvgkvdad000kzi8oq83d8c63" class="article-share-link">分享</a>
       
       
       
@@ -360,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/23/ETHEREUM-A-SECURE-DECENTRALISED-GENERALISED-TRANSACTION-LEDGER/" data-id="cjve1msza000f608oa3u8tagm" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/23/ETHEREUM-A-SECURE-DECENTRALISED-GENERALISED-TRANSACTION-LEDGER/" data-id="cjvgkvdb7000wzi8op9a28mn7" class="article-share-link">分享</a>
       
       
       
@@ -409,7 +474,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/22/Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets/" data-id="cjve1msys0003608oozpax22w" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/22/Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets/" data-id="cjvgkvd910009zi8onxg98atm" class="article-share-link">分享</a>
       
       
       
@@ -465,7 +530,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/09/智能架构/" data-id="cjve1mt58003g608oex51vi3c" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/09/智能架构/" data-id="cjvgkvdhf003czi8oo1wlc71w" class="article-share-link">分享</a>
       
       
       
@@ -528,69 +593,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/" data-id="cjve1mt41002v608oame89iqy" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/考试/">考试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-三维动画与交互技术复习3" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/08/三维动画与交互技术复习3/" class="article-date">
-  <time datetime="2019-01-08T14:40:53.000Z" itemprop="datePublished">2019-01-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/游戏开发/">游戏开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/08/三维动画与交互技术复习3/">三维动画与交互技术复习3</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="上讲回顾"><a href="#上讲回顾" class="headerlink" title="上讲回顾"></a>上讲回顾</h1><ol>
-<li>OpenGL绘制管线</li>
-<li>向量和矩阵</li>
-<li>控件变换<ul>
-<li>旋转、平移、缩放</li>
-<li>控件变换和向量矩阵的关系</li>
-</ul>
-</li>
-<li>着色器编程<ul>
-<li>顶点着色器</li>
-<li>片段着色器</li>
-</ul>
-</li>
-</ol>
-        
-          <p class="article-more-link">
-            <a href="/2019/01/08/三维动画与交互技术复习3/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/08/三维动画与交互技术复习3/" data-id="cjve1mt2e002a608okxlm3qox" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/09/三维动画与交互技术复习4/" data-id="cjvgkvder002hzi8o2yzvi4ee" class="article-share-link">分享</a>
       
       
       
@@ -642,7 +645,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography-Intro/">Cryptography Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS编程/">iOS编程</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/游戏开发/">游戏开发</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/物联网/">物联网</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography-Intro/">Cryptography Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习/">Java学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tensorflow/">Tensorflow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS编程/">iOS编程</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/游戏开发/">游戏开发</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/物联网/">物联网</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -652,7 +655,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/BigData/" style="font-size: 14px;">BigData</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Cryptography/" style="font-size: 14px;">Cryptography</a> <a href="/tags/Goa入门/" style="font-size: 14px;">Goa入门</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 14px;">Swagger</a> <a href="/tags/coding/" style="font-size: 22.8px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.2px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/intro/" style="font-size: 14px;">intro</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 14px;">paper reading</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 18.4px;">代码</a> <a href="/tags/入门/" style="font-size: 22.8px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 16.2px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/智能架构/" style="font-size: 14px;">智能架构</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/禅/" style="font-size: 14px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/考试/" style="font-size: 22.8px;">考试</a> <a href="/tags/自我修炼/" style="font-size: 16.2px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 20.6px;">论文阅读</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
+      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/BigData/" style="font-size: 14px;">BigData</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Cryptography/" style="font-size: 14px;">Cryptography</a> <a href="/tags/Goa入门/" style="font-size: 14px;">Goa入门</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 14px;">Swagger</a> <a href="/tags/coding/" style="font-size: 22.8px;">coding</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.2px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/intro/" style="font-size: 14px;">intro</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 14px;">paper reading</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 18.4px;">代码</a> <a href="/tags/入门/" style="font-size: 22.8px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/基础/" style="font-size: 16.2px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/智能架构/" style="font-size: 14px;">智能架构</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/禅/" style="font-size: 14px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/考试/" style="font-size: 22.8px;">考试</a> <a href="/tags/联合学习/" style="font-size: 14px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 16.2px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 20.6px;">论文阅读</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
     </div>
   </div>
 
@@ -662,6 +665,10 @@
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/05/09/TensorflowFederatedGuide/">TensorflowFederatedGuide</a>
+          </li>
         
           <li>
             <a href="/2019/05/08/iOS路由设计/">iOS路由设计</a>
@@ -679,10 +686,6 @@
             <a href="/2019/04/29/Java入门/">Java入门</a>
           </li>
         
-          <li>
-            <a href="/2019/04/19/FEDERATED-LEARNING-STRATEGIES-FOR-IMPROVINGCOMMUNICATION-EFFICIENCY/">FEDERATED LEARNING: STRATEGIES FOR IMPROVING COMMUNICATION EFFICIENCY</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -692,7 +695,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 

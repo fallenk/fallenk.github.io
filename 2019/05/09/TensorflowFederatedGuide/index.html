@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>TensorflowFederatedGuide | Fallenk&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="OverviewTensorFlow联合（TFF）平台由两层组成：  联合学习（FL），将现有Keras或非Keras机器学习模型插入TFF框架的高级接口。您可以执行基本任务，例如联合训练或评估，而无需研究联合学习算法的详细节。 联合核心（FC），通过在强类型函数编程环境中将TensorFlow与分布式通信运算符相结合，简洁地表达自定义联合算法的低级接口。  首先阅读以下教程，使用实际示例向您介绍">
+<meta name="keywords" content="联合学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorflowFederatedGuide">
+<meta property="og:url" content="https://fallenk.github.io/2019/05/09/TensorflowFederatedGuide/index.html">
+<meta property="og:site_name" content="Fallenk&#39;s Blog">
+<meta property="og:description" content="OverviewTensorFlow联合（TFF）平台由两层组成：  联合学习（FL），将现有Keras或非Keras机器学习模型插入TFF框架的高级接口。您可以执行基本任务，例如联合训练或评估，而无需研究联合学习算法的详细节。 联合核心（FC），通过在强类型函数编程环境中将TensorFlow与分布式通信运算符相结合，简洁地表达自定义联合算法的低级接口。  首先阅读以下教程，使用实际示例向您介绍">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-09T11:37:54.008Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TensorflowFederatedGuide">
+<meta name="twitter:description" content="OverviewTensorFlow联合（TFF）平台由两层组成：  联合学习（FL），将现有Keras或非Keras机器学习模型插入TFF框架的高级接口。您可以执行基本任务，例如联合训练或评估，而无需研究联合学习算法的详细节。 联合核心（FC），通过在强类型函数编程环境中将TensorFlow与分布式通信运算符相结合，简洁地表达自定义联合算法的低级接口。  首先阅读以下教程，使用实际示例向您介绍">
+  
+    <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fallenk.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fallenk&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">经历，心得，笔记，目标</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-TensorflowFederatedGuide" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/09/TensorflowFederatedGuide/" class="article-date">
+  <time datetime="2019-05-09T08:27:39.000Z" itemprop="datePublished">2019-05-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tensorflow/">Tensorflow</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      TensorflowFederatedGuide
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>TensorFlow联合（TFF）平台由两层组成：</p>
+<ul>
+<li>联合学习（FL），将现有Keras或非Keras机器学习模型插入TFF框架的高级接口。您可以执行基本任务，例如<strong>联合训练或评估</strong>，而无需研究联合学习算法的详细节。</li>
+<li>联合核心（FC），通过在强类型函数编程环境中将<strong>TensorFlow与分布式通信运算符</strong>相结合，简洁地表达自定义联合算法的低级接口。</li>
+</ul>
+<p>首先阅读以下教程，使用实际示例向您介绍主要的TFF概念和API。确保按照安装说明配置环境以与TFF一起使用。</p>
+<ul>
+<li>用图像分类的<strong>联合学习介绍了联合学习</strong>（FL）API的关键部分，并演示了如何使用TFF模拟联合类MNIST数据的联合学习。</li>
+<li>用于文本生成的联合学习进一步演示了如何使用TFF的FL API来优化语言建模任务的序列化预训练模型。</li>
+<li>自定义联合算法，第1部分：联合核心简介和第2部分：实现联合平均，介绍了<strong>联合核心API（FC API）提供的关键概念和接口</strong>，并演示了如何实现简单的联合平均训练算法以及如何执行联合评估。</li>
+</ul>
+<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">virtualenv --python python3 <span class="string">"venv"</span></span><br><span class="line">source <span class="string">"venv/bin/activate"</span></span><br><span class="line">pip install --upgrade pip</span><br><span class="line">pip install --upgrade tensorflow_federated</span><br></pre></td></tr></table></figure>
+<h1 id="Federated-Learning"><a href="#Federated-Learning" class="headerlink" title="Federated Learning"></a>Federated Learning</h1><h2 id="Overview-1"><a href="#Overview-1" class="headerlink" title="Overview"></a>Overview</h2><p>本文档介绍了促进联合学习任务的接口，例如联合训练或使用TensorFlow中实现的现有机器学习模型进行评估。在设计这些接口时，我们的主<strong>要目标是使其能够在不需要了解其工作原理的情况下进行联邦学习</strong>的实验，并评估在各种现有模型和数据上实施的联合学习算法。我们鼓励您回馈该平台。 TFF的设计考虑了可扩展性和可组合性，我们欢迎贡献;我们很高兴看到你想出了什么！</p>
+<p>该层提供的接口包括以下三个关键部分：</p>
+<ul>
+<li><strong>Models</strong>: <strong>Classes and helper functions that allow you to wrap your existing models for use with TFF</strong>。包装模型可以像调用单个包装函数（例如，tff.learning.from_keras_model）一样简单，也可以定义tff.learning.Model接口的子类以实现完全可定制性。</li>
+<li><strong>Federated Computation Builders</strong>. 辅助函数，使用<strong>现有模型</strong>构建用于训练或评估的联合计算。</li>
+<li>Datasets: 可以在Python中下载和访问的罐装数据集，用于模拟联合学习方案。虽然联邦学习设计用于分散数据，无法简单地在集中位置下载，但在研究和开发阶段，使用可在本地下载和操作的数据进行初始实验通常很方便，特别是对于可能是方法的新手。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2019/05/09/TensorflowFederatedGuide/" data-id="cjvgkvdc4001dzi8o1k4rjzmp" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/联合学习/">联合学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/08/iOS路由设计/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">iOS路由设计</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Overview"><span class="toc-number">1.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Installation"><span class="toc-number">2.</span> <span class="toc-text">Installation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Federated-Learning"><span class="toc-number">3.</span> <span class="toc-text">Federated Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview-1"><span class="toc-number">3.1.</span> <span class="toc-text">Overview</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2019 Fallenk Liu&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;fallenk_liu@yeah.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "e2fb4051c49842688ce669e634bc983f",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+    
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
