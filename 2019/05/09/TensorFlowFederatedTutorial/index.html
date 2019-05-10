@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
 <meta property="og:description" content="Federated Learning for Image Classification注意：此colab已经过验证，可以与tensorflow_federated pip包的0.4.0版本一起使用，但Tensorflow Federated项目仍处于预发布版开发阶段，可能无法在master上运行。 在本教程中，我们使用经典的MNIST培训示例来介绍TFF的联合学习（FL）API层，tff.lear">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-10T02:34:54.531Z">
+<meta property="og:updated_time" content="2019-05-10T17:13:01.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlowFederatedTutorial">
 <meta name="twitter:description" content="Federated Learning for Image Classification注意：此colab已经过验证，可以与tensorflow_federated pip包的0.4.0版本一起使用，但Tensorflow Federated项目仍处于预发布版开发阶段，可能无法在master上运行。 在本教程中，我们使用经典的MNIST培训示例来介绍TFF的联合学习（FL）API层，tff.lear">
@@ -280,7 +280,7 @@
 <p>请注意，这不是来自所有客户的所有本地温度读数的简单平均值，因为这将需要根据它们在本地维护的读数的数量来衡量来自不同客户的贡献。我们将其作为练习让读者更新上述代码; tff.federated_mean运算符接受权重作为可选的第二个参数（预期是联合浮点数）。</p>
 <p>另请注意，get_global_temperature_average的<strong>输入现在变为联合int序列</strong>。联<strong>合序列是我们通常在联合学习中表示设备上数据的方式，序列元素通常表示数据批次</strong>（您很快就会看到这样的示例）。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str(get_global_temperature_average.type_signature)</span><br><span class="line"></span><br><span class="line">&apos;(&#123;float32*&#125;@CLIENTS -&gt; float32@SERVER)&apos;</span><br></pre></td></tr></table></figure>
-<p><strong>以下是我们如何在Python中本地执行数据样本的计算</strong>。请注意，我们提供输入的方式现在是列表列表。外部列表遍历由tff.CLIENTS表示的组中的设备，<strong>内部的迭代遍历每个设备的本地序列中的元素</strong>。</p>
+<p><strong>以下是我们如何在Python中本地执行数据样本的计算</strong>。请注意，我们提供输入的方式现在是列表形式。外部列表遍历由tff.CLIENTS表示的组中的设备，<strong>内部的迭代遍历每个设备的本地序列中的元素</strong>。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">get_global_temperature_average([[68.0, 70.0], [71.0], [68.0, 72.0, 70.0]])</span><br><span class="line"></span><br><span class="line">70.0</span><br></pre></td></tr></table></figure>
 <p>他总结了本教程的第一部分……我们鼓励你继续第二部分。</p>
 
