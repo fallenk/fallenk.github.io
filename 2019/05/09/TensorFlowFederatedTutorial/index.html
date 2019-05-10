@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
 <meta property="og:description" content="Federated Learning for Image Classification注意：此colab已经过验证，可以与tensorflow_federated pip包的0.4.0版本一起使用，但Tensorflow Federated项目仍处于预发布版开发阶段，可能无法在master上运行。 在本教程中，我们使用经典的MNIST培训示例来介绍TFF的联合学习（FL）API层，tff.lear">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-09T18:37:41.178Z">
+<meta property="og:updated_time" content="2019-05-10T02:34:54.531Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlowFederatedTutorial">
 <meta name="twitter:description" content="Federated Learning for Image Classification注意：此colab已经过验证，可以与tensorflow_federated pip包的0.4.0版本一起使用，但Tensorflow Federated项目仍处于预发布版开发阶段，可能无法在master上运行。 在本教程中，我们使用经典的MNIST培训示例来介绍TFF的联合学习（FL）API层，tff.lear">
@@ -103,6 +103,7 @@
         
         <h1 id="Federated-Learning-for-Image-Classification"><a href="#Federated-Learning-for-Image-Classification" class="headerlink" title="Federated Learning for Image Classification"></a>Federated Learning for Image Classification</h1><p>注意：此colab已经过验证，可以与tensorflow_federated pip包的0.4.0版本一起使用，但Tensorflow Federated项目仍处于预发布版开发阶段，可能无法在master上运行。</p>
 <p>在本教程中，我们使用<strong>经典的MNIST培训示例来介绍TFF的联合学习（FL）API层</strong>，<code>tff.learning</code>-一组更高级别的接口，可用于执行常见类型的联合学习任务，例如联合训练，针对TensorFlow中实现的用户提供的模型。</p>
+<a id="more"></a>
 <p>本教程和Federated Learning API主要面向希望将自己的TensorFlow模型插入TFF，将后者主要视为黑盒子的用户。有关TFF以及如何实现自己的联合学习算法的更深入理解，请参阅FC Core API上的教程 - 自定义联合算法第1部分和第2部分。</p>
 <p>有关tff.learning的更多信息，请继续使用Federated Learning for Text Generation，该教程除了涵盖周期性模型之外，还演示加载预训练的序列化Keras模型，以便使用联合学习结合使用Keras进行评估。</p>
 <h2 id="Before-we-start"><a href="#Before-we-start" class="headerlink" title="Before we start"></a>Before we start</h2><p>在开始之前，请运行以下命令以确保您的环境设置正确。如果您没有看到问候语，请参阅“安装指南”以获取相关说明。</p>
@@ -279,7 +280,7 @@
 <p>请注意，这不是来自所有客户的所有本地温度读数的简单平均值，因为这将需要根据它们在本地维护的读数的数量来衡量来自不同客户的贡献。我们将其作为练习让读者更新上述代码; tff.federated_mean运算符接受权重作为可选的第二个参数（预期是联合浮点数）。</p>
 <p>另请注意，get_global_temperature_average的<strong>输入现在变为联合int序列</strong>。联<strong>合序列是我们通常在联合学习中表示设备上数据的方式，序列元素通常表示数据批次</strong>（您很快就会看到这样的示例）。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str(get_global_temperature_average.type_signature)</span><br><span class="line"></span><br><span class="line">&apos;(&#123;float32*&#125;@CLIENTS -&gt; float32@SERVER)&apos;</span><br></pre></td></tr></table></figure>
-<p>以下是我们如何在Python中本地执行数据样本的计算。请注意，我们提供输入的方式现在是列表列表。外部列表遍历由tff.CLIENTS表示的组中的设备，内部的迭代遍历每个设备的本地序列中的元素。</p>
+<p><strong>以下是我们如何在Python中本地执行数据样本的计算</strong>。请注意，我们提供输入的方式现在是列表列表。外部列表遍历由tff.CLIENTS表示的组中的设备，<strong>内部的迭代遍历每个设备的本地序列中的元素</strong>。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">get_global_temperature_average([[68.0, 70.0], [71.0], [68.0, 72.0, 70.0]])</span><br><span class="line"></span><br><span class="line">70.0</span><br></pre></td></tr></table></figure>
 <p>他总结了本教程的第一部分……我们鼓励你继续第二部分。</p>
 
