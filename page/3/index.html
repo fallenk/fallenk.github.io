@@ -74,6 +74,40 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-2019-01-03" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/03/2019-01-03/" class="article-date">
+  <time datetime="2019-01-03T11:22:08.369Z" itemprop="datePublished">2019-01-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <ol>
+<li>大数据存储与处理的核心是分而治之；HDFS （分布式文件系统，存储海量数据）; MapReduce（ 并行处理框架，实现任务分解和调度）</li>
+</ol>
+<p>2.基于JAVA进程；在跨机器执行数据传输时，这是在大数据系统中经常执行的任务，系统需要在通过网络发送对象之前将对象序列化为字节序列；经过网络传输；接收字节的远程节点然后将它们反序列化为对象。序列化占Spark中执行时间的30％；  现代大数据系统需要经常在群集中混洗数据 - 像Hadoop这样的map / reduce框架会在执行减少之前对每个map worker的结果进行shuffling;像Spark这样的数据流系统支持许多需要在节点之间存储数据的RDD转换。由于大多数这些系统都是用托管语言（如Java和Scala）编写的，因此数据表示为托管堆中的对象。跨节点传输对象很复杂，涉及图1所示的三个过程。（1）序列化过程将整个对象图从o转换为二进制序列。此过程重新格式化每个对象 - 除其他外，它提取对象数据，剥离对象标题，删除存储在对象中的所有引用，以及更改某些元数据的表示。 （2）该字节序列被传送到接收机。 （3）反序列化过程读出字节序列，相应地创建对象，最终在接收器机器的托管堆中重建对象图。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2019/01/03/2019-01-03/" data-id="cjvp63w840000yb8oysr1ycwq" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-paper3-Skyway-Connecting-Managed-Heaps-in-Distributed-Big-Data-Systems" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/02/paper3-Skyway-Connecting-Managed-Heaps-in-Distributed-Big-Data-Systems/" class="article-date">
@@ -110,7 +144,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/02/paper3-Skyway-Connecting-Managed-Heaps-in-Distributed-Big-Data-Systems/" data-id="cjvnume3x002he18o5ct5kbz6" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/01/02/paper3-Skyway-Connecting-Managed-Heaps-in-Distributed-Big-Data-Systems/" data-id="cjvp63wdn002kyb8o62jwar0x" class="article-share-link">分享</a>
       
       
       
@@ -159,7 +193,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/12/21/Pysyft-Prerequisites/" data-id="cjvnume1r001ie18oqztdhbxv" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/12/21/Pysyft-Prerequisites/" data-id="cjvp63wau001iyb8oz81rnuau" class="article-share-link">分享</a>
       
       
       
@@ -209,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/12/18/OpenGL快速入门/" data-id="cjvnume1m001fe18og6u2xd40" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/12/18/OpenGL快速入门/" data-id="cjvp63wap001fyb8oc257t6mq" class="article-share-link">分享</a>
       
       
       
@@ -276,7 +310,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/12/07/A-generic-framwork-for-privacy-preserving-deep-learning/" data-id="cjvnumdzn0002e18o8hu4yy4p" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/12/07/A-generic-framwork-for-privacy-preserving-deep-learning/" data-id="cjvp63w8b0002yb8oiwojzloh" class="article-share-link">分享</a>
       
       
       
@@ -323,7 +357,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/12/05/Pytorch快速入门/" data-id="cjvnume2a001ne18oo206rgb5" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/12/05/Pytorch快速入门/" data-id="cjvp63wb8001nyb8o6t0idwqk" class="article-share-link">分享</a>
       
       
       
@@ -372,7 +406,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/30/goa快速入门/" data-id="cjvnume2l001se18of1ejiuly" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/30/goa快速入门/" data-id="cjvp63wc2001yyb8oqlwrdr7u" class="article-share-link">分享</a>
       
       
       
@@ -422,7 +456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/28/Swagger的快速入门/" data-id="cjvnume2g001re18ooeoqwqyj" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/28/Swagger的快速入门/" data-id="cjvp63wbe001ryb8o797tfswg" class="article-share-link">分享</a>
       
       
       
@@ -474,7 +508,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/28/Docker三剑客/" data-id="cjvnume09000de18ohk5gh1t3" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/28/Docker三剑客/" data-id="cjvp63w94000dyb8oaijrlnfu" class="article-share-link">分享</a>
       
       
       
@@ -523,60 +557,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/27/Docker快速入门/" data-id="cjvnume0j000ie18ohnxil5iy" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2018/11/27/Docker快速入门/" data-id="cjvp63w9g000iyb8os31fyk1c" class="article-share-link">分享</a>
       
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/入门/">入门</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-区块链技术学习指引" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/15/区块链技术学习指引/" class="article-date">
-  <time datetime="2018-11-15T07:01:25.000Z" itemprop="datePublished">2018-11-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Blcokchain/">Blcokchain</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/15/区块链技术学习指引/">区块链技术学习指引</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a>1. 引言</h1><p>给迷失在如何学习区块链技术的同学一个指引，区块链技术是随比特币诞生，因此要搞明白区块链技术，应该先了解下比特币。<br>但区块链技术不单应用于比特币，还有非常多的现实应用场景，想做区块链应用开发=&gt;可进一步阅读以太坊系列。<br></p>
-        
-          <p class="article-more-link">
-            <a href="/2018/11/15/区块链技术学习指引/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2018/11/15/区块链技术学习指引/" data-id="cjvnume5s003de18oi084lhzz" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/入门指引/">入门指引</a></li></ul>
 
     </footer>
   </div>
@@ -612,6 +597,10 @@
       <ul>
         
           <li>
+            <a href="/2019/05/15/如何使用Go编程/">如何使用Go编程</a>
+          </li>
+        
+          <li>
             <a href="/2019/05/14/LeetCode-排序/">LeetCode-排序</a>
           </li>
         
@@ -625,10 +614,6 @@
         
           <li>
             <a href="/2019/05/09/TensorFlowFederatedTutorial/">TensorFlowFederatedTutorial</a>
-          </li>
-        
-          <li>
-            <a href="/2019/05/09/TensorflowFederatedGuide/">TensorflowFederatedGuide</a>
           </li>
         
       </ul>
