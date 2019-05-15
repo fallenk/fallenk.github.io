@@ -100,24 +100,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <h1 id="如何使用Go编程"><a href="#如何使用Go编程" class="headerlink" title="如何使用Go编程"></a>如何使用Go编程</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>一个简单Go包的开发，并介绍了用<a href="https://go-zh.org/cmd/go/" target="_blank" rel="noopener">go工具</a>来<strong>获取、 构建并安装Go包及命令</strong>的标准方式。</p>
 <p><code>go</code> 工具需要你按照指定的方式来组织代码。请仔细阅读本文档， 它说明了如何以最简单的方式来准备并运行你的Go安装。类似的视频讲解可在<a href="http://www.youtube.com/watch?v=XCsL89YtqCs" target="_blank" rel="noopener">此处</a>观看。</p>
-<h2 id="代码的组织"><a href="#代码的组织" class="headerlink" title="代码的组织"></a>代码的组织</h2><h3 id="工作空间"><a href="#工作空间" class="headerlink" title="工作空间"></a>工作空间</h3><p><code>go</code> 工具为公共代码仓库中维护的开源代码而设计。 无论你会不会公布代码，该模型设置工作环境的方法都是相同的。</p>
-<p>Go代码必须放在<strong>工作空间</strong>内。它其实就是一个目录，其中包含三个子目录：</p>
-<ul>
-<li><code>src</code> 目录包含<strong>Go的源文件，它们被组织成包</strong>（每个目录[项目]都对应一个包），</li>
-<li><code>pkg</code> 目录包<strong>含包对象</strong>，</li>
-<li><code>bin</code> 目录包含<strong>可执行命令</strong>。</li>
-</ul>
-<p><code>go</code> 工具用于<strong>构建源码包</strong>，并将其生成的二进制文件安装到 <code>pkg</code> 和 <code>bin</code> 目录中。</p>
-<p><code>src</code> 子目录通常包会含多种版本控制的代码仓库（例如Git或Mercurial）， 以此来跟踪一个或多个源码包的开发。</p>
-<p>以下例子展现了实践中工作空间的概念：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">bin/</span><br><span class="line">	streak                         # 可执行命令</span><br><span class="line">	todo                           # 可执行命令</span><br><span class="line">pkg/</span><br><span class="line">	linux_amd64/</span><br><span class="line">		code.google.com/p/goauth2/</span><br><span class="line">			oauth.a                # 包对象</span><br><span class="line">		github.com/nf/todo/</span><br><span class="line">			task.a                 # 包对象</span><br><span class="line">src/</span><br><span class="line">	code.google.com/p/goauth2/</span><br><span class="line">		.hg/                       # mercurial 代码库元数据</span><br><span class="line">		oauth/</span><br><span class="line">			oauth.go               # 包源码</span><br><span class="line">			oauth_test.go          # 测试源码</span><br><span class="line">	github.com/nf/</span><br><span class="line">		streak/</span><br><span class="line">		.git/                      # git 代码库元数据</span><br><span class="line">			oauth.go               # 命令源码</span><br><span class="line">			streak.go              # 命令源码</span><br><span class="line">		todo/</span><br><span class="line">		.git/                      # git 代码库元数据</span><br><span class="line">			task/</span><br><span class="line">				task.go            # 包源码</span><br><span class="line">			todo.go                # 命令源码</span><br></pre></td></tr></table></figure>
-<p>此工作空间包含三个代码库（<code>goauth2</code>、<code>streak</code> 和 <code>todo</code>），两个命令（<code>streak</code> 和 <code>todo</code>） 以及两个库（<code>oauth</code> 和 <code>task</code>）。命令和库从不同的源码包编译而来。<a href="https://go-zh.org/doc/code.html#包名" target="_blank" rel="noopener">稍后</a>我们会对讨论它的特性。</p>
-<h3 id="GOPATH-环境变量"><a href="#GOPATH-环境变量" class="headerlink" title="GOPATH 环境变量"></a><code>GOPATH</code> 环境变量</h3><p><code>GOPATH</code> 环境变量指定了你的工作空间位置。它或许是你在开发Go代码时， 唯一需要设置的环境变量。</p>
-
+        
+          <p class="article-more-link">
+            <a href="/2019/05/15/如何使用Go编程/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">

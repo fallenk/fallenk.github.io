@@ -5,18 +5,18 @@
   
   <title>如何使用Go编程 | Fallenk&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如何使用Go编程引言一个简单Go包的开发，并介绍了用go工具来获取、 构建并安装Go包及命令的标准方式。 go 工具需要你按照指定的方式来组织代码。请仔细阅读本文档， 它说明了如何以最简单的方式来准备并运行你的Go安装。类似的视频讲解可在此处观看。 代码的组织工作空间go 工具为公共代码仓库中维护的开源代码而设计。 无论你会不会公布代码，该模型设置工作环境的方法都是相同的。 Go代码必须放在工作空">
+  <meta name="description" content="如何使用Go编程引言一个简单Go包的开发，并介绍了用go工具来获取、 构建并安装Go包及命令的标准方式。 go 工具需要你按照指定的方式来组织代码。请仔细阅读本文档， 它说明了如何以最简单的方式来准备并运行你的Go安装。类似的视频讲解可在此处观看。">
 <meta name="keywords" content="coding">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何使用Go编程">
 <meta property="og:url" content="https://fallenk.github.io/2019/05/15/如何使用Go编程/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="如何使用Go编程引言一个简单Go包的开发，并介绍了用go工具来获取、 构建并安装Go包及命令的标准方式。 go 工具需要你按照指定的方式来组织代码。请仔细阅读本文档， 它说明了如何以最简单的方式来准备并运行你的Go安装。类似的视频讲解可在此处观看。 代码的组织工作空间go 工具为公共代码仓库中维护的开源代码而设计。 无论你会不会公布代码，该模型设置工作环境的方法都是相同的。 Go代码必须放在工作空">
+<meta property="og:description" content="如何使用Go编程引言一个简单Go包的开发，并介绍了用go工具来获取、 构建并安装Go包及命令的标准方式。 go 工具需要你按照指定的方式来组织代码。请仔细阅读本文档， 它说明了如何以最简单的方式来准备并运行你的Go安装。类似的视频讲解可在此处观看。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-15T11:54:26.679Z">
+<meta property="og:updated_time" content="2019-05-15T11:55:04.871Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何使用Go编程">
-<meta name="twitter:description" content="如何使用Go编程引言一个简单Go包的开发，并介绍了用go工具来获取、 构建并安装Go包及命令的标准方式。 go 工具需要你按照指定的方式来组织代码。请仔细阅读本文档， 它说明了如何以最简单的方式来准备并运行你的Go安装。类似的视频讲解可在此处观看。 代码的组织工作空间go 工具为公共代码仓库中维护的开源代码而设计。 无论你会不会公布代码，该模型设置工作环境的方法都是相同的。 Go代码必须放在工作空">
+<meta name="twitter:description" content="如何使用Go编程引言一个简单Go包的开发，并介绍了用go工具来获取、 构建并安装Go包及命令的标准方式。 go 工具需要你按照指定的方式来组织代码。请仔细阅读本文档， 它说明了如何以最简单的方式来准备并运行你的Go安装。类似的视频讲解可在此处观看。">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
   
@@ -103,6 +103,7 @@
         
         <h1 id="如何使用Go编程"><a href="#如何使用Go编程" class="headerlink" title="如何使用Go编程"></a>如何使用Go编程</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>一个简单Go包的开发，并介绍了用<a href="https://go-zh.org/cmd/go/" target="_blank" rel="noopener">go工具</a>来<strong>获取、 构建并安装Go包及命令</strong>的标准方式。</p>
 <p><code>go</code> 工具需要你按照指定的方式来组织代码。请仔细阅读本文档， 它说明了如何以最简单的方式来准备并运行你的Go安装。类似的视频讲解可在<a href="http://www.youtube.com/watch?v=XCsL89YtqCs" target="_blank" rel="noopener">此处</a>观看。</p>
+<a id="more"></a>
 <h2 id="代码的组织"><a href="#代码的组织" class="headerlink" title="代码的组织"></a>代码的组织</h2><h3 id="工作空间"><a href="#工作空间" class="headerlink" title="工作空间"></a>工作空间</h3><p><code>go</code> 工具为公共代码仓库中维护的开源代码而设计。 无论你会不会公布代码，该模型设置工作环境的方法都是相同的。</p>
 <p>Go代码必须放在<strong>工作空间</strong>内。它其实就是一个目录，其中包含三个子目录：</p>
 <ul>
