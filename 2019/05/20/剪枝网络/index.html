@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>剪枝网络 | Fallenk&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="The Lottery Ticket Hypothesis: Finding sparse, trainable neural networks 抽奖彩票假说: 寻找稀疏，可训练的神经网络">
+<meta name="keywords" content="paperReading">
+<meta property="og:type" content="article">
+<meta property="og:title" content="剪枝网络">
+<meta property="og:url" content="https://fallenk.github.io/2019/05/20/剪枝网络/index.html">
+<meta property="og:site_name" content="Fallenk&#39;s Blog">
+<meta property="og:description" content="The Lottery Ticket Hypothesis: Finding sparse, trainable neural networks 抽奖彩票假说: 寻找稀疏，可训练的神经网络">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://fallenk.github.io/2019/05/20/剪枝网络/1.png">
+<meta property="og:updated_time" content="2019-05-22T07:25:49.966Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="剪枝网络">
+<meta name="twitter:description" content="The Lottery Ticket Hypothesis: Finding sparse, trainable neural networks 抽奖彩票假说: 寻找稀疏，可训练的神经网络">
+<meta name="twitter:image" content="https://fallenk.github.io/2019/05/20/剪枝网络/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fallenk.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fallenk&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">经历，心得，笔记，目标</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-剪枝网络" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/20/剪枝网络/" class="article-date">
+  <time datetime="2019-05-20T13:14:25.000Z" itemprop="datePublished">2019-05-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/论文阅读/">论文阅读</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      剪枝网络
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>The Lottery Ticket Hypothesis: Finding sparse, trainable neural networks</p>
+<p>抽奖彩票假说: 寻找稀疏，可训练的神经网络</p>
+<a id="more"></a>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>神经网络剪枝技术可以将<strong>训练好的神经网络</strong>的参数减少了90%以上，降低了存储要求和提高了推理的计算性能，却没有影响正确率。然而，当前经验：通过剪枝产生的稀疏的参数结构是从开始时难以训练的，这个稀疏结构同样可以提高训练性能。</p>
+<p>我们发现标准的剪枝技术揭示了一些子网络，这些<strong>子网络的初始化可以进行高效的训练</strong>。基于以上这些结果，我们阐明了彩票假说：<strong>当进行隔离训练时，密集、随机初始化、前向传播的网络包含子网络(获胜的彩票)在同样的迭代次数和在测试集上将会达到与原始网络相同的精度。</strong>我们发现的子网络(the winning tickets) 赢过了初始的抽彩给奖法(the initialization lottery)：他们之间的联系具有初始的权值使训练更加高效。</p>
+<p>我们提出了一个算法证明子网络(the winning tickets) 和一系列支持彩票假说的实验和随机初始化的重要性。我们持续发现子网络(the winning tickets)比全接连和卷积前向网络的10-20%还少，在MNIST和CIFAR10数据集上。超过这个大小，我们发现子网络(the winning tickets)比原始网络更快达到更高的准确率。</p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>从神经网络中消除不必要的权重(剪枝)(LeCun等，1990; Hassibi＆Stork，1993; Han等，2015; Li等，2016)可以减少90%以上的参数数量并不减少准确率。这样做降低了训练的神经网络的规模和能源消耗，使推理更加高效。然而，如果一个神经网络可以被减小规模，为什么我们不训练一个更小的参数结构，反而注意在让训练更高效？当代的经验是说<strong>通过剪枝的结构从一开始难以训练，其准确率会低于原始准确率</strong>。</p>
+<p>思考一个例子。在图1，我们随机采样和训练全连接和卷积网络的子网络在mnist和cifar10的数据集上。随机抽样(Random sampling)模拟了LeCun等人使用的非结构化剪枝的效果。（1990）和Han等人。 （2015年）。在各种稀疏度水平上，虚线跟踪最小验证损失2的迭代和该迭代的测试精度。<strong>网络越稀疏，学习越慢，最终的测试精度越低。</strong></p>
+<p>[1]  从头开始训练修剪过的模型比重新训练之前之前修剪过模型更糟糕，这可能表明训练网络容量小的困难。”（Li et al。，2016）“在再训练期间，<strong>最好保留权重修剪过程中存在的连接的初始训练阶段</strong>比重新初始化修剪过的图层…<strong>梯度下降能够在网络初始训练时找到一个好的解决方案，但不能在重新初始化某些层并重新训练它们之后找到一个好的解决方案</strong>“。</p>
+<p>[2]作为网络学习速度的代理，我们使用迭代，在该迭代中，早期停止的标准是将结束训练。我们在本文中使用的特定早期停止标准是<strong>训练期间最小验证损失的迭代</strong>。有关此选择的更多详细信息，请参阅附录C.</p>
+<p><img src="/2019/05/20/剪枝网络/1.png" alt=""></p>
+<p>图1：MNIST的Lenet架构和CIFAR10的Conv-2，Conv-4和Conv-6架构的早期停止（左）和迭代（右）的迭代次数（见图2）从不同尺寸开始训练时。虚线是<strong>随机抽样的稀疏网络</strong>（平均值十次试验）。实线是赢得门票the winning tickets（五次试验的平均值）密集、随机初始化、前向传播。 </p>
+<p>在本文中，我们表明，<strong>一直存在较小的子网络</strong>，从一开始就训练，并且至少与其较大的对应网络一样快速地学习，同时达到相似的测试精度。图1中的实线显示了我们发现的网络。基于这些结果，我们陈述了彩票假设。</p>
+<p><strong>The Lottery Ticket Hypothesis.</strong>彩票假设。<strong>随机初始化</strong>的<strong>密集</strong>神经网络包含一个初始化的子网络，当经过隔离训练时，它可以达到训练后最多相同迭代次数的原始网络的测试精度。</p>
+<p>更正式的，考虑一个密集的、前向传播的网络$f(x ; \theta)$,初始化参数为$\theta=\theta_{0} \sim \mathcal{D}<em>{\theta}$。当在测试集上用随机梯度下降SGD优化时，$f$经过$j$轮迭代达到了最小的验证损失$l$，测试正确率为$a$。 另外，考虑用$m \in{0,1}^{|\theta|}$训练$f(x ; m \odot \theta)$，参数初始化为$m \odot \theta</em>{0}$。当在同样的训练集(m固定)上用SGD来优化时，$f$达到了最小的验证损失$l^{\prime}$</p>
+<p>经过了$j^{\prime}$轮迭代，达到了测试正确率$a^{\prime}$. 彩票假说预测 $\exists m$使 $j^{\prime} \leq j$ (相应的训练时间)，$a^{\prime} \geq a$(相应的正确率)和$|m|_{0} \ll|\theta|$ (更少的参数)。</p>
+<p>我们发现标准的剪枝技术会自动从完全连接和卷积的前馈网络中发现<strong>这种可训练的子网络</strong>。我们指定这些可训练的子网络$f(x ; m \odot \theta)$，中奖票(winning tickets)，因为我们发现的那些已经通过能够学习的权重和连接的组合超过了(the initialization lottery)初始化抽奖。当他们的参数<strong>随机重新初始化</strong>($f\left(x ; m \odot \theta_{0}^{\prime}\right) \text { where } \theta_{0}^{\prime} \sim \mathcal{D}_{\theta}$)，我们的中奖票(winning tickets)不再匹配原始网络的性能，提供证据表明这些较小的网络不能有效训练，除非他们适当初始化。</p>
+<p><strong>Identifying winning tickets.</strong> 识别中奖彩票。我们通过训练网络并剪枝其最小等级的权重来识别获胜的彩票。剩余的未通过连接构成了中奖票的参数结构。对于我们的工作而言，<strong>每个未经传输的连接的值在被训练之前将被重置为从原始网络初始化</strong>。这形成了我们的中心实验：</p>
+<ol>
+<li>随机初始化神经网络$f\left(x ; \theta_{0}\right)\left(\text { where } \theta_{0} \sim \mathcal{D}_{\theta}\right)$</li>
+<li>训练一个网络 用 $j$轮迭代，达到参数 $\theta_{j}$</li>
+<li>剪枝$p\%$的$\theta_{j}$参数，创建一个mask $m$</li>
+<li>把$\theta_{0}$中的参数值重新设置到保留的参数中，得到the winning tickets $f\left(x ; m \odot \theta_{0}\right)$</li>
+</ol>
+<p>如上所述，这种修剪方法是一次性的：一次网络训练，p％的权重被修剪，幸存的权重被重置。然而，在本文中，我们专注于<strong>迭代修剪，反复训练，修剪和重置网络</strong>n轮; 每一轮剪枝 上一轮保留参数的$p^{\frac{1}{n}} \%$。我们结果证明 迭代剪枝发现中彩票 比得上原始网络的正确率，规模小于一次性剪枝的规模。</p>
+<p><strong>Results.</strong>我们辨识winning tickets 在全连接结构对mnist和卷积结构对cifar10 通过几个优化策略(SGD, 动量, adam) 用删除，权重衰退，batchnorm和残差连接。我们用无结构化的剪枝技术，所以中票的彩票是稀疏的。在更深的网络中，<strong>我们这个基于剪枝的策略 来找到 winning tickets 对学习率是很敏感的</strong>：它需要热身才能以更高的学习率获得中奖彩票。我们发现的中奖彩票(winning tickets)是原始网络规模的10-20％（或更小）（较小的尺寸）。在这个尺寸下，它们在最多相同的迭代次数（相应的训练时间）内达到或超过原始网络的测试精度（相称的准确度）。当随机重新初始化时，获胜的门票表现得更糟，这意味着单独的结构无法解释获胜门票的成功。</p>
+<p><strong>The Lottery Ticket Conjecture.</strong>彩票票猜想。回到我们的动机问题，我们将我们的假设扩展为一个未经测试的猜想，即<strong>SGD寻找并训练一组良好初始化的权重</strong>。密集，随机初始化的网络比剪枝产生的稀疏网络更容易训练，因为有更多可能的子网络，训练可以从中恢复中奖票参数。</p>
+<p><strong>Contributions.</strong></p>
+<ul>
+<li>我们证明<strong>剪枝可以发现可训练的子网络，这些子网络达到了测试精度</strong>，与原始网络相比，它们可以在相同数量的迭代中得到。</li>
+<li>我们表明<strong>剪枝可以获得比原始网络学得更快的中奖彩票参数</strong>，同时达到更高的测试精度和更好的推理。</li>
+<li>我们建议将彩票假设作为解释这些发现的神经网络组成的新视角。</li>
+</ul>
+<p><strong>Implications.</strong>意味，在本文中，我们实证研究了彩票假设。既然我们已经证明了中奖票的存在，我们希望利用这些知识：</p>
+<ul>
+<li>提高训练性能。由于获奖门票可以从一开始就被隔离训练，我们希望我们可以设计出尽可能早地搜索中奖彩票和剪枝的训练方案。</li>
+<li>设计更好的网络。获奖票(Winning tickets)证揭示了稀疏架构和初始化的组合，这些组合特别擅长学习。我们可以从获奖门票中获取灵感，设计具有有助于学习的<strong>相同属性的新架构和初始化方案</strong>。我们甚至可以将为一项任务发现的中奖票转移给许多其他人。</li>
+<li>提高我们对神经网络的理论认识。我们可以研究为什么随机初始化的前馈网络似乎包含中奖票和对优化理论研究的潜在影响（Du等，2019）和概括（Zhou等，2018; Arora等，2018）。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2019/05/20/剪枝网络/" data-id="cjvywlauc0035xk8oojqj4eu2" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/paperReading/">paperReading</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/15/如何使用Go编程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">如何使用Go编程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">2.</span> <span class="toc-text">Introduction</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2019 Fallenk Liu&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;fallenk_liu@yeah.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "e2fb4051c49842688ce669e634bc983f",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+    
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
