@@ -21,7 +21,19 @@
 <meta property="og:image" content="https://fallenk.github.io/2019/05/23/TFFIntroVideo/7.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/05/23/TFFIntroVideo/8.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/05/23/TFFIntroVideo/9.png">
-<meta property="og:updated_time" content="2019-05-23T13:39:33.933Z">
+<meta property="og:image" content="https://fallenk.github.io/2019/05/23/TFFIntroVideo/10.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/05/23/TFFIntroVideo/11.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/05/23/TFFIntroVideo/12.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/05/23/TFFIntroVideo/13.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/05/23/TFFIntroVideo/14.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/05/23/TFFIntroVideo/15.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/05/23/TFFIntroVideo/16.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/05/23/TFFIntroVideo/17.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/05/23/TFFIntroVideo/18.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/05/23/TFFIntroVideo/19.png">
+<meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/TFFIntroVideo/20.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/05/23/TFFIntroVideo/21.png">
+<meta property="og:updated_time" content="2019-05-23T14:16:10.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TFFIntroVideo">
 <meta name="twitter:description" content="TensorFlow Federated (TFF): Machine Learning on Decentralized Data (TF Dev Summit ‘19)video url">
@@ -145,6 +157,56 @@
 <li>FL API训练模型，实现联合学习； FC API实现联合学习算法 ，本地环境模拟</li>
 </ol>
 <p><img src="/2019/05/23/TFFIntroVideo/9.png" alt="image-20190523213914134"></p>
+<ol start="12">
+<li>分层，从各个方面参与TFF的学习</li>
+</ol>
+<p><img src="/2019/05/23/TFFIntroVideo/10.png" alt="image-20190523214206108"></p>
+<ol start="13">
+<li><p>FL API 训练流程如上； FC API内容如下</p>
+<p><img src="/2019/05/23/TFFIntroVideo/11.png" alt="image-20190523214601333"></p>
+</li>
+<li><p>FC API实现优点: 1.为分布式计算的语言 2. 类Python的API 3. 部署时的方便</p>
+<p><img src="/2019/05/23/TFFIntroVideo/12.png" alt="image-20190523214958832"></p>
+</li>
+<li><p>在clients端的数据为一等公民，有类型{float32}@CLIENTS</p>
+</li>
+</ol>
+<p><img src="/2019/05/23/TFFIntroVideo/13.png" alt="image-20190523215159579"></p>
+<ol start="16">
+<li>在server端融合模型，数据类型是float32@SERVER</li>
+</ol>
+<p><img src="/2019/05/23/TFFIntroVideo/14.png" alt="image-20190523215540970"></p>
+<ol start="17">
+<li>将联邦操作认为是协议</li>
+</ol>
+<p><img src="/2019/05/23/TFFIntroVideo/15.png" alt="image-20190523215710473"></p>
+<ol start="18">
+<li>FC API时，设置 数据类型； 定义联合学习算法内容</li>
+</ol>
+<p><img src="/2019/05/23/TFFIntroVideo/16.png" alt="image-20190523220256610"></p>
+<ol start="19">
+<li>较为复杂的例子：两个输入，检测数据，门槛值；如何执行？以下</li>
+</ol>
+<p><img src="/2019/05/23/TFFIntroVideo/17.png" alt="image-20190523220433374"></p>
+<ol start="20">
+<li>第一步： 分发threshold值给每一个客户端</li>
+</ol>
+<p><img src="/2019/05/23/TFFIntroVideo/18.png" alt="image-20190523220606238"></p>
+<ol start="21">
+<li><p>使用类似于MapReduce的方式计算以上</p>
+<p><img src="/2019/05/23/TFFIntroVideo/19.png" alt="image-20190523220917545"></p>
+</li>
+<li><p>使用 tff.federated_average聚合；此为一个完整的例子</p>
+</li>
+</ol>
+<p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/TFFIntroVideo/20.png" alt="image-20190523221255244"></p>
+<ol start="23">
+<li>代码方面展示，如何创建底层的联合学习的算法； 表达联合学习的算法</li>
+</ol>
+<p><img src="/2019/05/23/TFFIntroVideo/21.png" alt="image-20190523221506366"></p>
+<ol start="24">
+<li>未来需要工作方向</li>
+</ol>
 
       
     </div>
