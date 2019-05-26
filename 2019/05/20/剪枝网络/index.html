@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://fallenk.github.io/2019/05/20/剪枝网络/6.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/05/20/剪枝网络/7.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/05/20/剪枝网络/8.png">
-<meta property="og:updated_time" content="2019-05-24T17:38:31.398Z">
+<meta property="og:updated_time" content="2019-05-26T16:35:10.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="剪枝网络">
 <meta name="twitter:description" content="The Lottery Ticket Hypothesis: Finding sparse, trainable neural networks 抽奖彩票假说: 寻找稀疏，可训练的神经网络">
@@ -113,7 +113,7 @@
         <p>The Lottery Ticket Hypothesis: Finding sparse, trainable neural networks</p>
 <p>抽奖彩票假说: 寻找稀疏，可训练的神经网络</p>
 <a id="more"></a>
-<p>📝：实验结果扎实可信(改进明显)，主题简单明确，未来科研究方向多</p>
+<p>📝心得：实验结果扎实可信(改进明显)，主题简单明确，未来科研究方向多</p>
 <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>神经网络剪枝技术可以将<strong>训练好的神经网络</strong>的参数减少了90%以上，降低了存储要求和提高了推理的计算性能，却不影响正确率。然而，当前经验：通过剪枝产生的稀疏的参数结构是从开始时难以训练的，这个稀疏结构同样可以提高训练性能。</p>
 <p>我们发现标准的剪枝技术揭示了一些子网络，这些<strong>子网络的初始化可以进行高效的训练</strong>。基于以上这些结果，我们阐明了彩票假说：<strong>当进行隔离训练时，密集、随机初始化、前向传播的网络包含子网络(获胜的彩票)在同样的迭代次数和在测试集上将会达到与原始网络相同的精度。</strong>我们发现的子网络(the winning tickets) 赢过了初始的抽彩给奖法(the initialization lottery)：他们之间的联系具有初始的权值使训练更加高效。</p>
 <p>我们提出了一个算法证明<strong>子网络(the winning tickets)</strong> 和一系列支持彩票假说的实验和<strong>随机初始化的重要性</strong>。我们持续发现子网络(the winning tickets)比全接连和卷积前向网络的10-20%还少，在MNIST和CIFAR10数据集上。超过这个大小，我们发现子网络(the winning tickets)比原始网络更快达到更高的准确率。</p>
