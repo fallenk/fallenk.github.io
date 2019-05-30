@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>智能架构 | Fallenk&#39;s Blog</title>
+  <title>彩票假设paper阅读笔记 | Fallenk&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="因特网 vs 物联网 物联网： the Internet of thing; 物物相连的互联网。 技术和应用：以人为核心 嵌入式 vs 物联网 物联网技术并不是一个单独的技术，而是多种已有技术的融合，如互联网、嵌入式系统技术、(无线)传感网络技术等">
-<meta name="keywords" content="考试,智能架构">
+  <meta name="description" content="The Lottery Ticket Hypothesis: Finding sparse, trainable neural networks 抽奖彩票假说: 寻找稀疏，可训练的神经网络">
+<meta name="keywords" content="paperReading">
 <meta property="og:type" content="article">
-<meta property="og:title" content="智能架构">
-<meta property="og:url" content="https://fallenk.github.io/2019/01/09/智能架构/index.html">
+<meta property="og:title" content="彩票假设paper阅读笔记">
+<meta property="og:url" content="https://fallenk.github.io/2019/05/29/彩票假设paper阅读笔记/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="因特网 vs 物联网 物联网： the Internet of thing; 物物相连的互联网。 技术和应用：以人为核心 嵌入式 vs 物联网 物联网技术并不是一个单独的技术，而是多种已有技术的融合，如互联网、嵌入式系统技术、(无线)传感网络技术等">
+<meta property="og:description" content="The Lottery Ticket Hypothesis: Finding sparse, trainable neural networks 抽奖彩票假说: 寻找稀疏，可训练的神经网络">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-12T16:07:29.498Z">
+<meta property="og:updated_time" content="2019-05-29T16:16:55.493Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="智能架构">
-<meta name="twitter:description" content="因特网 vs 物联网 物联网： the Internet of thing; 物物相连的互联网。 技术和应用：以人为核心 嵌入式 vs 物联网 物联网技术并不是一个单独的技术，而是多种已有技术的融合，如互联网、嵌入式系统技术、(无线)传感网络技术等">
+<meta name="twitter:title" content="彩票假设paper阅读笔记">
+<meta name="twitter:description" content="The Lottery Ticket Hypothesis: Finding sparse, trainable neural networks 抽奖彩票假说: 寻找稀疏，可训练的神经网络">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
   
@@ -73,14 +73,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-智能架构" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-彩票假设paper阅读笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/01/09/智能架构/" class="article-date">
-  <time datetime="2019-01-09T14:23:31.000Z" itemprop="datePublished">2019-01-09</time>
+    <a href="/2019/05/29/彩票假设paper阅读笔记/" class="article-date">
+  <time datetime="2019-05-29T13:26:20.000Z" itemprop="datePublished">2019-05-29</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/物联网/">物联网</a>
+    <a class="article-category-link" href="/categories/论文阅读/">论文阅读</a>
   </div>
 
   </div>
@@ -91,7 +91,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      智能架构
+      彩票假设paper阅读笔记
     </h1>
   
 
@@ -101,57 +101,27 @@
       
         <!-- Table of Contents -->
         
-        <h1 id="因特网-vs-物联网"><a href="#因特网-vs-物联网" class="headerlink" title="因特网 vs 物联网"></a>因特网 vs 物联网</h1><ul>
-<li>物联网： the Internet of thing; 物物相连的互联网。</li>
-<li>技术和应用：以人为核心</li>
-<li>嵌入式 vs 物联网<ul>
-<li>物联网技术并不是一个单独的技术，而是多种已有技术的融合，如互联网、嵌入式系统技术、(无线)传感网络技术等</li>
-</ul>
-</li>
-</ul>
+        <p>The Lottery Ticket Hypothesis: Finding sparse, trainable neural networks</p>
+<p>抽奖彩票假说: 寻找稀疏，可训练的神经网络</p>
 <a id="more"></a>
-<h1 id="MQTT协议分析"><a href="#MQTT协议分析" class="headerlink" title="MQTT协议分析"></a>MQTT协议分析</h1><ol>
-<li>概述<br> MQTT(Message Queuing Telemetry Transaport),消息队列遥测传输是一个client(订阅)与Server(发布)之间的消息传输协议。轻量、开源、简单的特性<ol>
-<li>传输格式精小，无应用消息头 </li>
-<li>保证消息的可靠性<br> 服务质量：<ol>
-<li>“至多一次”: 完全依赖底层TCP/IP网络。会发生丢失或重复</li>
-<li>“至少一次”: 确保消息到达，但消息重复可能会发生</li>
-<li>“只有一次”: 确保消息到达一次</li>
-</ol>
-</li>
-<li>MQTT在移动互联网以及移动应用中优势：<ol>
-<li>可靠传输</li>
-<li>消息推送</li>
-<li>低带宽</li>
-<li>低成本<br>2.1 Client</li>
-</ol>
-</li>
-</ol>
-<ul>
-<li>连接到Server</li>
-<li>发布消息以供其他client订阅</li>
-<li>订阅其他Client的消息</li>
-<li>取消订阅</li>
-<li>与Server断开连接<br>2.2 Server</li>
-<li>接收个Server的连接请求</li>
-<li>接收各Client发布的请求</li>
-<li>处理各Client的订阅/取消订阅请求</li>
-<li>推送与订阅相匹配的消息到对应Client</li>
-</ul>
-</li>
-</ol>
-<p>2.3 Application Message</p>
-<pre><code>- 通过MQTT协议传输的消息数据
-- 当消息传输时每个消息有一个与关联的Quality of Serive 和 Topic Name
-</code></pre>
+<p>论文: THE LOTTERY TICKET HYPOTHESIS: FINDING SPARSE, TRAINABLE NEURAL NETWORKS</p>
+<p>论文来源：ICLR 2019</p>
+<p>论文链接：<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1803.03635" target="_blank" rel="noopener">THE LOTTERY TICKET HYPOTHESIS</a></p>
+<p>论文原作者：MIT CSAIL 的Jonathan Frankle 和 Michael Carbin</p>
+<p>#摘要</p>
+<p>神经网络剪枝技术可以将<strong>训练好的神经网络参数</strong>减少90%以上，在不影响准确率的情况下，降低存储要求并提高计算性能。然而当前的经验的是: 通过剪枝产生的稀疏参数矩阵从头开始训练很困难，同样也很难提高训练性能。</p>
+<p>作者发现<strong>标准的剪枝技术自然的揭示了子网络</strong>(wining ticket), 他们的<strong>初始化能够进行有效的训练</strong>。基于以上结果，作者提出了<strong>彩票假设</strong>: <strong>密集、随机初始化的、前向传播的的网络包含子网络(wining tickets), 这个子网络—当进行隔离的训练时—在近乎相同的迭代次数中达到与原始网络相同的测试精度</strong>，我们发现The wining tickets超过了初始的网络：他们的连接有初始化的权值可以使训练更加高效。 ？？</p>
+<p>!作者提出了一个算法来<strong>识别wining tickets</strong>，以及一系列来<strong>支持彩票假说</strong>和<strong>随机初始化</strong>的重要性的实验。作者持续发现the wining tickets 小于全连接和卷积网络结构的10-20%，在MNIST和CIFAR10数据集上。Above this size,？？作者发现the wining tickets学习的比原始网络更快，测试精度更高。</p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>剪枝:消除不需要的网络的权值的技术 可以减少参数数量90%以上并不减少准确率。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/01/09/智能架构/" data-id="cjwa00tps006dla8orqlfzwzr" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/05/29/彩票假设paper阅读笔记/" data-id="cjwa00tpb0065la8op2gqrwe7" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/智能架构/">智能架构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/考试/">考试</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/paperReading/">paperReading</a></li></ul>
 
     </footer>
   </div>
@@ -201,19 +171,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/01/22/Blockchain-Based-Solution-for-Proof-of-Delivery-of-Physical-Assets/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          Blockchain-Based Solution for Proof of Delivery of Physical Assets
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/01/09/三维动画与交互技术复习4/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/05/23/TFFIntroVideo/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">三维动画与交互技术复习4</div>
+      <div class="article-nav-title">TFFIntroVideo</div>
     </a>
   
 </nav>
@@ -249,7 +210,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#因特网-vs-物联网"><span class="toc-number">1.</span> <span class="toc-text">因特网 vs 物联网</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MQTT协议分析"><span class="toc-number">2.</span> <span class="toc-text">MQTT协议分析</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li></ol>
           </div>
       </div>
     </div>
