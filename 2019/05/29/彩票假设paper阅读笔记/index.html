@@ -13,10 +13,12 @@
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
 <meta property="og:description" content="The Lottery Ticket Hypothesis: Finding sparse, trainable neural networks 抽奖彩票假说: 寻找稀疏，可训练的神经网络">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-30T12:36:32.583Z">
+<meta property="og:image" content="https://fallenk.github.io/2019/05/29/彩票假设paper阅读笔记/1.png">
+<meta property="og:updated_time" content="2019-05-30T16:14:44.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="彩票假设paper阅读笔记">
 <meta name="twitter:description" content="The Lottery Ticket Hypothesis: Finding sparse, trainable neural networks 抽奖彩票假说: 寻找稀疏，可训练的神经网络">
+<meta name="twitter:image" content="https://fallenk.github.io/2019/05/29/彩票假设paper阅读笔记/1.png">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
   
@@ -114,6 +116,15 @@
 <p>!作者提出了一个算法来<strong>识别wining tickets</strong>，以及一系列来<strong>支持彩票假说</strong>和<strong>随机初始化</strong>的重要性的实验。作者持续发现the wining tickets 小于全连接和卷积网络结构的10-20%，在MNIST和CIFAR10数据集上。Above this size,？？作者发现the wining tickets学习的比原始网络更快，测试精度更高。</p>
 <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>剪枝:消除不需要的网络的权值的技术 可以减少参数数量90%以上并不减少准确率。做这个可以减小尺寸或者训练好网络的能量消耗，使推理更加高效。然而，一个网络如果可以减小尺寸，我们为什么不训练这个更小的网络而是着重于使训练更加高效？<strong>当前的经验表明通过剪枝的网络更难训练从头开始，测试精度更低比原始网络</strong>。[训练一个剪枝后的网络从头开始 表现的效果比重新训练一个剪枝后的网络更差， 这个可能表明小容量的网络结构训练的困难性。 在重新训练时，最好是 保持初始训练阶段的联系的，经过剪枝后保留下的权值，而不是重新初始化被剪枝的层，梯度下降可以找一个好的方法，当网络初始化训练时，但不是重新初始化一些层，来重新训练他们]</p>
 <p>考虑一个例子，在图1，我们随机抽样和训练来自基于MNIST全连接和基于CIFAR10的卷积网络的子网络。随机抽样模拟非结构化剪枝的效果。根据几个稀疏，虚线追踪在迭代中的最小验证集的损失[<strong>一个代理，网络学习的速度，我们使用迭代: 一个早期停止的标准结束训练。 我们使用的这个特殊的早期停止的标准 是 最小验证集损失在训练中</strong>]和测试精度。网络越稀疏，学习越慢，最终的准确率越低。</p>
+<p>ppt:  背景资料: 压缩，治疗；-&gt; 剪枝； 论文讲解内容</p>
+<h4 id="论文-Learning-both-Weights-and-Connections-for-Efficient-Neural-Networks"><a href="#论文-Learning-both-Weights-and-Connections-for-Efficient-Neural-Networks" class="headerlink" title="论文 - Learning both Weights and Connections for Efficient Neural Networks"></a>论文 - Learning both Weights and Connections for Efficient Neural Networks</h4><p>作者的方法分为三个步骤：</p>
+<ul>
+<li>Train Connectivity: 按照正常方法训练初始模型。作者认为该模型中权重的大小表征了其重要程度</li>
+<li>Prune Connection: 将初始模型中那些低于某个阈值的的权重参数置成00（即所谓剪枝）</li>
+<li>Re-Train: 重新训练，以期其他未被剪枝的权重能够补偿pruning带来的精度下降</li>
+</ul>
+<p>为了达到一个满意的压缩比例和精度要求，2和3要重复多次</p>
+<p><img src="/2019/05/29/彩票假设paper阅读笔记/1.png" alt="åªæç®æ³"></p>
 
       
     </div>
@@ -211,7 +222,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#论文-Learning-both-Weights-and-Connections-for-Efficient-Neural-Networks"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">论文 - Learning both Weights and Connections for Efficient Neural Networks</span></a></li></ol></li></ol></li></ol></li></ol>
           </div>
       </div>
     </div>
