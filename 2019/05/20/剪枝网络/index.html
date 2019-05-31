@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/剪枝网络/9.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/05/20/剪枝网络/10.png">
 <meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/剪枝网络/15.png">
-<meta property="og:updated_time" content="2019-05-31T13:21:57.639Z">
+<meta property="og:updated_time" content="2019-05-31T14:13:46.498Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="剪枝网络">
 <meta name="twitter:description" content="The Lottery Ticket Hypothesis: Finding sparse, trainable neural networks 抽奖彩票假说: 寻找稀疏，可训练的神经网络">
@@ -182,7 +182,7 @@
 <h1 id="3-Winning-tickets在卷积网络中"><a href="#3-Winning-tickets在卷积网络中" class="headerlink" title="3 Winning tickets在卷积网络中"></a>3 Winning tickets在卷积网络中</h1><p>在这里，我们将彩票假设应用于CIFAR10上的卷积网络，增加了学习问题的复杂性和网络的规模。我们考虑图2中的Conv-2，Conv-4和Conv-6架构，它们是VGG（Simonyan＆Zisserman，2014）系列的缩小版本。网络有两个，四个或六个卷积层，后面是两个完全连接的层;每两个卷积层之后发生最大池化。这些网络覆盖了从近乎完全连接到传统卷积网络的范围，其中参数少于Conv-2中卷积层中的参数不到的1％和Conv-6中的接近三分之二。</p>
 <h2 id="Finding-winning-tickets"><a href="#Finding-winning-tickets" class="headerlink" title="Finding winning tickets."></a>Finding winning tickets.</h2><p>图5（上）中的实线显示了Conv-2（蓝色），Conv-4（橙色）和Conv-6（绿色）的迭代彩票实验来自图2中的每层修剪率。来自Lenet的第2节重复：随着网络被修剪，与原始网络相比，它学得更快，测试准确度也提高了。在这种情况下，结果更加明显。</p>
 <p><img src="/2019/05/20/剪枝网络/5.png" alt=""></p>
-<p>图5：在迭代修剪和随机重新初始化时，Conv-2/4/6架构的早期停止迭代和测试及训练准确性。<strong>每条实线是五次试验的平均值</strong>; <strong>每条虚线是15次重新初始化的平均值（每次试验三次）</strong>。右下图描绘了在与原始网络的最后一次训练迭代相对应的迭代中获胜门票的测试准确度（Conv-2为20,000，Conv-4为25,000，Conv-6为30,000）;在此迭代中，对于中奖彩票，Pm≥2％的训练精度≈100％（见附录D）。</p>
+<p>图5：在迭代修剪和随机重新初始化时，Conv-2/4/6架构的早期停止迭代和测试及训练准确性。<strong>每条实线是五次试验的平均值</strong>; <strong>每条虚线是15次重新初始化的平均值（每次试验三次）</strong>。右下图描绘了在与原始网络的最后一次训练迭代相对应的迭代中获胜门票的测试准确度（Conv-2为20,000，Conv-4为25,000，Conv-6为30,000）;在此迭代中，对于中奖彩票，Pm≥2％的训练精度≈100％（见附录D）。 达到50K，traning accuracy = 100%</p>
 <p>中奖彩票达到最低验证损失比为Conv-2的快3.5倍（P m = 8.8％），比Conv-4快3.5倍（Pm = 9.2％），比Conv-6快2.5倍（P m = 15.1％） 。测试精度最高提高3.4个百分点对Conv-2的（P m = 4.6％），Conv-4的3.5个百分点（P m = 11.1％）和Conv-6的3.3个百分点（P m = 26.4％）。当P m&gt; 2％时，所有三个网络都保持在其原始平均测试精度之上。 ???</p>
 <p>与第2节一样，早期停止迭代的训练精度随着测试精度而提高。然而，在Conv-2的迭代20,000，Conv-4的25,000和Conv-6的30,000（对应于原始网络的最终训练迭代的迭代）中，<strong>当Pm≥2%时，所有网络的训练精度达到100％（附录D，图13）和中彩票仍然保持较高的测试精度（图5右下）。这意味着中彩票的测试和训练准确度之间的差距较小，表明它们泛化更好。</strong></p>
 <h2 id="Random-reinitialization-1"><a href="#Random-reinitialization-1" class="headerlink" title="Random reinitialization."></a>Random reinitialization.</h2><p>随机重新初始化，我们重复随机重新初始化实验按照第2节，即在图5中展示的虚线。这些网络再次花费更长的时间来学习在继续修剪时。正如MNIST上的Lenet（第2节）一样，随机重新初始化实验的测试精度下降得更快。然而，与Lenet不同，<strong>早期停止时的测试准确性最初保持稳定，甚至在Conv-2和Conv-4上也得到改善，表明 - 在适度的修剪 - 中奖彩票的结构可能会带来更好的准确性</strong>。</p>
