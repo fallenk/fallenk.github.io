@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>综述-NeuralArchitectureSearch | Fallenk&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="综述- Nerual Architecture Search神经网络架构搜索，顾名思义，就是让机器自己去学习如何构架一个神经网络，得到比人类专家手工设计的网络更好的效果。这个思路是非常一脉相承的，就像机器学习到深度学习，也是完成了人类专家手工提取特征到由机器自己学习特征这样的步骤转换。">
+<meta name="keywords" content="神经网络搜索">
+<meta property="og:type" content="article">
+<meta property="og:title" content="综述-NeuralArchitectureSearch">
+<meta property="og:url" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/index.html">
+<meta property="og:site_name" content="Fallenk&#39;s Blog">
+<meta property="og:description" content="综述- Nerual Architecture Search神经网络架构搜索，顾名思义，就是让机器自己去学习如何构架一个神经网络，得到比人类专家手工设计的网络更好的效果。这个思路是非常一脉相承的，就像机器学习到深度学习，也是完成了人类专家手工提取特征到由机器自己学习特征这样的步骤转换。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/1.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/2.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/3.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/4.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/5.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/6.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/7.png">
+<meta property="og:updated_time" content="2019-06-03T03:29:19.078Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="综述-NeuralArchitectureSearch">
+<meta name="twitter:description" content="综述- Nerual Architecture Search神经网络架构搜索，顾名思义，就是让机器自己去学习如何构架一个神经网络，得到比人类专家手工设计的网络更好的效果。这个思路是非常一脉相承的，就像机器学习到深度学习，也是完成了人类专家手工提取特征到由机器自己学习特征这样的步骤转换。">
+<meta name="twitter:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fallenk.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fallenk&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">经历，心得，笔记，目标</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-NeuralArchitectureSearch" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/03/NeuralArchitectureSearch/" class="article-date">
+  <time datetime="2019-06-03T02:25:21.000Z" itemprop="datePublished">2019-06-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/论文阅读/">论文阅读</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      综述-NeuralArchitectureSearch
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="综述-Nerual-Architecture-Search"><a href="#综述-Nerual-Architecture-Search" class="headerlink" title="综述- Nerual Architecture Search"></a>综述- Nerual Architecture Search</h1><p>神经网络架构搜索，顾名思义，就是让<strong>机器自己去学习如何构架一个神经网络</strong>，得到比人类专家手工设计的网络更好的效果。这个思路是非常一脉相承的，就像机器学习到深度学习，也是<strong>完成了人类专家手工提取特征到由机器自己学习特征</strong>这样的步骤转换。</p>
+<a id="more"></a>
+<p>而现在的深度学习网络架构，虽然获得了不错的效果，但是细究起来，其实是没有非常牢固的理论根据的，依靠的是人类的先验与设计。</p>
+<p>所以，在考虑有限制的空间内获得效果更好的网络这一问题上，架构搜索能够给出一些答案。</p>
+<h1 id="Introduction-of-NAS"><a href="#Introduction-of-NAS" class="headerlink" title="Introduction of NAS"></a>Introduction of NAS</h1><p>TODO 主参考论文：Neural Architecture Search: A Survey 【<a href="https://arxiv.org/abs/1808.05377" target="_blank" rel="noopener">pdf</a>】</p>
+<p>作者：<a href="https://arxiv.org/search/stat?searchtype=author&amp;query=Elsken%2C+T" target="_blank" rel="noopener">Thomas Elsken</a>, <a href="https://arxiv.org/search/stat?searchtype=author&amp;query=Metzen%2C+J+H" target="_blank" rel="noopener">Jan Hendrik Metzen</a>, <a href="https://arxiv.org/search/stat?searchtype=author&amp;query=Hutter%2C+F" target="_blank" rel="noopener">Frank Hutter</a></p>
+<p>首先，我们先整体讨论一下神经网络架构搜索到底是怎样进行的。通常来说，我们需要考虑三个方面：<strong>搜索空间</strong>、<strong>搜索策略</strong>和<strong>评价策略</strong>。</p>
+<p><img src="/2019/06/03/NeuralArchitectureSearch/1.png" alt="image-20190603103544132"></p>
+<p><strong>搜索空间（SearchSpace）</strong>: 搜索空间定义了<strong>搜索的范围，其实就是在哪搜索</strong>。通过结合一些过去研究者架构设计方面的经验，可以通过减小搜索空间和简化搜索过程来提高搜索的性能。当然，这样同时也引入了人为的主观臆断，可能会妨碍寻找到超越当前人类知识的新的架构构建块（building blocks）。</p>
+<p><strong>搜索策略（SearchStrategy）</strong>：搜索策略定义的则<strong>怎样去搜索</strong>。一方面，我们希望能快速找到性能良好的架构，另一方面，也应避免过早收敛到次优架构（sub optimal architeture）区域。</p>
+<p><strong>性能评估策略（Performaceestimation strategy）</strong>：NAS 的<strong>目标是希望能够自动的在给定的数据集上找到一个高性能的架构</strong>。性能评估则是指<strong>评估此性能的过程</strong>：最简单的方式是按照<strong>通常的方式对一个标准架构训练和验证来获得结果</strong>，但遗憾的是这样的计算成本太高了，并且同时限制了可以搜索的网络架构的数量。因此，最近的许多研究都集中在探索新的方法来降低这些性能评估的成本。</p>
+<h3 id="搜索空间（Search-Space）"><a href="#搜索空间（Search-Space）" class="headerlink" title="搜索空间（Search Space）"></a>搜索空间（Search Space）</h3><p><img src="/2019/06/03/NeuralArchitectureSearch/2.png" alt="image-20190603110224437"></p>
+<p>如图所示的就是一个相对简单的搜索空间，称为<strong>链式神经网络（Chain-stuctured Neural Network）</strong>，很简单就是一个链表，第$ 𝑖−1$层的输出作为第 $i$ 层的输入，可以表示为$ 𝐴=𝐿<em>{n}∘…𝐿</em>{1}∘𝐿_{0}$。而针对于这样一个 search space，我们就需要考虑这些参数：</p>
+<ul>
+<li>网络的(最大)<strong>层数𝑛</strong></li>
+<li>每一层执行的<strong>操作类型</strong>，比如 pooling， convolution 这样的基础操作，或者更高级的一些操作，如depthwise separable convolutions 或 dilated convolutions。</li>
+<li>每一层与这个操作相关的 <strong>hyperparameters</strong>，比如对于一个一般的 convolutional 层来说，有 filter 的 numbers，keneral 的 size 和 strides 的 length，而对于 fully-connected 层来说就说是 units 的 number 了。</li>
+</ul>
+<p>而需要注意的是，与<strong>每层相关的 hyperparameters 是取决于这一层的操作类型</strong>，因此对于 Search Space 的参数化的结果并不是一个固定的长度（fixed-length），而是一个条件空间（conditioanl space）。</p>
+<p><img src="/2019/06/03/NeuralArchitectureSearch/3.png" alt="image-20190603110853320"></p>
+<p>最近的很多关于 NAS 的研究中都引入了人工设计出的如跳跃连接(skip connections)这样的架构元素，可以用来构建如图 2 右所示的<strong>复杂的多分支网络（multi-branch networks）</strong>。对于这样的结构，第 i 层的输入不再仅仅是前一层的输入，而需要表示为一个组合函数的形式。</p>
+<p><img src="/2019/06/03/NeuralArchitectureSearch/4.png" alt="image-20190603111059553"></p>
+<p>这种 cell-based 的 search space 也应用在了很多后来的研究中。然而，当使用基于 cell 的搜索空间时，出现了一种新的选择问题，即<strong>如何选择元架构（Micro-architecture）</strong>：应该使用多少 cells 以及如何连接它们来构建实际模型？</p>
+<p>理想情况下，Meta-architecture 也应作为 NAS 的一部分自动优化;否则，如果大多数复杂性已经由 meta-architecture 解决，那么很容易就把问题变成进行 meta-architecture engineer，这样对 Cell 的搜索就变得过于简单了。</p>
+<h3 id="搜索策略（Search-Strategy）"><a href="#搜索策略（Search-Strategy）" class="headerlink" title="搜索策略（Search Strategy）"></a>搜索策略（Search Strategy）</h3><p>到现在，已经有许多不同的搜索策略用于 NAS，主要有如下这些：</p>
+<ul>
+<li>随机搜索（random search）</li>
+<li>贝叶斯优化（Bayesian optimazation）</li>
+<li>进化方法（evolutionaray methods）</li>
+<li>强化学习（Reinforcement Learning, RL）</li>
+<li>梯度方法（gradient-based methods）</li>
+</ul>
+<p>自 2013 年开始，Bayesian optimazation（BO）就在 NAS 研究中取得了一些成功，<strong>基于 BO</strong> 发现了当时最优的 vison architectures，在 CIFAR-10 上取得最优 architeture，以及实现了第一个超过人类专家赢得竞赛的 automaticallytuned 神经网络。</p>
+<p>在 16 年 Google Brain 发表的 [10] 中通过<strong>强化学习的搜索策略</strong>在 CIFAR-10 和 Penn Treebank 数据集上取得很好表现后，NAS 成为机器学习社区的主流研究课题之一。</p>
+<p>关于其他几个算法，会在后续介绍，这边简单介绍一下进化算法和贝叶斯优化。</p>
+<p><strong>贝叶斯优化（BO）</strong>是<strong>用于 hyperparameters 优化中最流行的方法</strong>，但是由于 typical BO toolboxes 是<strong>基于高斯过程且主要集中于低维连续性优化问题</strong>，所以它并没有被很多组应用于 NAS 中。[17] 中派生了 kennel function 来使用基于 GP 的 BO 方法，但还没有实现过最优的结果。相比之下，一些研究中使用<strong>基于树的模型或随机森林来搜索非常高维的条件空间时实现了在很多问题上的最优性能</strong>，这些方法同时优化神经架构和它们的 hyperparameters。虽然缺乏完整的比较，但初步证据表明这些方法可以超过进化算法 [18]。</p>
+<p>关于 进化算法：</p>
+<p>更近期的一些研究中<strong>有不是使用基于梯度的方法来优化权重，而使用进化算法来优化神经结构本身</strong>。是用进化算法演化一组模型，在每个进化步骤中，对来自群体的至少一个模型进行采样，并将它们作为父母通过繁衍或者突变来产生后代。在 NAS 中，突变表示本地化的操作，例如添加或移除层，改变层的超参数，添加跳跃连接，以及改变训练超参数。在对后代进行训练之后，评估它们的适应性（例如，在验证集上的表现）后再将它们添加到种群中。</p>
+<h3 id="性能评估策略（Performace-Estimation-Strategy）"><a href="#性能评估策略（Performace-Estimation-Strategy）" class="headerlink" title="性能评估策略（Performace Estimation Strategy）"></a>性能评估策略（Performace Estimation Strategy）</h3><p>上一节讨论的搜索策略旨在找到<strong>某些性能度量（如准确度）最大化的架构 A</strong>，为了引导它们的搜索过程，这些策略需要<strong>考虑如何评判给定架构的性能高低</strong>。最简单的方法是在训练数据上训练 A 并评估其在验证数据上的表现。然而，从头开始训练每个要评估的架构经常会产生大约数千 GPU 天的计算需求</p>
+<p>为了加快搜索过程，<strong>需要在相对较少的评估的基础</strong>上并在相对较大的搜索空间中进行良好的预测</p>
+<p><img src="/2019/06/03/NeuralArchitectureSearch/5.png" alt="image-20190603111811624"></p>
+<ul>
+<li>Lower Fidelit Estimates</li>
+</ul>
+<p>这种 lower fidelities 可以表示<strong>为较短的训练时间</strong>，对训练子集的训练，使用较低分辨率的图像，或者是用更少的 filter。虽然这些 lower fidelities 降低了计算成本，但与此同时它们也会在测试中引入偏差，因为性能通常会被低估。当然只要搜索策略只依赖于相对排名时，这不会有什么问题。</p>
+<ul>
+<li>Learning Curve Extrapolation</li>
+</ul>
+<p>提出方法来<strong>推断初始学习曲线并终止那些预测表现不佳以加速架构搜索过程</strong>。另外一些研究者则通过基于架构的超参数来预测哪些部分学习曲线最有希望。</p>
+<ul>
+<li>Weight Inheritance/ Network Morphisms</li>
+</ul>
+<p>??<strong>基于之前已经训练过的其他架构的权重来初始化新架构的权重</strong>。实现这一目标的一种方法，称为 network morphisms，它允许修改架构的同时保持网络所代表的功能不变。这就允许连续的增加网络容量并保持高性能而无需从头开始训练。对几个时期的持续训练也可以利用 network morphisms 引入额外容量。</p>
+<ul>
+<li>One-Shot Models/ Weight Sharing</li>
+</ul>
+<p>??它将<strong>所有架构都视为一个超级图的不同子图，并在架构之间共享权重</strong>。那么只需要一次性训练单个模型的权重，然后通过继承权重来评估架构（它们只是一次性模型的子图），而无需再进行任何单独的训练。比如ENAS、Darts。</p>
+<h2 id="NAS-amp-NASNet-amp-ENAS"><a href="#NAS-amp-NASNet-amp-ENAS" class="headerlink" title="NAS &amp; NASNet &amp; ENAS"></a>NAS &amp; NASNet &amp; ENAS</h2><h3 id="NAS"><a href="#NAS" class="headerlink" title="NAS"></a>NAS</h3><p>Neural Architecture Search with Reinforcement Learning 【<a href="https://arxiv.org/abs/1611.01578" target="_blank" rel="noopener">pdf</a>】</p>
+<p>它是NSANet的前置，比较详细的介绍了Google的<strong>NAS的整体设计</strong>，包括<strong>具体的目标函数</strong>以及<strong>实现skip connection的具体方法</strong>，主要是提出了<strong>用强化学习的方法来完成搜索神经网络架构</strong>。</p>
+<p><img src="/2019/06/03/NeuralArchitectureSearch/6.png" alt="image-20190603112503684"></p>
+<p>通过一个controllerRNN在搜索空间（search space）中得到一个网络结构（论文中称为child network），然后用这个网络结构在数据集上训练，在验证集上测试得到准确率R，再将这个准确率回传给controller，controller继续优化得到另一个网络结构，如此反复进行直到得到最佳的结果，整个过程称为Neural Architecture Search。</p>
+<h4 id="How-to-use-a-controller-RNN-to-generate-an-CNN-model"><a href="#How-to-use-a-controller-RNN-to-generate-an-CNN-model" class="headerlink" title="How to use a controller RNN to generate an CNN model"></a><strong>How to use a controller RNN to generate an CNN model</strong></h4><p><strong>控制器生成的是网络架构中的超参数，NAS中假定预测的inference中只含卷积层</strong>。</p>
+<p><img src="/2019/06/03/NeuralArchitectureSearch/7.png" alt="image-20190603112640743"></p>
+<p>对于Layer N，控制器可以预测<strong>该层的filter width，filter height，stride height，stride width，filter的个数，每一个预测都是通过softmax分类</strong>，并作为下一个预测的输入。实验中的停止条件是，<strong>层的个数超过了某个指定的数值</strong>。当然这个数值在训练的过程中也可以变化。</p>
+<p>最终得到的是LSTM产生的一个序列化的tokens，记为$θ_{c}$。</p>
+<h4 id="How-to-train-a-controller-RNN-with-REINFORCE"><a href="#How-to-train-a-controller-RNN-with-REINFORCE" class="headerlink" title="How to train a controller RNN with REINFORCE"></a><strong>How to train a controller RNN with REINFORCE</strong></h4><p>将NAS与强化学习做一个对应，那么控制器LSTM就是Agent，控制器预测产生𝜃cθc对应为活动𝑎1:𝑇a1:T，子网络在验证集上的准确率R作为reward signal。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/" data-id="cjwftfeij001aec8o08hzm357" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/神经网络搜索/">神经网络搜索</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/29/彩票假设paper阅读笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">彩票假设paper阅读笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#综述-Nerual-Architecture-Search"><span class="toc-number">1.</span> <span class="toc-text">综述- Nerual Architecture Search</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction-of-NAS"><span class="toc-number">2.</span> <span class="toc-text">Introduction of NAS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索空间（Search-Space）"><span class="toc-number">2.0.1.</span> <span class="toc-text">搜索空间（Search Space）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索策略（Search-Strategy）"><span class="toc-number">2.0.2.</span> <span class="toc-text">搜索策略（Search Strategy）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#性能评估策略（Performace-Estimation-Strategy）"><span class="toc-number">2.0.3.</span> <span class="toc-text">性能评估策略（Performace Estimation Strategy）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NAS-amp-NASNet-amp-ENAS"><span class="toc-number">2.1.</span> <span class="toc-text">NAS &amp; NASNet &amp; ENAS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NAS"><span class="toc-number">2.1.1.</span> <span class="toc-text">NAS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#How-to-use-a-controller-RNN-to-generate-an-CNN-model"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">How to use a controller RNN to generate an CNN model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#How-to-train-a-controller-RNN-with-REINFORCE"><span class="toc-number">2.1.1.2.</span> <span class="toc-text">How to train a controller RNN with REINFORCE</span></a></li></ol></li></ol></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2019 Fallenk Liu&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;fallenk_liu@yeah.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "e2fb4051c49842688ce669e634bc983f",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+    
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
