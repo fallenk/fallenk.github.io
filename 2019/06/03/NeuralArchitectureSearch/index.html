@@ -21,7 +21,16 @@
 <meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/6.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/7.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/8.png">
-<meta property="og:updated_time" content="2019-06-03T03:37:21.804Z">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/9.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/10.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/11.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/12.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/13.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/14.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/15.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/16.png">
+<meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/NeuralArchitectureSearch/17.png">
+<meta property="og:updated_time" content="2019-06-03T13:41:13.886Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="综述-NeuralArchitectureSearch">
 <meta name="twitter:description" content="综述- Nerual Architecture Search神经网络架构搜索，顾名思义，就是让机器自己去学习如何构架一个神经网络，得到比人类专家手工设计的网络更好的效果。这个思路是非常一脉相承的，就像机器学习到深度学习，也是完成了人类专家手工提取特征到由机器自己学习特征这样的步骤转换。">
@@ -190,6 +199,51 @@
 <p><img src="/2019/06/03/NeuralArchitectureSearch/8.png" alt="image-20190603113639125"></p>
 <p>本篇的实验结果并无太多参考意义，因为很快作者就出了NASNet。NAS最大的意义还是在提出了一种神经网络搜索的框架结构。</p>
 <p>实验中采用了2层35个隐藏单元的LSTM，使用800个GPU训练了28天，一共22400 GPU-Hours，一共训练了12800个架构。</p>
+<h3 id="NASNet"><a href="#NASNet" class="headerlink" title="NASNet"></a>NASNet</h3><p>论文： Learning Transferable Architectures for Scalable Image Recognition 【<a href="https://arxiv.org/abs/1707.07012" target="_blank" rel="noopener">pdf</a>】</p>
+<p><img src="/2019/06/03/NeuralArchitectureSearch/9.png" alt="image-20190603212540904"></p>
+<p>相较于NAS的优化：</p>
+<p>一种新的搜索空间- NASNet search space—-a generic convolutional cell</p>
+<p>一种新的正则化技术，ScheduledDropPath，使得NASNet模型的泛化能力更好(实验细节，不太重要)</p>
+<h4 id="NASNet-cell"><a href="#NASNet-cell" class="headerlink" title="NASNet cell"></a><strong>NASNet cell</strong></h4><p>不再进行整个网络的搜索，而是<strong>定义了cell单元作为building block</strong>。通过堆叠cell形成最后的网络。</p>
+<p>具体讨论的话，对于CNN网络，采用了两种cell，<strong>normal cell</strong>和<strong>reduction cell</strong>。normal cell的输出保持维度不变，而reduction cell用于收缩维度，具体来说就是步长为2。两种单元是不同的架构，堆叠在一起形成了最后的网络架构。</p>
+<p>控制器RNN输出的是两种cell的超参，最后以下图形式堆叠为子网络，进行训练和验证，得到验证集准确率R回馈到控制器。</p>
+<p><img src="/2019/06/03/NeuralArchitectureSearch/10.png" alt="img"></p>
+<p>在NASNet的搜索空间中，每个cell的有两个初始隐藏状态输入$ℎ𝑖<em>{i}$和$ℎ</em>{𝑖−1}$，分别是前两个层的输出。控制器RNN会跟根据这两个initial hidden states预测卷积cell的剩余结构。</p>
+<p>控制器对每个cell的预测分为B个bolck（此处的block可以理解为一个操作），每个block又有5个不同的softmax分类器进行5个预测步骤。</p>
+<p><img src="/2019/06/03/NeuralArchitectureSearch/11.png" alt="image-20190603213110274"></p>
+<p>在算法中，用之前已经存在的隐藏态作为序列分块的可能输入来填入新建的hidden state。B=5时效果较好，即一个cell中包含5个操作。</p>
+<p>为了使RNN能同时预测Normal Cell和Reduction Cell，我们简单设定控制器有2*5B个预测步骤。前5B给Normal Cell，后5B给Reduction Cell。</p>
+<h4 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a><strong>实验结果</strong></h4><p>在具体训练阶段，控制器采用Proximal Policy Optimazation（PPO）策略，用RNN控制一个全局工作序列系统来生成一个子网络的备选池。</p>
+<p>训练时长为500个GPU训练4天，总计2000GPU时。比初始NAS快了7倍，但是还是非常奢侈。</p>
+<p>训练得到的卷积cell：</p>
+<p><img src="/2019/06/03/NeuralArchitectureSearch/12.png" alt="image-20190603213200358"></p>
+<p>CIFAR-10上的训练效果：</p>
+<p><img src="/2019/06/03/NeuralArchitectureSearch/13.png" alt="image-20190603213233993"></p>
+<p>cell泛化到ImageNet的图像分类任务：</p>
+<p><img src="/2019/06/03/NeuralArchitectureSearch/14.png" alt="image-20190603213302539"></p>
+<h3 id="ENAS"><a href="#ENAS" class="headerlink" title="ENAS"></a>ENAS</h3><p>论文：Efficient Neural Architecture Search via Parameter Sharing 【<a href="https://arxiv.org/abs/1802.03268" target="_blank" rel="noopener">pdf</a>】【<a href="https://github.com/melodyguan/enas" target="_blank" rel="noopener">code-tf</a>】【<a href="https://github.com/carpedm20/ENAS-pytorch" target="_blank" rel="noopener">code-python</a>】</p>
+<p>在ENAS中，控制器通过在大型计算图中<strong>搜索最优子图来发现神经网络结构</strong>。利用<strong>策略梯度对控制器进行训练</strong>，通过<strong>权重共享</strong>，快速选择验证集上期望报酬最大的子图。</p>
+<p><strong>最关键是利用子模型之间共享参数，大大减少了训练时长。</strong>采用了控制器参数与子网络参数相互迭代的方式进行训练。</p>
+<p><img src="/2019/06/03/NeuralArchitectureSearch/15.png" alt="image-20190603213354368"></p>
+<p>本处为了通篇逻辑，也使用ENAS中CNN cell的训练过程来描述。RNN网络训练过程请参考原文。</p>
+<h4 id="搜索空间"><a href="#搜索空间" class="headerlink" title="搜索空间"></a><strong>搜索空间</strong></h4><p>基本沿用NASNet。</p>
+<p><img src="/2019/06/03/NeuralArchitectureSearch/16.png" alt="image-20190603213436437"></p>
+<p>用一个例子来说明搜索空间的机制，这里是B = 4个节点(参见图5)。</p>
+<ol>
+<li>节点1,2是输入节点，因此不需要为它们做任何决策。设ℎ1h1,ℎ2h2为这些节点的输出。</li>
+<li>在节点3:控制器采样前两个节点和两个操作。在左上角的图5中，它对节点1、节点2分别选取了操作sep conv 5x5和identity。这意味着$h_{3}=\operatorname{sep}<em>{c} o n v</em>{5} x 5\left(h_{2}\right)+i d\left(h_{2}\right)$。</li>
+<li>在节点4:控制器采样节点3、节点1为 avg pooling3x3和sep conv 3x3。这意味着$h_{4}=a v g_{p} o o l_{3} x 3\left(h_{3}\right)+\operatorname{sep}<em>{c} o n v</em>{3} \times 3\left(h_{1}\right)$。</li>
+<li>由于除h4之外的所有节点都被用作至少另一个节点的输入，因此惟一的松散端h4被视为单元的输出。如果有多个松散的端点，它们将沿着深度维度连接起来，形成单元格的输出。</li>
+</ol>
+<h4 id="架构搜索与训练权重迭代进行"><a href="#架构搜索与训练权重迭代进行" class="headerlink" title="架构搜索与训练权重迭代进行"></a><strong>架构搜索与训练权重迭代进行</strong></h4><p>在ENAS,有两套可学的参数:控制器LSTM的参数θ,和子模型的共享参数ω。ENAS的培训过程包括两个交叉阶段。</p>
+<ol>
+<li>第一阶段通过一整个训练集训练子模型共享参数$w$。在本文的Penn Treebank实验中，ω是训练大约400 steps,每个minibatch使用64个样本,采用梯度反向传播+梯度截断（<strong>Truncated Gradient</strong>）进行优化，每隔35 steps进行一次隔断。同时,在CIFAR-10上,ω是45,000张训练图像,分为minibatches大小128,∇ω计算使用标准的反向传播。</li>
+<li>第二阶段训练参数控制器LSTM的参数θ, 对于固定数量的步骤,通常在我们的实验设置为2000。这两个阶段在ENAS的培训期间交替进行。</li>
+</ol>
+<p><strong>Deriving Architectures.</strong></p>
+<p>如何在训练好的ENAS模型中派生出全新的结构。首先从训练好的策略π(m, θ)中采样几个模型。针对每个模型，通过验证集的一个minibatch计算reward。选取其中reward最高的模型从零开始预训练。</p>
+<h4 id="实验结果-1"><a href="#实验结果-1" class="headerlink" title="实验结果"></a><strong>实验结果</strong></h4><p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/NeuralArchitectureSearch/17.png" alt="image-20190603214044256"></p>
+<h2 id="Latest-architecture-search-algorithms"><a href="#Latest-architecture-search-algorithms" class="headerlink" title="Latest architecture search algorithms"></a>Latest architecture search algorithms</h2><p>上述NAS三篇论文是一脉相承，一点点改进过来的。其实我最开始接触的论文是Darts，当时感觉这个结构是全新的。再一路看下来，会发现Darts也是在ENAS上又做了搜索策略部分的革新，整体的架构也还是继承下来的。</p>
 
       
     </div>
@@ -287,7 +341,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#综述-Nerual-Architecture-Search"><span class="toc-number">1.</span> <span class="toc-text">综述- Nerual Architecture Search</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction-of-NAS"><span class="toc-number">2.</span> <span class="toc-text">Introduction of NAS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索空间（Search-Space）"><span class="toc-number">2.0.1.</span> <span class="toc-text">搜索空间（Search Space）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索策略（Search-Strategy）"><span class="toc-number">2.0.2.</span> <span class="toc-text">搜索策略（Search Strategy）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#性能评估策略（Performace-Estimation-Strategy）"><span class="toc-number">2.0.3.</span> <span class="toc-text">性能评估策略（Performace Estimation Strategy）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NAS-amp-NASNet-amp-ENAS"><span class="toc-number">2.1.</span> <span class="toc-text">NAS &amp; NASNet &amp; ENAS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NAS"><span class="toc-number">2.1.1.</span> <span class="toc-text">NAS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#How-to-use-a-controller-RNN-to-generate-an-CNN-model"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">How to use a controller RNN to generate an CNN model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#How-to-train-a-controller-RNN-with-REINFORCE"><span class="toc-number">2.1.1.2.</span> <span class="toc-text">How to train a controller RNN with REINFORCE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#How-to-add-skip-connections-and-other-layer-types"><span class="toc-number">2.1.1.3.</span> <span class="toc-text">How to add skip connections and other layer types</span></a></li></ol></li></ol></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#综述-Nerual-Architecture-Search"><span class="toc-number">1.</span> <span class="toc-text">综述- Nerual Architecture Search</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction-of-NAS"><span class="toc-number">2.</span> <span class="toc-text">Introduction of NAS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索空间（Search-Space）"><span class="toc-number">2.0.1.</span> <span class="toc-text">搜索空间（Search Space）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索策略（Search-Strategy）"><span class="toc-number">2.0.2.</span> <span class="toc-text">搜索策略（Search Strategy）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#性能评估策略（Performace-Estimation-Strategy）"><span class="toc-number">2.0.3.</span> <span class="toc-text">性能评估策略（Performace Estimation Strategy）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NAS-amp-NASNet-amp-ENAS"><span class="toc-number">2.1.</span> <span class="toc-text">NAS &amp; NASNet &amp; ENAS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NAS"><span class="toc-number">2.1.1.</span> <span class="toc-text">NAS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#How-to-use-a-controller-RNN-to-generate-an-CNN-model"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">How to use a controller RNN to generate an CNN model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#How-to-train-a-controller-RNN-with-REINFORCE"><span class="toc-number">2.1.1.2.</span> <span class="toc-text">How to train a controller RNN with REINFORCE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#How-to-add-skip-connections-and-other-layer-types"><span class="toc-number">2.1.1.3.</span> <span class="toc-text">How to add skip connections and other layer types</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NASNet"><span class="toc-number">2.1.2.</span> <span class="toc-text">NASNet</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#NASNet-cell"><span class="toc-number">2.1.2.1.</span> <span class="toc-text">NASNet cell</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验结果"><span class="toc-number">2.1.2.2.</span> <span class="toc-text">实验结果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ENAS"><span class="toc-number">2.1.3.</span> <span class="toc-text">ENAS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#搜索空间"><span class="toc-number">2.1.3.1.</span> <span class="toc-text">搜索空间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#架构搜索与训练权重迭代进行"><span class="toc-number">2.1.3.2.</span> <span class="toc-text">架构搜索与训练权重迭代进行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验结果-1"><span class="toc-number">2.1.3.3.</span> <span class="toc-text">实验结果</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-architecture-search-algorithms"><span class="toc-number">2.2.</span> <span class="toc-text">Latest architecture search algorithms</span></a></li></ol></li></ol>
           </div>
       </div>
     </div>
