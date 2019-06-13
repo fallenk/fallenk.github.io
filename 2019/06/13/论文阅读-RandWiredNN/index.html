@@ -16,7 +16,14 @@
 <meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/1.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/2.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/3.png">
-<meta property="og:updated_time" content="2019-06-13T13:20:00.437Z">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/4.jpg">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/5.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/6.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/7.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/8.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/9.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/10.png">
+<meta property="og:updated_time" content="2019-06-13T14:30:48.860Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读-RandWiredNN">
 <meta name="twitter:description" content="论文阅读-RandWiredNNRandWireNN 基本思想是研究设计stochastic network generator，也就是设计网络构架的机制，它的关注点在网络的连接方式上。论文作者引入了一种网络模型空间的构造方法，即图论中的random graph，之后用grid search搜索出较好的神经网络子集，并在ImageNet的1000-class分类任务上进行验证。 论文： Explo">
@@ -148,6 +155,39 @@
 <p>这些属性几乎将FLOPs和参数计数与网络连接解耦，例如，在随机网络实例或不同生成器之间，FLOPs的偏差通常为±2%。这可以在不增加/减少模型复杂性的情况下比较不同的图。因此，任务性能的差异反映了连接模式的属性。</p>
 <p><strong>设置cell的输入节点和输出节点</strong></p>
 <p>给DAG指定唯一的输入节点（input）和唯一的输出节点(output)。DAG本身包含N个节点，那么额外指定一个输入节点与DAG中所有入度为0的节点相连，其负责将输入的图片转发出去；再额外指定一个输出节点与DAG中所有出度为0的节点相连，该节点进行均值计算后将结果输出。</p>
+<h3 id="三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN"><a href="#三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN" class="headerlink" title="三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN"></a>三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN</h3><p>借鉴其他经典深度学习神经网络，作者将多个NN堆叠起来形成最终的随机连接神经网络RandWireNN。图3为一个示例，其包含共5个stages，其中stage1是一个卷积层，stage2可以是一个卷积层或者是一个NN，stage3、stage4和stage5均为NN。不同stage之间：卷积操作的stride为2，故feature map的大小逐渐减半；卷积操作的卷积核的数量x2，故feature map的通道数(即C)也x2。3</p>
+<p><img src="/2019/06/13/论文阅读-RandWiredNN/4.jpg" alt=""></p>
+<p>其中每个NN的节点数N（不包含输入和输出节点）设置为32，通道数C设置为78或者109/154。不同的（N,C）对应不同的网络复杂度（FLOPs），这样可以跟不同规模（small/regular/larger）的其他经典网络进行实验比较。</p>
+<p><img src="/2019/06/13/论文阅读-RandWiredNN/5.png" alt=""></p>
+<h3 id="四、在ImageNet-1000-class任务上验证RandWireNN的表现"><a href="#四、在ImageNet-1000-class任务上验证RandWireNN的表现" class="headerlink" title="四、在ImageNet 1000-class任务上验证RandWireNN的表现"></a>四、在ImageNet 1000-class任务上验证RandWireNN的表现</h3><p>（1）三个随机图生成方法（ER，BA，WS）的比较</p>
+<p>如图4所示，WS方法的表现最好，于是接下来作者挑选了WS（4,0.75）与其他网络进行比较。论文还进行了另外一个网络结构鲁棒性测试的实验，即将网络中的某个节点或者某条边随机去掉，然后测试网络的表现，最后发现WS的结构最不稳定。这个研究点很有意思，也许将来会有一种网络生成器能够生成又好又鲁棒的网络结构，类似大脑，也许有种大脑结构最不容易得精神疾病。</p>
+<p><img src="/2019/06/13/论文阅读-RandWiredNN/6.png" alt=""></p>
+<p>首先是与小规模网络(smaller)进行比较，此时N=32，C=78。如表1所示，比MobileNet/ShuffleNet/NASNet/PNAS/DARTS等表现好，比Amoeba-C略差。7</p>
+<p><img src="/2019/06/13/论文阅读-RandWiredNN/7.png" alt=""></p>
+<p>其次与中等规模的网络（regular）进行比较，此时N=32，C=109/154，如表2所示，比ResNet-50/101和ResNeXt-50/101表现好。</p>
+<p><img src="/2019/06/13/论文阅读-RandWiredNN/8.png" alt=""></p>
+<p>最后与大规模网络（larger）进行比较，此时直接使用刚才训练好的中等规模网络，不过输入图像的size由224x224提高到320x320，如表3所示，虽然比其他网络表现略差，但是计算量少了很多。</p>
+<p><img src="/2019/06/13/论文阅读-RandWiredNN/9.png" alt=""></p>
+<p>（3）迁移表现</p>
+<p>论文将RandWireNN作为骨干网络，用Faster R-CNN with FPN来检测目标（COCO object detection），如表4所示，比ResNet-50和ResNeXt-50效果好。</p>
+<p><img src="/2019/06/13/论文阅读-RandWiredNN/10.png" alt=""></p>
+<h2 id="总结与思考"><a href="#总结与思考" class="headerlink" title="总结与思考"></a>总结与思考</h2><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文贡献：</p>
+<ul>
+<li>使用 WS 模型的最佳生成器生成的多个网络性能优于或可与完全手工设计的同类网络和通过各种神经结构搜索方法找到的网络相媲美。</li>
+<li>还观察到，对于同一生成器生成的不同随机网络，精度的方差较低，但不同生成器之间存在明显的精度差距。这些观察结果表明，网络生成器的设计很重要。</li>
+<li>最后，工作表明，从设计单个网络到设计网络生成器的新过渡是可能的，类似于如何从设计特征过渡到设计学习特征的网络。</li>
+</ul>
+<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><ol>
+<li>本文还是保持了相当部分的手工设计，对于随机图参数的选择方式是否可以改进</li>
+<li>比较有意义的是，本文把NAS领域的重点从运算操作的选择转向了网络连接(拓扑)的构造。</li>
+</ol>
+<p>参考文章中俞一鹏博士的思考：</p>
+<p>（1）这篇论文将图论的方法引入，并强调network generator的重要性，很有新意，好比“虎父无犬子”，“龙生龙，凤生凤”。</p>
+<p>（2）这个idea也许你也能想到，不过快速实现这个idea的能力更重要；</p>
+<p>（3）不同stage之间只有一个node连接，这个设计未必合理；</p>
+<p>（4）迁移学习表现比较的实验过于简单，且其他实验结果也没有很惊艳。</p>
+<p>（5）引入的图论方法有点简单，也许有更复杂的图生成方法，比如Bio-inspired类的；</p>
+<p>（6）只与NASNet进行了表现比较，没有与其他AutoML方法进行对比。</p>
 
       
     </div>
@@ -245,7 +285,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#论文阅读-RandWiredNN"><span class="toc-number">1.</span> <span class="toc-text">论文阅读-RandWiredNN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-number">1.2.</span> <span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、基于图论的随机图方法生成随机图Random-Graph"><span class="toc-number">1.2.1.</span> <span class="toc-text">一、基于图论的随机图方法生成随机图Random Graph</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、把生成的随机图Random-Graph转换为一个神经网络NN"><span class="toc-number">1.2.2.</span> <span class="toc-text">二、把生成的随机图Random Graph转换为一个神经网络NN</span></a></li></ol></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#论文阅读-RandWiredNN"><span class="toc-number">1.</span> <span class="toc-text">论文阅读-RandWiredNN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-number">1.2.</span> <span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、基于图论的随机图方法生成随机图Random-Graph"><span class="toc-number">1.2.1.</span> <span class="toc-text">一、基于图论的随机图方法生成随机图Random Graph</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、把生成的随机图Random-Graph转换为一个神经网络NN"><span class="toc-number">1.2.2.</span> <span class="toc-text">二、把生成的随机图Random Graph转换为一个神经网络NN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN"><span class="toc-number">1.2.3.</span> <span class="toc-text">三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、在ImageNet-1000-class任务上验证RandWireNN的表现"><span class="toc-number">1.2.4.</span> <span class="toc-text">四、在ImageNet 1000-class任务上验证RandWireNN的表现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结与思考"><span class="toc-number">1.3.</span> <span class="toc-text">总结与思考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">1.3.1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思考"><span class="toc-number">1.3.2.</span> <span class="toc-text">思考</span></a></li></ol></li></ol></li></ol>
           </div>
       </div>
     </div>
