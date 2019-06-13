@@ -14,7 +14,9 @@
 <meta property="og:description" content="论文阅读-RandWiredNNRandWireNN 基本思想是研究设计stochastic network generator，也就是设计网络构架的机制，它的关注点在网络的连接方式上。论文作者引入了一种网络模型空间的构造方法，即图论中的random graph，之后用grid search搜索出较好的神经网络子集，并在ImageNet的1000-class分类任务上进行验证。 论文： Explo">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/1.png">
-<meta property="og:updated_time" content="2019-06-13T09:17:05.309Z">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/2.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/3.png">
+<meta property="og:updated_time" content="2019-06-13T13:20:00.437Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读-RandWiredNN">
 <meta name="twitter:description" content="论文阅读-RandWiredNNRandWireNN 基本思想是研究设计stochastic network generator，也就是设计网络构架的机制，它的关注点在网络的连接方式上。论文作者引入了一种网络模型空间的构造方法，即图论中的random graph，之后用grid search搜索出较好的神经网络子集，并在ImageNet的1000-class分类任务上进行验证。 论文： Explo">
@@ -111,8 +113,42 @@
 <p>本文阅读有大量参考上述参考文章，也会补充部分个人细节与思考。</p>
 <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>RandWireNN 基本思想是研究设计<strong>stochastic network generator</strong>，也就是设计网络构架的机制，它的关注点在网络的连接方式上。下图是本文中获得的网络结构：</p>
 <p><img src="/2019/06/13/论文阅读-RandWiredNN/1.png" alt=""></p>
-<p>论文作者引入了一种网络模型空间的构造方法，即图论中的random graph，之后用grid search搜索出较好的神经网络子集，并在ImageNet的1000-class分类任务上进行验证。</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2>
+<p>论文作者引入了一种网络模型空间的构造方法，即图 h，之后用grid search搜索出较好的神经网络子集，并在ImageNet的1000-class分类任务上进行验证。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>论文的主要工作包含以下步骤：</p>
+<p>（1）基于图论的随机图方法生成随机图Random Graph；</p>
+<p>（2）将Random Graph转换为一个神经网络NN；</p>
+<p>（3）将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN；</p>
+<p>（4）在ImageNet 1000-class任务上验证RandWireNN的表现；</p>
+<p>（5）重复（1）到（4）步骤。</p>
+<h3 id="一、基于图论的随机图方法生成随机图Random-Graph"><a href="#一、基于图论的随机图方法生成随机图Random-Graph" class="headerlink" title="一、基于图论的随机图方法生成随机图Random Graph"></a>一、基于图论的随机图方法生成随机图Random Graph</h3><p>作者引入了三种随机图生成方法，即Erdos-Renyi（ER）、Barabasi-Albert（BA）和 Watts-Strogatz（WS）。这三个方法生成随机图的机制比较简单。</p>
+<ul>
+<li>ER: N个节点，节点两两之间以P的概率有一条边。该方法包含一个参数P，故以ER(P)表示。</li>
+<li>BA: 初始有M个节点（M&lt;N），每增加1个新节点的时候，该节点以一定的概率与已有的所有节点相连（这个概率与已有节点的度有关），重复，直到这个新节点有M条边。重复，直到整个图有N个节点。该方法包含一个参数M，故以BA(M)表示。</li>
+<li>WS: 所有N个节点排成一个圈，每个节点与两边邻近的K/2个节点相连。之后按照顺时针方向遍历每一个节点，与当前节点相连的某一条边以概率P与其他某个节点相连。重复K/2次。该方法包含2个参数K和P，故以WS(K,P)表示。</li>
+</ul>
+<p>其中模型的节点总数N由论文作者根据网络复杂度（FLOPs）手动指定，因此ER方法的参数搜索空间为P∈[0.0,1.0]，BA方法的参数搜索空间为M∈[1,N]，WS方法的参数搜索空间为K∈[1,N-1] x P∈[0.0,1.0]。图1是三种方法生成的随机图。</p>
+<p><img src="/2019/06/13/论文阅读-RandWiredNN/2.png" alt=""></p>
+<h3 id="二、把生成的随机图Random-Graph转换为一个神经网络NN"><a href="#二、把生成的随机图Random-Graph转换为一个神经网络NN" class="headerlink" title="二、把生成的随机图Random Graph转换为一个神经网络NN"></a>二、把生成的随机图Random Graph转换为一个神经网络NN</h3><p><strong>将随机图转化为DAG</strong></p>
+<p>首先要给每条边指定一个方向，即把生成的随机图Random Graph转换为有向无环图DAG。方法就是给每个节点分配一个索引index（从1到N），若两个节点之间有边，则边的方向从小索引节点到大索引节点。其中ER方法按照随机的方式给N个节点分配索引；BA方法给初始的M个节点分配索引1~M，之后每增加一个节点，其索引加1；WS方法则按照顺时针方向从小到大给N个节点分配索引。</p>
+<p><strong>为DAG的边和节点赋上操作</strong></p>
+<p>边操作：本文中假设每条边都代表着数据流，将一个tensor从一个节点送到另一个节点。</p>
+<p>节点操作：每一个节点代表一个一个实际操作。这个操作可以细分为以下三步：</p>
+<ul>
+<li>Aggregation：（输入操作：聚合）输入数据(从一条或多条边)到节点通过加权求和来聚合在一起；其中权重是正向可学习的。</li>
+<li>Transformation：（转换操作：卷积）聚合数据由定义为[relu-convolu- bn]三元组的转换处理。所有节点都使用相同类型的卷积，默认情况下为3×3可分卷积。</li>
+<li>Distribution：（输出操作：复制）节点的输出边缘发送转换后的数据的相同副本。</li>
+</ul>
+<p><img src="/2019/06/13/论文阅读-RandWiredNN/3.png" alt=""></p>
+<p>这样设计操作带来的一些特点：</p>
+<ol>
+<li>Additive aggregation能够维持输入输出channel数不变，防止后面的卷积计算越来越大，来避免仅仅因为增加计算量而提高大型输入节点的重要性程度，而忽略网络连接的作用。</li>
+<li>Transformation应具有相同数量的输出和输入通道(除非切换阶段），以确保转换后的数据可以与来自任何其他节点的数据相结合。固定通道计数之后，不管输入和输出的程度如何，都会保持每个节点的FLOPs(浮点操作)和参数计数不变。</li>
+<li>不论输入和输出的程度如何，聚集和分布几乎没有参数(加权求和的参数数目很少)。此外，假设每条边都是无参数的，这样一来，<strong>图的FLOPs和参数数量与节点的数量大致成正比，且几乎与边的数量无关</strong>。</li>
+</ol>
+<p>这些属性几乎将FLOPs和参数计数与网络连接解耦，例如，在随机网络实例或不同生成器之间，FLOPs的偏差通常为±2%。这可以在不增加/减少模型复杂性的情况下比较不同的图。因此，任务性能的差异反映了连接模式的属性。</p>
+<p><strong>设置cell的输入节点和输出节点</strong></p>
+<p>给DAG指定唯一的输入节点（input）和唯一的输出节点(output)。DAG本身包含N个节点，那么额外指定一个输入节点与DAG中所有入度为0的节点相连，其负责将输入的图片转发出去；再额外指定一个输出节点与DAG中所有出度为0的节点相连，该节点进行均值计算后将结果输出。</p>
+
       
     </div>
     <footer class="article-footer">
@@ -209,7 +245,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#论文阅读-RandWiredNN"><span class="toc-number">1.</span> <span class="toc-text">论文阅读-RandWiredNN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-number">1.2.</span> <span class="toc-text">方法</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#论文阅读-RandWiredNN"><span class="toc-number">1.</span> <span class="toc-text">论文阅读-RandWiredNN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-number">1.2.</span> <span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、基于图论的随机图方法生成随机图Random-Graph"><span class="toc-number">1.2.1.</span> <span class="toc-text">一、基于图论的随机图方法生成随机图Random Graph</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、把生成的随机图Random-Graph转换为一个神经网络NN"><span class="toc-number">1.2.2.</span> <span class="toc-text">二、把生成的随机图Random Graph转换为一个神经网络NN</span></a></li></ol></li></ol></li></ol>
           </div>
       </div>
     </div>
