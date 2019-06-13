@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
 <meta property="og:description" content="思想如何写程序：分析程序代码：入口，分叉逻辑(各个分支情况列举)，出口考虑(各种边界条件,特别是=的情况) 控制结束的条件，初始，各个分支情况流程逻辑；结束时的条件:(正常结束，异常结束，边界值)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-12T14:01:59.433Z">
+<meta property="og:updated_time" content="2019-06-13T13:27:47.139Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode-排序">
 <meta name="twitter:description" content="思想如何写程序：分析程序代码：入口，分叉逻辑(各个分支情况列举)，出口考虑(各种边界条件,特别是=的情况) 控制结束的条件，初始，各个分支情况流程逻辑；结束时的条件:(正常结束，异常结束，边界值)">
@@ -119,6 +119,11 @@
 <p>solution 2:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">			<span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">					priority_queue&lt;<span class="keyword">int</span>&gt; q(nums.begin(), nums.end());</span><br><span class="line">					<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k, i++) &#123;</span><br><span class="line">							q.pop();</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">return</span> q.top();</span><br><span class="line">			&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>熟悉快排：核心思想是<strong>每次都要先找一个中枢点Pivot</strong>，<strong>然后遍历其他所有的数字</strong>，像这道题从大往小排的话，就把大于中枢点的数字放到左半边，把小于中枢点的放在右半边，这样中枢点是整个数组中第几大的数字就确定了，虽然左右两部分各自不一定是完全有序的，但是并不影响本题要求的结果，因为左半部分的所有值都大于右半部分的任意值，所以我们求出中枢点的位置，如果正好是k-1，那么直接返回该位置上的数字；如果大于k-1，说明要求的数字在左半部分，更新右边界，再求新的中枢点位置；反之则更新右半部分，求中枢点的位置；</p>
+<h1 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a><a href="https://cyc2018.github.io/CS-Notes/#/notes/Leetcode 题解 - 排序?id=桶排序" target="_blank" rel="noopener">桶排序</a></h1><h2 id="1-出现频率最多的-k-个元素"><a href="#1-出现频率最多的-k-个元素" class="headerlink" title="1. 出现频率最多的 k 个元素"></a><a href="https://cyc2018.github.io/CS-Notes/#/notes/Leetcode 题解 - 排序?id=_1-出现频率最多的-k-个元素" target="_blank" rel="noopener">1. 出现频率最多的 k 个元素</a></h2><ol start="347">
+<li><p>Top K Frequent Elements</p>
+<p>Given a non-empty array of integers, return the <strong>k</strong> most frequent elements.</p>
+</li>
+</ol>
 
       
     </div>
@@ -225,7 +230,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#思想"><span class="toc-number">1.</span> <span class="toc-text">思想</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#堆"><span class="toc-number">2.</span> <span class="toc-text">堆</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#215-Kth-Largest-Element-in-an-Array-Medium"><span class="toc-number">2.1.</span> <span class="toc-text">215. Kth Largest Element in an Array (Medium)</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#思想"><span class="toc-number">1.</span> <span class="toc-text">思想</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#堆"><span class="toc-number">2.</span> <span class="toc-text">堆</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#215-Kth-Largest-Element-in-an-Array-Medium"><span class="toc-number">2.1.</span> <span class="toc-text">215. Kth Largest Element in an Array (Medium)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#桶排序"><span class="toc-number">3.</span> <span class="toc-text">桶排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-出现频率最多的-k-个元素"><span class="toc-number">3.1.</span> <span class="toc-text">1. 出现频率最多的 k 个元素</span></a></li></ol></li></ol>
           </div>
       </div>
     </div>
