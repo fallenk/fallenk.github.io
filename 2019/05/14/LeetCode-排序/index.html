@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
 <meta property="og:description" content="思想如何写程序：分析程序代码：入口，分叉逻辑(各个分支情况列举)，出口考虑(各种边界条件,特别是=的情况) 控制结束的条件，初始，各个分支情况流程逻辑；结束时的条件:(正常结束，异常结束，边界值)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-11T14:06:14.826Z">
+<meta property="og:updated_time" content="2019-06-12T14:01:59.433Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode-排序">
 <meta name="twitter:description" content="思想如何写程序：分析程序代码：入口，分叉逻辑(各个分支情况列举)，出口考虑(各种边界条件,特别是=的情况) 控制结束的条件，初始，各个分支情况流程逻辑；结束时的条件:(正常结束，异常结束，边界值)">
@@ -109,16 +109,21 @@
 <h1 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h1><p>用于求解TopK Elements问题，也是就是K个最小元素的问题。可以维护一个<strong>大小为K的最小堆</strong>，最小堆中的元素就是最小元素。<strong>最小堆要用大顶堆来实现</strong>，大顶堆表示堆顶元素是堆中最大元素。这是因为我们要得到k个最小的元素，因此当遍历到一个新的元素时，需要<strong>知道这个新元素是否比堆中的最大元素更小，更小的话就把堆中的最大元素去除，并将新元素添加到堆中</strong>。所以我们需要很容易的得到最大元素并移除最大元素，大顶堆可以很好的满足这个要求。</p>
 <p>堆也是用于与求解Kth Element问题，<strong>得到了大小为k的最小堆之后，因为使用了大顶堆来实现，因此堆顶元素就是第K大的元素</strong>。</p>
 <p><strong>快速选择</strong>也可以求解TopK Elements问题，<strong>因为找到Kth Element之后，遍历一次数组，所有小于等于KthElement的元素都是TopK Elements。</strong></p>
-<p>可以看到，快速选择和堆排序都可以求解 Kth Element 和 TopK Elements 问题。</p>
+<p>可以看到，快速选择和堆排序都可以求解 Kth Element 和 TopK Elements 问题。第K个元素和前K元素</p>
 <h2 id="215-Kth-Largest-Element-in-an-Array-Medium"><a href="#215-Kth-Largest-Element-in-an-Array-Medium" class="headerlink" title="215. Kth Largest Element in an Array (Medium)"></a><a href="https://leetcode.com/problems/kth-largest-element-in-an-array/description/" target="_blank" rel="noopener">215. Kth Largest Element in an Array (Medium)</a></h2><p>Kth Element</p>
 <p>Find the <strong>k</strong>th largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.</p>
 <p><strong>Note:</strong><br>You may assume k is always valid, 1 ≤ k ≤ array’s length.</p>
 <p>题目描述：找到倒数第 k 个的元素。</p>
+<p>solution 1：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        <span class="keyword">return</span> nums[nums.size() - k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>solution 2:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">			<span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">					priority_queue&lt;<span class="keyword">int</span>&gt; q(nums.begin(), nums.end());</span><br><span class="line">					<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k, i++) &#123;</span><br><span class="line">							q.pop();</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">return</span> q.top();</span><br><span class="line">			&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>熟悉快排：核心思想是<strong>每次都要先找一个中枢点Pivot</strong>，<strong>然后遍历其他所有的数字</strong>，像这道题从大往小排的话，就把大于中枢点的数字放到左半边，把小于中枢点的放在右半边，这样中枢点是整个数组中第几大的数字就确定了，虽然左右两部分各自不一定是完全有序的，但是并不影响本题要求的结果，因为左半部分的所有值都大于右半部分的任意值，所以我们求出中枢点的位置，如果正好是k-1，那么直接返回该位置上的数字；如果大于k-1，说明要求的数字在左半部分，更新右边界，再求新的中枢点位置；反之则更新右半部分，求中枢点的位置；</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/05/14/LeetCode-排序/" data-id="cjwftfeiu001eec8ow4lp0932" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/05/14/LeetCode-排序/" data-id="cjwugbjl80014uf8omvovfzlw" class="article-share-link">分享</a>
       
       
       
