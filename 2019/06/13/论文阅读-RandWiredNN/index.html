@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/8.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/9.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/10.png">
-<meta property="og:updated_time" content="2019-06-14T12:55:03.563Z">
+<meta property="og:updated_time" content="2019-06-16T02:52:15.924Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读-RandWiredNN">
 <meta name="twitter:description" content="论文阅读-RandWiredNNRandWireNN 基本思想是研究设计stochastic network generator，也就是设计网络构架的机制，它的关注点在网络的连接方式上。论文作者引入了一种网络模型空间的构造方法，即图论中的random graph，之后用grid search搜索出较好的神经网络子集，并在ImageNet的1000-class分类任务上进行验证。 论文： Explo">
@@ -112,31 +112,34 @@
       
         <!-- Table of Contents -->
         
-        <h1 id="论文阅读-RandWiredNN"><a href="#论文阅读-RandWiredNN" class="headerlink" title="论文阅读-RandWiredNN"></a>论文阅读-RandWiredNN</h1><p>RandWireNN 基本思想是<strong>研究设计stochastic network generator</strong>，也就是<strong>设计网络构架的机制</strong>，它的关注点<strong>在网络的连接方式上</strong>。论文作者引入了一种网络模型空间的构造方法，即图论中的random graph，之后用grid search搜索出较好的神经网络子集，并在ImageNet的1000-class分类任务上进行验证。</p>
+        <h1 id="论文阅读-RandWiredNN"><a href="#论文阅读-RandWiredNN" class="headerlink" title="论文阅读-RandWiredNN"></a>论文阅读-RandWiredNN</h1><p>RandWireNN 基本思想是<strong>研究设计stochastic network generator</strong>，也就是<strong>设计网络构架的机制</strong>，它的关注点<strong>在网络的连接方式上</strong>。论文作者引入了一种网络模型空间的构造方法，即<strong>图论中的random graph，之后用grid search搜索出较好的神经网络子集</strong>，并在ImageNet的1000-class分类任务上进行<strong>验证</strong>。</p>
 <p>论文： Exploring Randomly Wired Neural Networks for Image Recognition 【<a href="https://arxiv.org/abs/1904.01569" target="_blank" rel="noopener">pdf</a>】</p>
 <p>作者：<a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xie%2C+S" target="_blank" rel="noopener">Saining Xie</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Kirillov%2C+A" target="_blank" rel="noopener">Alexander Kirillov</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Girshick%2C+R" target="_blank" rel="noopener">Ross Girshick</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=He%2C+K" target="_blank" rel="noopener">Kaiming He</a></p>
 <p>参考文章：<a href="https://zhuanlan.zhihu.com/p/62837029" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/62837029</a></p>
 <a id="more"></a>
 <p>本文阅读有大量参考上述参考文章，也会补充部分个人细节与思考。</p>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>RandWireNN 基本思想是研究设计<strong>stochastic network generator</strong>，也就是设计网络构架的机制，它的关注点在网络的连接方式上。下图是本文中获得的网络结构：</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>RandWireNN 基本思想是研究设计<strong>stochastic network generator</strong>，也就是设计网络构架的机制，它的关注点在<strong>网络的连接方式</strong>上。下图是本文中获得的网络结构：</p>
 <p><img src="/2019/06/13/论文阅读-RandWiredNN/1.png" alt=""></p>
 <p>论文作者引入了一种网络模型空间的构造方法，即图 h，之后用grid search搜索出较好的神经网络子集，并在ImageNet的1000-class分类任务上进行验证。</p>
+<p>深度学习模型炼丹师一般手工精心设计网络中不同层之间的连接方式，如CNN的convolution，RNN的recurrent，ResNets的x+F(x)，以及DenseNets的[x, F(x)]等。自动化机器学习/深度学习的研究者则主要关注在巨大的网络模型空间中如何高效地搜索出较好的神经网络，如早期研究人员一般使用random search/gird search，现在演变出reinforcement learning, gradient-based, weight-sharing,以及evolutionary等方法。<strong>论文作者引入了一种网络模型空间的构造方法</strong>，即<strong>图论中的random graph</strong>，之后用<strong>grid search搜索出较好的神经网络子集</strong>，并在ImageNet的1000-class分类任务上进行验证。</p>
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>论文的主要工作包含以下步骤：</p>
-<p>（1）基于图论的随机图方法生成随机图Random Graph；</p>
-<p>（2）将Random Graph转换为一个神经网络NN；</p>
-<p>（3）将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN；</p>
+<p>（1）基于<strong>图论的随机图方法</strong>生成随机图Random Graph；</p>
+<p>（2）将Random Graph<strong>转换为一个神经网络NN</strong>；</p>
+<p>（3）将<strong>多个NN堆叠</strong>起来，形成最终的<strong>随机连接神经网络RandWireNN</strong>；</p>
 <p>（4）在ImageNet 1000-class任务上验证RandWireNN的表现；</p>
 <p>（5）重复（1）到（4）步骤。</p>
 <h3 id="一、基于图论的随机图方法生成随机图Random-Graph"><a href="#一、基于图论的随机图方法生成随机图Random-Graph" class="headerlink" title="一、基于图论的随机图方法生成随机图Random Graph"></a>一、基于图论的随机图方法生成随机图Random Graph</h3><p>作者引入了三种随机图生成方法，即Erdos-Renyi（ER）、Barabasi-Albert（BA）和 Watts-Strogatz（WS）。这三个方法生成随机图的机制比较简单。</p>
 <ul>
-<li>ER: N个节点，节点两两之间以P的概率有一条边。该方法包含一个参数P，故以ER(P)表示。</li>
-<li>BA: 初始有M个节点（M&lt;N），每增加1个新节点的时候，该节点以一定的概率与已有的所有节点相连（这个概率与已有节点的度有关），重复，直到这个新节点有M条边。重复，直到整个图有N个节点。该方法包含一个参数M，故以BA(M)表示。</li>
-<li>WS: 所有N个节点排成一个圈，每个节点与两边邻近的K/2个节点相连。之后按照顺时针方向遍历每一个节点，与当前节点相连的某一条边以概率P与其他某个节点相连。重复K/2次。该方法包含2个参数K和P，故以WS(K,P)表示。</li>
+<li>ER: N个节点，<strong>节点两两之间以P的概率有一条边</strong>。该方法包含一个参数P，故以<strong>ER(P)</strong>表示。</li>
+<li>BA: 初始有M个节点（M&lt;N），每<strong>增加1个新节点</strong>的时候，该节点以一定的概率与已有的所有节点相连（这个概率与已有节点的度有关），<strong>重复，直到这个新节点有M条边</strong>。重复，<strong>直到整个图有N个节点</strong>。该方法包含一个参数M，故以<strong>BA(M)</strong>表示。</li>
+<li>WS: 所有N个节点排成一个圈，每个节点与两边邻近的K/2个节点相连。之后按照顺时针方向遍历每一个节点，<strong>与当前节点相连的某一条边以概率P与其他某个节点相连</strong>。重复K/2次。该方法包含2个参数K和P，故以<strong>WS(K,P)</strong>表示。</li>
 </ul>
-<p>其中模型的节点总数N由论文作者根据网络复杂度（FLOPs）手动指定，因此ER方法的参数搜索空间为P∈[0.0,1.0]，BA方法的参数搜索空间为M∈[1,N]，WS方法的参数搜索空间为K∈[1,N-1] x P∈[0.0,1.0]。图1是三种方法生成的随机图。</p>
+<p>其中模型的<strong>节点总数N由论文作者根据网络复杂度（FLOPs）手动指定</strong>，因此ER方法的参数搜索空间为P∈[0.0,1.0]，BA方法的参数搜索空间为M∈[1,N]，WS方法的参数搜索空间为K∈[1,N-1] x P∈[0.0,1.0]。图1是三种方法生成的随机图。</p>
 <p><img src="/2019/06/13/论文阅读-RandWiredNN/2.png" alt=""></p>
+<p>图1：随机图</p>
 <h3 id="二、把生成的随机图Random-Graph转换为一个神经网络NN"><a href="#二、把生成的随机图Random-Graph转换为一个神经网络NN" class="headerlink" title="二、把生成的随机图Random Graph转换为一个神经网络NN"></a>二、把生成的随机图Random Graph转换为一个神经网络NN</h3><p><strong>将随机图转化为DAG</strong></p>
-<p>首先要给每条边指定一个方向，即把生成的随机图Random Graph转换为有向无环图DAG。方法就是给每个节点分配一个索引index（从1到N），若两个节点之间有边，则边的方向从小索引节点到大索引节点。其中ER方法按照随机的方式给N个节点分配索引；BA方法给初始的M个节点分配索引1~M，之后每增加一个节点，其索引加1；WS方法则按照顺时针方向从小到大给N个节点分配索引。</p>
+<p>由图1可知，生成的每个随机图中的边是没有方向的，且不知道哪个是输入节点，哪个是输出节点。</p>
+<p>首先要给每条边指定一个方向，即把<strong>生成的随机图Random Graph转换为有向无环图DAG</strong>。方法就是<strong>给每个节点分配一个索引index（从1到N），若两个节点之间有边，则边的方向从小索引节点到大索引节点</strong>。其中ER方法按照随机的方式给N个节点分配索引；BA方法给初始的M个节点分配索引1~M，之后每增加一个节点，其索引加1；WS方法则按照顺时针方向从小到大给N个节点分配索引。</p>
 <p><strong>为DAG的边和节点赋上操作</strong></p>
 <p>边操作：本文中假设每条边都代表着数据流，将一个tensor从一个节点送到另一个节点。</p>
 <p>节点操作：每一个节点代表一个一个实际操作。这个操作可以细分为以下三步：</p>
@@ -146,6 +149,7 @@
 <li>Distribution：（输出操作：复制）节点的输出边缘发送转换后的数据的相同副本。</li>
 </ul>
 <p><img src="/2019/06/13/论文阅读-RandWiredNN/3.png" alt=""></p>
+<p>图2：节点的操作</p>
 <p>这样设计操作带来的一些特点：</p>
 <ol>
 <li>Additive aggregation能够维持输入输出channel数不变，防止后面的卷积计算越来越大，来避免仅仅因为增加计算量而提高大型输入节点的重要性程度，而忽略网络连接的作用。</li>
