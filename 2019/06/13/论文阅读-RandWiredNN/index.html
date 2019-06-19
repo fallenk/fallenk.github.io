@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/8.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/9.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/10.png">
-<meta property="og:updated_time" content="2019-06-16T02:52:15.924Z">
+<meta property="og:updated_time" content="2019-06-17T07:19:36.326Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读-RandWiredNN">
 <meta name="twitter:description" content="论文阅读-RandWiredNNRandWireNN 基本思想是研究设计stochastic network generator，也就是设计网络构架的机制，它的关注点在网络的连接方式上。论文作者引入了一种网络模型空间的构造方法，即图论中的random graph，之后用grid search搜索出较好的神经网络子集，并在ImageNet的1000-class分类任务上进行验证。 论文： Explo">
@@ -120,7 +120,7 @@
 <p>本文阅读有大量参考上述参考文章，也会补充部分个人细节与思考。</p>
 <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>RandWireNN 基本思想是研究设计<strong>stochastic network generator</strong>，也就是设计网络构架的机制，它的关注点在<strong>网络的连接方式</strong>上。下图是本文中获得的网络结构：</p>
 <p><img src="/2019/06/13/论文阅读-RandWiredNN/1.png" alt=""></p>
-<p>论文作者引入了一种网络模型空间的构造方法，即图 h，之后用grid search搜索出较好的神经网络子集，并在ImageNet的1000-class分类任务上进行验证。</p>
+<p>论文作者引入了一种<strong>网络模型空间的构造方法，即图论中的random graph，之后用grid search搜索出较好的神经网络子集，并在ImageNet的1000-class分类任务上进行验证</strong>。</p>
 <p>深度学习模型炼丹师一般手工精心设计网络中不同层之间的连接方式，如CNN的convolution，RNN的recurrent，ResNets的x+F(x)，以及DenseNets的[x, F(x)]等。自动化机器学习/深度学习的研究者则主要关注在巨大的网络模型空间中如何高效地搜索出较好的神经网络，如早期研究人员一般使用random search/gird search，现在演变出reinforcement learning, gradient-based, weight-sharing,以及evolutionary等方法。<strong>论文作者引入了一种网络模型空间的构造方法</strong>，即<strong>图论中的random graph</strong>，之后用<strong>grid search搜索出较好的神经网络子集</strong>，并在ImageNet的1000-class分类任务上进行验证。</p>
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>论文的主要工作包含以下步骤：</p>
 <p>（1）基于<strong>图论的随机图方法</strong>生成随机图Random Graph；</p>
@@ -137,29 +137,26 @@
 <p>其中模型的<strong>节点总数N由论文作者根据网络复杂度（FLOPs）手动指定</strong>，因此ER方法的参数搜索空间为P∈[0.0,1.0]，BA方法的参数搜索空间为M∈[1,N]，WS方法的参数搜索空间为K∈[1,N-1] x P∈[0.0,1.0]。图1是三种方法生成的随机图。</p>
 <p><img src="/2019/06/13/论文阅读-RandWiredNN/2.png" alt=""></p>
 <p>图1：随机图</p>
-<h3 id="二、把生成的随机图Random-Graph转换为一个神经网络NN"><a href="#二、把生成的随机图Random-Graph转换为一个神经网络NN" class="headerlink" title="二、把生成的随机图Random Graph转换为一个神经网络NN"></a>二、把生成的随机图Random Graph转换为一个神经网络NN</h3><p><strong>将随机图转化为DAG</strong></p>
-<p>由图1可知，生成的每个随机图中的边是没有方向的，且不知道哪个是输入节点，哪个是输出节点。</p>
-<p>首先要给每条边指定一个方向，即把<strong>生成的随机图Random Graph转换为有向无环图DAG</strong>。方法就是<strong>给每个节点分配一个索引index（从1到N），若两个节点之间有边，则边的方向从小索引节点到大索引节点</strong>。其中ER方法按照随机的方式给N个节点分配索引；BA方法给初始的M个节点分配索引1~M，之后每增加一个节点，其索引加1；WS方法则按照顺时针方向从小到大给N个节点分配索引。</p>
-<p><strong>为DAG的边和节点赋上操作</strong></p>
-<p>边操作：本文中假设每条边都代表着数据流，将一个tensor从一个节点送到另一个节点。</p>
-<p>节点操作：每一个节点代表一个一个实际操作。这个操作可以细分为以下三步：</p>
+<h3 id="二、把生成的随机图Random-Graph转换为一个神经网络NN"><a href="#二、把生成的随机图Random-Graph转换为一个神经网络NN" class="headerlink" title="二、把生成的随机图Random Graph转换为一个神经网络NN"></a>二、把生成的随机图Random Graph转换为一个神经网络NN</h3><h3 id="1-将随机图转化为DAG"><a href="#1-将随机图转化为DAG" class="headerlink" title="1. 将随机图转化为DAG"></a><strong>1. 将随机图转化为DAG</strong></h3><p>由图1可知，生成的每个随机图中的边是没有方向的，且不知道哪个是输入节点，哪个是输出节点。</p>
+<p>首先要给每条边指定一个方向，即把<strong>生成的随机图Random Graph转换为有向无环图DAG</strong>。方法就是<strong>给每个节点分配一个索引index（从1到N），若两个节点之间有边，则边的方向从小索引节点到大索引节点</strong>。其中ER方法按照随机的方式给N个节点分配索引；BA方法给初始的M个节点分配索引1~M，之后每增加一个节点，其索引加1；<strong>WS方法则按照顺时针方向从小到大给N个节点分配索引</strong>。</p>
+<h3 id="2-为DAG的边和节点赋上操作"><a href="#2-为DAG的边和节点赋上操作" class="headerlink" title="2. 为DAG的边和节点赋上操作"></a><strong>2. 为DAG的边和节点赋上操作</strong></h3><p>边操作：本文中假设<strong>每条边都代表着数据流</strong>，将<strong>一个tensor从一个节点送到另一个节点</strong>。</p>
+<p>节点操作：每一个节点代表一个一个<strong>实际操作</strong>。这个操作可以细分为以下三步：</p>
 <ul>
-<li>Aggregation：（输入操作：聚合）输入数据(从一条或多条边)到节点通过加权求和来聚合在一起；其中权重是正向可学习的。</li>
-<li>Transformation：（转换操作：卷积）聚合数据由定义为[relu-convolu- bn]三元组的转换处理。所有节点都使用相同类型的卷积，默认情况下为3×3可分卷积。</li>
+<li>Aggregation：（输入操作：聚合）输入数据(从一条或多条边)到节点<strong>通过加权求和来聚合</strong>在一起；其中权重是<strong>正向可学习</strong>的。</li>
+<li>Transformation：（转换操作：卷积）<strong>聚合数据由定义为[relu-convolu- bn]三元组的转换处理</strong>。<strong>所有节点都使用相同类型的卷积</strong>，默认情况下为3×3可分卷积。</li>
 <li>Distribution：（输出操作：复制）节点的输出边缘发送转换后的数据的相同副本。</li>
 </ul>
 <p><img src="/2019/06/13/论文阅读-RandWiredNN/3.png" alt=""></p>
 <p>图2：节点的操作</p>
 <p>这样设计操作带来的一些特点：</p>
 <ol>
-<li>Additive aggregation能够维持输入输出channel数不变，防止后面的卷积计算越来越大，来避免仅仅因为增加计算量而提高大型输入节点的重要性程度，而忽略网络连接的作用。</li>
+<li>Additive aggregation能够维持输入输出<strong>channel数不变</strong>，防止后面的卷积计算越来越大，来避免仅仅因为增加计算量而提高大型输入节点的重要性程度，而忽略网络连接的作用。</li>
 <li>Transformation应具有相同数量的输出和输入通道(除非切换阶段），以确保转换后的数据可以与来自任何其他节点的数据相结合。固定通道计数之后，不管输入和输出的程度如何，都会保持每个节点的FLOPs(浮点操作)和参数计数不变。</li>
 <li>不论输入和输出的程度如何，聚集和分布几乎没有参数(加权求和的参数数目很少)。此外，假设每条边都是无参数的，这样一来，<strong>图的FLOPs和参数数量与节点的数量大致成正比，且几乎与边的数量无关</strong>。</li>
 </ol>
 <p>这些属性几乎将FLOPs和参数计数与网络连接解耦，例如，在随机网络实例或不同生成器之间，FLOPs的偏差通常为±2%。这可以在不增加/减少模型复杂性的情况下比较不同的图。因此，任务性能的差异反映了连接模式的属性。</p>
-<p><strong>设置cell的输入节点和输出节点</strong></p>
-<p>给DAG指定唯一的输入节点（input）和唯一的输出节点(output)。DAG本身包含N个节点，那么额外指定一个输入节点与DAG中所有入度为0的节点相连，其负责将输入的图片转发出去；再额外指定一个输出节点与DAG中所有出度为0的节点相连，该节点进行均值计算后将结果输出。</p>
-<h3 id="三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN"><a href="#三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN" class="headerlink" title="三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN"></a>三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN</h3><p>借鉴其他经典深度学习神经网络，作者将多个NN堆叠起来形成最终的随机连接神经网络RandWireNN。图3为一个示例，其包含共5个stages，其中stage1是一个卷积层，stage2可以是一个卷积层或者是一个NN，stage3、stage4和stage5均为NN。不同stage之间：卷积操作的stride为2，故feature map的大小逐渐减半；卷积操作的卷积核的数量x2，故feature map的通道数(即C)也x2。3</p>
+<h3 id="3-设置cell的输入节点和输出节点"><a href="#3-设置cell的输入节点和输出节点" class="headerlink" title="3. 设置cell的输入节点和输出节点"></a><strong>3. 设置cell的输入节点和输出节点</strong></h3><p>给DAG指定唯一的输入节点（input）和唯一的输出节点(output)。DAG本身包含N个节点，那么额外<strong>指定一个输入节点与DAG中所有入度为0的节点相连</strong>，其负责将输入的图片转发出去；再额外指定一个<strong>输出节点与DAG中所有出度为0的节点相连</strong>，该节点进行均值计算后将结果输出。</p>
+<h3 id="三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN"><a href="#三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN" class="headerlink" title="三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN"></a>三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN</h3><p>借鉴其他经典深度学习神经网络，作者将多个NN堆叠起来形成最终的随机连接神经网络RandWireNN。图3为一个示例，其包含共5个stages，其中stage1是一个卷积层，stage2可以是一个卷积层或者是一个NN，stage3、stage4和stage5均为NN。不同stage之间：卷积操作的stride为2，故feature map的大小逐渐减半；卷积操作的卷积核的数量x2，故feature map的通道数(即C)也x2</p>
 <p><img src="/2019/06/13/论文阅读-RandWiredNN/4.jpg" alt=""></p>
 <p>其中每个NN的节点数N（不包含输入和输出节点）设置为32，通道数C设置为78或者109/154。不同的（N,C）对应不同的网络复杂度（FLOPs），这样可以跟不同规模（small/regular/larger）的其他经典网络进行实验比较。</p>
 <p><img src="/2019/06/13/论文阅读-RandWiredNN/5.png" alt=""></p>
@@ -196,7 +193,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/" data-id="cjwugbjr3004luf8oll18awu9" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/" data-id="cjx3b0uya00665u8o6d83qsxl" class="article-share-link">分享</a>
       
       
       
@@ -250,6 +247,15 @@
     
 <nav id="article-nav">
   
+    <a href="/2019/06/19/spring-bootSummary/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          spring-bootSummary
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/06/03/NeuralArchitectureSearch/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
@@ -289,7 +295,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#论文阅读-RandWiredNN"><span class="toc-number">1.</span> <span class="toc-text">论文阅读-RandWiredNN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-number">1.2.</span> <span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、基于图论的随机图方法生成随机图Random-Graph"><span class="toc-number">1.2.1.</span> <span class="toc-text">一、基于图论的随机图方法生成随机图Random Graph</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、把生成的随机图Random-Graph转换为一个神经网络NN"><span class="toc-number">1.2.2.</span> <span class="toc-text">二、把生成的随机图Random Graph转换为一个神经网络NN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN"><span class="toc-number">1.2.3.</span> <span class="toc-text">三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、在ImageNet-1000-class任务上验证RandWireNN的表现"><span class="toc-number">1.2.4.</span> <span class="toc-text">四、在ImageNet 1000-class任务上验证RandWireNN的表现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结与思考"><span class="toc-number">1.3.</span> <span class="toc-text">总结与思考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">1.3.1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思考"><span class="toc-number">1.3.2.</span> <span class="toc-text">思考</span></a></li></ol></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#论文阅读-RandWiredNN"><span class="toc-number">1.</span> <span class="toc-text">论文阅读-RandWiredNN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-number">1.2.</span> <span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、基于图论的随机图方法生成随机图Random-Graph"><span class="toc-number">1.2.1.</span> <span class="toc-text">一、基于图论的随机图方法生成随机图Random Graph</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、把生成的随机图Random-Graph转换为一个神经网络NN"><span class="toc-number">1.2.2.</span> <span class="toc-text">二、把生成的随机图Random Graph转换为一个神经网络NN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-将随机图转化为DAG"><span class="toc-number">1.2.3.</span> <span class="toc-text">1. 将随机图转化为DAG</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-为DAG的边和节点赋上操作"><span class="toc-number">1.2.4.</span> <span class="toc-text">2. 为DAG的边和节点赋上操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-设置cell的输入节点和输出节点"><span class="toc-number">1.2.5.</span> <span class="toc-text">3. 设置cell的输入节点和输出节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN"><span class="toc-number">1.2.6.</span> <span class="toc-text">三、将多个NN堆叠起来，形成最终的随机连接神经网络RandWireNN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、在ImageNet-1000-class任务上验证RandWireNN的表现"><span class="toc-number">1.2.7.</span> <span class="toc-text">四、在ImageNet 1000-class任务上验证RandWireNN的表现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结与思考"><span class="toc-number">1.3.</span> <span class="toc-text">总结与思考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">1.3.1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思考"><span class="toc-number">1.3.2.</span> <span class="toc-text">思考</span></a></li></ol></li></ol></li></ol>
           </div>
       </div>
     </div>
