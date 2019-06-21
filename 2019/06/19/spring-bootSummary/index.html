@@ -21,7 +21,21 @@
 <meta property="og:image" content="https://fallenk.github.io/2019/06/19/spring-bootSummary/7.png">
 <meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/9.png">
 <meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/10.png">
-<meta property="og:updated_time" content="2019-06-19T14:00:41.293Z">
+<meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/11.png">
+<meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/12.png">
+<meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/13.png">
+<meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/14.png">
+<meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/15.png">
+<meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/16.png">
+<meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/17.png">
+<meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/18.png">
+<meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/19.png">
+<meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/20.png">
+<meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/21.png">
+<meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/22.png">
+<meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/23.png">
+<meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/24.png">
+<meta property="og:updated_time" content="2019-06-21T13:35:23.901Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring-bootSummary">
 <meta name="twitter:description" content="Spring-boot 快速搭建SSM工程">
@@ -155,11 +169,67 @@
 </li>
 </ol>
 <p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/10.png" alt="image-20190619215243111"></p>
+<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><blockquote>
+<p>Q1: 用多线程的目的是什么?</p>
+</blockquote>
+<p>充分利用cpu资源，并发做多件事</p>
+<blockquote>
+<p>Q2: 单核cpu机器上不适不适合用多线程?</p>
+</blockquote>
+<p>适合，如果单线程，线程中需要等待IO，CPU就空闲了</p>
+<blockquote>
+<p>Q3：线程什么是让出CPU</p>
+</blockquote>
+<p>阻塞时， wait, sleep</p>
+<p>yeild</p>
+<p>over</p>
+<blockquote>
+<p>Q4: 线程是什么？</p>
+</blockquote>
+<p>一条代码执行流，完成一组代码的执行；这一组代码，称为一个任务</p>
+<blockquote>
+<p>Q5: cpu是做什么？</p>
+</blockquote>
+<p>执行代码</p>
+<p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/11.png" alt="image-20190621201714814"></p>
+<blockquote>
+<p>Q6: 线程是不是越多越好？</p>
+</blockquote>
+<p>for example?  </p>
+<!--任务(IT男)  线程(小姐姐)  CPU(房间服务)-->
+<p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/12.png" alt="image-20190621202129479"></p>
+<p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/13.png" alt="image-20190621202650946"></p>
+<blockquote>
+<p>Q7： 该如何正确使用多线程？</p>
+</blockquote>
+<p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/14.png" alt="image-20190621202846487"></p>
+<h2 id="线程池原理解密"><a href="#线程池原理解密" class="headerlink" title="线程池原理解密"></a>线程池原理解密</h2><p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/15.png" alt="image-20190621203520691"></p>
+<p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/16.png" alt="image-20190621203643228"></p>
+<ol>
+<li><p>任务用什么表示？</p>
+<p>Runnable,  Callable</p>
+<p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/17.png" alt="image-20190621203821046"></p>
+</li>
+<li><p>仓库用什么？</p>
+<p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/18.png" alt="image-20190621203911677"></p>
+</li>
+</ol>
+<blockquote>
+<p>Q8: 如何确定数量的线程？</p>
+</blockquote>
+<p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/19.png" alt="image-20190621211651524"></p>
+<h2 id="如何正确使用Java的线程池API"><a href="#如何正确使用Java的线程池API" class="headerlink" title="如何正确使用Java的线程池API"></a>如何正确使用Java的线程池API</h2><p>Java并发包中提供了丰富的线程池实现</p>
+<p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/20.png" alt="image-20190621212115079"></p>
+<p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/21.png" alt="image-20190621212200534"></p>
+<p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/22.png" alt="image-20190621212423979"></p>
+<p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/23.png" alt="image-20190621212607537"></p>
+<p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/spring-bootSummary/24.png" alt="image-20190621213047638"></p>
+<p>只用满足所有核心线程都在工作，且队列已满，才会创建非核心线程。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/06/19/spring-bootSummary/" data-id="cjx3b0unu002r5u8op3o2cjbh" class="article-share-link">分享</a>
+      <a data-url="https://fallenk.github.io/2019/06/19/spring-bootSummary/" data-id="cjx651ldo002r2t8obvumc740" class="article-share-link">分享</a>
       
       
       
@@ -252,7 +322,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-boot"><span class="toc-number">1.</span> <span class="toc-text">Spring-boot</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-boot-Starter原理解密"><span class="toc-number">2.</span> <span class="toc-text">Spring boot Starter原理解密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分享-互联网Java高级开发工程师必备技能"><span class="toc-number">2.1.</span> <span class="toc-text">分享-互联网Java高级开发工程师必备技能</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-boot"><span class="toc-number">1.</span> <span class="toc-text">Spring-boot</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-boot-Starter原理解密"><span class="toc-number">2.</span> <span class="toc-text">Spring boot Starter原理解密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分享-互联网Java高级开发工程师必备技能"><span class="toc-number">2.1.</span> <span class="toc-text">分享-互联网Java高级开发工程师必备技能</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#多线程"><span class="toc-number">3.</span> <span class="toc-text">多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#线程池原理解密"><span class="toc-number">3.1.</span> <span class="toc-text">线程池原理解密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何正确使用Java的线程池API"><span class="toc-number">3.2.</span> <span class="toc-text">如何正确使用Java的线程池API</span></a></li></ol></li></ol>
           </div>
       </div>
     </div>
