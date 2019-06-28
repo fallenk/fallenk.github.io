@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://fallenk.github.io/2019/01/05/Communication-Efficient-Learning-of-Deep-Networks-from-Decentralized-Data/demo2.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/01/05/Communication-Efficient-Learning-of-Deep-Networks-from-Decentralized-Data/demo4.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/01/05/Communication-Efficient-Learning-of-Deep-Networks-from-Decentralized-Data/demo5.png">
-<meta property="og:updated_time" content="2019-01-15T15:47:11.535Z">
+<meta property="og:updated_time" content="2019-06-28T09:17:13.152Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Communication-Efficient Learning of Deep Networks from Decentralized Data">
 <meta name="twitter:description" content="title: 基于分散数据的深度网络通信高效学习">
@@ -141,7 +141,7 @@
 <p>$\min _ { w \in \mathbb { R } ^ { d } } f ( w ) \quad \text { where } \quad f ( w ) \stackrel { \text { def } } { = } \frac { 1 } { n } \sum _ { i = 1 } ^ { n } f _ { i } ( w )$         （1）</p>
 <p>对于机器学习问题，我们把 $f _ { i } ( w ) =\ell \left( x _ { i } , y _ { i } ; w \right) $ 由 损失函数 和模型参数 $w$ 组成。</p>
 <p>我们假设数据被分区有$K$个客户端上，$p_{k}$是客户端$k$上的数据点索引集合, $n _ { k } = \left| \mathcal { p } _ { k } \right|$.大小<br>因此我们重写式子(1)为:<br>$f ( w ) = \sum _ { k = 1 } ^ { K } \frac { n _ { k } } { n } F _ { k } ( w ) \quad$ where $\quad F _ { k } ( w ) = \frac { 1 } { n _ { k } } \sum _ { i \in \mathcal { P } _ { k } } f _ { i } ( w )$</p>
-<p>？？总数据集大小是n；左边是式子是说<code>1..K</code>个客户端训练数据，客户端K的数据集是$n _ { k }$, 加权平均$F _ { k } ( w )$; 同时右边是的式子是指每一个$F _ { k } ( w )$有平均梯度</p>
+<p>总数据集大小是n；左边是式子是说<code>1..K</code>个客户端训练数据，客户端K的数据集是$n _ { k }$, 加权平均$F _ { k } ( w )$; 同时右边是的式子是指每一个$F _ { k } ( w )$有平均梯度</p>
 <p>如果通过在客户端上随机均匀地分布训练样例来形成分区$p_{k}$；然后我们将会有 <img src="/2019/01/05/Communication-Efficient-Learning-of-Deep-Networks-from-Decentralized-Data/demo1.png" alt="">;就是client k的期望。这是通常由分布式优化算法做出的IID假设;我们指的是这不成立的情况($F _ { k }$坏的分布预测)</p>
 <p>在数据中心优化中，<strong>通信成本</strong>相对较小，计算成本占主导地位，最近的重点主要是使用GPU降低这些成本。相反，在联合优化中，通信成本占主导地位-我们通常会受到1MB/s或更低的上传带宽的限制。此外，客户通常只会在充电，插入和未计量的Wi-Fi连接时自愿参与优化。此外，我们希望每个客户每天只参加少量的更新轮次。另一方面，由于任何单个设备上的数据集与总数据集大小相比较小，并且现代智能手机具有相对较快的处理器（包括GPU），与许多模型类型的通信成本相比，计算变得基本上是免费的。</p>
 <p>因此，我们的目标是<strong>使用额外的计算</strong>，<strong>以减少训练模型所需的通信轮次数</strong>。我们可以通过两种主要方式添加计算：<br>1）增加并行性，我们使用<strong>更多客户端独立工作</strong>在每个通信轮次之间<br>2）<strong>增加每个客户端的计算</strong>，而不是像梯度计算那样执行简单的计算，每个客户端在每个通信轮次之间执行更复杂的计算。<br>我们研究了这两种方法，但是<strong>我们实现的加速主要是因为在每个客户端上添加更多计算</strong>；一旦在客户端上使用最低级别的并行性。</p>
