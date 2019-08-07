@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Fallenk&#39;s Blog</title>
+  <title>FLandEncryption | Fallenk&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不忘初心，努力学习，砥砺前进，自我反省">
-<meta name="keywords" content="经历，心得，笔记，目标">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fallenk&#39;s Blog">
-<meta property="og:url" content="https://fallenk.github.io/index.html">
+  <meta name="description" content="Papers and CodeAsynchronous Federated Optimization https://arxiv.org/pdf/1903.03934 Towards Federated Learning at Scale: System Design https://arxiv.org/pdf/1902.01046 Robust and Communication-Effici">
+<meta name="keywords" content="encryption">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FLandEncryption">
+<meta property="og:url" content="https://fallenk.github.io/2019/08/07/FLandEncryption/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta property="og:description" content="Papers and CodeAsynchronous Federated Optimization https://arxiv.org/pdf/1903.03934 Towards Federated Learning at Scale: System Design https://arxiv.org/pdf/1902.01046 Robust and Communication-Effici">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-07T02:57:29.996Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fallenk&#39;s Blog">
-<meta name="twitter:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta name="twitter:title" content="FLandEncryption">
+<meta name="twitter:description" content="Papers and CodeAsynchronous Federated Optimization https://arxiv.org/pdf/1903.03934 Towards Federated Learning at Scale: System Design https://arxiv.org/pdf/1902.01046 Robust and Communication-Effici">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
   
@@ -72,9 +73,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-FLandEncryption" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-FLandEncryption" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/08/07/FLandEncryption/" class="article-date">
   <time datetime="2019-08-07T02:53:08.000Z" itemprop="datePublished">2019-08-07</time>
@@ -91,8 +90,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/07/FLandEncryption/">FLandEncryption</a>
+    <h1 class="article-title" itemprop="name">
+      FLandEncryption
     </h1>
   
 
@@ -362,580 +361,109 @@
     </footer>
   </div>
   
-</article>
- 
-
-
-  
-    <article id="post-Feddataset" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/05/Feddataset/" class="article-date">
-  <time datetime="2019-08-05T13:18:05.000Z" itemprop="datePublished">2019-08-05</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Federated-Learning/">Federated Learning</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/05/Feddataset/">Feddataset</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Investigate current larger federated learning projects’ datasets.</p>
-<p>motivated by both image classification and language modeling tasks, </p>
-<p>2000 models, presented CIFAR10; a large language modeling task</p>
-<p>intial study: three model families on two datasets;  </p>
-        
-          <p class="article-more-link">
-            <a href="/2019/08/05/Feddataset/#more">继续阅读全文 »</a>
-          </p>
-        
-      
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/08/05/Feddataset/" data-id="cjz0nwp8i000pa68owpvlazil" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Federated-Learning/">Federated Learning</a></li></ul>
-
-    </footer>
   </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/05/Feddataset/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Feddataset</div>
+    </a>
+  
+</nav>
+
   
 </article>
  
-
-
-  
-    <article id="post-spring-bootSummary" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/19/spring-bootSummary/" class="article-date">
-  <time datetime="2019-06-19T12:06:01.000Z" itemprop="datePublished">2019-06-19</time>
-</a>
+     
+  <div class="comments" id="comments">
     
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
   </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/19/spring-bootSummary/">spring-bootSummary</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Spring-boot"><a href="#Spring-boot" class="headerlink" title="Spring-boot"></a>Spring-boot</h1><ol>
-<li><p>快速搭建SSM工程</p></li></ol>
-        
-          <p class="article-more-link">
-            <a href="/2019/06/19/spring-bootSummary/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/06/19/spring-bootSummary/" data-id="cjz0nwpc7002ta68oz2na5cgd" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
  
-
-
-  
-    <article id="post-论文阅读-RandWiredNN" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/13/论文阅读-RandWiredNN/" class="article-date">
-  <time datetime="2019-06-13T09:06:02.000Z" itemprop="datePublished">2019-06-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/论文阅读/">论文阅读</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/13/论文阅读-RandWiredNN/">论文阅读-RandWiredNN</a>
-    </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="论文阅读-RandWiredNN"><a href="#论文阅读-RandWiredNN" class="headerlink" title="论文阅读-RandWiredNN"></a>论文阅读-RandWiredNN</h1><p>RandWireNN 基本思想是<strong>研究设计stochastic network generator</strong>，也就是<strong>设计网络构架的机制</strong>，它的关注点<strong>在网络的连接方式上</strong>。论文作者引入了一种网络模型空间的构造方法，即<strong>图论中的random graph，之后用grid search搜索出较好的神经网络子集</strong>，并在ImageNet的1000-class分类任务上进行<strong>验证</strong>。</p>
-<p>论文： Exploring Randomly Wired Neural Networks for Image Recognition 【<a href="https://arxiv.org/abs/1904.01569" target="_blank" rel="noopener">pdf</a>】</p>
-<p>作者：<a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xie%2C+S" target="_blank" rel="noopener">Saining Xie</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Kirillov%2C+A" target="_blank" rel="noopener">Alexander Kirillov</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Girshick%2C+R" target="_blank" rel="noopener">Ross Girshick</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=He%2C+K" target="_blank" rel="noopener">Kaiming He</a></p>
-<p>参考文章：<a href="https://zhuanlan.zhihu.com/p/62837029" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/62837029</a></p>
-        
-          <p class="article-more-link">
-            <a href="/2019/06/13/论文阅读-RandWiredNN/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/" data-id="cjz0nwpg5004va68o7ce37z3a" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/神经网络搜索/">神经网络搜索</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-NeuralArchitectureSearch" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/03/NeuralArchitectureSearch/" class="article-date">
-  <time datetime="2019-06-03T02:25:21.000Z" itemprop="datePublished">2019-06-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/论文阅读/">论文阅读</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/03/NeuralArchitectureSearch/">综述-NeuralArchitectureSearch</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="综述-Nerual-Architecture-Search"><a href="#综述-Nerual-Architecture-Search" class="headerlink" title="综述- Nerual Architecture Search"></a>综述- Nerual Architecture Search</h1><p>神经网络架构搜索，顾名思义，就是让<strong>机器自己去学习如何构架一个神经网络</strong>，得到比人类专家手工设计的网络更好的效果。这个思路是非常一脉相承的，就像机器学习到深度学习，也是<strong>完成了人类专家手工提取特征到由机器自己学习特征</strong>这样的步骤转换。</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/06/03/NeuralArchitectureSearch/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/06/03/NeuralArchitectureSearch/" data-id="cjz0nwp9k001ia68oj1quazsa" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/神经网络搜索/">神经网络搜索</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-彩票假设paper阅读笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/05/29/彩票假设paper阅读笔记/" class="article-date">
-  <time datetime="2019-05-29T13:26:20.000Z" itemprop="datePublished">2019-05-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/论文阅读/">论文阅读</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/29/彩票假设paper阅读笔记/">彩票假设paper阅读笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>The Lottery Ticket Hypothesis: Finding sparse, trainable neural networks</p>
-<p>抽奖彩票假说: 寻找稀疏，可训练的神经网络</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/05/29/彩票假设paper阅读笔记/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/05/29/彩票假设paper阅读笔记/" data-id="cjz0nwpfj004ja68oyxcki2qs" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/paperReading/">paperReading</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-TFFIntroVideo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/05/23/TFFIntroVideo/" class="article-date">
-  <time datetime="2019-05-23T03:14:42.000Z" itemprop="datePublished">2019-05-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/TensorFlow/">TensorFlow</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/23/TFFIntroVideo/">TFFIntroVideo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="TensorFlow-Federated-TFF-Machine-Learning-on-Decentralized-Data-TF-Dev-Summit-‘19"><a href="#TensorFlow-Federated-TFF-Machine-Learning-on-Decentralized-Data-TF-Dev-Summit-‘19" class="headerlink" title="TensorFlow Federated (TFF): Machine Learning on Decentralized Data (TF Dev Summit ‘19)"></a>TensorFlow Federated (TFF): Machine Learning on Decentralized Data (TF Dev Summit ‘19)</h2><p><a href="https://www.youtube.com/watch?v=1YbPmkChcbo" target="_blank" rel="noopener">video url</a></p>
-        
-          <p class="article-more-link">
-            <a href="/2019/05/23/TFFIntroVideo/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/05/23/TFFIntroVideo/" data-id="cjz0nwpar0024a68ovk2eha7j" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/联合学习/">联合学习</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-剪枝网络" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/05/20/剪枝网络/" class="article-date">
-  <time datetime="2019-05-20T13:14:25.000Z" itemprop="datePublished">2019-05-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/论文阅读/">论文阅读</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/20/剪枝网络/">剪枝网络</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>The Lottery Ticket Hypothesis: Finding sparse, trainable neural networks</p>
-<p>抽奖彩票假说: 寻找稀疏，可训练的神经网络</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/05/20/剪枝网络/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/05/20/剪枝网络/" data-id="cjz0nwpep0045a68ogacry9qs" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/paperReading/">paperReading</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-如何使用Go编程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/05/15/如何使用Go编程/" class="article-date">
-  <time datetime="2019-05-15T08:22:59.000Z" itemprop="datePublished">2019-05-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/golang学习/">golang学习</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/15/如何使用Go编程/">如何使用Go编程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="如何使用Go编程"><a href="#如何使用Go编程" class="headerlink" title="如何使用Go编程"></a>如何使用Go编程</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>一个简单Go包的开发，并介绍了用<a href="https://go-zh.org/cmd/go/" target="_blank" rel="noopener">go工具</a>来<strong>获取、 构建并安装Go包及命令</strong>的标准方式。</p>
-<p><code>go</code> 工具需要你按照指定的方式来组织代码。请仔细阅读本文档， 它说明了如何以最简单的方式来准备并运行你的Go安装。类似的视频讲解可在<a href="http://www.youtube.com/watch?v=XCsL89YtqCs" target="_blank" rel="noopener">此处</a>观看。</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/05/15/如何使用Go编程/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/05/15/如何使用Go编程/" data-id="cjz0nwpf5004ba68ol0clgudv" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coding/">coding</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-LeetCode-排序" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/05/14/LeetCode-排序/" class="article-date">
-  <time datetime="2019-05-14T13:40:02.000Z" itemprop="datePublished">2019-05-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/LeetCode/">LeetCode</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/14/LeetCode-排序/">LeetCode-排序</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h1><p>如何写程序：<strong>分析程序代码：入口，分叉逻辑(各个分支情况列举)，出口考虑(各种边界条件,特别是=的情况)</strong></p>
-<p>控制结束的条件，初始，各个分支情况流程逻辑；结束时的条件:(正常结束，异常结束，边界值)</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/05/14/LeetCode-排序/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/05/14/LeetCode-排序/" data-id="cjz0nwp9b001ba68oebrqln1t" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/刷题/">刷题</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/排序/">排序</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-
-
-  <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">下一页&raquo;</a>
-  </nav>
 </section>
            
     <aside id="sidebar">
   
     
-  <div class="widget-wrap">
-     
-        <h3 class="follow-title ">Follow me</h3>
-     
-    <div class="widget follow">
-      
-              <a class="github" aria-hidden="true" href="https://github.com/fallenk" target="_blank" title="Github"></a>
-      
-      
-            <a class="weibo" aria-hidden="true"  href="http://weibo.com/laohoubin" target="_blank" title="微博"></a>
-      
-      
-              <a class="zhihu" aria-hidden="true"  href="http://www.zhihu.com/people/fallenk" target="_blank" title="知乎"></a>
-      
-      
-            <a class="email" aria-hidden="true"  href="mailto:fallenk_liu@yeah.com" target="_blank" title="邮箱"></a>
-      
-    </div>
-  </div>
 
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Papers-and-Code"><span class="toc-number">1.</span> <span class="toc-text">Papers and Code</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Weekly-Dig-in-Privacy-Preserving-Machine-Learning"><span class="toc-number"></span> <span class="toc-text">Weekly Dig in Privacy-Preserving Machine Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#15-February-2019"><span class="toc-number">1.</span> <span class="toc-text">15 February 2019</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers"><span class="toc-number">1.1.</span> <span class="toc-text">Papers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bonus"><span class="toc-number">1.2.</span> <span class="toc-text">Bonus</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-February-2019"><span class="toc-number">2.</span> <span class="toc-text">8 February 2019</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Paper"><span class="toc-number">2.1.</span> <span class="toc-text">Paper</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bonus-1"><span class="toc-number">2.2.</span> <span class="toc-text">Bonus</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-February-2019"><span class="toc-number">3.</span> <span class="toc-text">1 February 2019</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-1"><span class="toc-number">3.1.</span> <span class="toc-text">Papers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#News"><span class="toc-number">3.2.</span> <span class="toc-text">News</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bonus-2"><span class="toc-number">3.3.</span> <span class="toc-text">Bonus</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-January-2019"><span class="toc-number">4.</span> <span class="toc-text">18 January 2019</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#News-1"><span class="toc-number">4.1.</span> <span class="toc-text">News</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-January-2019"><span class="toc-number">5.</span> <span class="toc-text">11 January 2019</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-2"><span class="toc-number">5.1.</span> <span class="toc-text">Papers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#News-2"><span class="toc-number">5.2.</span> <span class="toc-text">News</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bonus-3"><span class="toc-number">5.3.</span> <span class="toc-text">Bonus</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#31-December-2018"><span class="toc-number">6.</span> <span class="toc-text">31 December 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-3"><span class="toc-number">6.1.</span> <span class="toc-text">Papers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#News-3"><span class="toc-number">6.2.</span> <span class="toc-text">News</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-December-2018"><span class="toc-number">7.</span> <span class="toc-text">14 December 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-4"><span class="toc-number">7.1.</span> <span class="toc-text">Papers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#News-4"><span class="toc-number">7.2.</span> <span class="toc-text">News</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bonus-4"><span class="toc-number">7.3.</span> <span class="toc-text">Bonus</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#30-November-2018"><span class="toc-number">8.</span> <span class="toc-text">30 November 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-5"><span class="toc-number">8.1.</span> <span class="toc-text">Papers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#News-5"><span class="toc-number">8.2.</span> <span class="toc-text">News</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#31-October-2018"><span class="toc-number">9.</span> <span class="toc-text">31 October 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-6"><span class="toc-number">9.1.</span> <span class="toc-text">Papers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#28-September-2018"><span class="toc-number">10.</span> <span class="toc-text">28 September 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-7"><span class="toc-number">10.1.</span> <span class="toc-text">Papers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-July-2018"><span class="toc-number">11.</span> <span class="toc-text">27 July 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-8"><span class="toc-number">11.1.</span> <span class="toc-text">Papers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-June-2018"><span class="toc-number">12.</span> <span class="toc-text">27 June 2018</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-May-2018"><span class="toc-number">13.</span> <span class="toc-text">25 May 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-9"><span class="toc-number">13.1.</span> <span class="toc-text">Papers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#News-6"><span class="toc-number">13.2.</span> <span class="toc-text">News</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bonus-5"><span class="toc-number">13.3.</span> <span class="toc-text">Bonus</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-May-2018"><span class="toc-number">14.</span> <span class="toc-text">18 May 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-10"><span class="toc-number">14.1.</span> <span class="toc-text">Papers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-May-2018"><span class="toc-number">15.</span> <span class="toc-text">11 May 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-11"><span class="toc-number">15.1.</span> <span class="toc-text">Papers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bonus-6"><span class="toc-number">15.2.</span> <span class="toc-text">Bonus</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-April-2018"><span class="toc-number">16.</span> <span class="toc-text">27 April 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-12"><span class="toc-number">16.1.</span> <span class="toc-text">Papers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-April-2018"><span class="toc-number">17.</span> <span class="toc-text">20 April 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-13"><span class="toc-number">17.1.</span> <span class="toc-text">Papers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#News-7"><span class="toc-number">17.2.</span> <span class="toc-text">News</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bonus-7"><span class="toc-number">17.3.</span> <span class="toc-text">Bonus</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-April-2018"><span class="toc-number">18.</span> <span class="toc-text">13 April 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-14"><span class="toc-number">18.1.</span> <span class="toc-text">Papers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#News-8"><span class="toc-number">18.2.</span> <span class="toc-text">News</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bonus-8"><span class="toc-number">18.3.</span> <span class="toc-text">Bonus</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#30-March-2018"><span class="toc-number">19.</span> <span class="toc-text">30 March 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-15"><span class="toc-number">19.1.</span> <span class="toc-text">Papers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-March-2018"><span class="toc-number">20.</span> <span class="toc-text">16 March 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-16"><span class="toc-number">20.1.</span> <span class="toc-text">Papers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bonus-9"><span class="toc-number">20.2.</span> <span class="toc-text">Bonus</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-March-2018"><span class="toc-number">21.</span> <span class="toc-text">9 March 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#News-9"><span class="toc-number">21.1.</span> <span class="toc-text">News</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-17"><span class="toc-number">21.2.</span> <span class="toc-text">Papers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Blogs"><span class="toc-number">21.3.</span> <span class="toc-text">Blogs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-March-2018"><span class="toc-number">22.</span> <span class="toc-text">2 March 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#News-10"><span class="toc-number">22.1.</span> <span class="toc-text">News</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-18"><span class="toc-number">22.2.</span> <span class="toc-text">Papers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Blogs-1"><span class="toc-number">22.3.</span> <span class="toc-text">Blogs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-February-2018"><span class="toc-number">23.</span> <span class="toc-text">23 February 2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Papers-19"><span class="toc-number">23.1.</span> <span class="toc-text">Papers</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
 
   
     
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title categories">分类</h3>
-    <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blcokchain/">Blcokchain</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography-Intro/">Cryptography Intro</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker容器/">Docker容器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Federated-Learning/">Federated Learning</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python学习/">Python学习</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swagger学习/">Swagger学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TensorFlow/">TensorFlow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tensorflow/">Tensorflow</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/golang学习/">golang学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS编程/">iOS编程</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能/">人工智能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/健康生活/">健康生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客建设/">博客建设</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/名人杂谈/">名人杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据学习/">大数据学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具学习/">工具学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/游戏开发/">游戏开发</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/物联网/">物联网</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/论文阅读/">论文阅读</a><span class="category-list-count">11</span></li></ul>
-    </div>
-  </div>
-
+  
+    
 
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title tagcloud">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/BigData/" style="font-size: 14px;">BigData</a> <a href="/tags/CV，-论文阅读/" style="font-size: 14px;">CV， 论文阅读</a> <a href="/tags/Cryptography/" style="font-size: 14px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 14px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 14px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 14px;">Java</a> <a href="/tags/Mac终端命令/" style="font-size: 14px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 14px;">Swagger</a> <a href="/tags/coding/" style="font-size: 25px;">coding</a> <a href="/tags/encryption/" style="font-size: 14px;">encryption</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 16.2px;">hexo</a> <a href="/tags/important/" style="font-size: 14px;">important</a> <a href="/tags/intro/" style="font-size: 14px;">intro</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 14px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 16.2px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 14px;">python转换</a> <a href="/tags/云端学习笔记/" style="font-size: 14px;">云端学习笔记</a> <a href="/tags/人工智能/" style="font-size: 14px;">人工智能</a> <a href="/tags/代码/" style="font-size: 16.2px;">代码</a> <a href="/tags/入门/" style="font-size: 22.8px;">入门</a> <a href="/tags/入门指引/" style="font-size: 14px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 16.2px;">刷题</a> <a href="/tags/双指针/" style="font-size: 14px;">双指针</a> <a href="/tags/基础/" style="font-size: 16.2px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 14px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 14px;">排序</a> <a href="/tags/提升自我/" style="font-size: 14px;">提升自我</a> <a href="/tags/智能架构/" style="font-size: 14px;">智能架构</a> <a href="/tags/机器学习/" style="font-size: 14px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 16.2px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 14px;">禅</a> <a href="/tags/编程/" style="font-size: 25px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 14px;">编程技巧，</a> <a href="/tags/考试/" style="font-size: 22.8px;">考试</a> <a href="/tags/联合学习/" style="font-size: 18.4px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 16.2px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 20.6px;">论文阅读</a> <a href="/tags/调养，生活/" style="font-size: 14px;">调养，生活</a> <a href="/tags/财务自由/" style="font-size: 14px;">财务自由</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/08/07/FLandEncryption/">FLandEncryption</a>
-          </li>
-        
-          <li>
-            <a href="/2019/08/05/Feddataset/">Feddataset</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/19/spring-bootSummary/">spring-bootSummary</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/13/论文阅读-RandWiredNN/">论文阅读-RandWiredNN</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/03/NeuralArchitectureSearch/">综述-NeuralArchitectureSearch</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title archive">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-<div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
-    <div class="widget">
-        <ul>
-            
-            <li>
-                <a href="http://blog.giscafer.com">giscafer&#39;s blog</a>
-            </li>
-            
-            <li>
-                <a href="http://www.gis520.com">GIS520社区</a>
-            </li>
-            
-        </ul>
-    </div>
-</div>
-
   
     <!--微信公众号二维码-->
-
-  <div class="widget-wrap">
-    <h3 class="follow-title ">WeChat</h3>
-    <div class="widget wechat-widget">
-        <img src="http://blog.giscafer.com/static/images/qrcode_giscafer.jpg" alt="扫码关注" width="250"/>
-    </div>
-  </div>
 
 
   
