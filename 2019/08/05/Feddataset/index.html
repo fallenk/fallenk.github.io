@@ -5,21 +5,21 @@
   
   <title>Feddataset | Fallenk&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="IntroductionInvestigate current larger federated learning projects’ datasets. motivated by both image classification and language modeling tasks,  2000 models, presented CIFAR10; a large language mode">
+  <meta name="description" content="IntroductionInvestigate current larger federated learning projects’ datasets. motivated by both image classification and language modeling tasks,">
 <meta name="keywords" content="Federated Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Feddataset">
 <meta property="og:url" content="https://fallenk.github.io/2019/08/05/Feddataset/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="IntroductionInvestigate current larger federated learning projects’ datasets. motivated by both image classification and language modeling tasks,  2000 models, presented CIFAR10; a large language mode">
+<meta property="og:description" content="IntroductionInvestigate current larger federated learning projects’ datasets. motivated by both image classification and language modeling tasks,">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Library/Application%20Support/typora-user-images/image-20190805222039432.png">
 <meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Library/Application%20Support/typora-user-images/image-20190806215052915.png">
 <meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Library/Application%20Support/typora-user-images/image-20190806221919194.png">
-<meta property="og:updated_time" content="2019-08-15T01:58:35.738Z">
+<meta property="og:updated_time" content="2019-08-29T14:58:14.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Feddataset">
-<meta name="twitter:description" content="IntroductionInvestigate current larger federated learning projects’ datasets. motivated by both image classification and language modeling tasks,  2000 models, presented CIFAR10; a large language mode">
+<meta name="twitter:description" content="IntroductionInvestigate current larger federated learning projects’ datasets. motivated by both image classification and language modeling tasks,">
 <meta name="twitter:image" content="https://fallenk.github.io/Users/liulifeng/Library/Application%20Support/typora-user-images/image-20190805222039432.png">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
@@ -107,10 +107,10 @@
         
         <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Investigate current larger federated learning projects’ datasets.</p>
 <p>motivated by both image classification and language modeling tasks, </p>
-<p>2000 models, presented CIFAR10; a large language modeling task</p>
-<p>intial study: three model families on two datasets;  </p>
 <a id="more"></a>
-<h3 id="models"><a href="#models" class="headerlink" title="models"></a>models</h3><p>1) MNIST 2NN：A simple multilayer-perceptron with 2-hidden layers with 200 units each using ReLu activations (199,210 total parameters), which we refer to as the MNIST 2NN.</p>
+<h3 id="models"><a href="#models" class="headerlink" title="models"></a>models</h3><p>2000 models, presented CIFAR10; a large language modeling task</p>
+<p>intial study: three model families on two datasets;  </p>
+<p>1) MNIST 2NN：A simple multilayer-perceptron with 2-hidden layers with 200 units each using ReLu activations (199,210 total parameters), which we refer to as the MNIST 2NN.</p>
 <p>2) A CNN with two 5x5 convolution layers (the first with 32 channels, the second with 64, each followed with 2x2 max pooling), a fully connected layer with 512 units and ReLu activation, and a final softmax output layer (1,663,370 total parameters). </p>
 <h2 id="FL-paper"><a href="#FL-paper" class="headerlink" title="FL paper"></a>FL paper</h2><p>Communication-Efficient Learning of Deep Networks from Decentralized Data<br>arXiv:1602.05629v3</p>
 <h3 id="datasets"><a href="#datasets" class="headerlink" title="datasets"></a>datasets</h3><p>two ways of partitioning the MNIST data over clients: </p>
