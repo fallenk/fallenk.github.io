@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>LEAF | Fallenk&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Leaf：联合设置的基准现代联邦网络，例如由可穿戴设备、移动电话或自动车辆组成的网络，每天都会生成大量的数据。这些丰富的数据有助于学习能够改善每个设备上用户体验的模型。然而，在联合设置中的学习在机器学习管道的所有阶段都提出了新的挑战。当机器学习社区开始应对这些挑战时，我们正处于关键时刻，以确保这一领域的发展是以现实世界的假设为基础的。为此，我们提出了Leaf，一个用于在联合环境中学习的模块化基准测">
+<meta name="keywords" content="paper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LEAF">
+<meta property="og:url" content="https://fallenk.github.io/2019/09/02/LEAF/index.html">
+<meta property="og:site_name" content="Fallenk&#39;s Blog">
+<meta property="og:description" content="Leaf：联合设置的基准现代联邦网络，例如由可穿戴设备、移动电话或自动车辆组成的网络，每天都会生成大量的数据。这些丰富的数据有助于学习能够改善每个设备上用户体验的模型。然而，在联合设置中的学习在机器学习管道的所有阶段都提出了新的挑战。当机器学习社区开始应对这些挑战时，我们正处于关键时刻，以确保这一领域的发展是以现实世界的假设为基础的。为此，我们提出了Leaf，一个用于在联合环境中学习的模块化基准测">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://fallenk.github.io/2019/09/02/LEAF/1.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/09/02/LEAF/2.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/09/02/LEAF/3.png">
+<meta property="og:image" content="https://fallenk.github.io/2019/09/02/LEAF/4.png">
+<meta property="og:updated_time" content="2019-09-02T08:29:58.208Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LEAF">
+<meta name="twitter:description" content="Leaf：联合设置的基准现代联邦网络，例如由可穿戴设备、移动电话或自动车辆组成的网络，每天都会生成大量的数据。这些丰富的数据有助于学习能够改善每个设备上用户体验的模型。然而，在联合设置中的学习在机器学习管道的所有阶段都提出了新的挑战。当机器学习社区开始应对这些挑战时，我们正处于关键时刻，以确保这一领域的发展是以现实世界的假设为基础的。为此，我们提出了Leaf，一个用于在联合环境中学习的模块化基准测">
+<meta name="twitter:image" content="https://fallenk.github.io/2019/09/02/LEAF/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fallenk.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fallenk&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">经历，心得，笔记，目标</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-LEAF" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/02/LEAF/" class="article-date">
+  <time datetime="2019-09-02T07:09:19.000Z" itemprop="datePublished">2019-09-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Federated-Learning/">Federated Learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LEAF
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="Leaf：联合设置的基准"><a href="#Leaf：联合设置的基准" class="headerlink" title="Leaf：联合设置的基准"></a>Leaf：联合设置的基准</h1><p>现代联邦网络，例如由可穿戴设备、移动电话或自动车辆组成的网络，每天都会生成大量的数据。这些丰富的数据有助于学习能够改善每个设备上用户体验的模型。然而，在联合设置中的学习在机器学习管道的所有阶段都提出了新的挑战。当机器学习社区开始应对这些挑战时，我们正处于关键时刻，以确保这一领域的发展是以现实世界的假设为基础的。为此，我们提出了Leaf，一个用于在联合环境中学习的<strong>模块化基准测试框架</strong>。Leaf包括一套<strong>开放源码的联邦数据集</strong>、<strong>严格的评估框架</strong>和一套<strong>参考实现</strong>，所有这些都旨在捕获实际联邦环境的障碍和复杂性。</p>
+<a id="more"></a>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><p>随着越来越多的数据在远程设备的联邦网络上生成，人们越来越有兴趣使用这些数据的模型来增强设备上应用程序的能力[16、17、23]。然而，了解联邦网络中生成的数据会带来一些新的障碍：</p>
+<p><strong>统计</strong>：数据是以异构方式在每个设备上生成的，每个设备都与一个不同的（尽管可能相关）<strong>底层数据生成分布相关联</strong>。此外，<strong>数据点的数量</strong>通常在不同的设备上有很大的差异。</p>
+<p><strong>系统</strong>：联邦场景中的设备数量通常是大于典型分布式设置（如数据中心计算）中<strong>节点数量的数量级</strong>。每个设备在<strong>存储、计算和通信容量</strong>方面都可能有很大的限制，而且由于硬件、网络连接和电源的变化，这些容量在设备之间也可能有所不同。因此，联邦设置可能会遇到<strong>通信瓶颈</strong>，使传统分布式数据中心设置中遇到的瓶颈相形见绌，可能需要更快的设备推断。</p>
+<p><strong>隐私和安全</strong>：最后，<strong>个人生成数据的敏感特性</strong>要求对联邦数据进行操作的方法，以平衡隐私和安全问题与更传统的考虑因素，如统计准确性、可扩展性和效率。</p>
+<p>最近的工作已经提出了应对这些挑战的不同方法，但在实验评估方面，这些努力中的许多都没有达到。作为一个例子，考虑联邦学习范式，它集中于直接在联邦网络上的培训模型[16，23，21]。集中于联邦学习的实验工作广泛使用三种类型的数据集：</p>
+<p>（1）不提供联邦场景的现实模型但<strong>常用的数据集</strong>，例如mnist、mnist fashion或cifar-10的人工分区[16、10、7、3、9、25、27]；</p>
+<p>（2）<strong>实际但专有联邦数据集</strong>，例如[16]中未命名社交网络的数据、[15]中的众包语音命令以及[4]中华为的专有数据；</p>
+<p>（3）源自<strong>公开数据但不容易再次发生的现实联邦数据集</strong>，例如：《FaceScrub》（19），《莎士比亚》（16），《Reddit》（10，18，3）。</p>
+<p>在这项工作中，我们的目标是<strong>弥合数据集之间的鸿沟</strong>，这些数据集<strong>是流行的和可访问的</strong>，用于<strong>基准标记</strong>，以及那些现实地捕捉联邦场景的特征，但要么是专有的，要么是难以处理的。此外，除了<strong>建立一套联邦数据集之外，我们还提出了评估方法和复制结果的清晰方法</strong>。为此，我们提出了Leaf，<strong>一个模块化的基准测试框架，用于在大规模分布式的远程设备联合网络中学习</strong>。我们注意到，虽然联合学习是Leaf的一个典型应用程序，但是框架实际上包含了广泛的潜在学习设置，例如<strong>设备上学习或模型推理、多任务学习、元学习、转移学习、终身学习以及对公平有影响的个性化学习</strong>模式。例如，多任务学习（MTL）社区可以通过将每个设备视为不同的任务从Leaf中获益。Leaf的数据集将允许研究人员和实践者在任务和样本数量众多的情况下测试MTL方法，这与传统的MTL数据集（例如，流行的地雷探测[30、20、29、23]、计算机调查[2、1、11]和伦敦教育管理学院l[20，14，1，2，11]个数据集，每个数据集最多有200个任务）。类似地，这些设备也可以自然地解释为元学习设置中的任务，而不是普通基准中考虑的人工生成的任务，如Omniglot[12、6、26、24]和MiniImageNet[22、6、26、24]。</p>
+<h2 id="2-LEAF"><a href="#2-LEAF" class="headerlink" title="2 LEAF"></a>2 LEAF</h2><p>Leaf是一个用于联合设置的<a href="https://talwalkarlab.github.io/leaf/" target="_blank" rel="noopener">开放源代码</a>基准框架。它由（1）一套<strong>开放源代码数据集</strong>，（2）一组<strong>统计和系统度量</strong>，以及（3）<strong>一组参考实现</strong>组成。如图1所示，Leaf的模块化设计允许这三个组件轻松地集成到不同的实验管道中。我们现在详细介绍Leaf的核心组件。</p>
+<p><img src="/2019/09/02/LEAF/1.png" alt="image-20190902153909376"></p>
+<p>图1：Leaf模块以及他们之间的连接关系。Datasets模块预处理数据并且转化成标准json格式，可以让任意ML管道使用。Reference Implementations是一个成长的，包含用在联邦设置的公共方法的仓库：每一个实现产生了大量不同的统计和metrics衡量指标的日志。这个日志(或者任何用合适的格式生成的日志)可以用来聚合 和 分析这些metrics衡量指标在各个方面。Leaf在Metrics来执行这个操作。</p>
+<p><strong>数据集</strong>：我们策划了一套真实的联邦数据集。我们关注数据集，其中（1）数据具有自然的键生成过程（其中每个键引用特定设备）；（2）数据是从数千到数百万个设备的网络生成的；以及（3）数据点的数量在设备之间发生了倾斜。目前，leaf包含三个数据集：</p>
+<ul>
+<li><p>联邦扩展mnist（femnist），它是流行mnist[13]数据集的类似（但更具挑战性）基准。它是根据数字/字符的写入器，对扩展mnist[5]中的数据进行分区而建立的。</p>
+</li>
+<li><p>sentiment140[8]，一个自动生成的情感分析数据集，根据其中的表情符号注释推文。在这个数据集中，每个设备都是不同的Twitter用户</p>
+</li>
+<li><p>莎士比亚，根据威廉·莎士比亚的完整作品建立的数据集[28，16]。在这里，每个角色在每个戏剧中的发言被认为是一个不同的装置。</p>
+</li>
+</ul>
+<p>我们在表1中提供了这些数据集的统计数据。在Leaf中，我们为每个数据集提供所有必要的预处理脚本，以及用于原型设计和最终测试的小/完整版本。接下来，我们计划添加来自不同领域（如音频、视频）的数据集，并增加机器学习任务的范围（如文本到语音、翻译、压缩等）。</p>
+<p><img src="/2019/09/02/LEAF/2.png" alt="image-20190902155749447"></p>
+<p><strong>度量</strong>：<strong>需要严格的评估度量</strong>来适当地评估学习解决方案在联合场景中的行为。目前，leaf建立了一组专门为此目的选择的初始度量。例如，我们引入了更好地捕捉整个<strong>设备性能分布的指标</strong>：<strong>第10和第90百分位的性能和数据</strong>中按自然层次分层的性能（例如，莎士比亚数据集中的“play”）。我们还引入了一些指标，这些指标说明了从边缘设备<strong>所需的计算资源的数量</strong>，包括触发器的数量和下载/上载的字节数。最后，Leaf还认识到了<strong>指定如何在设备之间加权精度的重要性</strong>，例如，每个设备是否同等重要，或者每个数据点是否同等重要（意味着超级用户/设备获得优先待遇）。值得注意的是，<strong>考虑分层系统和准确度度量</strong>对于评估一种方法是否会系统地排除用户组（例如，因为他们有低端设备）和/或在人群中的某些部分表现不佳（例如，因为他们产生了更少的数据）。</p>
+<p><strong>参考实现</strong>：为了促进再现性，leaf还包含一组<strong>面向联邦场景的算法参考实现</strong>。目前，这个集合仅限于联邦学习范式，特别是包括了minibatch sgd和fedavg的参考实现[16]。我们的目标是在更广泛的研究团体的帮助下，为Leaf提供更多方法和范例的实现。</p>
+<h2 id="3-LEAF-in-action"><a href="#3-LEAF-in-action" class="headerlink" title="3 LEAF in action"></a>3 LEAF in action</h2><p>我们将展示Leaf在运行中。</p>
+<p><strong>leaf支持可复制的科学</strong>：为了证明leaf支持的可复制性，我们集中于<strong>定性地复制</strong>[16]<strong>在下一个字符预测任务的莎士比亚数据集上获得的结果</strong>。特别值得注意的是，对于这个特定的数据集，fedavg方法会随着本地时间段的增加而出现惊人的差异。因此，在部署fedavg等方法之前，这是一个需要了解的关键设置。为了展示leaf如何允许这种场景的快速原型化，我们在莎士比亚的数据中使用了参考fedavg实现和子样本118设备（大约占总数的5%），这可以通过我们的框架轻松完成。结果如图2所示，当<strong>我们增加epoch的数量时，在训练损失方面我们确实看到类似的差异行为</strong>。</p>
+<p><img src="/2019/09/02/LEAF/3.png" alt="image-20190902161221701"></p>
+<p>图2：莎士比亚数据集的子样本上fedavg的收敛行为。我们在所有实验中使用每轮0.8的学习率和10个设备。我们能够达到与[16]中获得的结果相当的测试精度。我们还定性地复制了训练损失的差异，这是在大量的epochs(E)观察到的。</p>
+<p><strong>Leaf提供了粒度系统和统计指标</strong>：如图3所示，在同时为多个客户机提供服务时，我们建议的系统和统计指标非常重要。对于统计指标，我们展示了在Sentiment140中改变每个用户最小样本数的效果（我们将其表示为k）。我们看到，尽管数据不足的用户（即k=3）的性能中值只有轻微下降，但25%的用户（框底）的性能却大幅下降。同时，对于系统度量，我们为femnist运行minibatch sgd和fedavg，并计算达到精度阈值0.35所需的系统预算。我们根据所有设备的总故障次数和上传到网络的总字节数来描述预算。我们的结果表明，当涉及通信与局部计算权衡时，FEDAVG的改进系统概况，尽管我们注意到，在一般情况下，方法可能在这两个维度上有所不同，因此根据手头的问题考虑这两个方面很重要。</p>
+<p><img src="/2019/09/02/LEAF/4.png" alt="image-20190902162547825"></p>
+<p>图3:SENT140和FEMINIST的统计和系统分析。k是每个用户的最小样本数，E是每个设备使用的本地数据的百分比，C是每轮选择的客户端数。橙色线代表设备精度的中位数，绿色三角形代表平均值，方框代表25%和75%，胡须代表10%到90%。我们对所有实验使用3*10e-4的学习率。</p>
+<h2 id="4-Conclusion"><a href="#4-Conclusion" class="headerlink" title="4 Conclusion"></a>4 Conclusion</h2><p>我们介绍Leaf，<strong>一个用于在联合环境中学习的模块化基准测试框架</strong>，或者以大规模分布的设备网络为标志的生态系统。适用于此类环境的学习模式包括联合学习、多任务学习、元学习和设备上学习。Leaf允许这些领域的研究人员和实践者在比以前的基准更现实的假设下对新提出的解决方案进行推理。我们打算保持Leaf最新的数据集、度量标准和开源解决方案，以促进这一领域的知情和有根据的进展。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2019/09/02/LEAF/" data-id="ck0258kb6001apq8oz5zp9dgx" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/paper/">paper</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/31/CPP入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">C++入门</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Leaf：联合设置的基准"><span class="toc-number">1.</span> <span class="toc-text">Leaf：联合设置的基准</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction"><span class="toc-number">1.1.</span> <span class="toc-text">1 Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-LEAF"><span class="toc-number">1.2.</span> <span class="toc-text">2 LEAF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-LEAF-in-action"><span class="toc-number">1.3.</span> <span class="toc-text">3 LEAF in action</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Conclusion"><span class="toc-number">1.4.</span> <span class="toc-text">4 Conclusion</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2019 Fallenk Liu&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;fallenk_liu@yeah.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "e2fb4051c49842688ce669e634bc983f",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+    
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>

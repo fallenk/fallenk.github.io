@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C++入门 | Fallenk&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简介">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++入门">
+<meta property="og:url" content="https://fallenk.github.io/2019/08/31/CPP入门/index.html">
+<meta property="og:site_name" content="Fallenk&#39;s Blog">
+<meta property="og:description" content="简介">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://fallenk.github.io/2019/08/31/CPP入门/1.png">
+<meta property="og:updated_time" content="2019-08-31T13:41:50.589Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++入门">
+<meta name="twitter:description" content="简介">
+<meta name="twitter:image" content="https://fallenk.github.io/2019/08/31/CPP入门/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fallenk.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fallenk&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">经历，心得，笔记，目标</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CPP入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/31/CPP入门/" class="article-date">
+  <time datetime="2019-08-31T09:17:54.000Z" itemprop="datePublished">2019-08-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++入门
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><a id="more"></a>
+<p>C++，使用 CLion编程; </p>
+<p>首先，Mac OS 自带的g++编译器版本比较低，许多c++的新特性都不支持，所以可以先在终端下下载g++ 的新版本，如g++7，代开Clion后在preference里找到Cmake并修改参数如下：</p>
+<p><code>-D CMAKE_CXX_COMPILER=/usr/local/bin/g++-7</code></p>
+<p><img src="/2019/08/31/CPP入门/1.png" alt="image-20190831172050609"></p>
+<p>与服务器交互配置：</p>
+<p><a href="https://www.cnblogs.com/pugang/p/9734547.html" target="_blank" rel="noopener">https://www.cnblogs.com/pugang/p/9734547.html</a></p>
+<h2 id="CLion-学习之读懂-CMakeLists-txt"><a href="#CLion-学习之读懂-CMakeLists-txt" class="headerlink" title="CLion 学习之读懂 CMakeLists.txt"></a>CLion 学习之读懂 CMakeLists.txt</h2><p>有当我们使用 CLion 自动生成一个简单的 C 项目，目录如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">├── CMakeLists.txt</span><br><span class="line">├── cmake-build-debug</span><br><span class="line">└── main.c</span><br></pre></td></tr></table></figure>
+<p>main.c</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello, World!\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>CMakeLists.txt</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.8</span>)</span><br><span class="line"><span class="keyword">project</span>(demo1)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_STANDARD <span class="number">99</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(SOURCE_FILES main.c)</span><br><span class="line"><span class="keyword">add_executable</span>(demo1 <span class="variable">$&#123;SOURCE_FILES&#125;</span>)</span><br></pre></td></tr></table></figure>
+<p><code>CMakeLists.txt</code>是什么呢？ CLion 的编译肯定是依赖这个文件了。有了这个文件，我们就可以直接使用 ide 里面的 run 和 debug 了，相比使用 gdb 来断点调试，开发效率简直有质的飞跃了哈。（不过，很多问题需要线上追踪的话，只能 gdb 了）</p>
+<p>CMake 是一个<strong>跨平台的自动化建构系统</strong>，它使用一个名为 CMakeLists.txt 的文件来<strong>描述构建过程</strong>，可以产生标准的构建文件，如 Unix 的 Makefile 或Windows Visual C++ 的 projects/workspaces 。</p>
+<h1 id="CMakeLists-txt-语法"><a href="#CMakeLists-txt-语法" class="headerlink" title="CMakeLists.txt 语法"></a>CMakeLists.txt 语法</h1><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 限定了 CMake 的版本</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.8</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 该命令表示项目的名称是 main </span></span><br><span class="line"><span class="keyword">project</span>(demo1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># set(变量 值)</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_STANDARD <span class="number">99</span>)</span><br><span class="line"><span class="keyword">set</span>(SOURCE_FILES main.c)</span><br><span class="line"></span><br><span class="line"><span class="comment"># $&#123;xxx&#125; 引用上面定义的 xxx 变量</span></span><br><span class="line"><span class="comment"># add_executable 表示把变量 SOURCE_FILES 编译成一个名称为 demo1 的可执行文件。</span></span><br><span class="line"><span class="keyword">add_executable</span>(demo1 <span class="variable">$&#123;SOURCE_FILES&#125;</span>)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2019/08/31/CPP入门/" data-id="ck0258k9b0005pq8o5hgim55h" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2019/09/02/LEAF/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          LEAF
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/29/分布式机器学习论文/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">分布式机器学习论文</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CLion-学习之读懂-CMakeLists-txt"><span class="toc-number">2.</span> <span class="toc-text">CLion 学习之读懂 CMakeLists.txt</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CMakeLists-txt-语法"><span class="toc-number"></span> <span class="toc-text">CMakeLists.txt 语法</span></a>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2019 Fallenk Liu&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;fallenk_liu@yeah.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "e2fb4051c49842688ce669e634bc983f",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+    
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
