@@ -5,13 +5,13 @@
   
   <title>pytorch学习2 | Fallenk&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="卷积神经网络 CNN (Convolutional Neural Network)卷积 和 神经网络卷积神经网络是如何运作的吧, 举一个识别图片的例子, 我们知道神经网络是由一连串的神经层组成,每一层神经层里面有存在有很多的神经元. 这些神经元就是神经网络识别事物的关键. 每一种神经网络都会有输入输出值, 当输入值是图片的时候, 实际上输入神经网络的并不是那些色彩缤纷的图案,而是一堆堆的数字.">
+  <meta name="description" content="卷积神经网络 CNN (Convolutional Neural Network)">
 <meta name="keywords" content="pytorch学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pytorch学习2">
 <meta property="og:url" content="https://fallenk.github.io/2019/08/25/pytorch学习2/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="卷积神经网络 CNN (Convolutional Neural Network)卷积 和 神经网络卷积神经网络是如何运作的吧, 举一个识别图片的例子, 我们知道神经网络是由一连串的神经层组成,每一层神经层里面有存在有很多的神经元. 这些神经元就是神经网络识别事物的关键. 每一种神经网络都会有输入输出值, 当输入值是图片的时候, 实际上输入神经网络的并不是那些色彩缤纷的图案,而是一堆堆的数字.">
+<meta property="og:description" content="卷积神经网络 CNN (Convolutional Neural Network)">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/pytorch学习/19.png">
 <meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Library/Application%20Support/typora-user-images/image-20190819103829081.png">
@@ -51,10 +51,10 @@
 <meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/pytorch学习/30.png">
 <meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/pytorch学习/32.gif">
 <meta property="og:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/pytorch学习/31.gif">
-<meta property="og:updated_time" content="2019-08-26T08:25:33.536Z">
+<meta property="og:updated_time" content="2019-09-17T02:16:00.761Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pytorch学习2">
-<meta name="twitter:description" content="卷积神经网络 CNN (Convolutional Neural Network)卷积 和 神经网络卷积神经网络是如何运作的吧, 举一个识别图片的例子, 我们知道神经网络是由一连串的神经层组成,每一层神经层里面有存在有很多的神经元. 这些神经元就是神经网络识别事物的关键. 每一种神经网络都会有输入输出值, 当输入值是图片的时候, 实际上输入神经网络的并不是那些色彩缤纷的图案,而是一堆堆的数字.">
+<meta name="twitter:description" content="卷积神经网络 CNN (Convolutional Neural Network)">
 <meta name="twitter:image" content="https://fallenk.github.io/Users/liulifeng/Workspaces/hexo/source/_posts/pytorch学习/19.png">
   
     <link rel="alternate" href="/atom.xml" title="Fallenk&#39;s Blog" type="application/atom+xml">
@@ -140,8 +140,8 @@
       
         <!-- Table of Contents -->
         
-        <a id="more"></a>
-<h2 id="卷积神经网络-CNN-Convolutional-Neural-Network"><a href="#卷积神经网络-CNN-Convolutional-Neural-Network" class="headerlink" title="卷积神经网络 CNN (Convolutional Neural Network)"></a>卷积神经网络 CNN (Convolutional Neural Network)</h2><h3 id="卷积-和-神经网络"><a href="#卷积-和-神经网络" class="headerlink" title="卷积 和 神经网络"></a>卷积 和 神经网络</h3><p>卷积神经网络是如何运作的吧, 举一个识别图片的例子, 我们知道神经网络是由<strong>一连串的神经层组成,每一层神经层里面有存在有很多的神经元</strong>. 这些<strong>神经元就是神经网络识别事物的关键</strong>. <strong>每一种神经网络都会有输入输出值, 当输入值是图片的时候, 实际上输入神经网络的并不是那些色彩缤纷的图案,而是一堆堆的数字</strong>. 就比如说这个. 当神经网络需要处理这么多输入信息的时候, 也就是卷积神经网络就可以发挥它的优势的时候了. 那什么是卷积神经网络呢?</p>
+        <h2 id="卷积神经网络-CNN-Convolutional-Neural-Network"><a href="#卷积神经网络-CNN-Convolutional-Neural-Network" class="headerlink" title="卷积神经网络 CNN (Convolutional Neural Network)"></a>卷积神经网络 CNN (Convolutional Neural Network)</h2><a id="more"></a>
+<h3 id="卷积-和-神经网络"><a href="#卷积-和-神经网络" class="headerlink" title="卷积 和 神经网络"></a>卷积 和 神经网络</h3><p>卷积神经网络是如何运作的吧, 举一个识别图片的例子, 我们知道神经网络是由<strong>一连串的神经层组成,每一层神经层里面有存在有很多的神经元</strong>. 这些<strong>神经元就是神经网络识别事物的关键</strong>. <strong>每一种神经网络都会有输入输出值, 当输入值是图片的时候, 实际上输入神经网络的并不是那些色彩缤纷的图案,而是一堆堆的数字</strong>. 就比如说这个. 当神经网络需要处理这么多输入信息的时候, 也就是卷积神经网络就可以发挥它的优势的时候了. 那什么是卷积神经网络呢?</p>
 <p><img src="/Users/liulifeng/Workspaces/hexo/source/_posts/pytorch学习/19.png" alt="image-20190819103552681"></p>
 <p>先把卷积神经网络这个词拆开来看. “卷积” 和 “神经网络”. 卷积也就是说神经网络<strong>不再是对每个像素的输入信息做处理了,而是图片上每一小块像素区域进行处理</strong>, 这种做法加强了图片信息的连续性. 使得神经网络能看到图形, 而非一个点. 这种做法同时也加深了神经网络对图片的理解. 具体来说, 卷积神经网络<strong>有一个批量过滤器, 持续不断的在图片上滚动收集图片里的信息,每一次收集的时候都只是收集一小块像素区域, 然后把收集来的信息进行整理</strong>, 这时候整理出来的信息有了一些实际上的呈现, 比如这时的神经网络能看到一些边缘的图片信息, 然后在以同样的步骤, 用类似的批量过滤器扫过产生的这些边缘信息, 神经网络从这些边缘信息里面总结出更高层的信息结构,比如说总结的边缘能够画出眼睛,鼻子等等. 再经过一次过滤, 脸部的信息也从这些眼睛鼻子的信息中被总结出来. 最后我们再把这些信息套入几层普通的全连接神经层进行分类, 这样就能得到输入的图片能被分为哪一类的结果了.</p>
 <p><img src="/Users/liulifeng/Library/Application Support/typora-user-images/image-20190819103829081.png" alt="image-20190819103829081"></p>

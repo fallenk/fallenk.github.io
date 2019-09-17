@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://fallenk.github.io/2019/09/02/LEAF/2.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/09/02/LEAF/3.png">
 <meta property="og:image" content="https://fallenk.github.io/2019/09/02/LEAF/4.png">
-<meta property="og:updated_time" content="2019-09-02T08:29:58.208Z">
+<meta property="og:updated_time" content="2019-09-03T07:07:44.831Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LEAF">
 <meta name="twitter:description" content="Leaf：联合设置的基准现代联邦网络，例如由可穿戴设备、移动电话或自动车辆组成的网络，每天都会生成大量的数据。这些丰富的数据有助于学习能够改善每个设备上用户体验的模型。然而，在联合设置中的学习在机器学习管道的所有阶段都提出了新的挑战。当机器学习社区开始应对这些挑战时，我们正处于关键时刻，以确保这一领域的发展是以现实世界的假设为基础的。为此，我们提出了Leaf，一个用于在联合环境中学习的模块化基准测">
@@ -137,10 +137,13 @@
 <p><strong>leaf支持可复制的科学</strong>：为了证明leaf支持的可复制性，我们集中于<strong>定性地复制</strong>[16]<strong>在下一个字符预测任务的莎士比亚数据集上获得的结果</strong>。特别值得注意的是，对于这个特定的数据集，fedavg方法会随着本地时间段的增加而出现惊人的差异。因此，在部署fedavg等方法之前，这是一个需要了解的关键设置。为了展示leaf如何允许这种场景的快速原型化，我们在莎士比亚的数据中使用了参考fedavg实现和子样本118设备（大约占总数的5%），这可以通过我们的框架轻松完成。结果如图2所示，当<strong>我们增加epoch的数量时，在训练损失方面我们确实看到类似的差异行为</strong>。</p>
 <p><img src="/2019/09/02/LEAF/3.png" alt="image-20190902161221701"></p>
 <p>图2：莎士比亚数据集的子样本上fedavg的收敛行为。我们在所有实验中使用每轮0.8的学习率和10个设备。我们能够达到与[16]中获得的结果相当的测试精度。我们还定性地复制了训练损失的差异，这是在大量的epochs(E)观察到的。</p>
-<p><strong>Leaf提供了粒度系统和统计指标</strong>：如图3所示，在同时为多个客户机提供服务时，我们建议的系统和统计指标非常重要。对于统计指标，我们展示了在Sentiment140中改变每个用户最小样本数的效果（我们将其表示为k）。我们看到，尽管数据不足的用户（即k=3）的性能中值只有轻微下降，但25%的用户（框底）的性能却大幅下降。同时，对于系统度量，我们为femnist运行minibatch sgd和fedavg，并计算达到精度阈值0.35所需的系统预算。我们根据所有设备的总故障次数和上传到网络的总字节数来描述预算。我们的结果表明，当涉及通信与局部计算权衡时，FEDAVG的改进系统概况，尽管我们注意到，在一般情况下，方法可能在这两个维度上有所不同，因此根据手头的问题考虑这两个方面很重要。</p>
+<p><strong>Leaf提供了粒度系统和统计指标</strong>：如图3所示，在同时为多个客户机提供服务时，我们建议的系统和统计指标非常重要。对于统计指标，我们展示了在Sentiment140中改变每个用户最小样本数的效果（我们将其表示为k）。我们看到，尽管数据不足的用户（即k=3）的性能中值只有轻微下降，但25%的用户（框底）的性能大幅下降。同时，对于系统度量，我们为femnist运行minibatchsgd和fedavg，并计算达到精度阈值0.35所需的系统花费的资源。我们根据所有设备的总故障次数和上传到网络的总字节数来描述预算。当涉及通信与局部计算之间的权衡时，我们的结果表明，改进了FEDAVG的系统配置文件，尽管我们注意到，在一般情况下，方法可能在这两个维度上有所不同，因此根据当前遇到的问题考虑这两个方面很重要。</p>
 <p><img src="/2019/09/02/LEAF/4.png" alt="image-20190902162547825"></p>
 <p>图3:SENT140和FEMINIST的统计和系统分析。k是每个用户的最小样本数，E是每个设备使用的本地数据的百分比，C是每轮选择的客户端数。橙色线代表设备精度的中位数，绿色三角形代表平均值，方框代表25%和75%，胡须代表10%到90%。我们对所有实验使用3*10e-4的学习率。</p>
 <h2 id="4-Conclusion"><a href="#4-Conclusion" class="headerlink" title="4 Conclusion"></a>4 Conclusion</h2><p>我们介绍Leaf，<strong>一个用于在联合环境中学习的模块化基准测试框架</strong>，或者以大规模分布的设备网络为标志的生态系统。适用于此类环境的学习模式包括联合学习、多任务学习、元学习和设备上学习。Leaf允许这些领域的研究人员和实践者在比以前的基准更现实的假设下对新提出的解决方案进行推理。我们打算保持Leaf最新的数据集、度量标准和开源解决方案，以促进这一领域的知情和有根据的进展。</p>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p><a href="https://github.com/TalwalkarLab/leaf" target="_blank" rel="noopener">https://github.com/TalwalkarLab/leaf</a></p>
+<p>model:</p>
+<p>为了运行这些引用实现，在为各自的数据集运行./preprocess.sh脚本时必须使用-t sample标记。<br>模拟的客户端总数等于各自数据集的培训数据中的用户总数。<br>为了获得最佳的模型性能，可以使用类似于各自数据集自述文件中“大型数据集”选项中列出的参数来生成数据。<br>main.py支持这些附加标签：<br>–模型：模型的名称；选项列在各自的数据集文件夹中，例如，femnist的cnn；默认为各自数据集文件夹中的第一个模型。<br>–num_rounds：要模拟的轮数<br>–评估每轮：评估每轮<br>–每轮客户数：每轮培训的客户数<br>–批量大小：客户机训练数据时的批量大小<br>–num epoch：客户机在数据上训练时的epoch数<br>-T：模拟时间：小、中或大；时间越长，精度越高；对于大运行，使用与各自数据集自述文件中“大数据集”选项中列出的参数类似的参数生成数据，以获得最佳模型性能；默认值：大<br>-lr：本地优化器的学习率。<br>运行分类器之后，打开metrics.ipynb查看上次运行的系统和统计指标。<br>模型生成的度量存储在metrics.json中，其中包含以下“key:value”对：<br>数据集：数据集的名称<br>num_轮数：模拟的轮数<br>eval_every:integer x，这样模型每x轮评估一次<br>精度：length-num_rounds（id，groups，num_samples，accs）列表，其中<br>ID是对应于在各自回合中测试的客户机的客户机ID字符串列表，<br>组是一个包含每个客户机的组名的列表（如果客户机没有关联的组，则列出NONE）。<br>num_samples是一个包含每个客户机的测试样本数量的列表，以及<br>ACCS是一个包含每个客户评估的准确性的列表。<br>客户机计算：以客户机ID为键，length-num-rounds列表为值的字典；列表中的元素是int，表示相应客户机在相应的一轮中计算的浮点数。<br>bytes_written：以客户机ID为键，length-num_rounds列表为值的字典；列表中的元素是int，表示resepctive客户机在相应的一轮中写入服务器的字节数。<br>字节读取：以客户机ID为键，length-num-rounds列表为值的字典；列表中的元素是int，表示resepctive客户机在相应的一轮中从服务器读取的字节数。</p>
 
       
     </div>
@@ -238,7 +241,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Leaf：联合设置的基准"><span class="toc-number">1.</span> <span class="toc-text">Leaf：联合设置的基准</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction"><span class="toc-number">1.1.</span> <span class="toc-text">1 Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-LEAF"><span class="toc-number">1.2.</span> <span class="toc-text">2 LEAF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-LEAF-in-action"><span class="toc-number">1.3.</span> <span class="toc-text">3 LEAF in action</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Conclusion"><span class="toc-number">1.4.</span> <span class="toc-text">4 Conclusion</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Leaf：联合设置的基准"><span class="toc-number">1.</span> <span class="toc-text">Leaf：联合设置的基准</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction"><span class="toc-number">1.1.</span> <span class="toc-text">1 Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-LEAF"><span class="toc-number">1.2.</span> <span class="toc-text">2 LEAF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-LEAF-in-action"><span class="toc-number">1.3.</span> <span class="toc-text">3 LEAF in action</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Conclusion"><span class="toc-number">1.4.</span> <span class="toc-text">4 Conclusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Github"><span class="toc-number">1.5.</span> <span class="toc-text">Github</span></a></li></ol></li></ol>
           </div>
       </div>
     </div>
