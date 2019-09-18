@@ -74,58 +74,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-论文阅读-RandWiredNN" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/13/论文阅读-RandWiredNN/" class="article-date">
-  <time datetime="2019-06-13T09:06:02.000Z" itemprop="datePublished">2019-06-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/论文阅读/">论文阅读</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/13/论文阅读-RandWiredNN/">论文阅读-RandWiredNN</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="论文阅读-RandWiredNN"><a href="#论文阅读-RandWiredNN" class="headerlink" title="论文阅读-RandWiredNN"></a>论文阅读-RandWiredNN</h1><p>RandWireNN 基本思想是<strong>研究设计stochastic network generator</strong>，也就是<strong>设计网络构架的机制</strong>，它的关注点<strong>在网络的连接方式上</strong>。论文作者引入了一种网络模型空间的构造方法，即<strong>图论中的random graph，之后用grid search搜索出较好的神经网络子集</strong>，并在ImageNet的1000-class分类任务上进行<strong>验证</strong>。</p>
-<p>论文： Exploring Randomly Wired Neural Networks for Image Recognition 【<a href="https://arxiv.org/abs/1904.01569" target="_blank" rel="noopener">pdf</a>】</p>
-<p>作者：<a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xie%2C+S" target="_blank" rel="noopener">Saining Xie</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Kirillov%2C+A" target="_blank" rel="noopener">Alexander Kirillov</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Girshick%2C+R" target="_blank" rel="noopener">Ross Girshick</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=He%2C+K" target="_blank" rel="noopener">Kaiming He</a></p>
-<p>参考文章：<a href="https://zhuanlan.zhihu.com/p/62837029" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/62837029</a></p>
-        
-          <p class="article-more-link">
-            <a href="/2019/06/13/论文阅读-RandWiredNN/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fallenk.github.io/2019/06/13/论文阅读-RandWiredNN/" data-id="ck0njkhm8004xgf8ocypwifda" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/神经网络搜索/">神经网络搜索</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
     <article id="post-NeuralArchitectureSearch" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/06/03/NeuralArchitectureSearch/" class="article-date">
@@ -574,6 +522,59 @@
 
 
   
+    <article id="post-TensorflowFederatedGuide" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/09/TensorflowFederatedGuide/" class="article-date">
+  <time datetime="2019-05-09T08:27:39.000Z" itemprop="datePublished">2019-05-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tensorflow/">Tensorflow</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/09/TensorflowFederatedGuide/">TensorflowFederatedGuide</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>TensorFlow联合（TFF）平台由两层组成：</p>
+<ul>
+<li>联合学习（FL），将现有Keras或非Keras机器学习模型插入TFF框架的高级接口。您可以执行基本任务，例如<strong>联合训练或评估</strong>，而无需研究联合学习算法的详细节。</li>
+<li>联合核心（FC），通过在强类型函数编程环境中将<strong>TensorFlow与分布式通信运算符</strong>相结合，简洁地表达自定义联合算法的低级接口。</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2019/05/09/TensorflowFederatedGuide/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fallenk.github.io/2019/05/09/TensorflowFederatedGuide/" data-id="ck0njkhgr002bgf8ospv94v4u" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/联合学习/">联合学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
 
 
   <nav id="page-nav">
@@ -612,11 +613,11 @@
           </li>
         
           <li>
-            <a href="/2019/08/25/pytorch学习2/">pytorch学习2</a>
+            <a href="/2019/08/23/yaml入门/">yaml入门</a>
           </li>
         
           <li>
-            <a href="/2019/08/23/yaml入门/">yaml入门</a>
+            <a href="/2019/08/15/pytorch学习/">pytorch学习</a>
           </li>
         
       </ul>
