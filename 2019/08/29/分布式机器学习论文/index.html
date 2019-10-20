@@ -350,7 +350,7 @@
 <p>worker 这边，每个 client library 维护一个长为 syncer 数的 01 向量，每次迭代开始前初始化为 0，当一层的数据同步完了之后设为 1，当整个向量全 1 时就可以进入下一个迭代了。</p>
 <p>PS 这边，KV stroe 在每次迭代开始前维护一个值为 0 的计数器，每当有一个 KV 更新计数加一，当计数器达到 worker 的数量时，发起一次参数广播。</p>
 <p>整个训练过程的伪代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>Copy</p>
 <hr>
 <p>后面是 evaluation，测试结果就是很强…各方面都很强。</p>
@@ -511,7 +511,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        51
+                        52
                     </p>
                 </div>
             </div>
@@ -838,6 +838,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/20/NICO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
+                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/LEAF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LEAF">
@@ -912,25 +931,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/23/yaml入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="yaml入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-23T03:11:47.000Z">2019-08-23</time></div>
-                    <a href="/2019/08/23/yaml入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">yaml入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/yaml/">yaml</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -942,6 +942,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">
@@ -1400,6 +1411,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/20/NICO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
+                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/LEAF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LEAF">
@@ -1474,25 +1504,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/23/yaml入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="yaml入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-23T03:11:47.000Z">2019-08-23</time></div>
-                    <a href="/2019/08/23/yaml入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">yaml入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/yaml/">yaml</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1504,6 +1515,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">

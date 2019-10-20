@@ -7,22 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Golang总结 - Fallenk&#39;s Blog</title>
+<title>Archives: 2019/10 - Fallenk&#39;s Blog</title>
 
 
-    <meta name="description" content="编译问题go build；go install； go getValue">
-<meta name="keywords" content="golang">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Golang总结">
-<meta property="og:url" content="https://fallenk.github.io/2019/08/15/Golang总结/index.html">
+    <meta name="description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta name="keywords" content="经历，心得，笔记，目标">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fallenk&#39;s Blog">
+<meta property="og:url" content="https://fallenk.github.io/archives/2019/10/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="编译问题go build；go install； go getValue">
+<meta property="og:description" content="不忘初心，努力学习，砥砺前进，自我反省">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-08-17T07:45:14.408Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Golang总结">
-<meta name="twitter:description" content="编译问题go build；go install； go getValue">
+<meta name="twitter:title" content="Fallenk&#39;s Blog">
+<meta name="twitter:description" content="不忘初心，努力学习，砥砺前进，自我反省">
 <meta name="twitter:image" content="https://fallenk.github.io/images/og_image.png">
 
 
@@ -93,7 +92,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Golang总结" height="28">
+                <img src="/images/logo.svg" alt="Fallenk&#39;s Blog" height="28">
             
             </a>
         </div>
@@ -143,84 +142,31 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    
-    <div class="card-content article ">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="tag is-link">
+        October 2019
+        </h3>
+        <div class="timeline">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-15T02:00:23.000Z">2019-08-15</time>
+            <article class="media">
                 
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/golang学习/">golang学习</a>
+                <div class="media-content">
+                    <div class="content">
+                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time>
+                        <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                        <div class="level article-meta is-mobile">
+                            <div class="level-left">
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 314 words)
-                </span>
-                
-                
-            </div>
+            </article>
+        
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                Golang总结
-            
-        </h1>
-        <div class="content">
-            <h2 id="编译问题"><a href="#编译问题" class="headerlink" title="编译问题"></a>编译问题</h2><p>go build；go install； go getValue</p>
-<a id="more"></a>
-<ul>
-<li><p>go run: 运行 命令源码文件</p>
-</li>
-<li><p>go build： <strong>在当前目录下(compile+link)生成可执行文件</strong>,注意: go build指令会调用所有引用包的源码，重新编译，而不是直接使用pkg里的编译后的文件，如果在<code>$GOROOT</code>或者<code>$GOPATH</code>下没有找到import引入的项目源码，就会报错</p>
-</li>
-<li>go install: <strong>编译源代码</strong>，编译并安装代码包或者源码文件; <strong>go install 命令只比 go build 命令多做了一件事，即：安装编译后的结果文件到指定目录</strong>。如果可执行文件(package ‘’mian’’且包含main方法),则会编译生成可执行文件到<code>$GOPATH/bin</code>目录下，可执行文件import引入其他包，就会被编译. 到<code>$GOPATH/pkg/$GOOS_$GOARCH</code>目录下. 1. <strong>安装代码包</strong>会在当前工作区的 pkg 的平台相关目录下生成<strong>归档文件</strong>（即 .a 文件）。 2.<strong>安装命令源码文件</strong>会在当前工作区的 bin 目录（如果 GOPATH 下有多个工作区，就会放在 GOBIN 目录下）生成可执行文件。</li>
-<li>go get： git clone到 <code>$GOPATH\src</code> + go install</li>
-</ul>
-
-        </div>
-        
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/golang/">golang</a>
-                </div>
-            </div>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/15/pytorch学习/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">pytorch学习</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/07/FLandEncryption/">
-                <span class="level-item">FLandEncryption</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
     </div>
 </div>
 
@@ -1734,7 +1680,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Golang总结" height="28">
+                    <img src="/images/logo.svg" alt="Fallenk&#39;s Blog" height="28">
                 
                 </a>
                 <p class="is-size-7">

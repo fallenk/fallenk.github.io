@@ -180,14 +180,14 @@
 <p>与服务器交互配置：</p>
 <p><a href="https://www.cnblogs.com/pugang/p/9734547.html" target="_blank" rel="noopener">https://www.cnblogs.com/pugang/p/9734547.html</a></p>
 <h2 id="CLion-学习之读懂-CMakeLists-txt"><a href="#CLion-学习之读懂-CMakeLists-txt" class="headerlink" title="CLion 学习之读懂 CMakeLists.txt"></a>CLion 学习之读懂 CMakeLists.txt</h2><p>有当我们使用 CLion 自动生成一个简单的 C 项目，目录如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">├── CMakeLists.txt</span><br><span class="line">├── cmake-build-debug</span><br><span class="line">└── main.c</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">├── CMakeLists.txt</span><br><span class="line">├── cmake-build-debug</span><br><span class="line">└── main.c</span><br></pre></td></tr></table></figure>
 <p>main.c</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello, World!\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Hello, World!\n"</span>);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>CMakeLists.txt</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.8</span>)</span><br><span class="line"><span class="keyword">project</span>(demo1)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_STANDARD <span class="number">99</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(SOURCE_FILES main.c)</span><br><span class="line"><span class="keyword">add_executable</span>(demo1 <span class="variable">$&#123;SOURCE_FILES&#125;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.8</span>)</span><br><span class="line"><span class="hljs-keyword">project</span>(demo1)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">set</span>(CMAKE_C_STANDARD <span class="hljs-number">99</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">set</span>(SOURCE_FILES main.c)</span><br><span class="line"><span class="hljs-keyword">add_executable</span>(demo1 <span class="hljs-variable">$&#123;SOURCE_FILES&#125;</span>)</span><br></pre></td></tr></table></figure>
 <p><code>CMakeLists.txt</code>是什么呢？ CLion 的编译肯定是依赖这个文件了。有了这个文件，我们就可以直接使用 ide 里面的 run 和 debug 了，相比使用 gdb 来断点调试，开发效率简直有质的飞跃了哈。（不过，很多问题需要线上追踪的话，只能 gdb 了）</p>
 <p>CMake 是一个<strong>跨平台的自动化建构系统</strong>，它使用一个名为 CMakeLists.txt 的文件来<strong>描述构建过程</strong>，可以产生标准的构建文件，如 Unix 的 Makefile 或Windows Visual C++ 的 projects/workspaces 。</p>
-<h1 id="CMakeLists-txt-语法"><a href="#CMakeLists-txt-语法" class="headerlink" title="CMakeLists.txt 语法"></a>CMakeLists.txt 语法</h1><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 限定了 CMake 的版本</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.8</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 该命令表示项目的名称是 main </span></span><br><span class="line"><span class="keyword">project</span>(demo1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># set(变量 值)</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_STANDARD <span class="number">99</span>)</span><br><span class="line"><span class="keyword">set</span>(SOURCE_FILES main.c)</span><br><span class="line"></span><br><span class="line"><span class="comment"># $&#123;xxx&#125; 引用上面定义的 xxx 变量</span></span><br><span class="line"><span class="comment"># add_executable 表示把变量 SOURCE_FILES 编译成一个名称为 demo1 的可执行文件。</span></span><br><span class="line"><span class="keyword">add_executable</span>(demo1 <span class="variable">$&#123;SOURCE_FILES&#125;</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="CMakeLists-txt-语法"><a href="#CMakeLists-txt-语法" class="headerlink" title="CMakeLists.txt 语法"></a>CMakeLists.txt 语法</h1><figure class="highlight cmake hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 限定了 CMake 的版本</span></span><br><span class="line"><span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.8</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 该命令表示项目的名称是 main </span></span><br><span class="line"><span class="hljs-keyword">project</span>(demo1)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># set(变量 值)</span></span><br><span class="line"><span class="hljs-keyword">set</span>(CMAKE_C_STANDARD <span class="hljs-number">99</span>)</span><br><span class="line"><span class="hljs-keyword">set</span>(SOURCE_FILES main.c)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># $&#123;xxx&#125; 引用上面定义的 xxx 变量</span></span><br><span class="line"><span class="hljs-comment"># add_executable 表示把变量 SOURCE_FILES 编译成一个名称为 demo1 的可执行文件。</span></span><br><span class="line"><span class="hljs-keyword">add_executable</span>(demo1 <span class="hljs-variable">$&#123;SOURCE_FILES&#125;</span>)</span><br></pre></td></tr></table></figure>
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -274,7 +274,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        51
+                        52
                     </p>
                 </div>
             </div>
@@ -601,6 +601,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/20/NICO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
+                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/LEAF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LEAF">
@@ -675,25 +694,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/23/yaml入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="yaml入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-23T03:11:47.000Z">2019-08-23</time></div>
-                    <a href="/2019/08/23/yaml入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">yaml入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/yaml/">yaml</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -705,6 +705,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">
@@ -1163,6 +1174,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/20/NICO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
+                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/LEAF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LEAF">
@@ -1237,25 +1267,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/23/yaml入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="yaml入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-23T03:11:47.000Z">2019-08-23</time></div>
-                    <a href="/2019/08/23/yaml入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">yaml入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/yaml/">yaml</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1267,6 +1278,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">

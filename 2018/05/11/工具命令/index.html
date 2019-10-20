@@ -179,12 +179,12 @@
 <li>打开终端：<code>ssh root@xx.xxx.xxx.xxx</code>，即 <code>ssh 空格 用户名@目标机器IP地址</code>，出现linux 服务器远程终端</li>
 <li>问题:权限不足</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">permission denied 或者authentication denied， </span><br><span class="line">意思是权限不足 </span><br><span class="line">这里需要修改一个配置文件的值就可以通过了 </span><br><span class="line">vi /etc/ssh/ssh_config </span><br><span class="line">点击i进入编辑状态，把PasswordAuthentication设成yes， </span><br><span class="line">然后把PasswordAuthentication前面的#号去掉使之生效 </span><br><span class="line">然后使用命令关闭ssh服务 </span><br><span class="line">sudo launchctl unload -w /System/Library/LaunchDaemons/ssh.plist </span><br><span class="line">然后重启，去掉un </span><br><span class="line">sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist </span><br><span class="line">输入一个命令查看重启状态 </span><br><span class="line">sudo launchctl list | grep ssh </span><br><span class="line">如果-0什么的一行，就是成功的 </span><br><span class="line">然后重新连接应该就能连上了</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">permission denied 或者authentication denied， </span><br><span class="line">意思是权限不足 </span><br><span class="line">这里需要修改一个配置文件的值就可以通过了 </span><br><span class="line">vi /etc/ssh/ssh_config </span><br><span class="line">点击i进入编辑状态，把PasswordAuthentication设成yes， </span><br><span class="line">然后把PasswordAuthentication前面的#号去掉使之生效 </span><br><span class="line">然后使用命令关闭ssh服务 </span><br><span class="line">sudo launchctl unload -w /System/Library/LaunchDaemons/ssh.plist </span><br><span class="line">然后重启，去掉un </span><br><span class="line">sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist </span><br><span class="line">输入一个命令查看重启状态 </span><br><span class="line">sudo launchctl list | grep ssh </span><br><span class="line">如果-0什么的一行，就是成功的 </span><br><span class="line">然后重新连接应该就能连上了</span><br></pre></td></tr></table></figure>
 <ol start="4">
 <li>设置ssh生成SSHKEY;查看链接<a href="http://blog.csdn.net/xiaofei125145/article/details/30243535" target="_blank" rel="noopener">http://blog.csdn.net/xiaofei125145/article/details/30243535</a></li>
 <li>上传文件–scp<br>同理，可以使用上述远程连接的方式！<br>基本命令：</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">root# scp --help  </span><br><span class="line">usage: scp [-1246BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]  </span><br><span class="line">[-l limit] [-o ssh_option] [-P port] [-S program]  </span><br><span class="line">[[user@]host1:]file1 [...] [[user@]host2:]file2  </span><br><span class="line"></span><br><span class="line">-1                 强制scp命令使用协议ssh1  </span><br><span class="line">-2                 强制scp命令使用协议ssh2  </span><br><span class="line">-4                 强制scp命令只使用IPv4寻址  </span><br><span class="line">-6                 强制scp命令只使用IPv6寻址  </span><br><span class="line">-B                 使用批处理模式（传输过程中不询问传输口令或短语）  </span><br><span class="line">-C                 允许压缩。（将-C标志传递给ssh，从而打开压缩功能）  </span><br><span class="line">-p                 保留原文件的修改时间，访问时间和访问权限。  </span><br><span class="line">-q                 不显示传输进度条。  </span><br><span class="line">-r                 递归复制整个目录。  </span><br><span class="line">-v                 详细方式显示输出。scp和ssh(1)会显示出整个过程的调试信息。这些信息用于调试连接，验证和配置问题。  </span><br><span class="line">-c cipher          以cipher将数据传输进行加密，这个选项将直接传递给ssh。  </span><br><span class="line">-F ssh_config      指定一个替代的ssh配置文件，此参数直接传递给ssh。  </span><br><span class="line">-i identity_file    从指定文件中读取传输时使用的密钥文件，此参数直接传递给ssh。  </span><br><span class="line">-l limit        限定用户所能使用的带宽，以Kbit/s为单位。  </span><br><span class="line">-o ssh_option   如果习惯于使用ssh_config(5)中的参数传递方式，  </span><br><span class="line">-P port         注意是大写的P, port是指定数据传输用到的端口号  </span><br><span class="line">-S program      指定加密传输时所使用的程序。此程序必须能够理解ssh(1)的选项。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">root# scp --help  </span><br><span class="line">usage: scp [-1246BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]  </span><br><span class="line">[-l limit] [-o ssh_option] [-P port] [-S program]  </span><br><span class="line">[[user@]host1:]file1 [...] [[user@]host2:]file2  </span><br><span class="line"></span><br><span class="line">-1                 强制scp命令使用协议ssh1  </span><br><span class="line">-2                 强制scp命令使用协议ssh2  </span><br><span class="line">-4                 强制scp命令只使用IPv4寻址  </span><br><span class="line">-6                 强制scp命令只使用IPv6寻址  </span><br><span class="line">-B                 使用批处理模式（传输过程中不询问传输口令或短语）  </span><br><span class="line">-C                 允许压缩。（将-C标志传递给ssh，从而打开压缩功能）  </span><br><span class="line">-p                 保留原文件的修改时间，访问时间和访问权限。  </span><br><span class="line">-q                 不显示传输进度条。  </span><br><span class="line">-r                 递归复制整个目录。  </span><br><span class="line">-v                 详细方式显示输出。scp和ssh(1)会显示出整个过程的调试信息。这些信息用于调试连接，验证和配置问题。  </span><br><span class="line">-c cipher          以cipher将数据传输进行加密，这个选项将直接传递给ssh。  </span><br><span class="line">-F ssh_config      指定一个替代的ssh配置文件，此参数直接传递给ssh。  </span><br><span class="line">-i identity_file    从指定文件中读取传输时使用的密钥文件，此参数直接传递给ssh。  </span><br><span class="line">-l limit        限定用户所能使用的带宽，以Kbit/s为单位。  </span><br><span class="line">-o ssh_option   如果习惯于使用ssh_config(5)中的参数传递方式，  </span><br><span class="line">-P port         注意是大写的P, port是指定数据传输用到的端口号  </span><br><span class="line">-S program      指定加密传输时所使用的程序。此程序必须能够理解ssh(1)的选项。</span><br></pre></td></tr></table></figure>
 <p>使用实例：<br>1，下载目录<br>$scp -r <a href="mailto:root@172.30.4.42" target="_blank" rel="noopener">root@172.30.4.42</a>:/tmp/test2 ./<br>将172.30.4.42linux系统中/tmp/test2目录copy到当前目录下面，在这172.30.4.42前面加了root@,提示输入密码，如果不加呢，会提示你输入用户名和密码</p>
 <p>2，下载文件<br>$ scp 172.30.4.42:/tmp/test2/aaa.php ./<br>将172.30.4.42linux系统中/tmp/test2/aaa.php文件copy到当前目录下面</p>
 <p>3，上传目录<br>$ scp -r ./mytest 172.30.4.42:/tmp/test2<br>将当前目录中的mytest目录上传到172.30.4.42服务器/tmp/test2目录下面。</p>
@@ -220,17 +220,17 @@
 </ol>
 <p><code>startx</code>——启动X Window<br><code>XF86setup</code>——图形界面下运行的配置程序</p>
 <h2 id="Shell程序组成："><a href="#Shell程序组成：" class="headerlink" title="Shell程序组成："></a>Shell程序组成：</h2><p>(1) 命令或Shell程序；<br>(2) 位置参数；<br>(3) 变量及特殊字符；<br>(4) 表达式比较；<br>(5) 控制流程语句，例如while，case等；<br>(6) 函数。<br>例：备份当前目录下的所有文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mkdir backup</span><br><span class="line">for file in ‘ls’</span><br><span class="line">do</span><br><span class="line">        cp $ file backup/$ file</span><br><span class="line">        if [$? –ne 0] then</span><br><span class="line">                echo “copying $ file error”</span><br><span class="line">        fi</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mkdir backup</span><br><span class="line">for file in ‘ls’</span><br><span class="line">do</span><br><span class="line">        cp $ file backup/$ file</span><br><span class="line">        if [$? –ne 0] then</span><br><span class="line">                echo “copying $ file error”</span><br><span class="line">        fi</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 <p>shell预定义变量是由<code>$</code>符和<code>另一个符号</code>组成的，常用的shell预定义变量有：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">　　$#：位置参数的数量</span><br><span class="line">　　$*：所有位置参数的内容</span><br><span class="line">　　$?：命令执行后返回的状态</span><br><span class="line">　　$$：当前进程的进程号</span><br><span class="line">　　$!：后台运行的最后一个进程号</span><br><span class="line">　　$0：当前执行的进程名</span><br><span class="line">　　其中，“$?”用于检查上一个命令执行是否正确(在Linux中，命令退出状态为0表示该命令正确执行，任何非0值表示命令出错)。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">　　$#：位置参数的数量</span><br><span class="line">　　$*：所有位置参数的内容</span><br><span class="line">　　$?：命令执行后返回的状态</span><br><span class="line">　　$$：当前进程的进程号</span><br><span class="line">　　$!：后台运行的最后一个进程号</span><br><span class="line">　　$0：当前执行的进程名</span><br><span class="line">　　其中，“$?”用于检查上一个命令执行是否正确(在Linux中，命令退出状态为0表示该命令正确执行，任何非0值表示命令出错)。</span><br></pre></td></tr></table></figure>
 <h2 id="Windows的命令控制界面"><a href="#Windows的命令控制界面" class="headerlink" title="Windows的命令控制界面"></a>Windows的命令控制界面</h2><p>Windows命令主要有以下4类：<br>(1) 系统信息命令<br><code>time</code>——Displays or sets the system time. 显示或设置系统时间<br><code>date</code>——Displays or sets the date. 显示或设置日期<br><code>mem</code>——Displays the amount of used and free memory in your system.<br><code>driverquery</code>——Enables an administrator to enumerate and display the list of installed device drivers as well as their properties.<br><code>systeminfo</code>——This command line tool enables an administrator to query for basic system configuration information.</p>
 <p>(2) 系统操作命令<br><code>shutdown</code>——关机<br><code>runas</code>——允许用户用其他权限运行指定的工具和程序，而不是用户当前登录提供的权限。<br><code>taskkill</code>——This command line tool can be used to end one or more processes. Processes can be killed by the process id or image name.<br>(3) 文件系统命令<br><code>copy</code>——Copies one or more files to another location.<br><code>del</code>——删除文件<br><code>mkdir</code>——建立目录<br>(4) 网络通信命令<br><code>ping</code>——检查网络是否能够连通<br><code>netstat</code>——显示当前正在活动的网络连接的详细信息<br><code>route</code>——主要用来管理本机路由表，可以查看，添加、修改或删除路由表条目。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> &amp;——同时执行多条命令，而不管命令是否执行成功。</span><br><span class="line">Usage：第一条命令 &amp; 第二条命令 [&amp; 第三条命令...]</span><br><span class="line"> &amp;&amp;——同时执行多条命令，当碰到执行出错的命令后将不执行后面的命令，如果一直没有出错则一直执行完所有命令。</span><br><span class="line">Usage：第一条命令 &amp;&amp; 第二条命令 [&amp;&amp; 第三条命令...]</span><br><span class="line"> ||——同时执行多条命令，当碰到执行正确的命令后将不执行后面的命令，如果没有出现正确的命令则一直执行完所有命令。</span><br><span class="line">Usage：第一条命令 || 第二条命令 [|| 第三条命令...]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> &amp;——同时执行多条命令，而不管命令是否执行成功。</span><br><span class="line">Usage：第一条命令 &amp; 第二条命令 [&amp; 第三条命令...]</span><br><span class="line"> &amp;&amp;——同时执行多条命令，当碰到执行出错的命令后将不执行后面的命令，如果一直没有出错则一直执行完所有命令。</span><br><span class="line">Usage：第一条命令 &amp;&amp; 第二条命令 [&amp;&amp; 第三条命令...]</span><br><span class="line"> ||——同时执行多条命令，当碰到执行正确的命令后将不执行后面的命令，如果没有出现正确的命令则一直执行完所有命令。</span><br><span class="line">Usage：第一条命令 || 第二条命令 [|| 第三条命令...]</span><br></pre></td></tr></table></figure>
 <ol>
 <li>直接在命令行输出命令<br>Systeminfo &amp; mem</li>
 <li>批处理</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">	@echo off</span><br><span class="line">	mkdir test</span><br><span class="line">	echo hello</span><br><span class="line">	pause</span><br><span class="line">```	</span><br><span class="line">	例：</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">	@echo off</span><br><span class="line">	mkdir test</span><br><span class="line">	echo hello</span><br><span class="line">	pause</span><br><span class="line">```	</span><br><span class="line">	例：</span><br></pre></td></tr></table></figure>
 <p>@echo off<br>mem&gt;%1\meminfo.txt<br>echo generate memoryinfo ok!</p>
 <p>@echo off<br>type %1*.txt<br>echo type ok!</p>
 <p>@echo off<br>mkdir test<br>call exam2.bat test<br>call exam3.bat test<br>echo call ok!<br>pause<br><code>`</code></p>
@@ -321,7 +321,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        51
+                        52
                     </p>
                 </div>
             </div>
@@ -648,6 +648,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/20/NICO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
+                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/LEAF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LEAF">
@@ -722,25 +741,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/23/yaml入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="yaml入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-23T03:11:47.000Z">2019-08-23</time></div>
-                    <a href="/2019/08/23/yaml入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">yaml入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/yaml/">yaml</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -752,6 +752,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">
@@ -1210,6 +1221,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/20/NICO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
+                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/LEAF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LEAF">
@@ -1284,25 +1314,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/23/yaml入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="yaml入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-23T03:11:47.000Z">2019-08-23</time></div>
-                    <a href="/2019/08/23/yaml入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">yaml入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/yaml/">yaml</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1314,6 +1325,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">

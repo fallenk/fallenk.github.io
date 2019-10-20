@@ -186,21 +186,21 @@
 <p><strong>Note:</strong><br>You may assume k is always valid, 1 ≤ k ≤ array’s length.</p>
 <p>题目描述：找到倒数第 k 个的元素。</p>
 <p>solution 1：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        <span class="keyword">return</span> nums[nums.size() - k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">findKthLargest</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        <span class="hljs-keyword">return</span> nums[nums.size() - k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>solution 2:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">			<span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">					priority_queue&lt;<span class="keyword">int</span>&gt; q(nums.begin(), nums.end());</span><br><span class="line">					<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k, i++) &#123;</span><br><span class="line">							q.pop();</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">return</span> q.top();</span><br><span class="line">			&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line">	<span class="hljs-keyword">public</span>:</span><br><span class="line">			<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">findKthLargest</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">					priority_queue&lt;<span class="hljs-keyword">int</span>&gt; q(nums.begin(), nums.end());</span><br><span class="line">					<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; k, i++) &#123;</span><br><span class="line">							q.pop();</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="hljs-keyword">return</span> q.top();</span><br><span class="line">			&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>熟悉快排：核心思想是<strong>每次都要先找一个中枢点Pivot</strong>，<strong>然后遍历其他所有的数字</strong>，像这道题从大往小排的话，就把大于中枢点的数字放到左半边，把小于中枢点的放在右半边，这样中枢点是整个数组中第几大的数字就确定了，虽然左右两部分各自不一定是完全有序的，但是并不影响本题要求的结果，因为左半部分的所有值都大于右半部分的任意值，所以我们求出中枢点的位置，如果正好是k-1，那么直接返回该位置上的数字；如果大于k-1，说明要求的数字在左半部分，更新右边界，再求新的中枢点位置；反之则更新右半部分，求中枢点的位置；</p>
 <h1 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a><a href="https://cyc2018.github.io/CS-Notes/#/notes/Leetcode 题解 - 排序?id=桶排序" target="_blank" rel="noopener">桶排序</a></h1><h2 id="1-出现频率最多的-k-个元素"><a href="#1-出现频率最多的-k-个元素" class="headerlink" title="1. 出现频率最多的 k 个元素"></a><a href="https://cyc2018.github.io/CS-Notes/#/notes/Leetcode 题解 - 排序?id=_1-出现频率最多的-k-个元素" target="_blank" rel="noopener">1. 出现频率最多的 k 个元素</a></h2><ol start="347">
 <li><p>Top K Frequent Elements</p>
 <p>Given a non-empty array of integers, return the <strong>k</strong> most frequent elements.</p>
 </li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">topKFrequent</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    Map&lt;Integer, Integer&gt; frequencyForNum = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">        frequencyForNum.put(num, frequencyForNum.getOrDefault(num, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;Integer&gt;[] buckets = <span class="keyword">new</span> ArrayList[nums.length + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> key : frequencyForNum.keySet()) &#123;</span><br><span class="line">        <span class="keyword">int</span> frequency = frequencyForNum.get(key);</span><br><span class="line">        <span class="keyword">if</span> (buckets[frequency] == <span class="keyword">null</span>) &#123;</span><br><span class="line">            buckets[frequency] = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        buckets[frequency].add(key);</span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;Integer&gt; topK = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = buckets.length - <span class="number">1</span>; i &gt;= <span class="number">0</span> &amp;&amp; topK.size() &lt; k; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (buckets[i] == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (buckets[i].size() &lt;= (k - topK.size())) &#123;</span><br><span class="line">            topK.addAll(buckets[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            topK.addAll(buckets[i].subList(<span class="number">0</span>, k - topK.size()));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> topK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Integer&gt; <span class="hljs-title">topKFrequent</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    Map&lt;Integer, Integer&gt; frequencyForNum = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> num : nums) &#123;</span><br><span class="line">        frequencyForNum.put(num, frequencyForNum.getOrDefault(num, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;Integer&gt;[] buckets = <span class="hljs-keyword">new</span> ArrayList[nums.length + <span class="hljs-number">1</span>];</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> key : frequencyForNum.keySet()) &#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> frequency = frequencyForNum.get(key);</span><br><span class="line">        <span class="hljs-keyword">if</span> (buckets[frequency] == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">            buckets[frequency] = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        buckets[frequency].add(key);</span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;Integer&gt; topK = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = buckets.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span> &amp;&amp; topK.size() &lt; k; i--) &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (buckets[i] == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">if</span> (buckets[i].size() &lt;= (k - topK.size())) &#123;</span><br><span class="line">            topK.addAll(buckets[i]);</span><br><span class="line">        &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">            topK.addAll(buckets[i].subList(<span class="hljs-number">0</span>, k - topK.size()));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> topK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>设置若干个桶，每个桶存储出现频率相同的数。桶的下标表示数出现的频率，即第 i 个桶中存储的数出现的频率为 i。把数都放到桶之后，从后向前遍历桶，最先得到的 k 个数就是出现频率最多的的 k 个数。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">topKFrequent</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    Map&lt;Integer, Integer&gt; frequencyForNum = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">        frequencyForNum.put(num, frequencyForNum.getOrDefault(num, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;Integer&gt;[] buckets = <span class="keyword">new</span> ArrayList[nums.length + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> key : frequencyForNum.keySet()) &#123;</span><br><span class="line">        <span class="keyword">int</span> frequency = frequencyForNum.get(key);</span><br><span class="line">        <span class="keyword">if</span> (buckets[frequency] == <span class="keyword">null</span>) &#123;</span><br><span class="line">            buckets[frequency] = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        buckets[frequency].add(key);</span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;Integer&gt; topK = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = buckets.length - <span class="number">1</span>; i &gt;= <span class="number">0</span> &amp;&amp; topK.size() &lt; k; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (buckets[i] == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (buckets[i].size() &lt;= (k - topK.size())) &#123;</span><br><span class="line">            topK.addAll(buckets[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            topK.addAll(buckets[i].subList(<span class="number">0</span>, k - topK.size()));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> topK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Integer&gt; <span class="hljs-title">topKFrequent</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    Map&lt;Integer, Integer&gt; frequencyForNum = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> num : nums) &#123;</span><br><span class="line">        frequencyForNum.put(num, frequencyForNum.getOrDefault(num, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;Integer&gt;[] buckets = <span class="hljs-keyword">new</span> ArrayList[nums.length + <span class="hljs-number">1</span>];</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> key : frequencyForNum.keySet()) &#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> frequency = frequencyForNum.get(key);</span><br><span class="line">        <span class="hljs-keyword">if</span> (buckets[frequency] == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">            buckets[frequency] = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        buckets[frequency].add(key);</span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;Integer&gt; topK = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = buckets.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span> &amp;&amp; topK.size() &lt; k; i--) &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (buckets[i] == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">if</span> (buckets[i].size() &lt;= (k - topK.size())) &#123;</span><br><span class="line">            topK.addAll(buckets[i]);</span><br><span class="line">        &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">            topK.addAll(buckets[i].subList(<span class="hljs-number">0</span>, k - topK.size()));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> topK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="2-按照字符出现次数对字符串排序"><a href="#2-按照字符出现次数对字符串排序" class="headerlink" title="2. 按照字符出现次数对字符串排序"></a><a href="https://cyc2018.github.io/CS-Notes/#/notes/Leetcode 题解 - 排序?id=_2-按照字符出现次数对字符串排序" target="_blank" rel="noopener">2. 按照字符出现次数对字符串排序</a></h2><p><a href="https://leetcode.com/problems/sort-characters-by-frequency/description/" target="_blank" rel="noopener">451. Sort Characters By Frequency (Medium)</a></p>
 <p>Given a string, sort it in decreasing order based on the frequency of characters.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">frequencySort</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    Map&lt;Character, Integer&gt; frequencyForNum = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> c : s.toCharArray())</span><br><span class="line">        frequencyForNum.put(c, frequencyForNum.getOrDefault(c, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    List&lt;Character&gt;[] frequencyBucket = <span class="keyword">new</span> ArrayList[s.length() + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> c : frequencyForNum.keySet()) &#123;</span><br><span class="line">        <span class="keyword">int</span> f = frequencyForNum.get(c);</span><br><span class="line">        <span class="keyword">if</span> (frequencyBucket[f] == <span class="keyword">null</span>) &#123;</span><br><span class="line">            frequencyBucket[f] = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        frequencyBucket[f].add(c);</span><br><span class="line">    &#125;</span><br><span class="line">    StringBuilder str = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = frequencyBucket.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (frequencyBucket[i] == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : frequencyBucket[i]) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                str.append(c);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> str.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">frequencySort</span><span class="hljs-params">(String s)</span> </span>&#123;</span><br><span class="line">    Map&lt;Character, Integer&gt; frequencyForNum = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span> c : s.toCharArray())</span><br><span class="line">        frequencyForNum.put(c, frequencyForNum.getOrDefault(c, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>);</span><br><span class="line"></span><br><span class="line">    List&lt;Character&gt;[] frequencyBucket = <span class="hljs-keyword">new</span> ArrayList[s.length() + <span class="hljs-number">1</span>];</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span> c : frequencyForNum.keySet()) &#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> f = frequencyForNum.get(c);</span><br><span class="line">        <span class="hljs-keyword">if</span> (frequencyBucket[f] == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">            frequencyBucket[f] = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        frequencyBucket[f].add(c);</span><br><span class="line">    &#125;</span><br><span class="line">    StringBuilder str = <span class="hljs-keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = frequencyBucket.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (frequencyBucket[i] == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span> c : frequencyBucket[i]) &#123;</span><br><span class="line">            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                str.append(c);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> str.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -288,7 +288,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        51
+                        52
                     </p>
                 </div>
             </div>
@@ -615,6 +615,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/20/NICO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
+                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/LEAF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LEAF">
@@ -689,25 +708,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/23/yaml入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="yaml入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-23T03:11:47.000Z">2019-08-23</time></div>
-                    <a href="/2019/08/23/yaml入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">yaml入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/yaml/">yaml</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -719,6 +719,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">
@@ -1177,6 +1188,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/20/NICO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
+                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/LEAF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LEAF">
@@ -1251,25 +1281,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/23/yaml入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="yaml入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-23T03:11:47.000Z">2019-08-23</time></div>
-                    <a href="/2019/08/23/yaml入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">yaml入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/yaml/">yaml</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1281,6 +1292,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">

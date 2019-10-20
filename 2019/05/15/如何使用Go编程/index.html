@@ -185,56 +185,56 @@
 <p><code>go</code> 工具用于<strong>构建源码包</strong>，并将其生成的二进制文件安装到 <code>pkg</code> 和 <code>bin</code> 目录中。</p>
 <p><code>src</code> 子目录通常包会含多种版本控制的代码仓库（例如Git或Mercurial）， 以此来跟踪一个或多个源码包的开发。</p>
 <p>以下例子展现了实践中工作空间的概念：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">bin/</span><br><span class="line">	streak                         # 可执行命令</span><br><span class="line">	todo                           # 可执行命令</span><br><span class="line">pkg/</span><br><span class="line">	linux_amd64/</span><br><span class="line">		code.google.com/p/goauth2/</span><br><span class="line">			oauth.a                # 包对象</span><br><span class="line">		github.com/nf/todo/</span><br><span class="line">			task.a                 # 包对象</span><br><span class="line">src/</span><br><span class="line">	code.google.com/p/goauth2/</span><br><span class="line">		.hg/                       # mercurial 代码库元数据</span><br><span class="line">		oauth/</span><br><span class="line">			oauth.go               # 包源码</span><br><span class="line">			oauth_test.go          # 测试源码</span><br><span class="line">	github.com/nf/</span><br><span class="line">		streak/</span><br><span class="line">		.git/                      # git 代码库元数据</span><br><span class="line">			oauth.go               # 命令源码</span><br><span class="line">			streak.go              # 命令源码</span><br><span class="line">		todo/</span><br><span class="line">		.git/                      # git 代码库元数据</span><br><span class="line">			task/</span><br><span class="line">				task.go            # 包源码</span><br><span class="line">			todo.go                # 命令源码</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">bin/</span><br><span class="line">	streak                         # 可执行命令</span><br><span class="line">	todo                           # 可执行命令</span><br><span class="line">pkg/</span><br><span class="line">	linux_amd64/</span><br><span class="line">		code.google.com/p/goauth2/</span><br><span class="line">			oauth.a                # 包对象</span><br><span class="line">		github.com/nf/todo/</span><br><span class="line">			task.a                 # 包对象</span><br><span class="line">src/</span><br><span class="line">	code.google.com/p/goauth2/</span><br><span class="line">		.hg/                       # mercurial 代码库元数据</span><br><span class="line">		oauth/</span><br><span class="line">			oauth.go               # 包源码</span><br><span class="line">			oauth_test.go          # 测试源码</span><br><span class="line">	github.com/nf/</span><br><span class="line">		streak/</span><br><span class="line">		.git/                      # git 代码库元数据</span><br><span class="line">			oauth.go               # 命令源码</span><br><span class="line">			streak.go              # 命令源码</span><br><span class="line">		todo/</span><br><span class="line">		.git/                      # git 代码库元数据</span><br><span class="line">			task/</span><br><span class="line">				task.go            # 包源码</span><br><span class="line">			todo.go                # 命令源码</span><br></pre></td></tr></table></figure>
 <p>此工作空间包含三个代码库（<code>goauth2</code>、<code>streak</code> 和 <code>todo</code>），两个命令（<code>streak</code> 和 <code>todo</code>） 以及两个库（<code>oauth</code> 和 <code>task</code>）。命令和库从不同的源码包编译而来。<a href="https://go-zh.org/doc/code.html#包名" target="_blank" rel="noopener">稍后</a>我们会对讨论它的特性。</p>
 <h3 id="GOPATH-环境变量"><a href="#GOPATH-环境变量" class="headerlink" title="GOPATH 环境变量"></a><code>GOPATH</code> 环境变量</h3><p><code>GOPATH</code> 环境变量<strong>指定了你的工作空间位置</strong>。它或许是你在开发Go代码时， 唯一需要设置的环境变量。</p>
 <p>首先创建一个工作空间目录，并设置相应的 <code>GOPATH</code>。你的工作空间可以放在任何地方， 在此文档中我们使用 <code>$HOME/work</code>。注意，它<strong>绝对不能</strong>和你的Go安装目录相同。 （另一种常见的设置是 <code>GOPATH=$HOME</code>。）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir $HOME/work</span><br><span class="line">$ export GOPATH=$HOME/work</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir $HOME/work</span><br><span class="line">$ export GOPATH=$HOME/work</span><br></pre></td></tr></table></figure>
 <p>作为约定，请将此工作空间的 <code>bin</code> 子目录添加到你的 <code>PATH</code> 中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ export PATH=$PATH:$GOPATH/bin</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ export PATH=$PATH:$GOPATH/bin</span><br></pre></td></tr></table></figure>
 <h3 id="包路径"><a href="#包路径" class="headerlink" title="包路径"></a>包路径</h3><p><strong>标准库中的包有给定的短路径</strong>，比如 <code>&quot;fmt&quot;</code> 和 <code>&quot;net/http&quot;</code>。 <strong>对于你自己的包，你必须选择一个基本路径，来保证它不会与将来添加到标准库， 或其它扩展库中的包相冲突</strong>。</p>
 <p>如果你将你的代码放到了某处的源码库，那就应当使用该源码库的根目录作为你的基本路径。 例如，若你在 <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> 上有账户 <code>github.com/user</code> 那么它就应该是你的基本路径。</p>
 <p>注意，在你能构建这些代码之前，无需将其公布到远程代码库上。只是若你某天会发布它， 这会是个好习惯。在实践中，你可以选择任何路径名，<strong>只要它对于标准库和更大的Go生态系统来说， 是唯一的就行</strong>。</p>
 <p>我们将使用 <code>github.com/user</code> 作为基本路径。在你的工作空间里创建一个目录， 我们将源码存放到其中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p $GOPATH/src/github.com/user</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p $GOPATH/src/github.com/user</span><br></pre></td></tr></table></figure>
 <h3 id="你的第一个程序"><a href="#你的第一个程序" class="headerlink" title="你的第一个程序"></a>你的第一个程序</h3><p>要<strong>编译并运行简单的程序，首先要选择包路径</strong>（我们在这里使用 <code>github.com/user/hello</code>），并在你的工作空间内创建相应的包目录：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir $GOPATH/src/github.com/user/hello</span><br><span class="line"></span><br><span class="line">mkdir -p /Users/liulifeng/Workspaces/goWorkspaces/src/github.com/fallenk/hello</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir $GOPATH/src/github.com/user/hello</span><br><span class="line"></span><br><span class="line">mkdir -p /Users/liulifeng/Workspaces/goWorkspaces/src/github.com/fallenk/hello</span><br></pre></td></tr></table></figure>
 <p>接着，在该目录中创建名为 <code>hello.go</code> 的文件，其内容为以下Go代码：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">"Hello, world.\n"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="hljs-string">"Hello, world.\n"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>现在你可以用 <code>go</code> 工具构建并安装此程序了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ go install github.com/user/hello</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ go install github.com/user/hello</span><br></pre></td></tr></table></figure>
 <p>!!注意，<strong>你可以在系统的任何地方运行此命令</strong>。<code>go</code> 工具会根据 <code>GOPATH</code> 指定的工作空间，在 <code>github.com/user/hello</code> 包内查找源码。</p>
 <p>若在从包目录中运行 <code>go install</code>，也可以省略包路径：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd $GOPATH/src/github.com/user/hello</span><br><span class="line">$ go install</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd $GOPATH/src/github.com/user/hello</span><br><span class="line">$ go install</span><br></pre></td></tr></table></figure>
 <p>此命令会构建 <code>hello</code> 命令，产生一个可执行的二进制文件。 接着它会将该二进制文件作为 <code>hello</code>（在 Windows 下则为 <code>hello.exe</code>）安装到工作空间的 <code>bin</code> 目录中。 在我们的例子中为 <code>$GOPATH/bin/hello</code>，具体一点就是 <code>$HOME/go/bin/hello</code>。</p>
 <p><code>go</code> 工具只有在发生错误时才会打印输出，因此若这些命令没有产生输出， 就表明执行成功了。</p>
 <p>现在，你可以在命令行下输入它的完整路径来运行它了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ $GOPATH/bin/hello</span><br><span class="line">Hello, world.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ $GOPATH/bin/hello</span><br><span class="line">Hello, world.</span><br></pre></td></tr></table></figure>
 <p>若你已经将 <code>$GOPATH/bin</code> 添加到 <code>PATH</code> 中了，<strong>只需输入该二进制文件名即可</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hello</span><br><span class="line">Hello, world.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hello</span><br><span class="line">Hello, world.</span><br></pre></td></tr></table></figure>
 <p>若你使用源码控制系统，那现在就该初始化仓库，添加文件并提交你的第一次更改了。 再次强调，这一步是可选的：你无需使用源码控制来编写Go代码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ cd $GOPATH/src/github.com/user/hello</span><br><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository in /home/user/work/src/github.com/user/hello/.git/</span><br><span class="line">$ git add hello.go</span><br><span class="line">$ git commit -m &quot;initial commit&quot;</span><br><span class="line">[master (root-commit) 0b4507d] initial commit</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line">  create mode 100644 hello.go</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ cd $GOPATH/src/github.com/user/hello</span><br><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository in /home/user/work/src/github.com/user/hello/.git/</span><br><span class="line">$ git add hello.go</span><br><span class="line">$ git commit -m &quot;initial commit&quot;</span><br><span class="line">[master (root-commit) 0b4507d] initial commit</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line">  create mode 100644 hello.go</span><br></pre></td></tr></table></figure>
 <h3 id="你的第一个库"><a href="#你的第一个库" class="headerlink" title="你的第一个库"></a>你的第一个库</h3><p>让我们编写一个库，并让 <code>hello</code> 程序来使用它。</p>
 <p>同样，第一步还是<strong>选择包路径</strong>（我们将使用 <code>github.com/user/stringutil</code>） 并创建包目录：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir $GOPATH/src/github.com/user/stringutil</span><br><span class="line"></span><br><span class="line">mkdir -p /Users/liulifeng/Workspaces/goWorkspaces/src/github.com/fallenk/stringutil</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir $GOPATH/src/github.com/user/stringutil</span><br><span class="line"></span><br><span class="line">mkdir -p /Users/liulifeng/Workspaces/goWorkspaces/src/github.com/fallenk/stringutil</span><br></pre></td></tr></table></figure>
 <p>接着，在该目录中创建名为 <code>reverse.go</code> 的文件，内容如下：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// stringutil 包含有用于处理字符串的工具函数。</span></span><br><span class="line"><span class="keyword">package</span> stringutil</span><br><span class="line"></span><br><span class="line"><span class="comment">// Reverse 将其实参字符串以符文为单位左右反转。</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Reverse</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	r := []<span class="keyword">rune</span>(s)</span><br><span class="line">	<span class="keyword">for</span> i, j := <span class="number">0</span>, <span class="built_in">len</span>(r)<span class="number">-1</span>; i &lt; <span class="built_in">len</span>(r)/<span class="number">2</span>; i, j = i+<span class="number">1</span>, j<span class="number">-1</span> &#123;</span><br><span class="line">		r[i], r[j] = r[j], r[i]</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">string</span>(r)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// stringutil 包含有用于处理字符串的工具函数。</span></span><br><span class="line"><span class="hljs-keyword">package</span> stringutil</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// Reverse 将其实参字符串以符文为单位左右反转。</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Reverse</span><span class="hljs-params">(s <span class="hljs-keyword">string</span>)</span> <span class="hljs-title">string</span></span> &#123;</span><br><span class="line">	r := []<span class="hljs-keyword">rune</span>(s)</span><br><span class="line">	<span class="hljs-keyword">for</span> i, j := <span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(r)<span class="hljs-number">-1</span>; i &lt; <span class="hljs-built_in">len</span>(r)/<span class="hljs-number">2</span>; i, j = i+<span class="hljs-number">1</span>, j<span class="hljs-number">-1</span> &#123;</span><br><span class="line">		r[i], r[j] = r[j], r[i]</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-keyword">string</span>(r)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>现在用 <code>go build</code> 命令来测试该包的编译：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ go build github.com/user/stringutil</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ go build github.com/user/stringutil</span><br></pre></td></tr></table></figure>
 <p>当然，若你在该包的源码目录中，只需执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ go build</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ go build</span><br></pre></td></tr></table></figure>
 <p>即可。这不会产生输出文件。想要输出的话，必须使用 <code>go install</code> 命令，它会将包的对象放到工作空间的 <code>pkg</code> 目录中。</p>
 <p>确认 <code>stringutil</code> 包构建完毕后，修改原来的 <code>hello.go</code> 文件（它位于 <code>$GOPATH/src/github.com/user/hello</code>）去使用它：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main <span class="comment">//向外展示的包名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line">	<span class="string">"github.com/user/stringutil"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Printf(stringutil.Reverse(<span class="string">"!oG ,olleH"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">package</span> main <span class="hljs-comment">//向外展示的包名</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> (</span><br><span class="line">	<span class="hljs-string">"fmt"</span></span><br><span class="line"></span><br><span class="line">	<span class="hljs-string">"github.com/user/stringutil"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;</span><br><span class="line">	fmt.Printf(stringutil.Reverse(<span class="hljs-string">"!oG ,olleH"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>来安装 <code>hello</code> 程序时，<code>stringutil</code> 包也会被自动安装。</p>
 <p>运行此程序的新版本，你应该能看到一条新的，反向的信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hello</span><br><span class="line">Hello, Go!</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hello</span><br><span class="line">Hello, Go!</span><br></pre></td></tr></table></figure>
 <p>做完上面这些步骤后，你的工作空间应该是这样的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">bin/</span><br><span class="line">	hello                 # 可执行命令</span><br><span class="line">pkg/</span><br><span class="line">	linux_amd64/          # 这里会反映出你的操作系统和架构</span><br><span class="line">		github.com/user/</span><br><span class="line">			stringutil.a  # 包对象</span><br><span class="line">src/</span><br><span class="line">	github.com/fallenk/</span><br><span class="line">		hello/</span><br><span class="line">			hello.go      # 命令源码</span><br><span class="line">		stringutil/</span><br><span class="line">			reverse.go       # 包源码</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">bin/</span><br><span class="line">	hello                 # 可执行命令</span><br><span class="line">pkg/</span><br><span class="line">	linux_amd64/          # 这里会反映出你的操作系统和架构</span><br><span class="line">		github.com/user/</span><br><span class="line">			stringutil.a  # 包对象</span><br><span class="line">src/</span><br><span class="line">	github.com/fallenk/</span><br><span class="line">		hello/</span><br><span class="line">			hello.go      # 命令源码</span><br><span class="line">		stringutil/</span><br><span class="line">			reverse.go       # 包源码</span><br></pre></td></tr></table></figure>
 <p>注意 <code>go install</code> 会将 <code>stringutil.a</code> 对象放到 <code>pkg/linux_amd64</code> 目录中，它会反映出其源码目录。 这就是在此之后调用 <code>go</code> 工具，能找到包对象并避免不必要的重新编译的原因。 <code>linux_amd64</code> 这部分能帮助跨平台编译，并反映出你的操作系统和架构。</p>
 <p><strong>Go的可执行命令是静态链接的</strong>；在运行Go程序时，包对象无需存在。</p>
 <h3 id="包名"><a href="#包名" class="headerlink" title="包名"></a>包名</h3><p>Go源文件中的第一个语句必须是</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 名称</span><br></pre></td></tr></table></figure>
+<figure class="highlight go hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">package</span> 名称</span><br></pre></td></tr></table></figure>
 <p>这里的 <code>**名称**</code> 即为<strong>导入该包时使用的默认名称</strong>。 （一个包中的所有文件都必须使用相同的 <code>**名称**</code>。）</p>
 <p>Go的约定是<strong>包名为导入路径的最后一个元素</strong>：作为 “<code>crypto/rot13</code>” 导入的包应命名为 <code>rot13</code>。</p>
 <p><strong>可执行命令</strong>必须使用 <code>package main</code>。</p>
@@ -243,19 +243,19 @@
 <h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>Go拥有一个轻量级的测试框架，它由 <code>go test</code> 命令和 <code>testing</code> <strong>包</strong>构成。</p>
 <p>你可以通过创建一个！名字以 <code>_test.go</code> 结尾的，包含名为 <code>TestXXX</code> 且签名为 <code>func (t *testing.T)</code> 函数的<strong>文件来编写测试</strong>。 测试框架会运行每一个这样的函数；若该函数调用了像 <code>t.Error</code> 或 <code>t.Fail</code> 这样表示失败的函数，此测试即表示失败。</p>
 <p>我们可通过创建文件 <code>$GOPATH/src/github.com/fallenk/stringutil/reverse_test.go</code> 来为 <code>stringutil</code> 添加测试，其内容如下：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> stringutil</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"testing"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestReverse</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	cases := []<span class="keyword">struct</span> &#123;</span><br><span class="line">		in, want <span class="keyword">string</span></span><br><span class="line">	&#125;&#123;</span><br><span class="line">		&#123;<span class="string">"Hello, world"</span>, <span class="string">"dlrow ,olleH"</span>&#125;,</span><br><span class="line">		&#123;<span class="string">"Hello, 世界"</span>, <span class="string">"界世 ,olleH"</span>&#125;,</span><br><span class="line">		&#123;<span class="string">""</span>, <span class="string">""</span>&#125;,</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> _, c := <span class="keyword">range</span> cases &#123;</span><br><span class="line">		got := Reverse(c.in)</span><br><span class="line">		<span class="keyword">if</span> got != c.want &#123;</span><br><span class="line">			t.Errorf(<span class="string">"Reverse(%q) == %q, want %q"</span>, c.in, got, c.want)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">package</span> stringutil</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-string">"testing"</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">TestReverse</span><span class="hljs-params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	cases := []<span class="hljs-keyword">struct</span> &#123;</span><br><span class="line">		in, want <span class="hljs-keyword">string</span></span><br><span class="line">	&#125;&#123;</span><br><span class="line">		&#123;<span class="hljs-string">"Hello, world"</span>, <span class="hljs-string">"dlrow ,olleH"</span>&#125;,</span><br><span class="line">		&#123;<span class="hljs-string">"Hello, 世界"</span>, <span class="hljs-string">"界世 ,olleH"</span>&#125;,</span><br><span class="line">		&#123;<span class="hljs-string">""</span>, <span class="hljs-string">""</span>&#125;,</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">for</span> _, c := <span class="hljs-keyword">range</span> cases &#123;</span><br><span class="line">		got := Reverse(c.in)</span><br><span class="line">		<span class="hljs-keyword">if</span> got != c.want &#123;</span><br><span class="line">			t.Errorf(<span class="hljs-string">"Reverse(%q) == %q, want %q"</span>, c.in, got, c.want)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>接着使用 <code>go test</code> 运行该测试：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go test github.com/user/stringutil</span><br><span class="line">ok  	github.com/user/stringutil 0.165s</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go test github.com/user/stringutil</span><br><span class="line">ok  	github.com/user/stringutil 0.165s</span><br></pre></td></tr></table></figure>
 <p>同样，若你在包目录下运行 <code>go</code> 工具，也可以忽略包路径</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go test</span><br><span class="line">ok  	github.com/user/stringutil 0.165s</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go test</span><br><span class="line">ok  	github.com/user/stringutil 0.165s</span><br></pre></td></tr></table></figure>
 <p>更多详情可运行 <code>go help test</code> 或从 <a href="https://go-zh.org/pkg/testing/" target="_blank" rel="noopener">testing 包文档</a> 中查看。</p>
 <h2 id="远程包"><a href="#远程包" class="headerlink" title="远程包"></a>远程包</h2><p>像Git或Mercurial这样的版本控制系统，可根据导入路径的描述来获取包源代码。<code>go</code> 工具可通过此特性来从远程代码库自动获取包。例如，本文档中描述的例子也可存放到Google Code上的Mercurial仓库 <code>code.google.com/p/go.example</code> 中，若你在包的导入路径中包含了代码仓库的URL，<code>go get</code> 就会自动地<strong>获取、 构建并安装</strong>它：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ go get github.com/golang/example/hello</span><br><span class="line">$ $GOPATH/bin/hello</span><br><span class="line">Hello, Go examples!</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ go get github.com/golang/example/hello</span><br><span class="line">$ $GOPATH/bin/hello</span><br><span class="line">Hello, Go examples!</span><br></pre></td></tr></table></figure>
 <p>若指定的包不在工作空间中，<code>go get</code> 就会将会将它放到 <code>GOPATH</code> 指定的第一个工作空间内。（若该包已存在，<code>go get</code> 就会跳过远程获取， 其行为与 <code>go install</code> 相同）</p>
 <p>在执行完上面的<code>go get</code> 命令后，工作空间的目录树看起来应该是这样的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">bin/</span><br><span class="line">	hello                 # 可执行命令</span><br><span class="line">pkg/</span><br><span class="line">	linux_amd64/</span><br><span class="line">		code.google.com/p/go.example/</span><br><span class="line">			stringutil.a     # 包对象</span><br><span class="line">		github.com/user/</span><br><span class="line">			stringutil.a     # 包对象</span><br><span class="line">src/</span><br><span class="line">	code.google.com/p/go.example/</span><br><span class="line">		hello/</span><br><span class="line">			hello.go      # 命令源码</span><br><span class="line">		stringutil/</span><br><span class="line">			reverse.go       # 包源码</span><br><span class="line">			reverse_test.go  # 测试源码</span><br><span class="line">	github.com/user/</span><br><span class="line">		hello/</span><br><span class="line">			hello.go      # 命令源码</span><br><span class="line">		stringutil/</span><br><span class="line">			reverse.go       # 包源码</span><br><span class="line">			reverse_test.go  # 测试源码</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">bin/</span><br><span class="line">	hello                 # 可执行命令</span><br><span class="line">pkg/</span><br><span class="line">	linux_amd64/</span><br><span class="line">		code.google.com/p/go.example/</span><br><span class="line">			stringutil.a     # 包对象</span><br><span class="line">		github.com/user/</span><br><span class="line">			stringutil.a     # 包对象</span><br><span class="line">src/</span><br><span class="line">	code.google.com/p/go.example/</span><br><span class="line">		hello/</span><br><span class="line">			hello.go      # 命令源码</span><br><span class="line">		stringutil/</span><br><span class="line">			reverse.go       # 包源码</span><br><span class="line">			reverse_test.go  # 测试源码</span><br><span class="line">	github.com/user/</span><br><span class="line">		hello/</span><br><span class="line">			hello.go      # 命令源码</span><br><span class="line">		stringutil/</span><br><span class="line">			reverse.go       # 包源码</span><br><span class="line">			reverse_test.go  # 测试源码</span><br></pre></td></tr></table></figure>
 <p><code>hello</code> 命令及其依赖的 <code>stringutil</code> 包都托管在Google Code上的同一代码库中。<code>hello.go</code> 文件使用了同样的导入路径约定， 因此 <code>go get</code> 命令也能够<strong>定位并安装其依赖包</strong>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &quot;github.com/golang/example/stringutil&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &quot;github.com/golang/example/stringutil&quot;</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -343,7 +343,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        51
+                        52
                     </p>
                 </div>
             </div>
@@ -670,6 +670,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/20/NICO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
+                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/LEAF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LEAF">
@@ -744,25 +763,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/23/yaml入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="yaml入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-23T03:11:47.000Z">2019-08-23</time></div>
-                    <a href="/2019/08/23/yaml入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">yaml入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/yaml/">yaml</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -774,6 +774,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">
@@ -1232,6 +1243,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/20/NICO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
+                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/LEAF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LEAF">
@@ -1306,25 +1336,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/23/yaml入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="yaml入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-23T03:11:47.000Z">2019-08-23</time></div>
-                    <a href="/2019/08/23/yaml入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">yaml入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/yaml/">yaml</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1336,6 +1347,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">

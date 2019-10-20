@@ -184,7 +184,7 @@
 <li>用于文本生成的联合学习进一步演示了如何使用TFF的FL API来优化语言建模任务的序列化预训练模型。</li>
 <li>自定义联合算法，第1部分：联合核心简介和第2部分：实现联合平均，介绍了<strong>联合核心API（FC API）提供的关键概念和接口</strong>，并演示了如何实现简单的联合平均训练算法以及如何执行联合评估。</li>
 </ul>
-<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">virtualenv --python python3 <span class="string">"venv"</span></span><br><span class="line">source <span class="string">"venv/bin/activate"</span></span><br><span class="line">pip install --upgrade pip</span><br><span class="line">pip install --upgrade tensorflow_federated</span><br></pre></td></tr></table></figure>
+<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">virtualenv --python python3 <span class="hljs-string">"venv"</span></span><br><span class="line">source <span class="hljs-string">"venv/bin/activate"</span></span><br><span class="line">pip install --upgrade pip</span><br><span class="line">pip install --upgrade tensorflow_federated</span><br></pre></td></tr></table></figure>
 <h1 id="Federated-Learning"><a href="#Federated-Learning" class="headerlink" title="Federated Learning"></a>Federated Learning</h1><h3 id="Overview-1"><a href="#Overview-1" class="headerlink" title="Overview"></a>Overview</h3><p>本文档介绍了促进联合学习任务的接口，例如联合训练或使用TensorFlow中实现的现有机器学习模型进行评估。在设计这些接口时，我们的主<strong>要目标是使其能够在不需要了解其工作原理的情况下进行联邦学习</strong>的实验，并评估在各种现有模型和数据上实施的联合学习算法。我们鼓励您回馈该平台。 TFF的设计考虑了可扩展性和可组合性，我们欢迎贡献;我们很高兴看到你想出了什么！</p>
 <p>该层提供的接口包括以下三个关键部分：</p>
 <ul>
@@ -237,7 +237,7 @@
 <li><code>tff.learning.from_compiled_keras_model</code></li>
 </ul>
 <p>请注意，TFF仍然希望您提供构造函数 - 无参数模型函数，如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model_fn</span><span class="params">()</span>:</span></span><br><span class="line">  keras_model = ...</span><br><span class="line">  keras_model.compile(...)</span><br><span class="line">  <span class="keyword">return</span> tff.learning.from_compiled_keras_model(keras_model, sample_batch)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">model_fn</span><span class="hljs-params">()</span>:</span></span><br><span class="line">  keras_model = ...</span><br><span class="line">  keras_model.compile(...)</span><br><span class="line">  <span class="hljs-keyword">return</span> tff.learning.from_compiled_keras_model(keras_model, sample_batch)</span><br></pre></td></tr></table></figure>
 <p>除了模型本身，您还需要<strong>提供一组样本数据</strong>，TFF使用这些数据来<strong>确定模型输入的类型和形状</strong>。这确保了<strong>TFF可以正确地实例化实际存在于客户端设备上的数据的模型</strong>（因为我们假设在构建要序列化的TensorFlow时，这些数据通常不可用）。</p>
 <p>The use of Keras wrappers is illustrated in our <a href="https://www.tensorflow.org/federated/tutorials/federated_learning_for_image_classification" target="_blank" rel="noopener">image classification</a> and <a href="https://www.tensorflow.org/federated/tutorials/federated_learning_for_text_generation" target="_blank" rel="noopener">text generation</a> tutorials.</p>
 <h2 id="Federated-Computation-Builders-tff-Computations"><a href="#Federated-Computation-Builders-tff-Computations" class="headerlink" title="Federated Computation Builders[tff.Computations]"></a>Federated Computation Builders[tff.Computations]</h2><p>tff.learning包为<strong>执行学习相关任务的tff.Computations提供了几个builder</strong>。我们希望未来可以扩展这类计算。</p>
@@ -263,7 +263,7 @@
 <h2 id="Datasets"><a href="#Datasets" class="headerlink" title="Datasets"></a>Datasets</h2><h3 id="Architectural-assumptions-2"><a href="#Architectural-assumptions-2" class="headerlink" title="Architectural assumptions"></a>Architectural assumptions</h3><h4 id="Client-selection"><a href="#Client-selection" class="headerlink" title="Client selection"></a>Client selection</h4><p>在典型的联合学习场景中，我们拥有大量潜在的数亿个客户端设备，其中只有一小部分可能处于活动状态且可在任何给定时刻进行培训（例如，这可能仅限于客户端插入电源，而不是计量网络，否则空闲）。通常，可用于参与培训或评估的客户端集合不受开发人员的控制。此外，由于协调数百万客户是不切实际的，因此<strong>典型的一轮培训或评估将仅包括可用客户端的一小部分</strong>，其可以随机采样。</p>
 <p>这样做的关键结果是，联邦计算(federated computations,)在设计上以对参与者的确切集合无关的方式表达;所有处理都表示为一组抽象的匿名客户端上的聚合操作，并且该组可能会因一轮培训而异。因此，计算与具体参与者的实际绑定，以及因此它们输入计算的具体数据，在计算本身之外被建模。</p>
 <p>为了模拟联邦学习代码的实际部署，您通常会编写一个如下所示的训练循环：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">trainer = tff.learning.build_federated_averaging_process(...)</span><br><span class="line">state = trainer.initialize()</span><br><span class="line">federated_training_data = ...</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sample</span><span class="params">(federate_data)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> ...</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">  data_for_this_round = sample(federated_training_data)</span><br><span class="line">  state, metrics = trainer.next(state, data_for_this_round)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">trainer = tff.learning.build_federated_averaging_process(...)</span><br><span class="line">state = trainer.initialize()</span><br><span class="line">federated_training_data = ...</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sample</span><span class="hljs-params">(federate_data)</span>:</span></span><br><span class="line">  <span class="hljs-keyword">return</span> ...</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:</span><br><span class="line">  data_for_this_round = sample(federated_training_data)</span><br><span class="line">  state, metrics = trainer.next(state, data_for_this_round)</span><br></pre></td></tr></table></figure>
 <p>为了实现这一点，在模拟中使用TFF时，联邦数据被接受为Python列表，每个参与的客户端设备有一个元素来表示该设备的本地tf.data.Dataset。</p>
 <h3 id="Abstract-interfaces"><a href="#Abstract-interfaces" class="headerlink" title="Abstract interfaces"></a>Abstract interfaces</h3><p>为了标准化处理模拟联邦数据集，TFF提供了一个抽象接口<strong>tff.simulation.ClientData</strong>，它允许人们<strong>枚举客户端集，并构造一个包含特定客户端数据的tf.data.Datase</strong>t。那些tf.data.Datasets可以作为输入直接馈送到急切模式下生成的联合计算。</p>
 <p>应该注意的是，访问客户端身份的能力是仅由用于模拟的数据集提供的特征，其中可能需要训练来自客户的特定子集的数据的能力（例如，模拟不同的昼夜可用性）。客户类型）。<strong>编译的计算和底层运行时不涉及客户端身份的任何概念</strong>。一旦选择了来自特定客户端子集的数据作为输入，例如，在对tff.utils.IterativeProcess.next的调用中，客户端身份不再出现在其中。</p>
@@ -286,17 +286,17 @@
 <h2 id="Language"><a href="#Language" class="headerlink" title="Language"></a>Language</h2><h3 id="Python-Interface"><a href="#Python-Interface" class="headerlink" title="Python Interface"></a>Python Interface</h3><p>TFF使用内部语言来表示联合计算，其语法由<a href="https://github.com/tensorflow/federated/blob/master/tensorflow_federated/proto/v0/computation.proto" target="_blank" rel="noopener">computation.proto</a>中的可序列化表示定义。但是，FC API的用户通常不需要直接与该语言交互。相反，我们提供了一个Python API（tff命名空间），它围绕它作为定义计算的方式。</p>
 <p>具体来说，TFF<strong>提供Python函数装饰器</strong>，如<strong>tff.federated_computation</strong>，它<strong>跟踪修饰函数的主体，并以TFF语言生成联合计算逻辑的序列化表示</strong>。用<strong>tff.federated_computation修饰的函数充当这种序列化表示的载体</strong>，并且可以将其作<strong>为构建块嵌入另一个计算的主体中</strong>，或者<strong>在调用时按需执行</strong>。</p>
 <p>Here’s just one example; more examples can be found in the <a href="https://www.tensorflow.org/federated/tutorials/custom_federated_algorithms_1" target="_blank" rel="noopener">custom algorithms</a> tutorials.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@tff.federated_computation(tff.FederatedType(tf.float32, tff.CLIENTS))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_average_temperature</span><span class="params">(sensor_readings)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> tff.federated_mean(sensor_readings)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@tff.federated_computation(tff.FederatedType(tf.float32, tff.CLIENTS))</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_average_temperature</span><span class="hljs-params">(sensor_readings)</span>:</span></span><br><span class="line">  <span class="hljs-keyword">return</span> tff.federated_mean(sensor_readings)</span><br></pre></td></tr></table></figure>
 <h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><p>注：装饰器<strong>本质上是一个 Python 函数或类</strong>，它可以让其他函数或类在不需要做任何代码修改的前提下<strong>增加额外功能</strong>，装饰器的返回值也是一个<strong>函数/类对象</strong>。它经常用于有切面需求的场景，比如：插入日志、性能测试、事务处理、缓存、权限校验等场景，装饰器是解决这类问题的绝佳设计。有了装饰器，我们就可以抽离出大量与函数功能本身无关的雷同代码到装饰器中并继续重用。概括的讲，<strong>装饰器的作用就是为已经存在的对象添加额外的功能</strong>。</p>
 <p>谈装饰器前，还要先要明白一件事，Python 中的函数和 Java、C++不太一样，Python 中的函数可以像普通变量一样当做参数传递给另外一个函数，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def foo():</span><br><span class="line">    print(&quot;foo&quot;)</span><br><span class="line"></span><br><span class="line">def bar(func):</span><br><span class="line">    func()</span><br><span class="line"></span><br><span class="line">bar(foo)</span><br></pre></td></tr></table></figure>
-<h4 id="简单装饰器"><a href="#简单装饰器" class="headerlink" title="简单装饰器"></a>简单装饰器</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">use_logging</span><span class="params">(func)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">()</span>:</span></span><br><span class="line">        logging.warn(<span class="string">"%s is running"</span> % func.__name__)</span><br><span class="line">        <span class="keyword">return</span> func()   <span class="comment"># 把 foo 当做参数传递进来时，执行func()就相当于执行foo()</span></span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'i am foo'</span>)</span><br><span class="line"></span><br><span class="line">foo = use_logging(foo)  <span class="comment"># 因为装饰器 use_logging(foo) 返回的时函数对象 wrapper，这条语句相当于  foo = wrapper</span></span><br><span class="line">foo()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def foo():</span><br><span class="line">    print(&quot;foo&quot;)</span><br><span class="line"></span><br><span class="line">def bar(func):</span><br><span class="line">    func()</span><br><span class="line"></span><br><span class="line">bar(foo)</span><br></pre></td></tr></table></figure>
+<h4 id="简单装饰器"><a href="#简单装饰器" class="headerlink" title="简单装饰器"></a>简单装饰器</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">use_logging</span><span class="hljs-params">(func)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wrapper</span><span class="hljs-params">()</span>:</span></span><br><span class="line">        logging.warn(<span class="hljs-string">"%s is running"</span> % func.__name__)</span><br><span class="line">        <span class="hljs-keyword">return</span> func()   <span class="hljs-comment"># 把 foo 当做参数传递进来时，执行func()就相当于执行foo()</span></span><br><span class="line">    <span class="hljs-keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    print(<span class="hljs-string">'i am foo'</span>)</span><br><span class="line"></span><br><span class="line">foo = use_logging(foo)  <span class="hljs-comment"># 因为装饰器 use_logging(foo) 返回的时函数对象 wrapper，这条语句相当于  foo = wrapper</span></span><br><span class="line">foo()</span><br></pre></td></tr></table></figure>
 <p>use_logging 就是一个装饰器，它一个普通的函数，它把执行真正业务逻辑的函数 func 包裹在其中，看起来像 foo 被 use_logging 装饰了一样，use_logging 返回的也是一个函数，这个函数的名字叫 wrapper。在这个例子中，函数进入和退出时 ，被称为一个横切面，这种编程方式被称为面向切面的编程。</p>
 <h4 id="语法糖"><a href="#语法糖" class="headerlink" title="@ 语法糖"></a>@ 语法糖</h4><p>如果你接触 Python 有一段时间了的话，想必你对 @ 符号一定不陌生了，没错 @ 符号就是装饰器的语法糖，它放在函数开始定义的地方，这样就可以<strong>省略最后一步再次赋值的操作</strong>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def use_logging(func):</span><br><span class="line"></span><br><span class="line">    def wrapper():</span><br><span class="line">        logging.warn(&quot;%s is running&quot; % func.__name__)</span><br><span class="line">        return func()</span><br><span class="line">    return wrapper</span><br><span class="line"></span><br><span class="line">@use_logging</span><br><span class="line">def foo():</span><br><span class="line">    print(&quot;i am foo&quot;)</span><br><span class="line">foo()</span><br></pre></td></tr></table></figure>
-<h4 id="带参数的装饰器"><a href="#带参数的装饰器" class="headerlink" title="带参数的装饰器"></a>带参数的装饰器</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">use_logging</span><span class="params">(level)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decorator</span><span class="params">(func)</span>:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> level == <span class="string">"warn"</span>:</span><br><span class="line">                logging.warn(<span class="string">"%s is running"</span> % func.__name__)</span><br><span class="line">            <span class="keyword">elif</span> level == <span class="string">"info"</span>:</span><br><span class="line">                logging.info(<span class="string">"%s is running"</span> % func.__name__)</span><br><span class="line">            <span class="keyword">return</span> func(*args)</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> decorator</span><br><span class="line"></span><br><span class="line"><span class="meta">@use_logging(level="warn")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(name=<span class="string">'foo'</span>)</span>:</span></span><br><span class="line">    print(<span class="string">"i am %s"</span> % name)</span><br><span class="line"></span><br><span class="line">foo()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def use_logging(func):</span><br><span class="line"></span><br><span class="line">    def wrapper():</span><br><span class="line">        logging.warn(&quot;%s is running&quot; % func.__name__)</span><br><span class="line">        return func()</span><br><span class="line">    return wrapper</span><br><span class="line"></span><br><span class="line">@use_logging</span><br><span class="line">def foo():</span><br><span class="line">    print(&quot;i am foo&quot;)</span><br><span class="line">foo()</span><br></pre></td></tr></table></figure>
+<h4 id="带参数的装饰器"><a href="#带参数的装饰器" class="headerlink" title="带参数的装饰器"></a>带参数的装饰器</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">use_logging</span><span class="hljs-params">(level)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decorator</span><span class="hljs-params">(func)</span>:</span></span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wrapper</span><span class="hljs-params">(*args, **kwargs)</span>:</span></span><br><span class="line">            <span class="hljs-keyword">if</span> level == <span class="hljs-string">"warn"</span>:</span><br><span class="line">                logging.warn(<span class="hljs-string">"%s is running"</span> % func.__name__)</span><br><span class="line">            <span class="hljs-keyword">elif</span> level == <span class="hljs-string">"info"</span>:</span><br><span class="line">                logging.info(<span class="hljs-string">"%s is running"</span> % func.__name__)</span><br><span class="line">            <span class="hljs-keyword">return</span> func(*args)</span><br><span class="line">        <span class="hljs-keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> decorator</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@use_logging(level="warn")</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span><span class="hljs-params">(name=<span class="hljs-string">'foo'</span>)</span>:</span></span><br><span class="line">    print(<span class="hljs-string">"i am %s"</span> % name)</span><br><span class="line"></span><br><span class="line">foo()</span><br></pre></td></tr></table></figure>
 <p>上面的 use_logging 是<strong>允许带参数的装饰器</strong>。它实际上是<strong>对原有装饰器的一个函数封装，并返回一个装饰器</strong>。我们可以将它理解为一个含有参数的闭包。当我 们使用<code>@use_logging(level=&quot;warn&quot;)</code>调用的时候，Python 能够发现这一层的封装，并把参数传递到装饰器的环境中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@use_logging(level=&quot;warn&quot;)`等价于`@decorator</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@use_logging(level=&quot;warn&quot;)`等价于`@decorator</span><br></pre></td></tr></table></figure>
 <p>熟悉 non-eager TensorFlow的读者会发现这种方法类似于编写Python代码，该代码在定义TensorFlow图的Python代码部分中使用<strong>tf.add或tf.reduce_sum</strong>等函数。虽然代码在技术上用Python表示，但其目的是在下面构造一个<strong>tf.Graph的可序列化表示</strong>，它是<strong>由TensorFlow运行时内部执行的图形</strong>，<strong>而不是Python代码</strong>。同样，可以将tff.federated_mean视为将联合op插入由get_average_temperature表示的联合计算中。</p>
 <p>FC定义语言的部分原因与如下事实有关：如上所述，联合计算指定分布式集体行为，因此，它们的逻辑是非本地的。例如，TFF提供的operators，输入和输出可能存在于网络中的不同位置。</p>
 <p>这需要一种捕获分布式概念的语言和类型系统。</p>
@@ -336,7 +336,7 @@
 <ul>
 <li><p>TensorFlow计算（tff.tf_computation）。这些是TensorFlow代码的部分，使用tff.tf_computation装饰器包装为TFF中的可重用组件。它们总是具有函数类型，与TensorFlow中的函数不同，它们可以采用结构化参数或返回序列类型的结构化结果。</p>
 <p>这是一个例子，<strong>类型（int32 *  - &gt; int）的TF计算</strong>，它使用tf.data.Dataset.reduce运算符来计算整数之和：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@tff.tf_computation(tff.SequenceType(tf.int32))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_up_integeres</span><span class="params">(x)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> x.reduce(np.int32(<span class="number">0</span>), <span class="keyword">lambda</span> x, y: x + y)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@tff.tf_computation(tff.SequenceType(tf.int32))</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add_up_integeres</span><span class="hljs-params">(x)</span>:</span></span><br><span class="line">  <span class="hljs-keyword">return</span> x.reduce(np.int32(<span class="hljs-number">0</span>), <span class="hljs-keyword">lambda</span> x, y: x + y)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>内在函数或联合运算符（tff.federated _…）。这是一个函数库，如<strong>tff.federated_sum</strong>或<strong>tff.federated_broadcast</strong>，它们构成了FC API的大部分，其中大部分代表了与TFF一起使用的分布式通信运算符。</p>
 <p>我们将这些称为内在函数，因为它们有点像内部函数，它们是TFF理解的开放式，可扩展的运算符集，并且编译成较低级别的代码。</p>
@@ -346,7 +346,7 @@
 <li><p>Lambda表达式（tff.federated_computation）。 TFF中的lambda表达式相当于Python中的lambda或def;它由参数名称和包含对此参数的引用的body（表达式）组成。</p>
 <p>在Python代码中，可以通过使用tff.federated_computation修饰Python函数并定义参数来创建这些代码。</p>
 <p>这是我们之前已经提到过的lambda表达式的一个例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@tff.federated_computation(tff.FederatedType(tf.float32, tff.CLIENTS))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_average_temperature</span><span class="params">(sensor_readings)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> tff.federated_mean(sensor_readings)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@tff.federated_computation(tff.FederatedType(tf.float32, tff.CLIENTS))</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_average_temperature</span><span class="hljs-params">(sensor_readings)</span>:</span></span><br><span class="line">  <span class="hljs-keyword">return</span> tff.federated_mean(sensor_readings)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>放置文字<strong>Placement literals</strong>.。目前，只有tff.SERVER和tff.CLIENTS允许定义简单的客户端 - 服务器计算。</p>
 </li>
@@ -449,7 +449,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        51
+                        52
                     </p>
                 </div>
             </div>
@@ -776,6 +776,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/20/NICO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
+                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/LEAF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LEAF">
@@ -850,25 +869,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/23/yaml入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="yaml入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-23T03:11:47.000Z">2019-08-23</time></div>
-                    <a href="/2019/08/23/yaml入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">yaml入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/yaml/">yaml</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -880,6 +880,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">
@@ -1338,6 +1349,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/20/NICO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
+                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/LEAF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LEAF">
@@ -1412,25 +1442,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/23/yaml入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="yaml入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-23T03:11:47.000Z">2019-08-23</time></div>
-                    <a href="/2019/08/23/yaml入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">yaml入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/yaml/">yaml</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1442,6 +1453,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">

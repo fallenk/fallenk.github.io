@@ -187,7 +187,7 @@
 <h1 id="Mac-打开、编辑-bash-profile-文件"><a href="#Mac-打开、编辑-bash-profile-文件" class="headerlink" title="Mac 打开、编辑 .bash_profile 文件"></a>Mac 打开、编辑 .bash_profile 文件</h1><p>一般在Mac上配置环境变量时经常要创建、编辑 .bash_profile文件。<br>创建该文件时一般都会选择在当前用户目录下，即Mac下的.bash_profile 文件的路径是 <code>/Users/YourMacUserName/.bash_profile</code>(如果该文件已经创建过的话)</p>
 <p>1、创建 .bash_profile<br> （1） 启动终端Terminal<br> （2） 进入当前用户的home目录： cd ~   或 cd /Users/YourMacUserName<br> （3）输入touch .bash_profile<br>2、查看 、编辑 .bash_profile 文件<br> （1）终端输入 open -e .bash_profile<br> （2）编辑<br> （3）关闭即可保存修改<br>3、更新刚配置的环境变量<br>  输入<code>source .bash_profile</code></p>
 <h1 id="MAC-设置环境变量PATH-和-查看PATH"><a href="#MAC-设置环境变量PATH-和-查看PATH" class="headerlink" title="MAC 设置环境变量PATH 和 查看PATH"></a>MAC 设置环境变量PATH 和 查看PATH</h1><h2 id="理论篇"><a href="#理论篇" class="headerlink" title="理论篇"></a>理论篇</h2><p>Mac系统的环境变量，加载顺序为：<br><code>/etc/profile</code> <code>/etc/paths</code> <code>~/.bash_profile</code> <code>~/.bash_login</code> <code>~/.profile</code> <code>~/.bashrc</code></p>
-<p><code>/etc/profile</code>和<code>/etc/paths</code>是系统级别的，系统启动就会加载，后面几个是当前用户级的环境变量。后面3个按照从前往后的顺序读取，如果<code>/.bash_profile</code>文件存在，则后面的几个文件就会被忽略不读了，如果<code>/.bash_profile</code>文件不存在，才会以此类推读取后面的文件。<code>~/.bashrc</code>没有上述规则，它是<code>bash shell</code>打开的时候载入的。<br>PATH的语法为如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#中间用冒号隔开</span><br><span class="line">export PATH=$PATH:&lt;PATH 1&gt;:&lt;PATH 2&gt;:&lt;PATH 3&gt;:------:&lt;PATH N&gt;</span><br></pre></td></tr></table></figure></p>
+<p><code>/etc/profile</code>和<code>/etc/paths</code>是系统级别的，系统启动就会加载，后面几个是当前用户级的环境变量。后面3个按照从前往后的顺序读取，如果<code>/.bash_profile</code>文件存在，则后面的几个文件就会被忽略不读了，如果<code>/.bash_profile</code>文件不存在，才会以此类推读取后面的文件。<code>~/.bashrc</code>没有上述规则，它是<code>bash shell</code>打开的时候载入的。<br>PATH的语法为如下<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#中间用冒号隔开</span><br><span class="line">export PATH=$PATH:&lt;PATH 1&gt;:&lt;PATH 2&gt;:&lt;PATH 3&gt;:------:&lt;PATH N&gt;</span><br></pre></td></tr></table></figure></p>
 <h2 id="上述文件的科普"><a href="#上述文件的科普" class="headerlink" title="上述文件的科普"></a>上述文件的科普</h2><ul>
 <li>/etc/paths （全局建议修改这个文件 ）<br>编辑 paths，将环境变量添加到 paths文件中 ，一行一个路径<br>Hint：输入环境变量时，不用一个一个地输入，只要拖动文件夹到 Terminal 里就可以了。</li>
 <li>/etc/profile （建议不修改这个文件 ）<br>全局（公有）配置，不管是哪个用户，登录时都会读取该文件。</li>
@@ -390,7 +390,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        51
+                        52
                     </p>
                 </div>
             </div>
@@ -717,6 +717,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/20/NICO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
+                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/LEAF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LEAF">
@@ -791,25 +810,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/23/yaml入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="yaml入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-23T03:11:47.000Z">2019-08-23</time></div>
-                    <a href="/2019/08/23/yaml入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">yaml入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/yaml/">yaml</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -821,6 +821,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">
@@ -1279,6 +1290,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/20/NICO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
+                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/LEAF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LEAF">
@@ -1353,25 +1383,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/23/yaml入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="yaml入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-23T03:11:47.000Z">2019-08-23</time></div>
-                    <a href="/2019/08/23/yaml入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">yaml入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/yaml/">yaml</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1383,6 +1394,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">

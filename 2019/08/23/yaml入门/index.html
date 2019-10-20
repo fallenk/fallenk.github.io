@@ -192,27 +192,27 @@
 <h2 id="二、对象"><a href="#二、对象" class="headerlink" title="二、对象"></a>二、对象</h2><p>对象的一组key-value键值对，使用冒号结构表示。</p>
 <p><code>animal:pets</code></p>
 <p>转为 JavaScript 如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">animal</span>: <span class="string">'pets'</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="hljs-attr">animal</span>: <span class="hljs-string">'pets'</span> &#125;</span><br></pre></td></tr></table></figure>
 <p>Yaml 也允许另一种写法，将所有<strong>键值对写成一个行内对象</strong>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hash: &#123; <span class="attr">name</span>: Steve, <span class="attr">foo</span>: bar &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hash: &#123; <span class="hljs-attr">name</span>: Steve, <span class="hljs-attr">foo</span>: bar &#125;</span><br></pre></td></tr></table></figure>
 <p>转为 JavaScript 如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">hash</span>: &#123; <span class="attr">name</span>: <span class="string">'Steve'</span>, <span class="attr">foo</span>: <span class="string">'bar'</span> &#125; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="hljs-attr">hash</span>: &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">'Steve'</span>, <span class="hljs-attr">foo</span>: <span class="hljs-string">'bar'</span> &#125; &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="三、数组"><a href="#三、数组" class="headerlink" title="三、数组"></a>三、数组</h2><p>一组连词线开头的行，构成一个数组。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- Cat</span><br><span class="line">- Dog</span><br><span class="line">- Goldfish</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- Cat</span><br><span class="line">- Dog</span><br><span class="line">- Goldfish</span><br></pre></td></tr></table></figure>
 <p>转为 JavaScript 如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ <span class="string">'Cat'</span>, <span class="string">'Dog'</span>, <span class="string">'Goldfish'</span> ]</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ <span class="hljs-string">'Cat'</span>, <span class="hljs-string">'Dog'</span>, <span class="hljs-string">'Goldfish'</span> ]</span><br></pre></td></tr></table></figure>
 <p>数据结构的子成员是一个数组，则可以在该项下面缩进一个空格。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-</span><br><span class="line"> - Cat</span><br><span class="line"> - Dog</span><br><span class="line"> - Goldfish</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-</span><br><span class="line"> - Cat</span><br><span class="line"> - Dog</span><br><span class="line"> - Goldfish</span><br></pre></td></tr></table></figure>
 <p>转为 JavaScript 如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ [ <span class="string">'Cat'</span>, <span class="string">'Dog'</span>, <span class="string">'Goldfish'</span> ] ]</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ [ <span class="hljs-string">'Cat'</span>, <span class="hljs-string">'Dog'</span>, <span class="hljs-string">'Goldfish'</span> ] ]</span><br></pre></td></tr></table></figure>
 <p>数组也可以采用行内表示法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">animal: [Cat, Dog]</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">animal: [Cat, Dog]</span><br></pre></td></tr></table></figure>
 <p>转为 JavaScript 如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">animal</span>: [ <span class="string">'Cat'</span>, <span class="string">'Dog'</span> ] &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="hljs-attr">animal</span>: [ <span class="hljs-string">'Cat'</span>, <span class="hljs-string">'Dog'</span> ] &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="四、复合结构"><a href="#四、复合结构" class="headerlink" title="四、复合结构"></a>四、复合结构</h2><p>对象和数组可以结合使用，形成复合结构。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">languages:</span><br><span class="line"> - Ruby</span><br><span class="line"> - Perl</span><br><span class="line"> - Python </span><br><span class="line">websites:</span><br><span class="line"> YAML: yaml.org </span><br><span class="line"> Ruby: ruby-lang.org </span><br><span class="line"> Python: python.org </span><br><span class="line"> Perl: use.perl.org</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">languages:</span><br><span class="line"> - Ruby</span><br><span class="line"> - Perl</span><br><span class="line"> - Python </span><br><span class="line">websites:</span><br><span class="line"> YAML: yaml.org </span><br><span class="line"> Ruby: ruby-lang.org </span><br><span class="line"> Python: python.org </span><br><span class="line"> Perl: use.perl.org</span><br></pre></td></tr></table></figure>
 <p>转为 JavaScript 如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">languages</span>: [ <span class="string">'Ruby'</span>, <span class="string">'Perl'</span>, <span class="string">'Python'</span> ],</span><br><span class="line">  websites: </span><br><span class="line">   &#123; <span class="attr">YAML</span>: <span class="string">'yaml.org'</span>,</span><br><span class="line">     Ruby: <span class="string">'ruby-lang.org'</span>,</span><br><span class="line">     Python: <span class="string">'python.org'</span>,</span><br><span class="line">     Perl: <span class="string">'use.perl.org'</span> &#125; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="hljs-attr">languages</span>: [ <span class="hljs-string">'Ruby'</span>, <span class="hljs-string">'Perl'</span>, <span class="hljs-string">'Python'</span> ],</span><br><span class="line">  websites: </span><br><span class="line">   &#123; <span class="hljs-attr">YAML</span>: <span class="hljs-string">'yaml.org'</span>,</span><br><span class="line">     Ruby: <span class="hljs-string">'ruby-lang.org'</span>,</span><br><span class="line">     Python: <span class="hljs-string">'python.org'</span>,</span><br><span class="line">     Perl: <span class="hljs-string">'use.perl.org'</span> &#125; &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="五、纯量"><a href="#五、纯量" class="headerlink" title="五、纯量"></a>五、纯量</h2><p>纯量是最基本的、不可再分的值。以下数据类型都属于 JavaScript 的纯量。</p>
 <ul>
 <li>字符串</li>
@@ -238,90 +238,90 @@
 <ol start="4">
 <li>时间采用 ISO8601 格式。 </li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iso8601: <span class="number">2001</span><span class="number">-12</span><span class="number">-14</span>t21:<span class="number">59</span>:<span class="number">43.10</span><span class="number">-05</span>:<span class="number">00</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iso8601: <span class="hljs-number">2001</span><span class="hljs-number">-12</span><span class="hljs-number">-14</span>t21:<span class="hljs-number">59</span>:<span class="hljs-number">43.10</span><span class="hljs-number">-05</span>:<span class="hljs-number">00</span></span><br></pre></td></tr></table></figure>
 <p>转为 JavaScript 如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">iso8601</span>: <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2001-12-14t21:59:43.10-05:00'</span>) &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="hljs-attr">iso8601</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2001-12-14t21:59:43.10-05:00'</span>) &#125;</span><br></pre></td></tr></table></figure>
 <ol start="5">
 <li><p>日期采用复合 iso8601 格式的年、月、日表示。</p>
 </li>
-<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date: <span class="number">1976</span><span class="number">-07</span><span class="number">-31</span></span><br></pre></td></tr></table></figure>
+<li><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date: <span class="hljs-number">1976</span><span class="hljs-number">-07</span><span class="hljs-number">-31</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>转为 JavaScript 如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">date</span>: <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'1976-07-31'</span>) &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'1976-07-31'</span>) &#125;</span><br></pre></td></tr></table></figure>
 <ol start="6">
 <li>YAML 允许使用两个感叹号，强制转换数据类型。</li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">e: !!str <span class="number">123</span></span><br><span class="line">f: !!str <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">e: !!str <span class="hljs-number">123</span></span><br><span class="line">f: !!str <span class="hljs-literal">true</span></span><br></pre></td></tr></table></figure>
 <p>转为 JavaScript 如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">e</span>: <span class="string">'123'</span>, <span class="attr">f</span>: <span class="string">'true'</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="hljs-attr">e</span>: <span class="hljs-string">'123'</span>, <span class="hljs-attr">f</span>: <span class="hljs-string">'true'</span> &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="六、字符串"><a href="#六、字符串" class="headerlink" title="六、字符串"></a>六、字符串</h2><p>字符串是最常见，也是最复杂的一种数据类型。字符串默认不使用引号表示。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str: 这是一行字符串</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str: 这是一行字符串</span><br></pre></td></tr></table></figure>
 <p>转为 JavaScript 如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">str</span>: <span class="string">'这是一行字符串'</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="hljs-attr">str</span>: <span class="hljs-string">'这是一行字符串'</span> &#125;</span><br></pre></td></tr></table></figure>
 <p>如果字符串之中包含空格或特殊字符，需要放在引号之中。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str: <span class="string">'内容： 字符串'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str: <span class="hljs-string">'内容： 字符串'</span></span><br></pre></td></tr></table></figure>
 <p>转为 JavaScript 如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">str</span>: <span class="string">'内容: 字符串'</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="hljs-attr">str</span>: <span class="hljs-string">'内容: 字符串'</span> &#125;</span><br></pre></td></tr></table></figure>
 <p><strong>单引号和双引号都可以使用，双引号不会对特殊字符转义。</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s1: <span class="string">'内容\n字符串'</span></span><br><span class="line">s2: <span class="string">"内容\n字符串"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s1: <span class="hljs-string">'内容\n字符串'</span></span><br><span class="line">s2: <span class="hljs-string">"内容\n字符串"</span></span><br></pre></td></tr></table></figure>
 <p>转为 JavaScript 如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">s1</span>: <span class="string">'内容\\n字符串'</span>, <span class="attr">s2</span>: <span class="string">'内容\n字符串'</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="hljs-attr">s1</span>: <span class="hljs-string">'内容\\n字符串'</span>, <span class="hljs-attr">s2</span>: <span class="hljs-string">'内容\n字符串'</span> &#125;</span><br></pre></td></tr></table></figure>
 <p>单引号之中如果还有单引号，必须连续使用两个单引号转义。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str: <span class="string">'labor'</span><span class="string">'s day'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str: <span class="hljs-string">'labor'</span><span class="hljs-string">'s day'</span></span><br></pre></td></tr></table></figure>
 <p>转为 JavaScript 如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">str</span>: <span class="string">'labor\'s day'</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="hljs-attr">str</span>: <span class="hljs-string">'labor\'s day'</span> &#125;</span><br></pre></td></tr></table></figure>
 <p>字符串可以写成多行，从第二行开始，<strong>必须有一个单空格缩进。换行符会被转为空格。</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str: 这是一段</span><br><span class="line">  多行</span><br><span class="line">  字符串</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str: 这是一段</span><br><span class="line">  多行</span><br><span class="line">  字符串</span><br></pre></td></tr></table></figure>
 <p>转为 JavaScript 如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">str</span>: <span class="string">'这是一段 多行 字符串'</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="hljs-attr">str</span>: <span class="hljs-string">'这是一段 多行 字符串'</span> &#125;</span><br></pre></td></tr></table></figure>
 <p>多行字符串可以使用<code>|</code>保留换行符，也可以使用<code>&gt;</code>折叠换行。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>: |</span><br><span class="line">  Foo</span><br><span class="line">  Bar</span><br><span class="line">that: &gt;</span><br><span class="line">  Foo</span><br><span class="line">  Bar</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">this</span>: |</span><br><span class="line">  Foo</span><br><span class="line">  Bar</span><br><span class="line">that: &gt;</span><br><span class="line">  Foo</span><br><span class="line">  Bar</span><br></pre></td></tr></table></figure>
 <p>转为 JavaScript 代码如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">this</span>: <span class="string">'Foo\nBar\n'</span>, <span class="attr">that</span>: <span class="string">'Foo Bar\n'</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="hljs-attr">this</span>: <span class="hljs-string">'Foo\nBar\n'</span>, <span class="hljs-attr">that</span>: <span class="hljs-string">'Foo Bar\n'</span> &#125;</span><br></pre></td></tr></table></figure>
 <p><code>+</code>表示保留文字块末尾的换行，<code>-</code>表示删除字符串末尾的换行。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">s1: |</span><br><span class="line">  Foo</span><br><span class="line"></span><br><span class="line">s2: |+</span><br><span class="line">  Foo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s3: |-</span><br><span class="line">  Foo</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">s1: |</span><br><span class="line">  Foo</span><br><span class="line"></span><br><span class="line">s2: |+</span><br><span class="line">  Foo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s3: |-</span><br><span class="line">  Foo</span><br></pre></td></tr></table></figure>
 <p>转为 JavaScript 代码如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">s1</span>: <span class="string">'Foo\n'</span>, <span class="attr">s2</span>: <span class="string">'Foo\n\n\n'</span>, <span class="attr">s3</span>: <span class="string">'Foo'</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="hljs-attr">s1</span>: <span class="hljs-string">'Foo\n'</span>, <span class="hljs-attr">s2</span>: <span class="hljs-string">'Foo\n\n\n'</span>, <span class="hljs-attr">s3</span>: <span class="hljs-string">'Foo'</span> &#125;</span><br></pre></td></tr></table></figure>
 <p>字符串之中可以插入 HTML 标记。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">message: |</span><br><span class="line"></span><br><span class="line">  &lt;p style=<span class="string">"color: red"</span>&gt;</span><br><span class="line">    段落</span><br><span class="line">  &lt;<span class="regexp">/p&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">message: |</span><br><span class="line"></span><br><span class="line">  &lt;p style=<span class="hljs-string">"color: red"</span>&gt;</span><br><span class="line">    段落</span><br><span class="line">  &lt;<span class="hljs-regexp">/p&gt;</span></span><br></pre></td></tr></table></figure>
 <p>转为 JavaScript 如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">message</span>: <span class="string">'\n&lt;p style="color: red"&gt;\n  段落\n&lt;/p&gt;\n'</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="hljs-attr">message</span>: <span class="hljs-string">'\n&lt;p style="color: red"&gt;\n  段落\n&lt;/p&gt;\n'</span> &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="七、引用"><a href="#七、引用" class="headerlink" title="七、引用"></a>七、引用</h2><p>锚点<code>&amp;</code>和别名<code>*</code>，可以用来引用。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">defaults: &amp;defaults</span><br><span class="line">  adapter:  postgres</span><br><span class="line">  host:     localhost</span><br><span class="line">  </span><br><span class="line">development:</span><br><span class="line">  database: myapp_development</span><br><span class="line">  &lt;&lt;: *defaults</span><br><span class="line"></span><br><span class="line">test:</span><br><span class="line">  database: myapp_test</span><br><span class="line">  &lt;&lt;: *defaults</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">defaults: &amp;defaults</span><br><span class="line">  adapter:  postgres</span><br><span class="line">  host:     localhost</span><br><span class="line">  </span><br><span class="line">development:</span><br><span class="line">  database: myapp_development</span><br><span class="line">  &lt;&lt;: *defaults</span><br><span class="line"></span><br><span class="line">test:</span><br><span class="line">  database: myapp_test</span><br><span class="line">  &lt;&lt;: *defaults</span><br></pre></td></tr></table></figure>
 <p>等同于下面的代码。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">defaults:</span><br><span class="line">  adapter:  postgres</span><br><span class="line">  host:     localhost</span><br><span class="line"></span><br><span class="line">development:</span><br><span class="line">  database: myapp_development</span><br><span class="line">  adapter:  postgres</span><br><span class="line">  host:     localhost</span><br><span class="line"></span><br><span class="line">test:</span><br><span class="line">  database: myapp_test</span><br><span class="line">  adapter:  postgres</span><br><span class="line">  host:     localhost</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">defaults:</span><br><span class="line">  adapter:  postgres</span><br><span class="line">  host:     localhost</span><br><span class="line"></span><br><span class="line">development:</span><br><span class="line">  database: myapp_development</span><br><span class="line">  adapter:  postgres</span><br><span class="line">  host:     localhost</span><br><span class="line"></span><br><span class="line">test:</span><br><span class="line">  database: myapp_test</span><br><span class="line">  adapter:  postgres</span><br><span class="line">  host:     localhost</span><br></pre></td></tr></table></figure>
 <p><code>&amp;</code>用来建立锚点（<code>defaults</code>），<code>&lt;&lt;</code>表示合并到当前数据，<code>*</code>用来引用锚点。</p>
 <p>下面是另一个例子。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- &amp;showell Steve </span><br><span class="line">- Clark </span><br><span class="line">- Brian </span><br><span class="line">- Oren </span><br><span class="line">- *showell</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- &amp;showell Steve </span><br><span class="line">- Clark </span><br><span class="line">- Brian </span><br><span class="line">- Oren </span><br><span class="line">- *showell</span><br></pre></td></tr></table></figure>
 <p>转为 JavaScript 代码如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ <span class="string">'Steve'</span>, <span class="string">'Clark'</span>, <span class="string">'Brian'</span>, <span class="string">'Oren'</span>, <span class="string">'Steve'</span> ]</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ <span class="hljs-string">'Steve'</span>, <span class="hljs-string">'Clark'</span>, <span class="hljs-string">'Brian'</span>, <span class="hljs-string">'Oren'</span>, <span class="hljs-string">'Steve'</span> ]</span><br></pre></td></tr></table></figure>
 <h2 id="八、函数和正则表达式的转换"><a href="#八、函数和正则表达式的转换" class="headerlink" title="八、函数和正则表达式的转换"></a>八、函数和正则表达式的转换</h2><p>这是 <a href="https://github.com/nodeca/js-yaml" target="_blank" rel="noopener">JS-YAML</a> 库特有的功能，可以把<strong>函数和正则表达式转为字符串</strong>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># example.yml</span><br><span class="line">fn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="number">1</span> &#125;</span><br><span class="line">reg: <span class="regexp">/test/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># example.yml</span><br><span class="line">fn: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> &#125;</span><br><span class="line">reg: <span class="hljs-regexp">/test/</span></span><br></pre></td></tr></table></figure>
 <p>解析上面的 yml 文件的代码如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> yaml = <span class="built_in">require</span>(<span class="string">'js-yaml'</span>);</span><br><span class="line"><span class="keyword">var</span> fs   = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> doc = yaml.load(</span><br><span class="line">    fs.readFileSync(<span class="string">'./example.yml'</span>, <span class="string">'utf8'</span>)</span><br><span class="line">  );</span><br><span class="line">  <span class="built_in">console</span>.log(doc);</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> yaml = <span class="hljs-built_in">require</span>(<span class="hljs-string">'js-yaml'</span>);</span><br><span class="line"><span class="hljs-keyword">var</span> fs   = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">try</span> &#123;</span><br><span class="line">  <span class="hljs-keyword">var</span> doc = yaml.load(</span><br><span class="line">    fs.readFileSync(<span class="hljs-string">'./example.yml'</span>, <span class="hljs-string">'utf8'</span>)</span><br><span class="line">  );</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(doc);</span><br><span class="line">&#125; <span class="hljs-keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>从 JavaScript 对象还原到 yaml 文件的代码如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> yaml = <span class="built_in">require</span>(<span class="string">'js-yaml'</span>);</span><br><span class="line"><span class="keyword">var</span> fs   = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  fn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="number">1</span> &#125;,</span><br><span class="line">  reg: <span class="regexp">/test/</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  fs.writeFileSync(</span><br><span class="line">    <span class="string">'./example.yml'</span>,</span><br><span class="line">    yaml.dump(obj),</span><br><span class="line">    <span class="string">'utf8'</span></span><br><span class="line">  );</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> yaml = <span class="hljs-built_in">require</span>(<span class="hljs-string">'js-yaml'</span>);</span><br><span class="line"><span class="hljs-keyword">var</span> fs   = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> obj = &#123;</span><br><span class="line">  fn: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> &#125;,</span><br><span class="line">  reg: <span class="hljs-regexp">/test/</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">try</span> &#123;</span><br><span class="line">  fs.writeFileSync(</span><br><span class="line">    <span class="hljs-string">'./example.yml'</span>,</span><br><span class="line">    yaml.dump(obj),</span><br><span class="line">    <span class="hljs-string">'utf8'</span></span><br><span class="line">  );</span><br><span class="line">&#125; <span class="hljs-keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="python-yaml用法详解"><a href="#python-yaml用法详解" class="headerlink" title="python yaml用法详解"></a>python yaml用法详解</h1><p>一、PyYaml </p>
 <ol>
 <li>load() :返回一个对象 </li>
 </ol>
 <p>先创建一个yml文件，config.yml:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">name: Tom Smith</span><br><span class="line">age: 37</span><br><span class="line">spouse:</span><br><span class="line">    name: Jane Smith</span><br><span class="line">    age: 25</span><br><span class="line">children:</span><br><span class="line"> - name: Jimmy Smith</span><br><span class="line">   age: 15</span><br><span class="line"> - name1: Jenny Smith</span><br><span class="line">   age1: 12</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">name: Tom Smith</span><br><span class="line">age: 37</span><br><span class="line">spouse:</span><br><span class="line">    name: Jane Smith</span><br><span class="line">    age: 25</span><br><span class="line">children:</span><br><span class="line"> - name: Jimmy Smith</span><br><span class="line">   age: 15</span><br><span class="line"> - name1: Jenny Smith</span><br><span class="line">   age1: 12</span><br></pre></td></tr></table></figure>
 <p>读取yml文件：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> yaml</span><br><span class="line">f = open(<span class="string">r'E:\AutomaticTest\Test_Framework\config\config.yml'</span>)</span><br><span class="line">y = yaml.load(f)</span><br><span class="line"><span class="keyword">print</span> (y)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> yaml</span><br><span class="line">f = open(<span class="hljs-string">r'E:\AutomaticTest\Test_Framework\config\config.yml'</span>)</span><br><span class="line">y = yaml.load(f)</span><br><span class="line"><span class="hljs-keyword">print</span> (y)</span><br></pre></td></tr></table></figure>
 <p>结果：</p>
 <p><code>{&#39;name&#39;: &#39;Tom Smith&#39;, &#39;age&#39;: 37, &#39;spouse&#39;: {&#39;name&#39;: &#39;Jane Smith&#39;, &#39;age&#39;: 25}, &#39;children&#39;: [{&#39;name&#39;: &#39;Jimmy Smith&#39;, &#39;age&#39;: 15}, {&#39;name1&#39;: &#39;Jenny Smith&#39;, &#39;age1&#39;: 12}]}</code></p>
 <ol start="2">
 <li>load_all()生成一个迭代器</li>
 </ol>
 <p>如果string或文件包含几块yaml文档，你可以使用yaml.load_all来解析全部的文档。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> yaml</span><br><span class="line">f = <span class="string">'''</span></span><br><span class="line"><span class="string">---</span></span><br><span class="line"><span class="string">name: James</span></span><br><span class="line"><span class="string">age: 20</span></span><br><span class="line"><span class="string">---</span></span><br><span class="line"><span class="string">name: Lily</span></span><br><span class="line"><span class="string">age: 19</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">y = yaml.load_all(f)</span><br><span class="line"><span class="keyword">for</span> data <span class="keyword">in</span> y:</span><br><span class="line">    print(data)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> yaml</span><br><span class="line">f = <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">---</span></span><br><span class="line"><span class="hljs-string">name: James</span></span><br><span class="line"><span class="hljs-string">age: 20</span></span><br><span class="line"><span class="hljs-string">---</span></span><br><span class="line"><span class="hljs-string">name: Lily</span></span><br><span class="line"><span class="hljs-string">age: 19</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line">y = yaml.load_all(f)</span><br><span class="line"><span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> y:</span><br><span class="line">    print(data)</span><br></pre></td></tr></table></figure>
 <p>执行结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&apos;name&apos;: &apos;James&apos;, &apos;age&apos;: 20&#125;</span><br><span class="line">&#123;&apos;name&apos;: &apos;Lily&apos;, &apos;age&apos;: 19&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&apos;name&apos;: &apos;James&apos;, &apos;age&apos;: 20&#125;</span><br><span class="line">&#123;&apos;name&apos;: &apos;Lily&apos;, &apos;age&apos;: 19&#125;</span><br></pre></td></tr></table></figure>
 <ol start="3">
 <li><p>yaml.dump 将一个python对象生成为yaml文档</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> yaml</span><br><span class="line">aproject = &#123;<span class="string">'name'</span>: <span class="string">'Silenthand Olleander'</span>,</span><br><span class="line">            <span class="string">'race'</span>: <span class="string">'Human'</span>,</span><br><span class="line">            <span class="string">'traits'</span>: [<span class="string">'ONE_HAND'</span>, <span class="string">'ONE_EYE'</span>]</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">print(yaml.dump(aproject，))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> yaml</span><br><span class="line">aproject = &#123;<span class="hljs-string">'name'</span>: <span class="hljs-string">'Silenthand Olleander'</span>,</span><br><span class="line">            <span class="hljs-string">'race'</span>: <span class="hljs-string">'Human'</span>,</span><br><span class="line">            <span class="hljs-string">'traits'</span>: [<span class="hljs-string">'ONE_HAND'</span>, <span class="hljs-string">'ONE_EYE'</span>]</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">print(yaml.dump(aproject，))</span><br></pre></td></tr></table></figure>
 </li>
 <li></li>
 </ol>
@@ -413,7 +413,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        51
+                        52
                     </p>
                 </div>
             </div>
@@ -740,6 +740,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/20/NICO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
+                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/LEAF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LEAF">
@@ -814,25 +833,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/23/yaml入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="yaml入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-23T03:11:47.000Z">2019-08-23</time></div>
-                    <a href="/2019/08/23/yaml入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">yaml入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/yaml/">yaml</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -844,6 +844,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">
@@ -1302,6 +1313,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/20/NICO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
+                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/LEAF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LEAF">
@@ -1376,25 +1406,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/23/yaml入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="yaml入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-23T03:11:47.000Z">2019-08-23</time></div>
-                    <a href="/2019/08/23/yaml入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">yaml入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/yaml/">yaml</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1406,6 +1417,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">
