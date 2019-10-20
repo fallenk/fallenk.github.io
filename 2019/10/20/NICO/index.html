@@ -10,19 +10,19 @@
 <title>NICO - Fallenk&#39;s Blog</title>
 
 
-    <meta name="description" content="不忘初心，努力学习，砥砺前进，自我反省">
-<meta name="keywords" content="经历，心得，笔记，目标">
+    <meta name="description" content="non-iid朝向分类图像：数据集和基线训练和测试数据之间的独立同分布假设是众多图像分类方法的基础。在非真实性普遍的情况下，这种性质在实际中很难得到保证，导致模型性能不稳定。然而，在文献中，非I.I.D图像分类问题在很大程度上未被研究。一个关键原因是缺乏设计良好的数据集来支持相关研究。在本文中，我们构建并发布了一个名为nico的非i.i.d.图像数据集，它使用上下文有意识地创建非真实性。与其他数">
+<meta name="keywords" content="论文阅读">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NICO">
 <meta property="og:url" content="https://fallenk.github.io/2019/10/20/NICO/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta property="og:description" content="non-iid朝向分类图像：数据集和基线训练和测试数据之间的独立同分布假设是众多图像分类方法的基础。在非真实性普遍的情况下，这种性质在实际中很难得到保证，导致模型性能不稳定。然而，在文献中，非I.I.D图像分类问题在很大程度上未被研究。一个关键原因是缺乏设计良好的数据集来支持相关研究。在本文中，我们构建并发布了一个名为nico的非i.i.d.图像数据集，它使用上下文有意识地创建非真实性。与其他数">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-10-20T07:05:10.410Z">
+<meta property="og:updated_time" content="2019-10-20T09:28:38.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NICO">
-<meta name="twitter:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta name="twitter:description" content="non-iid朝向分类图像：数据集和基线训练和测试数据之间的独立同分布假设是众多图像分类方法的基础。在非真实性普遍的情况下，这种性质在实际中很难得到保证，导致模型性能不稳定。然而，在文献中，非I.I.D图像分类问题在很大程度上未被研究。一个关键原因是缺乏设计良好的数据集来支持相关研究。在本文中，我们构建并发布了一个名为nico的非i.i.d.图像数据集，它使用上下文有意识地创建非真实性。与其他数">
 <meta name="twitter:image" content="https://fallenk.github.io/images/og_image.png">
 
 
@@ -155,7 +155,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 0 words)
+                    42 minutes read (About 6226 words)
                 </span>
                 
                 
@@ -168,7 +168,92 @@
             
         </h1>
         <div class="content">
-            
+            <a id="more"></a>
+<h2 id="non-iid朝向分类图像：数据集和基线"><a href="#non-iid朝向分类图像：数据集和基线" class="headerlink" title="non-iid朝向分类图像：数据集和基线"></a>non-iid朝向分类图像：数据集和基线</h2><p>训练和测试数据之间的独立同分布假设是众多图像分类方法的基础。在非真实性普遍的情况下，这种性质在实际中很难得到保证，导致模型性能不稳定。然而，在文献中，非I.I.D图像分类问题在很大程度上未被研究。一个关键原因是缺乏设计良好的数据集来支持相关研究。在本文中，我们构建并发布了一个名为nico的非i.i.d.图像数据集，它使用上下文有意识地创建非真实性。与其他数据集相比，扩展的分析证明NICO可以支持各种非I.I.D情况，具有足够的灵活性。同时，我们提出了一个具有convnet结构的基线模型，用于一般非i.i.d.图像分类，其中测试数据的分布未知，但与训练数据不同。实验结果表明，nico可以从零开始支持convnet模型的训练，而批处理平衡模块可以帮助convnet在非i.i.d.环境下更好地运行。</p>
+<p>Keywords: Non-I.I.D., Dataset, Context, Bias, ConvNet, Batch Balancing.</p>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p>近年来，机器学习取得了显著的进展，主要得益于深层神经网络的发展[1，2，3，4，5，6]。机器学习模型的一个基本假设是，训练和测试数据应该包含依赖和相同分布的样本（i.i.d.）。然而，这种理想假设在实际情况下是脆弱的，我们很难对测试数据分布施加约束。这意味着<strong>最小化训练数据经验误差的模型不一定能很好地处理测试数据，从而导致非i.i.d.学习的挑战</strong>。当<strong>训练样本不足以逼近训练分布本身</strong>时，问题更为严重。对于学术研究和工业应用来说，如何开发出对分布变化具有鲁棒性的非身份识别学习方法至关重要。</p>
+<p>基准数据集为竞争方法提供了一个共同的基础，对于促进研究方向的发展总是很重要的。以图像分类为例，这是一项重要的学习任务。它的开发得益于基准数据集，如pascal voc[7]、mscoc[8]和imagenet[9]。尤其是ImageNet，<strong>一个大规模且结构良好的图像数据集</strong>，它成功地展示了深度学习的能力，并在随后显著地促进了深度卷积神经网络的发展。在这些数据集上，通过随机数据分割很容易建立I.I.D.图像分类设置。但是它们没有提供一个显式的选项来模拟非i.i.d.设置。能够很好地支持非身份识别图像分类研究的数据集仍处于空白状态。</p>
+<p>在本文中，我们构建并发布了一个专为非i.i.d.图像分类而设计的数据集nico（non-i.d.图像上下文数据集）。其基本思想是用<strong>主要概念main concept和上下文context标记图像</strong>。例如，在“狗”的类别中，图像被分为不同的上下文，例如“草地”、“汽车”、“海滩”，这意味着“狗”分别在草地、汽车或海滩上。有了这些上下文，通过在某些上下文中训练模型并在其他不可见上下文中测试它，可以很容易地设计非i.i.d.设置。同时，通过调整训练和测试数据中不同情境的比例，可以显著地控制分布转移的程度。到目前为止，<strong>nico共包含19个类、188个上下文和近25000个图像</strong>。规模还在不断扩大，目前的规模已经能够从零开始支持深卷积网络的训练。</p>
+<p>nico数据集可以支持但不限于两种典型的非i.d.图像分类设置。一种是<strong>针对非I.I.D.图像分类，其中测试数据分布已知，但不同于训练数据分布</strong>。另一种是<strong>一般的非I.I.D.图像分类，其中测试数据分布未知，不同于训练数据分布</strong>。显然，后者更现实，更具挑战性。在一个环境中学习的模型可能会应用到许多其他环境中。在这种情况下，模型在未知分布变化环境中的鲁棒性是一个非常有利的特性。它在医疗和安全等风险敏感应用中尤其重要。</p>
+<p>由于缺乏结构良好、尺度合理的数据集，目前还没有提出卷积神经网络模型来解决一般的非i.i.d.图像分类问题。本文提出了一种<strong>新的用于一般非i.i.d.图像分类的cnn模型cnbb</strong>（convnet-with-batch-balancing），实验结果表明，<strong>该模型能在一定程度上克服非i.d.图像分类带来的负面影响</strong>。</p>
+<h2 id="2-Non-I-I-D-Image-Classiﬁcation"><a href="#2-Non-I-I-D-Image-Classiﬁcation" class="headerlink" title="2. Non-I.I.D. Image Classiﬁcation"></a>2. Non-I.I.D. Image Classiﬁcation</h2><h3 id="2-1-Problem-Deﬁnition"><a href="#2-1-Problem-Deﬁnition" class="headerlink" title="2.1. Problem Deﬁnition"></a>2.1. Problem Deﬁnition</h3><p>我们首先对non-iid图像分类进行正式定义，如下所示：</p>
+<p>Problem 1. (Non-I.I.D. Image Classiﬁcation) 根据训练数据 $D_{\text {train}} = \left(X_{\text {train}}, Y_{\text {train}}\right), \text {where } X_{\text {train}} \in \mathbb{R}^{n \times(c \times h \times w)} 代表图像， Y_{\text {train}} \in \mathbb{R}^{n \times 1}代表labels$ 。任务是学习一个特征抽取器$g_{\varphi}(\cdot)$和一个分类器$f_{\theta}(\cdot)$ 。$\begin{array}{l}{\text { so that } f_{\theta}\left(g_{\varphi}(\cdot)\right) \text { can predict the labels of testing data } D_{\text {test }}=\left(X_{\text {test }}, Y_{\text {test }}\right) \text { precisely, }} \ {\text { where } g_{\varphi}(\cdot) \in \mathbb{R}^{n \times p} \text { and } \psi\left(D_{\text {train }}\right) \neq \psi\left(D_{\text {test }}\right) .}\end{array}$</p>
+<p>此外，根据测试数据先验知识的可用性，我们进一步定义了两个不同的任务。</p>
+<ol>
+<li><p>一种是目标非I.I.D.图像分类，其中<strong>测试数据分布是已知</strong>的。</p>
+</li>
+<li><p>另一种是一般的非I.I.D.图像分类，对应于<strong>测试数据分布未知的更现实</strong>的场景。 ？？未知是什么意思</p>
+</li>
+</ol>
+<p>为了直观地量化<strong>训练数据集$\psi\left(D_{\text {train}}\right)$和测试数据集$\psi\left(D_{\text {test}}\right)$之间的分布变化程度</strong>，我们将非I.I.D.指数定义如下：Non-I.I.D. Index</p>
+<p>Deﬁnition 1. Non-I.I.D. Index (NI) 给出一个特征提取器$g_{\varphi}(\cdot)$, 一个类 $C$, 一个分布偏离的程度在训练数据$D_{t r a i n}^{C}$ 和 测试数据$D_{test}^{C}$  被定义为：</p>
+<p>$N I(C)=\left|\frac{\overline{g_{\varphi}\left(X_{\text {train}}^{C}\right)}-\overline{g_{\varphi}\left(X_{\text {test}}^{C}\right)}}{\sigma\left(g_{\varphi}\left(X^{C}\right)\right)}\right|_{2}$</p>
+<p>其中$X^{C}=X_{\text {train}}^{C} \cup X_{\text {test}}^{C}, \overline{(\cdot)}$代表表示一阶矩, $\sigma(\cdot)$ 代表是用于标准化特征比例的标准, $|\cdot|_{2}$ 表示2-范数</p>
+<h3 id="2-2-Existence-of-Non-IIDness"><a href="#2-2-Existence-of-Non-IIDness" class="headerlink" title="2.2. Existence of Non-IIDness"></a>2.2. Existence of Non-IIDness</h3><p>在实际的情况下，I.I.D.假设不能严格满足，也就是说，在先前的数据集中普遍存在非Idess（10）。这里我们以imagenet为例。ImageNet是一个层次结构，其中每个类（例如Dog）包含多个子类（例如不同种类的Dog）。</p>
+<p>对于每个子类，它提供图像的训练和测试（验证）子集。为了验证imagenet中的非真实性，我们选择了<strong>10个常见的动物类（如狗、猫）并使用从这些类中随机抽取的10个实例化子类（如拉布拉多、波斯语）构建了一个新的数据集</strong>。使用训练和测试子集，我们训练和评估convnet的图像分类任务。本文<strong>使用的convnet的结构类似于alexnet（详见附录）</strong>，我们将convnet的最后一个fc层作为特征抽取器g’。请注意，模型结构用于所有后续分析（包括对nico的分析）以进行公平比较，因此通过<strong>权衡绩效和所需的培训数据量表</strong>进行选择。</p>
+<p>但作为一个具有充分学习能力的基础模型，具体的模型结构并不影响结论。我们重复这个收集过程3次，得到3个新的数据集（数据集A、数据集B和数据集C），分别计算每个类的NI和测试误差。作为一个例子，我们在图1中绘制了dataseta的结果。</p>
+<p><img src="/2019/10/20/NICO/1.png" alt="image-20191020160714768" style="zoom:50%;"></p>
+<p>图1：数据集A中每个类的ni（用条形表示）和测试误差（用曲线表示）。</p>
+<p>我们发现：</p>
+<ul>
+<li>所有类的NI都高于零，这意味着即使在imagenet这样的大规模数据集中，训练和测试数据之间的不一致性也是普遍存在的。</li>
+<li>不同的类具有不同的NI值，较高的NI值对应较高的测试误差。</li>
+</ul>
+<p>NI与检验误差之间的强相关性可以通过它们的高pearson相关系数（r=0.95）和小p_value（2e-15）得到进一步证明。这个展示和统计分析很好地支持了一个合理的结论，即<strong>NI量化的分布变化程度是影响分类性能的关键因素</strong>。虽然<strong>NI的数值是以特定的特征抽取器为条件</strong>的，但是如果特征抽取器固定，我们可以通过在训练数据和测试数据之间进行一些干预来分析分布偏差的趋势。在后面的章节中，我们<strong>使用NI对我们构造的新数据集进行了实证分析</strong>，以证明NICO可以地支持各种非独立的情形。</p>
+<p><img src="/2019/10/20/NICO/2.png" alt="image-20191020161545734" style="zoom:50%;"></p>
+<p>图2:ImageNet构建的3个不同数据集中每个类的NI。不同的数据集用不同的子类实例化相同的类。</p>
+<h3 id="2-3-Limitations-of-Existing-Datasets"><a href="#2-3-Limitations-of-Existing-Datasets" class="headerlink" title="2.3. Limitations of Existing Datasets"></a>2.3. Limitations of Existing Datasets</h3><p>在计算机视觉研究的整个发展过程中，基准数据集在为算法评估提供共同基础和推动新方向方面一直发挥着至关重要的作用。具体来说，对于图像分类任务，我们可以枚举几个里程碑数据集，如pascal voc、mscoc和imagenet。然而，<strong>现有的基准数据集不能很好地支持非I.I.D图像分类。首先，尽管在ImageNet和其他数据集中显示出非IID性</strong>，如图1所示，但每个类的训练和测试数据之间的总体分布变化程度相对较小，从非I.I.D.图像分类的角度来看，这些数据集的挑战性较小。更重要的是，在现有的数据集中，没有明确的方法来控制训练和测试数据之间的分布转移程度。如图2所示，如果我们在ImageNet中用不同的子类实例化同一个类并获得3个结构相同的数据集，那么<strong>给定类的NI在不同的数据集之间是相当不稳定的</strong>。如果没有<strong>一种可控的方法来模拟不同程度的非真实性，就无法对这些数据集上的竞争方法进行公平和系统的评估</strong>。也就是说，需要一个专门为non-iid图像分类设计的数据集。</p>
+<h2 id="3-The-NICO-Dataset"><a href="#3-The-NICO-Dataset" class="headerlink" title="3. The NICO Dataset"></a>3. The NICO Dataset</h2><p>在本节中，我们将介绍数据集的属性和收集过程，然后介绍该数据集支持的不同非i.i.d.设置下的初步经验结果。</p>
+<h3 id="3-1-Context-for-Non-I-I-D-Images"><a href="#3-1-Context-for-Non-I-I-D-Images" class="headerlink" title="3.1. Context for Non-I.I.D. Images"></a>3.1. Context for Non-I.I.D. Images</h3><p>生成非i.i.d.图像的基本思想<strong>是用概念和上下文标签丰富图像的标签</strong>。与以前<strong>的数据集仅用主要概念（如狗）标记图像不同</strong>，我们还<strong>标记概念出现在的具体上下文（如草地上）</strong>。然后，通过<strong>训练和测试一个概念在不同上下文中的模型，很容易模拟一个非i.i.d.环境</strong>。一个良好的non-iid图像分类模型有望在培训和测试环境中表现良好。</p>
+<p>在nico中，我们主要包含两种上下文。一个是<strong>概念</strong>（或对象）的属性，如颜色、动作和形状。“语境+概念”对的例子包括白熊、爬山猴和双层车等。另一种语境是<strong>概念的背景或场景</strong>。“context+concept”对的示例包括雪地上的猫、马边的人和日出时的飞机等。nico数据集中不同上下文的示例如图3所示。</p>
+<p><img src="/2019/10/20/NICO/3.png" alt="image-20191020162739761" style="zoom:50%;"></p>
+<p>图3:nico中的上下文示例。第一排的图片是动物的狗，被分配到不同的背景下。第二排和第三排分别对应动物的马和车辆的船。</p>
+<h3 id="3-2-Data-Collection-and-Statistics"><a href="#3-2-Data-Collection-and-Statistics" class="headerlink" title="3.2. Data Collection and Statistics"></a>3.2. Data Collection and Statistics</h3><p>参考imagenet、mscoco和其他经典数据集[12,13]，我们首先定义了两个超类：<strong>动物和车辆</strong>。</p>
+<p>对于每个超类，我们从mscoco中的272个候选类中选择类，标准是<strong>超类中选择的类应该具有较大的类间差异</strong>。</p>
+<p>对于上下文选择context，我们利用yfcc100m[14]broswer，首先导出给定概念（即类标签）的频繁共现标记列表。然后我们过滤掉只在一些概念中出现的标签。最后，我们手动筛选所有标签，并选择与上下文定义一致的标签（即对象属性或背景和场景）。</p>
+<p><a href="http://www.yfcc100m.org/" target="_blank" rel="noopener">http://www.yfcc100m.org/</a>  为了能够方便快捷地访问定义yfcc100m数据集特定子集的查询类型，我们提供了yfcc100m浏览器，该浏览器旨在实时过滤和浏览整个数据集（包含1亿张图像和视频）。完整数据集的子集可以通过简单的关键字搜索进行检索，并直接进行审查。由于我们的技术选择，尽管数据集很大，但性能足够高，可以在几秒钟内查看查询结果，从而实现流畅的浏览体验。</p>
+<p>在<strong>获得概念和上下文标记</strong>之后，我们将<strong>给定的概念标记及其每个上下文标记连接起来形成一个查询</strong>，将查询输入到google和bing图像搜索的api中，并收集排名靠前的图像作为候选图像。最后，<strong>在筛选阶段，我们根据以下标准选择最终数据集中的图像</strong>：</p>
+<ul>
+<li>图像的内容应该正确反映其概念和背景。</li>
+<li>给定一个类，每个上下文中的图像数量<strong>应该足够，并且在上下文之间尽可能保持平衡</strong>。</li>
+</ul>
+<p>请注意，我们不进行图像注册或通过对象集中进行过滤，因此所选图像比ImageNet中的图像更真实、更自然。</p>
+<p><img src="/2019/10/20/NICO/4.png" alt="image-20191020164329063" style="zoom:50%;"></p>
+<p>NICO数据集将不断更新和扩展。到目前为止，有两个超类：动物类和车辆类，其中动物类10个，车辆类9个。<strong>每个类有9或10个上下文</strong>。每个类的上下文平均数量大小在83到215之间，类的平均大小约为1300个图像，与imagenet类似。nico数据集中总共有25000个图像。由于nico是一个层次结构，所以很容易扩展。关于nico的更多统计数据见表1。数据集可以通过link 5下载，也可以通过link 6下载。</p>
+<p><a href="https://www.dropbox.com/sh/8mouawi5guaupyb/AAD4fdySrA6fn3PgSmhKwFgva?dl=0" target="_blank" rel="noopener">https://www.dropbox.com/sh/8mouawi5guaupyb/AAD4fdySrA6fn3PgSmhKwFgva?dl=0</a> </p>
+<p><a href="https://pan.baidu.com/s/1277mgM-Nju6REd5h3xXlrA" target="_blank" rel="noopener">https://pan.baidu.com/s/1277mgM-Nju6REd5h3xXlrA</a></p>
+<h3 id="3-3-Supported-Non-I-I-D-Settings"><a href="#3-3-Supported-Non-I-I-D-Settings" class="headerlink" title="3.3. Supported Non-I.I.D. Settings"></a>3.3. Supported Non-I.I.D. Settings</h3><p>通过将一个类划分成不同的上下文，NICO提供了模拟不同级别的非独立同一性设置的灵活性。举几个例子，这里我们列出4种典型的设置。</p>
+<h4 id="Setting-1-Minimum-bias"><a href="#Setting-1-Minimum-bias" class="headerlink" title="Setting 1. Minimum bias."></a>Setting 1. Minimum bias.</h4><p>​    给定一个类，我们可以忽略上下文，将类的所有图像随机分成训练和测试子集作为正样本。然后我们可以随机抽取属于其他类别的图像作为负样本进行训练和测试。在这个设置中，随机抽样的方式导致数据集中的训练和测试分布之间的最小分布偏移，这模拟了一个近似I.I.D.的场景。</p>
+<h4 id="Setting-2-Proportional-bias"><a href="#Setting-2-Proportional-bias" class="headerlink" title="Setting 2. Proportional bias."></a>Setting 2. Proportional bias.</h4><p>​    给定一个类，当对<strong>正样本进行抽样时，我们使用所有上下文进行训练和测试</strong>，但是每个上下文在训练和测试子集中所占的百分比是不同的。例如，我们<strong>可以让一个上下文在训练数据中占大多数，而在测试中占少数，这与视觉概念服从幂律分布的自然现象是一致的</strong>[15]，负采样过程与设置1相同。在此设置中，可以通过<strong>调整每个上下文的训练和测试子集之间的比例差来调整分布偏移的级别</strong>。</p>
+<h4 id="Setting-3-Compositional-bias"><a href="#Setting-3-Compositional-bias" class="headerlink" title="Setting 3. Compositional bias."></a>Setting 3. Compositional bias.</h4><p>​    给定一个类，并不是每个阳性样本所属的测试上下文都同时出现在训练子集中，这样的设置在真实场景中很常见，因为由于采样时间和空间的限制，可用的数据集在本质上不可能包含所有的潜在上下文。从观察到的上下文到看不到的上下文的分布变化通常很大。<strong>训练中测试上下文的数量越少，通常会导致更高的分布偏移，通过组合偏移和比例偏移相结合，可以进一步实现更激进的分布偏移</strong>。</p>
+<h4 id="Setting-4-Adversarial-bias-对抗的"><a href="#Setting-4-Adversarial-bias-对抗的" class="headerlink" title="Setting 4. Adversarial bias. 对抗的"></a>Setting 4. Adversarial bias. 对抗的</h4><p>​    给定一个类，<strong>正采样过程与设置3相同。对于负样本，我们倾向于从没有（或已经）包含在正训练样本中的上下文中选择负样本，以形成负训练（或测试）子集。</strong>在这种情况下，<strong>分布转移甚至高于设置3，并且在I.I.D.假设下开发的现有分类模型更容易混淆</strong>。</p>
+<p>以上4个设置用于生成非I.I.D.训练和测试子集。在每个设置下，我们可以通过假设测试子集的分布是已知的或未知的，来进行有针对性的或一般的非i.i.d.图像分类。</p>
+<h3 id="3-4-Empirical-Analysis-经验性分析"><a href="#3-4-Empirical-Analysis-经验性分析" class="headerlink" title="3.4. Empirical Analysis 经验性分析"></a>3.4. Empirical Analysis 经验性分析</h3><p>为了验证nico支持非i.d图像分类的有效性，我们进行了一系列的实证分析。值得注意的是，在每个设置中，只有训练或测试数据的分布发生变化，而convnet的结构和训练数据的大小保持不变。</p>
+<h4 id="3-4-1-Minimum-Bias-Setting"><a href="#3-4-1-Minimum-Bias-Setting" class="headerlink" title="3.4.1. Minimum Bias Setting"></a>3.4.1. Minimum Bias Setting</h4><p>在这个设置中，我们随机抽取8000张图片进行训练，并分别从动物和车辆超类中抽取2000张图片进行测试。各等级的平均检测准确率和NI分别为49.6%、3.85对于动物超类；63.0%、3.20对于车辆超类。我们可以发现，即使在构造训练和测试子集时没有明显的偏差（由于随机抽样），nico中的ni也远高于imagenet中的ni。这是因为nico中的图像通常是非图标图像，具有丰富的上下文信息和非规范视角，从图像分类的角度来看，这更具挑战性。</p>
+<p><img src="/2019/10/20/NICO/5.png" alt="image-20191020171143195" style="zoom:50%;"></p>
+<p>图5：组合偏差设置中的ni：相对于训练数据中使用的上下文数量，车辆超类中所有类的平均ni。</p>
+<p><img src="/2019/10/20/NICO/6.png" alt="image-20191020171230043" style="zoom:50%;"></p>
+<p>图6：组合偏误和比例偏误的组合设置中的ni：相对于训练数据的各种占主导比例，车辆超类中所有类别的平均ni，其中测试数据中的上下文在训练中完全不可见。</p>
+<h4 id="3-4-2-Proportional-Bias-Setting"><a href="#3-4-2-Proportional-Bias-Setting" class="headerlink" title="3.4.2. Proportional Bias Setting"></a>3.4.2. Proportional Bias Setting</h4><p>在这个设置中，我们让<strong>所有的上下文同时出现在训练和测试数据中，并为动物超类中的每个类随机选择训练数据（或测试数据）中的一个主上下文</strong>。这种实验环境符合自然现象，即除了少数常见的视觉环境外，大多数视觉环境都是罕见的[15]。</p>
+<h4 id="3-4-3-Compositional-Bias-Setting"><a href="#3-4-3-Compositional-Bias-Setting" class="headerlink" title="3.4.3. Compositional Bias Setting"></a>3.4.3. Compositional Bias Setting</h4><p>与比例偏差设置相比，<strong>组合偏差设置模拟了从训练数据中获得的知识不足以描述整个分布的情况</strong>。为此，我们在构造训练数据时为给定类选择一个子集上下文，并用所有上下文测试模型。通过改变训练数据中观察到的上下文数目，我们可以模拟不同程度的信息丢失和分布偏移。</p>
+<p>从图5中我们可以发现，当我们观察到训练数据中的更多上下文时，NI持续下降。通过结合比例偏差和成分偏差的概念，可以实现更激进的分布变化。在<strong>车辆超类中给定一个特定的类，我们选择7个上下文进行训练，另外3个上下文进行测试，并进一步让一个上下文控制训练数据</strong>。通过这样做，我们可以在训练和测试数据之间获得比前两个设置更严重的非I.I.D.条件，如图6中的结果所示。</p>
+<h4 id="3-4-4-Adversarial-Bias-Setting"><a href="#3-4-4-Adversarial-Bias-Setting" class="headerlink" title="3.4.4. Adversarial Bias Setting"></a>3.4.4. Adversarial Bias Setting</h4><p>给定一个目标类，如果上下文只出现在训练数据的负样本和测试数据的正样本中，我们将其定义为混淆上下文。在这个实验中，我们选择动物超类中的四个类作为目标类，并在图7中报告ni w.r.t的各种混淆上下文。实验结果表明，混杂语境的数量对不同类别学生的英语学习记忆有着一致的影响。在给定任何目标类的情况下，我们都可以通过添加更多的混淆上下文来模拟更严酷的分布变化，并进一步混淆convnet。</p>
+<p><img src="/2019/10/20/NICO/7.png" alt="image-20191020172204505" style="zoom:50%;"></p>
+<p>图8:nico支持的不同设置的动物超类平均ni范围。</p>
+<p>最后，我们在图8中显示了不同非I.I.D.设置下的镍范围。我们可以看到nico中ni的水平显著高于imagenet，并且从最小偏向到对抗性偏向有明显的上升趋势。</p>
+<h2 id="4-General-Non-I-I-D-Image-Classiﬁcation"><a href="#4-General-Non-I-I-D-Image-Classiﬁcation" class="headerlink" title="4.General Non-I.I.D. Image Classiﬁcation"></a>4.General Non-I.I.D. Image Classiﬁcation</h2><p>在这一部分中，我们提出了一个新的non-iid图像分类模型。</p>
+<p>在非I.I.D.图像分类的文献中，大多数以前的方法是针对目标非I.I.D.图像分类提出的。针对训练数据和测试数据之间的分布匹配、特征空间变换和不变特征学习问题，提出了域自适应和协变量移位方法[16,17,18,19]。</p>
+<p>这些方法可以获得良好的性能，但由于需要测试数据分布的先验知识，因此在实际应用中不太可行。另一方面，提出了几种方法来满足目标非i.d.图像分类中测试数据信息的需求。例如，领域泛化方法[20，21]仅使用训练数据来学习领域不可知的模型或不变表示。然而，这些关于转移学习的方法[22]要求训练数据具有多个域，并且我们知道每个样本属于哪个域。此外，这些方法的性能在很大程度上依赖于训练数据的多样性。</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/论文阅读/">论文阅读</a>
+                </div>
+            </div>
         </div>
         
         
@@ -236,7 +321,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Posts
+                        Entradas
                     </p>
                     <p class="title has-text-weight-normal">
                         52
@@ -246,7 +331,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Categorias
                     </p>
                     <p class="title has-text-weight-normal">
                         22
@@ -256,7 +341,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Tags
+                        Etiquetas
                     </p>
                     <p class="title has-text-weight-normal">
                         41
@@ -266,7 +351,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/fallenk" target="_blank">
-                Follow</a>
+                SEGUIR</a>
         </div>
         
         
@@ -358,7 +443,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Categories
+                Categorias
             </h3>
             <ul class="menu-list">
             <li>
@@ -547,9 +632,9 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Tag Cloud
+            Nube de etiquetas
         </h3>
-        <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 10px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 15px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 12.5px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 12.5px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 12.5px;">代码</a> <a href="/tags/入门/" style="font-size: 17.5px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 12.5px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 12.5px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 12.5px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 20px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 15px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 10px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
+        <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 10px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 15px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 12.5px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 12.5px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 12.5px;">代码</a> <a href="/tags/入门/" style="font-size: 17.5px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 12.5px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 12.5px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 12.5px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 20px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 15px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 12.5px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
     </div>
 </div>
 
@@ -561,7 +646,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Recientes
         </h3>
         
         <article class="media">
@@ -667,7 +752,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            Archivos
         </h3>
         <ul class="menu-list">
         
@@ -823,7 +908,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                Etiquetas
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -1103,7 +1188,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/论文阅读/">
                         <span class="tag">论文阅读</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1134,7 +1219,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Recientes
         </h3>
         
         <article class="media">
@@ -1240,7 +1325,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            Archivos
         </h3>
         <ul class="menu-list">
         
@@ -1396,7 +1481,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                Etiquetas
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -1676,7 +1761,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/论文阅读/">
                         <span class="tag">论文阅读</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1871,10 +1956,10 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
+                POSTS: 'Entradas',
                 PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
+                CATEGORIES: 'Categorias',
+                TAGS: 'Etiquetas',
                 UNTITLED: '(Untitled)',
             },
             CONTENT_URL: '/content.json',
