@@ -10,19 +10,19 @@
 <title>NICO - Fallenk&#39;s Blog</title>
 
 
-    <meta name="description" content="non-iid朝向分类图像：数据集和基线训练和测试数据之间的独立同分布假设是众多图像分类方法的基础。在非真实性普遍的情况下，这种性质在实际中很难得到保证，导致模型性能不稳定。然而，在文献中，非I.I.D图像分类问题在很大程度上未被研究。一个关键原因是缺乏设计良好的数据集来支持相关研究。在本文中，我们构建并发布了一个名为nico的非i.i.d.图像数据集，它使用上下文有意识地创建非真实性。与其他数">
+    <meta name="description" content="non-iid朝向分类图像：数据集和基线训练和测试数据之间的独立同分布假设是众多图像分类方法的基础。在非真实性普遍的情况下，这种性质在实际中很难得到保证，导致模型性能不稳定。然而，在文献中，非I.I.D图像分类问题在很大程度上未被研究。一个关键原因是缺乏设计良好的数据集来支持相关研究。在本文中，我们构建并发布了一个名为nico的非i.i.d.图像数据集，它使用上下文有意识地创建非真实性。与其他数据">
 <meta name="keywords" content="论文阅读">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NICO">
 <meta property="og:url" content="https://fallenk.github.io/2019/10/20/NICO/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="non-iid朝向分类图像：数据集和基线训练和测试数据之间的独立同分布假设是众多图像分类方法的基础。在非真实性普遍的情况下，这种性质在实际中很难得到保证，导致模型性能不稳定。然而，在文献中，非I.I.D图像分类问题在很大程度上未被研究。一个关键原因是缺乏设计良好的数据集来支持相关研究。在本文中，我们构建并发布了一个名为nico的非i.i.d.图像数据集，它使用上下文有意识地创建非真实性。与其他数">
+<meta property="og:description" content="non-iid朝向分类图像：数据集和基线训练和测试数据之间的独立同分布假设是众多图像分类方法的基础。在非真实性普遍的情况下，这种性质在实际中很难得到保证，导致模型性能不稳定。然而，在文献中，非I.I.D图像分类问题在很大程度上未被研究。一个关键原因是缺乏设计良好的数据集来支持相关研究。在本文中，我们构建并发布了一个名为nico的非i.i.d.图像数据集，它使用上下文有意识地创建非真实性。与其他数据">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-10-20T09:28:38.032Z">
+<meta property="og:updated_time" content="2019-10-22T02:15:28.206Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NICO">
-<meta name="twitter:description" content="non-iid朝向分类图像：数据集和基线训练和测试数据之间的独立同分布假设是众多图像分类方法的基础。在非真实性普遍的情况下，这种性质在实际中很难得到保证，导致模型性能不稳定。然而，在文献中，非I.I.D图像分类问题在很大程度上未被研究。一个关键原因是缺乏设计良好的数据集来支持相关研究。在本文中，我们构建并发布了一个名为nico的非i.i.d.图像数据集，它使用上下文有意识地创建非真实性。与其他数">
+<meta name="twitter:description" content="non-iid朝向分类图像：数据集和基线训练和测试数据之间的独立同分布假设是众多图像分类方法的基础。在非真实性普遍的情况下，这种性质在实际中很难得到保证，导致模型性能不稳定。然而，在文献中，非I.I.D图像分类问题在很大程度上未被研究。一个关键原因是缺乏设计良好的数据集来支持相关研究。在本文中，我们构建并发布了一个名为nico的非i.i.d.图像数据集，它使用上下文有意识地创建非真实性。与其他数据">
 <meta name="twitter:image" content="https://fallenk.github.io/images/og_image.png">
 
 
@@ -155,7 +155,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    42 minutes read (About 6226 words)
+                    an hour read (About 7308 words)
                 </span>
                 
                 
@@ -168,14 +168,14 @@
             
         </h1>
         <div class="content">
-            <a id="more"></a>
-<h2 id="non-iid朝向分类图像：数据集和基线"><a href="#non-iid朝向分类图像：数据集和基线" class="headerlink" title="non-iid朝向分类图像：数据集和基线"></a>non-iid朝向分类图像：数据集和基线</h2><p>训练和测试数据之间的独立同分布假设是众多图像分类方法的基础。在非真实性普遍的情况下，这种性质在实际中很难得到保证，导致模型性能不稳定。然而，在文献中，非I.I.D图像分类问题在很大程度上未被研究。一个关键原因是缺乏设计良好的数据集来支持相关研究。在本文中，我们构建并发布了一个名为nico的非i.i.d.图像数据集，它使用上下文有意识地创建非真实性。与其他数据集相比，扩展的分析证明NICO可以支持各种非I.I.D情况，具有足够的灵活性。同时，我们提出了一个具有convnet结构的基线模型，用于一般非i.i.d.图像分类，其中测试数据的分布未知，但与训练数据不同。实验结果表明，nico可以从零开始支持convnet模型的训练，而批处理平衡模块可以帮助convnet在非i.i.d.环境下更好地运行。</p>
+            <h2 id="non-iid朝向分类图像：数据集和基线"><a href="#non-iid朝向分类图像：数据集和基线" class="headerlink" title="non-iid朝向分类图像：数据集和基线"></a>non-iid朝向分类图像：数据集和基线</h2><p>训练和测试数据之间的独立同分布假设是众多图像分类方法的基础。在非真实性普遍的情况下，这种性质在实际中很难得到保证，导致模型性能不稳定。然而，在文献中，非I.I.D图像分类问题在很大程度上未被研究。一个关键原因是缺乏设计良好的数据集来支持相关研究。在本文中，我们构建并发布了一个名为nico的非i.i.d.图像数据集，它使用上下文有意识地创建非真实性。与其他数据集相比，扩展的分析证明NICO可以支持各种非I.I.D情况，具有足够的灵活性。同时，我们提出了一个具有convnet结构的基线模型，用于一般非i.i.d.图像分类，其中测试数据的分布未知，但与训练数据不同。实验结果表明，nico可以从零开始支持convnet模型的训练，而批处理平衡模块可以帮助convnet在非i.i.d.环境下更好地运行。</p>
 <p>Keywords: Non-I.I.D., Dataset, Context, Bias, ConvNet, Batch Balancing.</p>
+<a id="more"></a>
 <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p>近年来，机器学习取得了显著的进展，主要得益于深层神经网络的发展[1，2，3，4，5，6]。机器学习模型的一个基本假设是，训练和测试数据应该包含依赖和相同分布的样本（i.i.d.）。然而，这种理想假设在实际情况下是脆弱的，我们很难对测试数据分布施加约束。这意味着<strong>最小化训练数据经验误差的模型不一定能很好地处理测试数据，从而导致非i.i.d.学习的挑战</strong>。当<strong>训练样本不足以逼近训练分布本身</strong>时，问题更为严重。对于学术研究和工业应用来说，如何开发出对分布变化具有鲁棒性的非身份识别学习方法至关重要。</p>
 <p>基准数据集为竞争方法提供了一个共同的基础，对于促进研究方向的发展总是很重要的。以图像分类为例，这是一项重要的学习任务。它的开发得益于基准数据集，如pascal voc[7]、mscoc[8]和imagenet[9]。尤其是ImageNet，<strong>一个大规模且结构良好的图像数据集</strong>，它成功地展示了深度学习的能力，并在随后显著地促进了深度卷积神经网络的发展。在这些数据集上，通过随机数据分割很容易建立I.I.D.图像分类设置。但是它们没有提供一个显式的选项来模拟非i.i.d.设置。能够很好地支持非身份识别图像分类研究的数据集仍处于空白状态。</p>
-<p>在本文中，我们构建并发布了一个专为非i.i.d.图像分类而设计的数据集nico（non-i.d.图像上下文数据集）。其基本思想是用<strong>主要概念main concept和上下文context标记图像</strong>。例如，在“狗”的类别中，图像被分为不同的上下文，例如“草地”、“汽车”、“海滩”，这意味着“狗”分别在草地、汽车或海滩上。有了这些上下文，通过在某些上下文中训练模型并在其他不可见上下文中测试它，可以很容易地设计非i.i.d.设置。同时，通过调整训练和测试数据中不同情境的比例，可以显著地控制分布转移的程度。到目前为止，<strong>nico共包含19个类、188个上下文和近25000个图像</strong>。规模还在不断扩大，目前的规模已经能够从零开始支持深卷积网络的训练。</p>
+<p>在本文中，我们构建并发布了一个专为非i.i.d.图像分类而设计的数据集NICO（non-i.d.图像上下文数据集）。其基本思想是用<strong>主要概念main concept和上下文context标记图像</strong>。例如，在“狗”的类别中，图像被分为不同的上下文，例如“草地”、“汽车”、“海滩”，这意味着“狗”分别在草地、汽车或海滩上。有了这些上下文，通过在某些上下文中训练模型并在其他不可见上下文中测试它，可以很容易地设计非i.i.d.设置。同时，通过调整训练和测试数据中不同情境的比例，可以显著地控制分布转移的程度。到目前为止，<strong>nico共包含19个类、188个上下文和近25000个图像</strong>。规模还在不断扩大，目前的规模已经能够从零开始支持深卷积网络的训练。</p>
 <p>nico数据集可以支持但不限于两种典型的非i.d.图像分类设置。一种是<strong>针对非I.I.D.图像分类，其中测试数据分布已知，但不同于训练数据分布</strong>。另一种是<strong>一般的非I.I.D.图像分类，其中测试数据分布未知，不同于训练数据分布</strong>。显然，后者更现实，更具挑战性。在一个环境中学习的模型可能会应用到许多其他环境中。在这种情况下，模型在未知分布变化环境中的鲁棒性是一个非常有利的特性。它在医疗和安全等风险敏感应用中尤其重要。</p>
-<p>由于缺乏结构良好、尺度合理的数据集，目前还没有提出卷积神经网络模型来解决一般的非i.i.d.图像分类问题。本文提出了一种<strong>新的用于一般非i.i.d.图像分类的cnn模型cnbb</strong>（convnet-with-batch-balancing），实验结果表明，<strong>该模型能在一定程度上克服非i.d.图像分类带来的负面影响</strong>。</p>
+<p>由于缺乏结构良好、尺度合理的数据集，目前还没有提出卷积神经网络模型来解决一般的非i.i.d.图像分类问题。本文提出了一种<strong>新的用于一般非i.i.d.图像分类的cnn模型CNBB</strong>（convnet-with-batch-balancing），实验结果表明，<strong>该模型能在一定程度上克服非i.d.图像分类带来的负面影响</strong>。</p>
 <h2 id="2-Non-I-I-D-Image-Classiﬁcation"><a href="#2-Non-I-I-D-Image-Classiﬁcation" class="headerlink" title="2. Non-I.I.D. Image Classiﬁcation"></a>2. Non-I.I.D. Image Classiﬁcation</h2><h3 id="2-1-Problem-Deﬁnition"><a href="#2-1-Problem-Deﬁnition" class="headerlink" title="2.1. Problem Deﬁnition"></a>2.1. Problem Deﬁnition</h3><p>我们首先对non-iid图像分类进行正式定义，如下所示：</p>
 <p>Problem 1. (Non-I.I.D. Image Classiﬁcation) 根据训练数据 $D_{\text {train}} = \left(X_{\text {train}}, Y_{\text {train}}\right), \text {where } X_{\text {train}} \in \mathbb{R}^{n \times(c \times h \times w)} 代表图像， Y_{\text {train}} \in \mathbb{R}^{n \times 1}代表labels$ 。任务是学习一个特征抽取器$g_{\varphi}(\cdot)$和一个分类器$f_{\theta}(\cdot)$ 。$\begin{array}{l}{\text { so that } f_{\theta}\left(g_{\varphi}(\cdot)\right) \text { can predict the labels of testing data } D_{\text {test }}=\left(X_{\text {test }}, Y_{\text {test }}\right) \text { precisely, }} \ {\text { where } g_{\varphi}(\cdot) \in \mathbb{R}^{n \times p} \text { and } \psi\left(D_{\text {train }}\right) \neq \psi\left(D_{\text {test }}\right) .}\end{array}$</p>
 <p>此外，根据测试数据先验知识的可用性，我们进一步定义了两个不同的任务。</p>
@@ -190,7 +190,7 @@
 <p>$N I(C)=\left|\frac{\overline{g_{\varphi}\left(X_{\text {train}}^{C}\right)}-\overline{g_{\varphi}\left(X_{\text {test}}^{C}\right)}}{\sigma\left(g_{\varphi}\left(X^{C}\right)\right)}\right|_{2}$</p>
 <p>其中$X^{C}=X_{\text {train}}^{C} \cup X_{\text {test}}^{C}, \overline{(\cdot)}$代表表示一阶矩, $\sigma(\cdot)$ 代表是用于标准化特征比例的标准, $|\cdot|_{2}$ 表示2-范数</p>
 <h3 id="2-2-Existence-of-Non-IIDness"><a href="#2-2-Existence-of-Non-IIDness" class="headerlink" title="2.2. Existence of Non-IIDness"></a>2.2. Existence of Non-IIDness</h3><p>在实际的情况下，I.I.D.假设不能严格满足，也就是说，在先前的数据集中普遍存在非Idess（10）。这里我们以imagenet为例。ImageNet是一个层次结构，其中每个类（例如Dog）包含多个子类（例如不同种类的Dog）。</p>
-<p>对于每个子类，它提供图像的训练和测试（验证）子集。为了验证imagenet中的非真实性，我们选择了<strong>10个常见的动物类（如狗、猫）并使用从这些类中随机抽取的10个实例化子类（如拉布拉多、波斯语）构建了一个新的数据集</strong>。使用训练和测试子集，我们训练和评估convnet的图像分类任务。本文<strong>使用的convnet的结构类似于alexnet（详见附录）</strong>，我们将convnet的最后一个fc层作为特征抽取器g’。请注意，模型结构用于所有后续分析（包括对nico的分析）以进行公平比较，因此通过<strong>权衡绩效和所需的培训数据量表</strong>进行选择。</p>
+<p>对于每个子类，它提供图像的训练和测试（验证）子集。为了验证imagenet中的non-iid性，我们选择了<strong>10个常见的动物类（如狗、猫）并使用从这些类中随机抽取的10个实例化子类（如拉布拉多、波斯语）构建了一个新的数据集</strong>。使用训练和测试子集，我们训练和评估convnet的图像分类任务。本文<strong>使用的convnet的结构类似于alexnet（详见附录）</strong>，我们将convnet的最后一个fc层作为特征抽取器g’。请注意，模型结构用于所有后续分析（包括对nico的分析）以进行公平比较，因此通过<strong>权衡绩效和所需的培训数据量表</strong>进行选择。</p>
 <p>但作为一个具有充分学习能力的基础模型，具体的模型结构并不影响结论。我们重复这个收集过程3次，得到3个新的数据集（数据集A、数据集B和数据集C），分别计算每个类的NI和测试误差。作为一个例子，我们在图1中绘制了dataseta的结果。</p>
 <p><img src="/2019/10/20/NICO/1.png" alt="image-20191020160714768" style="zoom:50%;"></p>
 <p>图1：数据集A中每个类的ni（用条形表示）和测试误差（用曲线表示）。</p>
@@ -243,7 +243,21 @@
 <p>最后，我们在图8中显示了不同非I.I.D.设置下的镍范围。我们可以看到nico中ni的水平显著高于imagenet，并且从最小偏向到对抗性偏向有明显的上升趋势。</p>
 <h2 id="4-General-Non-I-I-D-Image-Classiﬁcation"><a href="#4-General-Non-I-I-D-Image-Classiﬁcation" class="headerlink" title="4.General Non-I.I.D. Image Classiﬁcation"></a>4.General Non-I.I.D. Image Classiﬁcation</h2><p>在这一部分中，我们提出了一个新的non-iid图像分类模型。</p>
 <p>在非I.I.D.图像分类的文献中，大多数以前的方法是针对目标非I.I.D.图像分类提出的。针对训练数据和测试数据之间的分布匹配、特征空间变换和不变特征学习问题，提出了域自适应和协变量移位方法[16,17,18,19]。</p>
-<p>这些方法可以获得良好的性能，但由于需要测试数据分布的先验知识，因此在实际应用中不太可行。另一方面，提出了几种方法来满足目标非i.d.图像分类中测试数据信息的需求。例如，领域泛化方法[20，21]仅使用训练数据来学习领域不可知的模型或不变表示。然而，这些关于转移学习的方法[22]要求训练数据具有多个域，并且我们知道每个样本属于哪个域。此外，这些方法的性能在很大程度上依赖于训练数据的多样性。</p>
+<p>这些方法可以获得良好的性能，但由于需要测试数据分布的先验知识，因此在实际应用中不太可行。另一方面，提出了几种方法来满足目标非i.d.图像分类中测试数据信息的需求。例如，领域泛化方法[20，21]仅使用训练数据来学习领域不可知的模型或不变表示。然而，这些<strong>关于转移学习的方法[22]要求训练数据具有多个域，并且我们知道每个样本属于哪个域</strong>。此外，<strong>这些方法的性能在很大程度上依赖于训练数据的多样性</strong>。</p>
+<p>近年来，越来越多的人对一般的非独立学习产生了越来越多的关注。在因果关系文献[23]中，解决选择偏差的理想模型是基于因果变量制定政策，这些变量在不同领域保持稳定[24]。基于一个观察数据来估计治疗结果的因果ect的常用方法包括倾向性得分匹配[25，26]、马尔可夫毯子[27，28]和混杂平衡[29，30]等[31]。<strong>最近[32]利用因果关系进行预测建模。通过全局共焦平衡，可以准确识别对未知分布漂移不敏感的稳定特征进行预测</strong>。[33]提出了一种称为CRLR 7的<strong>因果正则逻辑回归，用于一般的非I.I.D.图像分类，并在相对较小的数据集中取得了良好的性能</strong>。然而，由于缺乏结构良好、规模合理的数据集，这些方法无法充分利用强大的表示学习技术（如convnets），因此不利于大规模的图像分类任务。</p>
+<p>本文在nico的帮助下，将全局共焦平衡（the notion of global confounder balancing）的概念推广到convnet中，提出了一个新的模型CNBB，convnet with Batch Balancing。</p>
+<p><img src="/2019/10/20/NICO/8.png" alt="image-20191020175330733" style="zoom:50%;"></p>
+<h3 id="4-1-ConvNet-with-Batch-Balancing"><a href="#4-1-ConvNet-with-Batch-Balancing" class="headerlink" title="4.1. ConvNet with Batch Balancing"></a>4.1. ConvNet with Batch Balancing</h3><p>CRLR的核心思想是全局共焦平衡global confounder balancing，它将每个特征依次设置为处理变量，并学习一组最优的样本权重，以平衡处理组和控制组对任何处理变量的分布。在那里之后，特征之间的相关性将被分离，并且它们在类标签上的真实效果可以更准确地估计。</p>
+<p>为了将全球共焦平衡的概念引入深度学习，我们主要面临两个挑战：</p>
+<ul>
+<li>共焦平衡方法假设特征为二进制形式，而我们通常在convnet中具有连续特征。</li>
+<li>对于全局共焦平衡，我们需要在一次迭代中为所有训练样本学习一组新的样本权重。</li>
+</ul>
+<p>这对于convnet来说是不可行的，因为我们不能同时将所有的训练数据输入到模型中。</p>
+<p>为了克服这些挑战，我们引入了特征二值化的量化损失，并提出了一种批量共焦平衡方法。具体来说，给定一批训练图像，我们定义量化损失如下：</p>
+<p>$\left.\operatorname{Loss} q=-\sum_{i=1}^{n} | g_{\varphi}\left(x_{i}\right)\right) |_{2}^{2}$ , （1）</p>
+<h2 id="5-Conclusion-and-Future-Works"><a href="#5-Conclusion-and-Future-Works" class="headerlink" title="5. Conclusion and Future Works"></a>5. Conclusion and Future Works</h2><p>本文介绍了一种新的数据集NICO，用于促进non-iid图像分类的研究。据我们所知，nico是第一个结构良好的非i.i.d.图像数据集，具有合理的规模以支持convnets的培训。通过结合语境的思想，nico可以提供各种非身份识别设置，并有意识地创建不同层次的非身份。我们还提出了一个具有convnet结构的简单基线模型，用于一般的非i.i.d.图像分类问题，其中测试数据与训练数据具有不可知的分布变化。实验结果清楚地证明了nico在训练convnets方面的能力以及该模型在各种非i.i.d.环境下的优越性。</p>
+<p>我们未来的工作将集中在以下几个方面。一是NICO的质量和数量不断提高。将<strong>探索正交背景、去噪图像和适当的对象面积比</strong>，使nico更可控，以唯一地调整偏差和对非i.i.d的响应。我们将从各个层面扩大数据集的规模，以满足足够的需求。其次，更多关于不同形式的非i.i.d的设置有望被利用。因此，如果需要，可以在nico中添加其他视觉概念，并将详细介绍使用nico满足新设置的方法。第三，将设<strong>计更有效的模型，以解决非身份识别图像分类的不同设置中的问题</strong>。</p>
 
         </div>
         
@@ -267,6 +281,13 @@
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/10/22/第一章Java程序设计概述/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">第一章Java程序设计概述</span>
+            </a>
+        </div>
         
         
         <div class="level-end">
@@ -324,7 +345,7 @@
                         Entradas
                     </p>
                     <p class="title has-text-weight-normal">
-                        52
+                        53
                     </p>
                 </div>
             </div>
@@ -334,7 +355,7 @@
                         Categorias
                     </p>
                     <p class="title has-text-weight-normal">
-                        22
+                        23
                     </p>
                 </div>
             </div>
@@ -503,6 +524,14 @@
                 <span class="level-item tag">2</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Java学习/">
+            <span class="level-start">
+                <span class="level-item">Java学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/LeetCode/">
             <span class="level-start">
                 <span class="level-item">LeetCode</span>
@@ -634,7 +663,7 @@
         <h3 class="menu-label">
             Nube de etiquetas
         </h3>
-        <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 10px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 15px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 12.5px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 12.5px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 12.5px;">代码</a> <a href="/tags/入门/" style="font-size: 17.5px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 12.5px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 12.5px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 12.5px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 20px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 15px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 12.5px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
+        <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 10px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 12px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 12px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 12px;">代码</a> <a href="/tags/入门/" style="font-size: 16px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 12px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 12px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 12px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 18px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 14px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 12px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
     </div>
 </div>
 
@@ -648,6 +677,25 @@
         <h3 class="menu-label">
             Recientes
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/10/22/第一章Java程序设计概述/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="第一章Java程序设计概述">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-22T07:35:01.000Z">2019-10-22</time></div>
+                    <a href="/2019/10/22/第一章Java程序设计概述/" class="title has-link-black-ter is-size-6 has-text-weight-normal">第一章Java程序设计概述</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java学习/">Java学习</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -725,25 +773,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/25/pytorch学习2/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="pytorch学习2">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-25T09:01:13.000Z">2019-08-25</time></div>
-                    <a href="/2019/08/25/pytorch学习2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">pytorch学习2</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/pytorch/">pytorch</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -762,7 +791,7 @@
                     <span class="level-item">October 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -978,7 +1007,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/coding/">
                         <span class="tag">coding</span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 
@@ -1224,6 +1253,25 @@
         
         <article class="media">
             
+            <a href="/2019/10/22/第一章Java程序设计概述/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="第一章Java程序设计概述">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-22T07:35:01.000Z">2019-10-22</time></div>
+                    <a href="/2019/10/22/第一章Java程序设计概述/" class="title has-link-black-ter is-size-6 has-text-weight-normal">第一章Java程序设计概述</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java学习/">Java学习</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/10/20/NICO/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
@@ -1298,25 +1346,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/25/pytorch学习2/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="pytorch学习2">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-25T09:01:13.000Z">2019-08-25</time></div>
-                    <a href="/2019/08/25/pytorch学习2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">pytorch学习2</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/pytorch/">pytorch</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1335,7 +1364,7 @@
                     <span class="level-item">October 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1551,7 +1580,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/coding/">
                         <span class="tag">coding</span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 

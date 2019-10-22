@@ -7,21 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Categoria: Docker容器 - Fallenk&#39;s Blog</title>
+<title>第一章Java程序设计概述 - Fallenk&#39;s Blog</title>
 
 
-    <meta name="description" content="不忘初心，努力学习，砥砺前进，自我反省">
-<meta name="keywords" content="经历，心得，笔记，目标">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fallenk&#39;s Blog">
-<meta property="og:url" content="https://fallenk.github.io/categories/Docker容器/index.html">
+    <meta name="description" content="Java的特性：">
+<meta name="keywords" content="coding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一章Java程序设计概述">
+<meta property="og:url" content="https://fallenk.github.io/2019/10/22/第一章Java程序设计概述/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta property="og:description" content="Java的特性：">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
+<meta property="og:updated_time" content="2019-10-22T09:10:23.945Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fallenk&#39;s Blog">
-<meta name="twitter:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta name="twitter:title" content="第一章Java程序设计概述">
+<meta name="twitter:description" content="Java的特性：">
 <meta name="twitter:image" content="https://fallenk.github.io/images/og_image.png">
 
 
@@ -92,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Fallenk&#39;s Blog" height="28">
+                <img src="/images/logo.svg" alt="第一章Java程序设计概述" height="28">
             
             </a>
         </div>
@@ -143,34 +144,22 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/categories">Categorias</a></li>
-            
-            <li class="is-active"><a href="#" aria-current="page">Docker容器</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-11-28T02:37:36.000Z">2018-11-28</time>
+                <time class="level-item has-text-grey" datetime="2019-10-22T07:35:01.000Z">2019-10-22</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Docker容器/">Docker容器</a>
+                <a class="has-link-grey -link" href="/categories/Java学习/">Java学习</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1063 words)
+                    8 minutes read (About 1133 words)
                 </span>
                 
                 
@@ -179,24 +168,77 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2018/11/28/Docker三剑客/">Docker三剑客</a>
+                第一章Java程序设计概述
             
         </h1>
         <div class="content">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>理解Docker的三个核心概念：镜像，容器，仓库；</p>
+            <p>Java的特性：</p>
+<a id="more"></a>
 <ol>
-<li>开发人员使用Dockerfile定制镜像，使用docker-compose在<code>.yml</code>文件中配置所有容器的部署方法、文件映射、容器链接等，运行<code>docker-compose up</code>执行安装容器并且自动部署。</li>
-<li>运维人员从仓库下载容器，运行脚本。</li></ol>
+<li>简单性</li>
+<li>面向对象！</li>
+<li>分布式!</li>
+<li>健壮性</li>
+<li>安全性</li>
+<li>体系结构中立</li>
+<li>可移植性!</li>
+<li>解释型!</li>
+<li>高性能</li>
+<li>多线程！</li>
+<li>动态性</li>
+</ol>
+<h1 id="第二章-Java程序设计环境"><a href="#第二章-Java程序设计环境" class="headerlink" title="第二章 Java程序设计环境"></a>第二章 Java程序设计环境</h1><p>JDK: 编写Java程序的程序员使用的软件，开发环境工具包</p>
+<p>JRE：运行Java程序的用户使用的软件，运行环境</p>
+<p>Standard Edition： SE，用于桌面或简单服务器应用的Java平台</p>
+<p>EE：用于复杂服务器应用的Java平台</p>
+<h3 id="安装：库源文档和文档"><a href="#安装：库源文档和文档" class="headerlink" title="安装：库源文档和文档"></a>安装：库源文档和文档</h3><p>库源文件在JDK中以一个压缩文件 src.zip 的形式发布 ，必须将其解压缩后才能够访问源代码 。建议按照下面所的步骤进行操作。</p>
+<ol>
+<li>确保JDK已经安转，并且在jdk/bin目录中执行路径汇中</li>
+<li>在主目录中建立一个目录 javasrc 如果愿意 可以在一个终端窗口完成这个步骤 <code>mkdir javasrc</code>; </li>
+<li>在jdk目录中找到src.zip</li>
+<li>将src.zip文件解压到javasrc中</li>
+</ol>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Welcome</span> </span>&#123;</span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">    String greeting = <span class="hljs-string">"Welcome to Core Java!"</span>;</span><br><span class="line">    System.out.println(greeting);</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;greeting.length(); i++) &#123;</span><br><span class="line">      System.out.println(<span class="hljs-string">"="</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编写Welcome.java文件；类型名注意大小写</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">javac Welcome.java</span><br><span class="line">java Welcome</span><br></pre></td></tr></table></figure>
+<p>从命令行编译和运行一个 Java 程序</p>
+<p>javac是一个java的编译器；将Welcome.java编译成Welcome.class; </p>
+<p>java程序启动Java虚拟机；虚拟机执行编译器放在class文件的字节码</p>
+<h1 id="第三章-Java的基本程序设计结构"><a href="#第三章-Java的基本程序设计结构" class="headerlink" title="第三章 Java的基本程序设计结构"></a>第三章 Java的基本程序设计结构</h1><p>主要介绍 程序设计的基本概念(如数据类型，分支以及循环)</p>
+<h2 id="一个java-demo"><a href="#一个java-demo" class="headerlink" title="一个java demo"></a>一个java demo</h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FirstSample</span> </span>&#123;</span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="hljs-string">"We will not use 'Hello World'"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>java区分大小分 main 不是Main！！</li>
+<li>关键字 public 访问修饰符(access modifier)；用于控制程序的其他部分对这段代码的访问级别</li>
+<li>关键字class 表明Java程序中基本处理的单位是类，所有内容都在类中； class紧跟类名；名字必须字母开头，后跟字母和数字的组合。类名以大写字母开头，驼峰法；<strong>源代码命名必须与公共类同名！！</strong></li>
+<li>正确命名后，<code>javac FirstSample.java</code>编译这段代码得到一个<strong>包含这个类字节码的文件</strong>。Java编译器将字节码文件自动命名为FirstSample.class，同一目录下。</li>
+<li>运行 java已编译程序<code>java FirstSample</code>; Java虚拟机将<strong>从指定类中的main方法开始执行</strong>(方法即java中的函数)； <strong>Java 中的所有函數都属于某个类的方法</strong> （ 标准术语将其称为方法而不是成员函数 ）。因此 Java 中的 main 方法必须有一个外壳类。Java 中的 main 方法必须是静态的 最后关键字 void 表示这个方法没有返回值。如果 main 方法正常退出 ， 那么 Java 应用程序的退出代码为 0，表示成功地运行了程序。如果希望在终止程序时返回其他的代码，那就需要调用System.exit方法</li>
+<li>使用括号{} 来划分程序的各个部分；一对大括号表示方法体的开始与结束。</li>
+<li>在上面这个 main 方法体中只包含了一条语句 其功能是 将一个文本行输出到控制台上；使用了 System . out 对象并调用了它的 println 方法。点号(.)用于调用方法。等价于函数调用。<code>object.methond(parameters)</code></li>
+</ol>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>java是强类型语言；意味着必须为每个变量申明一种类型。共有8中基本类型；</p>
+<ol>
+<li>4种整型(int 4字节 刚过20亿；short 2字节； long 8字节； byte 1字节-128-127)；</li>
+<li>2种浮点类型； float 4字节； double 8字节 ！！！；</li>
+<li>1种用于Unicode编码的<strong>字符单元的字符类型char</strong>； 单个字符，单引号括起来；<ol>
+<li>转义序列 \u； 从 \u0000 到\uffff; 转义序列 \ u 还可以出现在加引号的字符常量或字符串之外<code>public static void main(String\u005B\u005D args )</code></li>
+<li>注释中 \u 替换成特殊字符； 回车，换行</li>
+</ol>
+</li>
+<li>1种用于表示真值的boolean类型； false 或 true； 不能和整型转换</li>
+<li>还有一个算术包， 大数值，是一个Java对象，不是类型</li>
+</ol>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/11/28/Docker三剑客/#more">Read More</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/coding/">coding</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -206,59 +248,19 @@
 
 
 
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-11-27T13:23:58.000Z">2018-11-27</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Docker容器/">Docker容器</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    an hour read (About 8471 words)
-                </span>
-                
-                
-            </div>
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/10/20/NICO/">
+                <span class="level-item">NICO</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/11/27/Docker快速入门/">Docker快速入门</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>本文记录的是作为一个新手，从了解 Docker 是什么、Docker 技术包含哪些概念到上手使用、安装以及发布 Docker 镜像的整个过程。作者在学习过程中参阅了诸多文档和教程，在此一并感谢，与此同时本文结尾也列出了参考文献的链接，供读者进一步参考。遵循简介、入门、上手到深入的顺序，本文根据个人学习实践过程进行书写，结构如下：</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/11/27/Docker快速入门/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
         
     </div>
 </div>
-
-
-
-
-
-
 
 
 </div>
@@ -1778,7 +1780,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Fallenk&#39;s Blog" height="28">
+                    <img src="/images/logo.svg" alt="第一章Java程序设计概述" height="28">
                 
                 </a>
                 <p class="is-size-7">
