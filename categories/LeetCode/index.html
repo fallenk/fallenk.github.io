@@ -170,7 +170,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 710 words)
+                    5 minutes read (About 711 words)
                 </span>
                 
                 
@@ -189,19 +189,16 @@
 </li>
 </ol>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">给定 nums = [2, 7, 11, 15], target = 9</span><br><span class="line"></span><br><span class="line">因为 nums[0] + nums[1] = 2 + 7 = 9</span><br><span class="line">所以返回 [0, 1]</span><br></pre></td></tr></table></figure>
-<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/two-sum" target="_blank" rel="noopener">https://leetcode-cn.com/problems/two-sum</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h4 id="方法一：暴力法"><a href="#方法一：暴力法" class="headerlink" title="方法一：暴力法"></a>方法一：暴力法</h4><p>暴力法很简单，遍历每个元素 x，并查找是否存在一个值与target−x 相等的目标元素。</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] twoSum(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> target) &#123;</span><br><span class="line">        <span class="hljs-keyword">int</span>[] indexs = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">2</span>];</span><br><span class="line">        </span><br><span class="line">       <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt; nums.length; i++) &#123;</span><br><span class="line">           <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=i+<span class="hljs-number">1</span>; j &lt; nums.length; j++) &#123;</span><br><span class="line">               <span class="hljs-keyword">if</span>(nums[i] + nums[j] == target) &#123;</span><br><span class="line">                   indexs[<span class="hljs-number">0</span>] = i;</span><br><span class="line">                   indexs[<span class="hljs-number">1</span>] = j;</span><br><span class="line">                   <span class="hljs-keyword">return</span> indexs;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">        <span class="hljs-keyword">throw</span> IllegalArgumentException(<span class="hljs-string">"No two sumsolution"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对于每个元素，我们试图通过遍历数组的其余部分来寻找它所对应的目标元素，这将耗费 O(n) 的时间。因此时间复杂度为 $O(n^2)$。</p>
-<h4 id="方法二：两遍哈希表"><a href="#方法二：两遍哈希表" class="headerlink" title="方法二：两遍哈希表"></a>方法二：两遍哈希表</h4><p>为了对<strong>运行时间复杂度进行优化，我们需要一种更有效的方法来检查数组中是否存在目标元素</strong>。如果存在，我们需要找出它的索引。保持数组中的每个元素与其索引相互对应的最好方法是什么？<strong>哈希表</strong>。</p>
-<p>通过<strong>以空间换取速度的方式</strong>，我们可以将查找时间从 O(n)降低到 O(1)。哈希表正是为此目的而构建的，它支持以 近似 恒定的时间进行快速查找。我用“近似”来描述，是因为一旦出现冲突，查找用时可能会退化到 O(n)。但只要你仔细地挑选哈希函数，在哈希表中进行查找的用时应当被摊销为 O(1)。</p>
-<p>一个<strong>简单的实现使用了两次迭代</strong>。在第一次迭代中，<strong>我们将每个元素的值和它的索引添加到表中</strong>。然后，在第二次迭代中，我们<strong>将检查每个元素所对应的目标元素（target - nums[i]）是否存在于表中</strong>。注意，该目标元素不能是 nums[i] 本身！</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] twoSum(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> target) &#123;</span><br><span class="line">    <span class="hljs-comment">// 1. 循环nums数组放入map 2. 循环nums找到nums[i]与target-nums[i]</span></span><br><span class="line">    Map&lt;Integer, Integer&gt; map = <span class="hljs-keyword">new</span> Map&lt;&gt;();</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;nums.length; i++) &#123;</span><br><span class="line">      map.put(nums[i], i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;nums.length; i++) &#123;</span><br><span class="line">      <span class="hljs-keyword">int</span> complement = target - nums[i];</span><br><span class="line">      <span class="hljs-keyword">if</span>(map.containsKey(complement) &amp;&amp; map.get(complement) != i) &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123;i, map.get(complement)&#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">"NO two sum"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>方法三：一遍哈希表<br>事实证明，我们可以一次完成。在进行迭代并将元素插入到表中的同时，我们还会<strong>回过头来检查表中是否已经存在当前元素所对应的目标元素</strong>。如果它存在，那我们已经找到了对应解，并立即将其返回。</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] twoSum(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> target) &#123;</span><br><span class="line">    <span class="hljs-comment">// 1. 循环nums, 判断存在</span></span><br><span class="line">    Map&lt;Integer, Integer&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;nums.length; i++) &#123;</span><br><span class="line">      <span class="hljs-keyword">int</span> complement = target - nums[i];</span><br><span class="line">      <span class="hljs-keyword">if</span>(map.containsKey(complement) &amp;&amp; map.get(complement) != i) &#123;</span><br><span class="line">        <span class="hljs-comment">// return new int[] &#123;i, map.get(complement)&#125;;</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123;map.get(complement), i&#125;&#125;;</span><br><span class="line">      &#125;</span><br><span class="line">      map.put(nums[i], i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">"No two sum"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/11/07/1两数之和/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -365,7 +362,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        54
+                        55
                     </p>
                 </div>
             </div>
@@ -700,6 +697,25 @@
         
         <article class="media">
             
+            <a href="/2019/11/09/2两数相加/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="2两数相加">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-09T14:30:59.000Z">2019-11-09</time></div>
+                    <a href="/2019/11/09/2两数相加/" class="title has-link-black-ter is-size-6 has-text-weight-normal">2两数相加</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/11/07/1两数之和/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="1两数之和">
@@ -774,25 +790,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/31/CPP入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="C++入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-31T09:17:54.000Z">2019-08-31</time></div>
-                    <a href="/2019/08/31/CPP入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">C++入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/C/">C++</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -811,7 +808,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1291,6 +1288,25 @@
         
         <article class="media">
             
+            <a href="/2019/11/09/2两数相加/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="2两数相加">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-09T14:30:59.000Z">2019-11-09</time></div>
+                    <a href="/2019/11/09/2两数相加/" class="title has-link-black-ter is-size-6 has-text-weight-normal">2两数相加</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/11/07/1两数之和/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="1两数之和">
@@ -1365,25 +1381,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/31/CPP入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="C++入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-31T09:17:54.000Z">2019-08-31</time></div>
-                    <a href="/2019/08/31/CPP入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">C++入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/C/">C++</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1402,7 +1399,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
