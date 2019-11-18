@@ -19,7 +19,7 @@
 <meta property="og:description" content="title: 基于分散数据的深度网络通信高效学习">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-06-28T18:23:22.177Z">
+<meta property="og:updated_time" content="2019-11-15T06:59:44.314Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Communication-Efficient Learning of Deep Networks from Decentralized Data">
 <meta name="twitter:description" content="title: 基于分散数据的深度网络通信高效学习">
@@ -159,7 +159,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    43 minutes membaca (Sekitar 6383 kata)
+                    42 minutes membaca (Sekitar 6372 kata)
                 </span>
                 
                 
@@ -228,7 +228,7 @@
 <p>θ是参数，控制调节；总的损失函数：</p>
 <p>对于一般的非凸目标，参数空间中的平均模型可能产生任意不良的模型。<br>遵循Goodfellow等人的方法 [17]。当我们对从不同初始条件训练的两个MNIST数字识别模型进行平均时，我们看到了这种不良行为（图1，左）。对于该图，父模型w和w 0均在来自MNIST训练集的600个实例的非重叠IID样本上进行训练。训练是通过SGD进行的，固定学习率为0.1，对于50个50（或E = 20次通过大小为600的minibatch）的240个更新。这大约是模型开始过拟合其本地数据集的训练量。</p>
 <p>最近的研究表明，在实践中，足够过度参数化的NN的损失表面出乎意料地得到了很好的支持，特别是不像以前认为的那样容易出现局部最小值。事实上，当我们从相同的随机初始化开始两个模型然后再次在不同的数据子集上独立训练时（如上所述），我们发现原始的参数平均效果出奇的好(Figure 1, right):这两个模型的平均值, $\frac { 1 } { 2 } w + \frac { 1 } { 2 } w ^ { \prime }$;在整个MNIST训练集上实现的损失显着低于通过独立训练任何一个小数据集所获得的最佳模型。虽然图1从随机初始化开始，但请注意每轮FedAvg使用共享的起始模型，因此同样的直觉也适用。</p>
-<p><img src="/2019/01/05/Communication-Efficient-Learning-of-Deep-Networks-from-Decentralized-Data/demo5.png" alt=""></p>
+<p><img src="/2019/01/05/Communication-Efficient-Learning-of-Deep-Networks-from-Decentralized-Data/demo5.png" style="zoom:50%;"></p>
 <h1 id="3-Experimental-Results"><a href="#3-Experimental-Results" class="headerlink" title="3 Experimental Results"></a>3 Experimental Results</h1><h1 id="4-Conclusions-and-Future-Work"><a href="#4-Conclusions-and-Future-Work" class="headerlink" title="4 Conclusions and Future Work"></a>4 Conclusions and Future Work</h1><p>我们的实验表明联合学习可以变得切实可行，因为FedAvg使用相对较少的几轮通信训练高质量模型，如各种模型架构的结果所示：多层感知器，两个不同的卷积NN，双层字符LSTM和大规模字级LSTM。</p>
 <p>虽然联合学习提供了许多实用的隐私保护，但通过差异隐私[14,13,1]提供更强有力的保证，安全的多方计算[18]，或者它们的组合是未来工作的一个有趣方向。请注意，这两类技术最自然地应用于FedAvg等同步算法。</p>
 <p>这项工作之后，Bonawitz等人。 [6]为联邦学习引入了一种有效的安全聚合协议，Konecn’y等。 [23]提出了进一步降低通信成本的算法。</p>

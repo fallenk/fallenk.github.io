@@ -19,7 +19,7 @@
 <meta property="og:description" content="Leaf：联合设置的基准现代联邦网络，例如由可穿戴设备、移动电话或自动车辆组成的网络，每天都会生成大量的数据。这些丰富的数据有助于学习能够改善每个设备上用户体验的模型。然而，在联合设置中的学习在机器学习管道的所有阶段都提出了新的挑战。当机器学习社区开始应对这些挑战时，我们正处于关键时刻，以确保这一领域的发展是以现实世界的假设为基础的。为此，我们提出了Leaf，一个用于在联合环境中学习的模块化基准测">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-09-03T07:07:44.831Z">
+<meta property="og:updated_time" content="2019-11-15T13:49:19.334Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LEAF">
 <meta name="twitter:description" content="Leaf：联合设置的基准现代联邦网络，例如由可穿戴设备、移动电话或自动车辆组成的网络，每天都会生成大量的数据。这些丰富的数据有助于学习能够改善每个设备上用户体验的模型。然而，在联合设置中的学习在机器学习管道的所有阶段都提出了新的挑战。当机器学习社区开始应对这些挑战时，我们正处于关键时刻，以确保这一领域的发展是以现实世界的假设为基础的。为此，我们提出了Leaf，一个用于在联合环境中学习的模块化基准测">
@@ -186,7 +186,7 @@
 <h2 id="2-LEAF"><a href="#2-LEAF" class="headerlink" title="2 LEAF"></a>2 LEAF</h2><p>Leaf是一个用于联合设置的<a href="https://talwalkarlab.github.io/leaf/" target="_blank" rel="noopener">开放源代码</a>基准框架。它由（1）一套<strong>开放源代码数据集</strong>，（2）一组<strong>统计和系统度量</strong>，以及（3）<strong>一组参考实现</strong>组成。如图1所示，Leaf的模块化设计允许这三个组件轻松地集成到不同的实验管道中。我们现在详细介绍Leaf的核心组件。</p>
 <p><img src="/2019/09/02/LEAF/1.png" alt="image-20190902153909376"></p>
 <p>图1：Leaf模块以及他们之间的连接关系。Datasets模块预处理数据并且转化成标准json格式，可以让任意ML管道使用。Reference Implementations是一个成长的，包含用在联邦设置的公共方法的仓库：每一个实现产生了大量不同的统计和metrics衡量指标的日志。这个日志(或者任何用合适的格式生成的日志)可以用来聚合 和 分析这些metrics衡量指标在各个方面。Leaf在Metrics来执行这个操作。</p>
-<p><strong>数据集</strong>：我们策划了一套真实的联邦数据集。我们关注数据集，其中（1）数据具有自然的键生成过程（其中每个键引用特定设备）；（2）数据是从数千到数百万个设备的网络生成的；以及（3）数据点的数量在设备之间发生了倾斜。目前，leaf包含三个数据集：</p>
+<p><strong>数据集</strong>：我们策划了一套真实的联邦数据集。我们关注数据集，其中（1）数据具有自然的键生成过程（其中每个键引用特定设备）；（2）数据是从数千到数百万个设备的网络生成的；以及（3）数据点的数量在设备之间发生了倾斜。目前，leaf包含三个数据集：</p>
 <ul>
 <li><p>联邦扩展mnist（femnist），它是流行mnist[13]数据集的类似（但更具挑战性）基准。它是根据数字/字符的写入器，对扩展mnist[5]中的数据进行分区而建立的。</p>
 </li>
