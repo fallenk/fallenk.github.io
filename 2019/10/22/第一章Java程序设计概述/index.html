@@ -19,7 +19,7 @@
 <meta property="og:description" content="Java的特性：">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-10-23T14:31:45.103Z">
+<meta property="og:updated_time" content="2019-11-21T14:39:39.266Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一章Java程序设计概述">
 <meta name="twitter:description" content="Java的特性：">
@@ -159,7 +159,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    44 minutes read (About 6564 words)
+                    an hour read (About 6953 words)
                 </span>
                 
                 
@@ -209,7 +209,7 @@
 <ol>
 <li>java区分大小分 main 不是Main！！</li>
 <li>关键字 public 访问修饰符(access modifier)；用于控制程序的其他部分对这段代码的访问级别</li>
-<li>关键字class 表明Java程序中基本处理的单位是类，所有内容都在类中； class紧跟类名；名字必须字母开头，后跟字母和数字的组合。类名以大写字母开头，驼峰法；<strong>源代码命名必须与公共类同名！！</strong></li>
+<li>关键字class 表明Java程序中基本处理的单位是类，所有内容都在类中； class紧跟类名；<strong>名字必须字母开头，后跟字母和数字的组合。类名以大写字母开头，驼峰法</strong>；<strong>源代码命名必须与公共类同名！！</strong></li>
 <li>正确命名后，<code>javac FirstSample.java</code>编译这段代码得到一个<strong>包含这个类字节码的文件</strong>。Java编译器将字节码文件自动命名为FirstSample.class，同一目录下。</li>
 <li>运行 java已编译程序<code>java FirstSample</code>; Java虚拟机将<strong>从指定类中的main方法开始执行</strong>(方法即java中的函数)； <strong>Java 中的所有函數都属于某个类的方法</strong> （ 标准术语将其称为方法而不是成员函数 ）。因此 Java 中的 main 方法必须有一个外壳类。Java 中的 main 方法必须是静态的 最后关键字 void 表示这个方法没有返回值。如果 main 方法正常退出 ， 那么 Java 应用程序的退出代码为 0，表示成功地运行了程序。如果希望在终止程序时返回其他的代码，那就需要调用System.exit方法</li>
 <li>使用括号{} 来划分程序的各个部分；一对大括号表示方法体的开始与结束。</li>
@@ -221,13 +221,13 @@
 <li>2种浮点类型； float 4字节； double 8字节 ！！！；</li>
 <li>1种用于Unicode编码的<strong>字符单元的字符类型char</strong>； 单个字符，单引号括起来；<ol>
 <li>转义序列 \u； 从 \u0000 到\uffff; 转义序列 \ u 还可以出现在加引号的字符常量或字符串之外<code>public static void main(String\u005B\u005D args )</code></li>
-<li>注释中 \u 替换成特殊字符； 回车，换行</li>
+<li>注释中 \u 替换成特殊字符； 回车，换行 最好将字符串作为抽象数据类型处理</li>
 </ol>
 </li>
 <li>1种用于表示真值的boolean类型； false 或 true； 不能和整型转换</li>
 <li>还有一个算术包， 大数值，是一个Java对象，不是类型</li>
 </ol>
-<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>java中， 每个变量都有一个类型(type)；int i; double salary;</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>java中， 每个变量都有一个类型(type)；int i; double salary;<strong>变量的声明尽可能地靠近变量第一次使用的地方</strong></p>
 <p><code>$</code> 是一个合法的Java字符，但不要用，只用在Java编译器中。</p>
 <p><strong>变量初始化</strong>： 声明变量， 初始化； int vacationDays = 12;</p>
 <p><strong>常量: 使用 final 表示常量</strong>。 final double PI = 3.14; 该变量只赋值一次，不能再次更改了。全部大写。const是保留字； 使用final 定义常量；希望某个常量在一个类中多个方法中使用，称为类常量。使用 static final设置一个类常量。 static final CM_PI = 3.14;</p>
@@ -320,7 +320,15 @@
 <p>使用静态的 valueOf 方法可以将普通的数值转换为大数值：</p>
 <p>不能使用算术运算符(+和*)处理，需要使用大数值类中的add和multiply方法。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BigInteger a = BigInteger.valueOf(<span class="hljs-number">100</span>);</span><br><span class="line">BigInteger c = a.add(b);</span><br><span class="line">BigInteger d = c.multiply(b.add(BigInteger.valueOf(<span class="hljs-number">2</span>)));</span><br></pre></td></tr></table></figure>
-<p>Java中没有运算符重载的功能。</p>
+<p>Java中没有运算符重载的功能。不能重载/ *等运算符； Java只为字符串的连接重载了+运算符。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">BigInteger <span class="hljs-title">add</span><span class="hljs-params">(BigInteger other)</span></span>;</span><br><span class="line"><span class="hljs-function">BigInteger <span class="hljs-title">divide</span><span class="hljs-params">(BigInteger other)</span></span>;</span><br><span class="line"><span class="hljs-function">BigInteger <span class="hljs-title">mod</span><span class="hljs-params">(BigInteger other)</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">CompareTo</span><span class="hljs-params">(BigInteger other)</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> BigInteger <span class="hljs-title">valueOf</span><span class="hljs-params">(<span class="hljs-keyword">long</span> x)</span></span>;</span><br></pre></td></tr></table></figure>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>数组是一种数据结构，用来存储同一类型值的集合。通过以下整型下标可以方位数组中的每一个值。例如，a是一个整形数组，a[i]就是数组的中下标为i的整数。</p>
+<p><strong>创建整型数组，所有元素初始化为0；所有boolean初始化为false；对象数组为null</strong></p>
+<p>字符串长度用string.length(); 数组用array.length;</p>
+<p>在声明数组变量时，需要指出数组类型(数据元素类型紧跟[])和数组变量名。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">int</span>[] a; <span class="hljs-comment">//该语句只声明了变量a，没有讲a初始化一个真正的数组，应使用new</span></span><br><span class="line"><span class="hljs-keyword">int</span>[] a = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">100</span>]; <span class="hljs-comment">// 数组长度不要求是常量 newint [ n ] 会创建一个长度为 n 的数组</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span>[] a = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">100</span>];</span><br><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i =<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">100</span>; i++) &#123;</span><br><span class="line">  a[i] = i;</span><br><span class="line">&#125;<span class="hljs-comment">// </span></span><br><span class="line">String[] names = <span class="hljs-keyword">new</span> String[<span class="hljs-number">10</span>];</span><br><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i =<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">10</span>; i++) names[i] = <span class="hljs-string">""</span>;</span><br><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i =<span class="hljs-number">0</span>; i&lt;names.length; i++) &#123;</span><br><span class="line">  System.out.println(a[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一旦创建了数组，就不能再改变大小了；如果要在运行过程中扩展数组大小。就应该使用另一种数据结构–数组列表。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span> each循环使用 <span class="hljs-comment">//这个循环应该读作 “ 循环 a 中的每一个元素 ” （ for each element in a )</span></span><br><span class="line"><span class="hljs-keyword">for</span> (variable: collection)</span><br><span class="line">	statement</span><br><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> element : a)</span><br><span class="line">	System,out.println(element);</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -405,20 +413,20 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Posts
+                        Articles
                     </p>
                     <p class="title has-text-weight-normal">
-                        56
+                        57
                     </p>
                 </div>
             </div>
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Catégories
                     </p>
                     <p class="title has-text-weight-normal">
-                        24
+                        25
                     </p>
                 </div>
             </div>
@@ -435,7 +443,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/fallenk" target="_blank">
-                Follow</a>
+                SUIVRE</a>
         </div>
         
         
@@ -489,7 +497,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Links
+            Liens
         </h3>
         <ul class="menu-list">
         
@@ -527,7 +535,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Categories
+                Catégories
             </h3>
             <ul class="menu-list">
             <li>
@@ -590,6 +598,14 @@
         <a class="level is-marginless" href="/categories/Java学习/">
             <span class="level-start">
                 <span class="level-item">Java学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Leecode/">
+            <span class="level-start">
+                <span class="level-item">Leecode</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -732,9 +748,9 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Tag Cloud
+            Nuage de tags
         </h3>
-        <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 10px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 12px;">LeetCode</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 12px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 12px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 12px;">代码</a> <a href="/tags/入门/" style="font-size: 16px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 12px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 12px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 12px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 18px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 14px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 12px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
+        <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 10px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 12px;">LeetCode</a> <a href="/tags/Leetcode/" style="font-size: 12px;">Leetcode</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 12px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 12px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 12px;">代码</a> <a href="/tags/入门/" style="font-size: 16px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 12px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 12px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 12px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 18px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 14px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 12px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
     </div>
 </div>
 
@@ -746,8 +762,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Récents
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/11/19/算法40讲数组和链表/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="算法40讲数组和链表">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-19T02:41:59.000Z">2019-11-19</time></div>
+                    <a href="/2019/11/19/算法40讲数组和链表/" class="title has-link-black-ter is-size-6 has-text-weight-normal">算法40讲数组和链表</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Leecode/">Leecode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -825,25 +860,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/10/20/NICO/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
-                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -862,7 +878,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1082,7 +1098,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Leetcode/">
                         <span class="tag">Leetcode</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1344,8 +1360,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Récents
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/11/19/算法40讲数组和链表/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="算法40讲数组和链表">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-19T02:41:59.000Z">2019-11-19</time></div>
+                    <a href="/2019/11/19/算法40讲数组和链表/" class="title has-link-black-ter is-size-6 has-text-weight-normal">算法40讲数组和链表</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Leecode/">Leecode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1423,25 +1458,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/10/20/NICO/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NICO">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-20T07:05:10.000Z">2019-10-20</time></div>
-                    <a href="/2019/10/20/NICO/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NICO</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1460,7 +1476,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1680,7 +1696,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Leetcode/">
                         <span class="tag">Leetcode</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -2106,9 +2122,9 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
+                POSTS: 'Articles',
                 PAGES: 'Pages',
-                CATEGORIES: 'Categories',
+                CATEGORIES: 'Catégories',
                 TAGS: 'Tags',
                 UNTITLED: '(Untitled)',
             },
