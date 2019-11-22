@@ -149,6 +149,116 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-22T13:17:46.805Z">2019-11-22</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    15 minutes read (About 2177 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/22/第四章-对象与类/"></a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="title-第四章-对象与类"><a href="#title-第四章-对象与类" class="headerlink" title="title: 第四章 对象与类"></a>title: 第四章 对象与类</h2><p>date: 2019-11-22 21:17:46<br>tags: [coding]<br>category: [Java学习]</p>
+<p>主要介绍如下：</p>
+<ol>
+<li>面向对象程序设计</li>
+<li>如何创建标准Java类库中的类对象</li>
+<li>如何编写自己的类</li>
+</ol>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>面向对象程序设计 （ 简称 OOP)是当今主流的程序设计范型。Java完全面向对象。</p>
+<p>面向对象的程序是由对象组成的，每个对象包含对用户<strong>公开的特定功能部分和隐藏的实现部分</strong>。</p>
+<p>传统的结构化程序设计通过<strong>设计一系列的过程 （ 即算法） 来求解问题</strong>。一旦确定了这些过程，开始考虑存储数据的方式。算法+数据结构 = 程序。算法是第一位的，数据结构是第二位的。程序员的工作方式, 首先<strong>要确定如何操作数据</strong>，然后<strong>再决定如何组织数据</strong>，以便于数据操作。而OOP却调换了这个次序，将数据放在第一位，然后再考虑操作数据的算法。</p>
+<p>对于一些规模较小的问题，将其分解为过程的开发方式比较理想。而面向对象更加适用于解决规模较大的问题。</p>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>类 （ class ) 是构造对象的模板或蓝图。我们可以将类想象成制作小甜饼的切割机，将对象想象为小甜饼 。由类构造 （ construct ) 对象的过程称为创建类的实例 （ instance ) .</p>
+<p>用 Java 编写的所有代码都位于某个类的内部。标准的 Java 库提供 了几千个类。尽管如此，还是需要在Java 程序中创建一些自己的类，以便描述应用程序所对应的问题域中的对象。</p>
+<ol>
+<li><strong>封装 （ encapsulation , 有时称为数据隐藏 ） 是与对象有关的一个重要概念。</strong>从形式上看，封装不过是将<strong>数据和行为组合在一个包</strong>， 并对对象的使用者隐藏了数据的实现方式。对象中的数据称为实例域，操作数据的过程称为方法(method)。对每个特定的类实例(对象)都有一组特定的实例域值。这些值的结合就是这个对象的当前状态。无论何时，向对象发送一个消息，他的状态就可能改变。</li>
+</ol>
+<p>实现封装的关键在于绝对不能让<strong>类中的方法直接地访问其他类的实例域</strong>。仅能通过方法对对象的数据进行交互。</p>
+<ol start="2">
+<li>继承，OOP 的另一个原则会让用户自定义 Java 类变得轻而易举，可以通过扩展一个类来建立另外一个新的类，所有的类都源自于一个 “ 神通广大的超类 ”。它就是 Object。这个扩展后的新类具有所扩展的类的全部属性和方法，只需提供适用于这个新类的新方法和数据域</li>
+</ol>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>要想使用OOP ,清楚对象的三个主要特性：</p>
+<ul>
+<li>对象的行为(behavior)， 可以施加哪些操作，</li>
+<li>对象的状态(state), 对象的如何相应</li>
+<li>对象的标识(identity)。</li>
+</ul>
+<p>同一个类的所有对象实例, 对象的行为是可调用的方法定义。</p>
+<h3 id="识别类"><a href="#识别类" class="headerlink" title="识别类"></a>识别类</h3><p>传统的过程化程序设计。必须从顶部的main函数开始编写，在面向对象所谓的顶部，要 首先从设计类开始，然后再往下每个类中添加方法。</p>
+<p>识别类的简单规则是在<strong>分析问题的过程中寻找名词</strong>，而<strong>方法对应着动词</strong>。</p>
+<h3 id="类之间的关系"><a href="#类之间的关系" class="headerlink" title="类之间的关系"></a>类之间的关系</h3><ul>
+<li>依赖(‘uses-a’);</li>
+<li>聚合(‘has-a’)</li>
+<li>继承(‘is-a’)</li>
+</ul>
+<p>依赖 （ dependence ) , 即 “ uses - a ” 关系. 如果一个类的方法操纵另一个类的对象 我们就说一个类依赖于另一个类。应该尽可能地将相互依赖的类减至最少，让类之间的耦合度最小。</p>
+<p>聚合关系意味着类 A 的对象包含类 B 的对象</p>
+<p>继承 （inheritance ) , 即 “ is - a ” 关系 是一种用于表示特殊与一般关系的</p>
+<p><img src="/2019/11/22/第四章-对象与类/5.png" alt="image-20191122215412010" style="zoom:50%;"></p>
+<p><img src="/2019/11/22/第四章-对象与类/6.png" alt="image-20191122215439423" style="zoom:50%;"></p>
+<h1 id="使用预定义类"><a href="#使用预定义类" class="headerlink" title="使用预定义类"></a>使用预定义类</h1><p>使用类。但如 Math类的方法，Math封装了功能，不需要也不必隐藏数据，无数据</p>
+<h3 id="对象与对象变量"><a href="#对象与对象变量" class="headerlink" title="对象与对象变量"></a>对象与对象变量</h3><p>要想使用对象，就必须<strong>先构造对象</strong>，并<strong>指定其初始化状态</strong>。然后，<strong>对对象应用方法</strong>。 Java中，用构造器(constructor)构造新实例。<strong>构造器是一种特殊的方法，用来构造并初始化对象</strong>。</p>
+<p>如Java类库中的包含一个Date类。</p>
+<p>构造器的名字应该与类名相同，因此Date类的构造器为Date，要想构造一个Date对象，需要在构造器前面加上new操作符，如 new Date().这个表达式<strong>构造了一个新对象</strong> , 这个对象被初始化为当前的日期和时间</p>
+<p>如果需要的话 也可以将这个对象传递给一个方法。Date类中有一个toString方法。这个方法将返回字符串</p>
+<p>String s = new Date().toString();</p>
+<p>在对象与对象变量之间存在着一个重要的区别;</p>
+<p>Date deadline; // deadlin doesn’t refer to any object;定义了一个对象变量deadline,它可以引用Date类型的对象，但是，变量deadline不是一个对象，实际上也没有引用对象。不能使用方法。</p>
+<p>必须首先初始化变量 deadline , </p>
+<p>方法1：deadline = new Date();</p>
+<p>方法2：deadline = birthday; 引用已有的对象。</p>
+<p><img src="/2019/11/22/第四章-对象与类/7.png" alt="image-20191122220930815" style="zoom:50%;"></p>
+<p>一定要认识到 ： 一个<strong>对象变量</strong>并<strong>没有实际包含一个对象</strong>而<strong>仅仅引用一个对象</strong></p>
+<p>在Java中，<strong>任何对象变量的值都是对存储在另一个地方的一个对象的引用</strong>。new操作符的返回值也是一个引用。</p>
+<p>语句： Date deadline = new Date () ;</p>
+<p>有两个部分：表达式new Date() 构造了一个Date类型的对象，并且它的值是对新创建对象的引用。这个引用存储在变量deadline中。可以显示将对象置为null，表明这个对象变量目前没有引用任何对象。</p>
+<p>如果将<strong>一个方法应用于一个值为 null的对象</strong>上 ，那么就会产生运行时错误。</p>
+<p><strong>局部变量不会自动地初始化为 null</strong> ，而必须通过<strong>调用 new 或将它们设置为 null 进行初始化</strong></p>
+<blockquote>
+<p>很多人错误地认为 Java 对象变量与 C ++ 的引用类似,然而 在 C ++ 中没有空引用 ， 并且引用不能被赋值.可<strong>以将 Java 的对象变量看作 C + + 的对象指针</strong></p>
+</blockquote>
+<p>将 Java 的对象变量看作 C + + 的对象指针</p>
+<p>如果把一个变量的值賦给另一个变量, 两个变量就指向同一个日期.</p>
+<p>在 Java 中的 null 引用对应 C ++中的 NULL 指针.</p>
+<p>所有的 <strong>Java 对象都存储在堆</strong>中,当一个对象包含另一个对象变量时,这个变量依然包含着指向另一个堆对象的指针</p>
+<h3 id="LocalDate类"><a href="#LocalDate类" class="headerlink" title="LocalDate类"></a>LocalDate类</h3><p>Date类中实例有一个状态，即特定的时间点。Date类中： 实际上时间是用距离一个固定时间点的毫秒数表示的。这个点称为纪元epoch。即UTC 1970年1月1日00:00:00,</p>
+<p>类库设计者决定将<strong>保存时间</strong>与<strong>给时间点命名分开</strong>. 所以标准 Java 类库分别包含了两个类: </p>
+<p>一个是用来<strong>表示时间点的 Date 类,</strong> 另一个是用来表示大家熟悉的日历表示法的 LocalDate 类.</p>
+<p>将<strong>时间</strong>与<strong>日历</strong>分开是一种很好的面向对象设计.</p>
+<p>不要使用构造器来构造 LocalDate 类的对象。实际上 应当使用静态工厂方法 ( factory method ) 代表你调用构造器。LocalDate.now() 构造一个新对象。</p>
+<p>一旦有 了一个 LocalDate 对象，可以用方法 get Year 、getMonth Value 和 getDayOfMonth得到年 月和日：</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">LocalDate newss = LocalDate.now();</span><br><span class="line"><span class="hljs-comment">//通常都希望将构造的对象保存在一个对象变量中</span></span><br><span class="line">LocalDate newYearsEve = LocalDate.of(<span class="hljs-number">1999</span>, <span class="hljs-number">1</span>, <span class="hljs-number">23</span>);</span><br><span class="line"><span class="hljs-keyword">int</span> year = newYearsEve.getYear();</span><br><span class="line"><span class="hljs-keyword">int</span> month = newYearsEve.getMonthValue();</span><br><span class="line"><span class="hljs-keyword">int</span> day = newYearsEve.getDayOfMonth();</span><br><span class="line"><span class="hljs-comment">// plusDays 方法会得到一个新的 LocalDate ,</span></span><br><span class="line">        LocalDate aThousandDaysLater = newYearsEve.plusDays(<span class="hljs-number">1000</span>);</span><br><span class="line">        year = aThousandDaysLater.getYear();</span><br><span class="line">        month = aThousandDaysLater.getMonthValue();</span><br><span class="line">        day = aThousandDaysLater.getDayOfMonth();</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-11-19T02:41:59.000Z">2019-11-19</time>
                 
                 <div class="level-item">
@@ -373,7 +483,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    an hour read (About 6953 words)
+                    an hour read (About 6789 words)
                 </span>
                 
                 
@@ -614,67 +724,15 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-25T09:01:13.000Z">2019-08-25</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/pytorch/">pytorch</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    an hour read (About 8894 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/08/25/pytorch学习2/">pytorch学习2</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="卷积神经网络-CNN-Convolutional-Neural-Network"><a href="#卷积神经网络-CNN-Convolutional-Neural-Network" class="headerlink" title="卷积神经网络 CNN (Convolutional Neural Network)"></a>卷积神经网络 CNN (Convolutional Neural Network)</h2>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/08/25/pytorch学习2/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
         <div class="pagination-previous is-invisible is-hidden-mobile">
-            <a class="is-flex-grow has-text-black-ter" href="/page/0/">Préc</a>
+            <a class="is-flex-grow has-text-black-ter" href="/page/0/">Previous</a>
         </div>
         <div class="pagination-next">
-            <a class="is-flex-grow has-text-black-ter" href="/page/2/">Suiv</a>
+            <a class="is-flex-grow has-text-black-ter" href="/page/2/">Next</a>
         </div>
         <ul class="pagination-list is-hidden-mobile">
             
@@ -730,17 +788,17 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Articles
+                        Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        57
+                        58
                     </p>
                 </div>
             </div>
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Catégories
+                        Categories
                     </p>
                     <p class="title has-text-weight-normal">
                         25
@@ -760,7 +818,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/fallenk" target="_blank">
-                SUIVRE</a>
+                Follow</a>
         </div>
         
         
@@ -814,7 +872,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Liens
+            Links
         </h3>
         <ul class="menu-list">
         
@@ -852,7 +910,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Catégories
+                Categories
             </h3>
             <ul class="menu-list">
             <li>
@@ -1065,7 +1123,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Nuage de tags
+            Tag Cloud
         </h3>
         <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 10px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 12px;">LeetCode</a> <a href="/tags/Leetcode/" style="font-size: 12px;">Leetcode</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 12px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 12px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 12px;">代码</a> <a href="/tags/入门/" style="font-size: 16px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 12px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 12px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 12px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 18px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 14px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 12px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
     </div>
@@ -1079,8 +1137,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Récents
+            Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/11/22/第四章-对象与类/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-22T13:17:46.805Z">2019-11-22</time></div>
+                    <a href="/2019/11/22/第四章-对象与类/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1158,25 +1235,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/10/22/第一章Java程序设计概述/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="第一章Java程序设计概述">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-22T07:35:01.000Z">2019-10-22</time></div>
-                    <a href="/2019/10/22/第一章Java程序设计概述/" class="title has-link-black-ter is-size-6 has-text-weight-normal">第一章Java程序设计概述</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java学习/">Java学习</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1195,7 +1253,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -1677,8 +1735,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Récents
+            Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/11/22/第四章-对象与类/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-22T13:17:46.805Z">2019-11-22</time></div>
+                    <a href="/2019/11/22/第四章-对象与类/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1756,25 +1833,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/10/22/第一章Java程序设计概述/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="第一章Java程序设计概述">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-22T07:35:01.000Z">2019-10-22</time></div>
-                    <a href="/2019/10/22/第一章Java程序设计概述/" class="title has-link-black-ter is-size-6 has-text-weight-normal">第一章Java程序设计概述</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java学习/">Java学习</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1793,7 +1851,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -2439,9 +2497,9 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Articles',
+                POSTS: 'Posts',
                 PAGES: 'Pages',
-                CATEGORIES: 'Catégories',
+                CATEGORIES: 'Categories',
                 TAGS: 'Tags',
                 UNTITLED: '(Untitled)',
             },

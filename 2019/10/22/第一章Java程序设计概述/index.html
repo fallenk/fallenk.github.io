@@ -19,7 +19,7 @@
 <meta property="og:description" content="Java的特性：">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-11-21T14:39:39.266Z">
+<meta property="og:updated_time" content="2019-11-22T13:18:19.449Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一章Java程序设计概述">
 <meta name="twitter:description" content="Java的特性：">
@@ -159,7 +159,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    an hour read (About 6953 words)
+                    an hour read (About 6789 words)
                 </span>
                 
                 
@@ -322,13 +322,36 @@
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BigInteger a = BigInteger.valueOf(<span class="hljs-number">100</span>);</span><br><span class="line">BigInteger c = a.add(b);</span><br><span class="line">BigInteger d = c.multiply(b.add(BigInteger.valueOf(<span class="hljs-number">2</span>)));</span><br></pre></td></tr></table></figure>
 <p>Java中没有运算符重载的功能。不能重载/ *等运算符； Java只为字符串的连接重载了+运算符。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">BigInteger <span class="hljs-title">add</span><span class="hljs-params">(BigInteger other)</span></span>;</span><br><span class="line"><span class="hljs-function">BigInteger <span class="hljs-title">divide</span><span class="hljs-params">(BigInteger other)</span></span>;</span><br><span class="line"><span class="hljs-function">BigInteger <span class="hljs-title">mod</span><span class="hljs-params">(BigInteger other)</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">CompareTo</span><span class="hljs-params">(BigInteger other)</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> BigInteger <span class="hljs-title">valueOf</span><span class="hljs-params">(<span class="hljs-keyword">long</span> x)</span></span>;</span><br></pre></td></tr></table></figure>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>数组是一种数据结构，用来存储同一类型值的集合。通过以下整型下标可以方位数组中的每一个值。例如，a是一个整形数组，a[i]就是数组的中下标为i的整数。</p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>数组是一种数据结构，用来<strong>存储同一类型值的集合</strong>。通过以下整型下标可以方位数组中的每一个值。例如，a是一个整形数组，a[i]就是数组的中下标为i的整数。</p>
 <p><strong>创建整型数组，所有元素初始化为0；所有boolean初始化为false；对象数组为null</strong></p>
-<p>字符串长度用string.length(); 数组用array.length;</p>
+<p><strong>字符串长度用string.length(); 数组用array.length;</strong></p>
+<p>使用new和{}初始化数组</p>
 <p>在声明数组变量时，需要指出数组类型(数据元素类型紧跟[])和数组变量名。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">int</span>[] a; <span class="hljs-comment">//该语句只声明了变量a，没有讲a初始化一个真正的数组，应使用new</span></span><br><span class="line"><span class="hljs-keyword">int</span>[] a = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">100</span>]; <span class="hljs-comment">// 数组长度不要求是常量 newint [ n ] 会创建一个长度为 n 的数组</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span>[] a = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">100</span>];</span><br><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i =<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">100</span>; i++) &#123;</span><br><span class="line">  a[i] = i;</span><br><span class="line">&#125;<span class="hljs-comment">// </span></span><br><span class="line">String[] names = <span class="hljs-keyword">new</span> String[<span class="hljs-number">10</span>];</span><br><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i =<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">10</span>; i++) names[i] = <span class="hljs-string">""</span>;</span><br><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i =<span class="hljs-number">0</span>; i&lt;names.length; i++) &#123;</span><br><span class="line">  System.out.println(a[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>一旦创建了数组，就不能再改变大小了；如果要在运行过程中扩展数组大小。就应该使用另一种数据结构–数组列表。</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span> each循环使用 <span class="hljs-comment">//这个循环应该读作 “ 循环 a 中的每一个元素 ” （ for each element in a )</span></span><br><span class="line"><span class="hljs-keyword">for</span> (variable: collection)</span><br><span class="line">	statement</span><br><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> element : a)</span><br><span class="line">	System,out.println(element);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span> each循环使用 <span class="hljs-comment">//这个循环应该读作 “ 循环 a 中的每一个元素 ” （ for each element in a )</span></span><br><span class="line"><span class="hljs-keyword">for</span> (variable: collection)</span><br><span class="line">	statement</span><br><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> element : a)</span><br><span class="line">	System,out.println(element); </span><br><span class="line">				<span class="hljs-keyword">int</span>[] a = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">10</span>];</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt; <span class="hljs-number">10</span>; i++) &#123;</span><br><span class="line">            a[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> x : a) &#123;</span><br><span class="line">            System.out.print(x+<span class="hljs-string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Arrays.toString(a));</span><br></pre></td></tr></table></figure>
+<p><strong>数组初始化以及匿名数组</strong></p>
+<p>在Java中，提供了一种<strong>创建数组对象并同时赋予初始化</strong>的简化书写形式；</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">int</span>[] smallPrimes = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>,<span class="hljs-number">3</span>, <span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>&#125;; </span><br><span class="line">还可以匿名初始化数组:</span><br><span class="line"><span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>, <span class="hljs-number">3</span>,<span class="hljs-number">54</span>,<span class="hljs-number">6</span>&#125;</span><br><span class="line">smallPrimes = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123;<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>&#125;;</span><br><span class="line">这是下列语句的简写形式：</span><br><span class="line"><span class="hljs-keyword">int</span>[] anoymous = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>&#125;;</span><br></pre></td></tr></table></figure>
+<p>这种表示法将创建一个新数组并利用括号中提供的值进行初始化,数组的大小就是初始值的个数。使用这种语法形式可以在不创建新变量的情况下重新初始化一个数组。</p>
+<p><strong>数组拷贝</strong></p>
+<p>在 Java 中，允许将一个数组变量拷贝给另一个数组变量 这时 两个变量将引用同一个数组:</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">int</span>[] luckyNumbers = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>&#123;<span class="hljs-number">1</span>, <span class="hljs-number">3</span>,<span class="hljs-number">34</span>&#125;;</span><br><span class="line"><span class="hljs-keyword">int</span>[] badLucky = luckyNumbers;</span><br><span class="line"></span><br><span class="line">badLucky[<span class="hljs-number">2</span>] = <span class="hljs-number">21</span>;</span><br><span class="line"><span class="hljs-comment">//如果希望将一个数组的所有值拷贝到一个新的数组中去,使用Arrays.copyOf</span></span><br><span class="line"><span class="hljs-keyword">int</span>[] copiedLuckyNumbers = Arrays.copyOf(luckyNumbers,luckyNumbers.length)</span><br><span class="line"> <span class="hljs-comment">// 第 2 个参数是新数组的长度,这个方法通常用来增加数组的大小 ：数组元素是数值型,0;boolean-&gt;false</span></span><br></pre></td></tr></table></figure>
+<p><strong>数组排序</strong></p>
+<p>使用Arrays.sort(); Arrays的API使用。</p>
+<h3 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h3><p>多维数组将使用<strong>多个下标访问数组元素</strong>， 适用于表示表格或更加复杂的排列形式</p>
+<p>初始化方式一：</p>
+<p>在 Java 中 声明一个二维数组相当简单，<strong>与一维数组一样,在调用new对多维数组进行初始化之前不能使用它</strong>,在这里可以这样初始化</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">double</span>[][] balances;</span><br><span class="line">balances = <span class="hljs-keyword">new</span> <span class="hljs-keyword">double</span>[NYEARS][NRATES];</span><br></pre></td></tr></table></figure>
+<p>初始化方式二：另外, 如果知道数组元素 就可以不调用 new, 而直接使用简化的书写形式对多维数组进行初始化 。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">int</span>[][] magicSquare = &#123;</span><br><span class="line"> &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;,</span><br><span class="line"> &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;,</span><br><span class="line"> &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;,</span><br><span class="line"> &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>一旦数组初始化，可以利用<code>balances[i][j]</code>访问</p>
+<p>for each 不能自动处理二维数组的每一个元素，他是按照行处理，也是一维数组。需要使用嵌套循环。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">double</span>[] row : a) &#123;</span><br><span class="line">	<span class="hljs-keyword">for</span> (doule index : row) &#123;</span><br><span class="line">		<span class="hljs-keyword">do</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//要想快速地打印一个二维数组的数据元素列表</span></span><br><span class="line">Arrays.deepToString(a);</span><br></pre></td></tr></table></figure>
+<h3 id="不规则数组"><a href="#不规则数组" class="headerlink" title="不规则数组"></a>不规则数组</h3><p>Java实际上没有多维数组。只有一维数组；多维数组可称为“数组的数组”。在前面的示例中， balances 数组实际上是一个包含10 个元素的数组 ，而每个元素又是一个由 6个浮点数组成的数组。</p>
+<p><img src="/2019/10/22/第一章Java程序设计概述/4.png" alt="image-20191122203119829" style="zoom:50%;"></p>
+<p>表达式 balances[i]引用第 i 个子数组，也就是二维表的第 i 行，它本身也是一个数组。由于可以单独地存取数组的某一行，所以可以让两行交换。还可以<strong>方便地构造一个不规则数组，即数组的每一行有不同的长度</strong>，下面是一个典</p>
+<p>型的示例。</p>
 
         </div>
         
@@ -413,17 +436,17 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Articles
+                        Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        57
+                        58
                     </p>
                 </div>
             </div>
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Catégories
+                        Categories
                     </p>
                     <p class="title has-text-weight-normal">
                         25
@@ -443,7 +466,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/fallenk" target="_blank">
-                SUIVRE</a>
+                Follow</a>
         </div>
         
         
@@ -497,7 +520,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Liens
+            Links
         </h3>
         <ul class="menu-list">
         
@@ -535,7 +558,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Catégories
+                Categories
             </h3>
             <ul class="menu-list">
             <li>
@@ -748,7 +771,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Nuage de tags
+            Tag Cloud
         </h3>
         <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 10px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 12px;">LeetCode</a> <a href="/tags/Leetcode/" style="font-size: 12px;">Leetcode</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 12px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 12px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 12px;">代码</a> <a href="/tags/入门/" style="font-size: 16px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 12px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 12px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 12px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 18px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 14px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 12px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
     </div>
@@ -762,8 +785,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Récents
+            Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/11/22/第四章-对象与类/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-22T13:17:46.805Z">2019-11-22</time></div>
+                    <a href="/2019/11/22/第四章-对象与类/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -841,25 +883,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/10/22/第一章Java程序设计概述/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="第一章Java程序设计概述">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-22T07:35:01.000Z">2019-10-22</time></div>
-                    <a href="/2019/10/22/第一章Java程序设计概述/" class="title has-link-black-ter is-size-6 has-text-weight-normal">第一章Java程序设计概述</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java学习/">Java学习</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -878,7 +901,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -1360,8 +1383,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Récents
+            Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/11/22/第四章-对象与类/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-22T13:17:46.805Z">2019-11-22</time></div>
+                    <a href="/2019/11/22/第四章-对象与类/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1439,25 +1481,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/10/22/第一章Java程序设计概述/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="第一章Java程序设计概述">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-22T07:35:01.000Z">2019-10-22</time></div>
-                    <a href="/2019/10/22/第一章Java程序设计概述/" class="title has-link-black-ter is-size-6 has-text-weight-normal">第一章Java程序设计概述</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java学习/">Java学习</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1476,7 +1499,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -2122,9 +2145,9 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Articles',
+                POSTS: 'Posts',
                 PAGES: 'Pages',
-                CATEGORIES: 'Catégories',
+                CATEGORIES: 'Categories',
                 TAGS: 'Tags',
                 UNTITLED: '(Untitled)',
             },
