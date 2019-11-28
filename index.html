@@ -130,7 +130,7 @@
                 
                 
                 
-                <a class="navbar-item search" title="Pencarian" href="javascript:;">
+                <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
                 </a>
                 
@@ -149,13 +149,197 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-28T14:36:01.000Z">2019-11-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Federated-Learning/">Federated Learning</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    an hour read (About 8077 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/28/目标检测总结/">目标检测总结</a>
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>目标检测的知识整理</p>
+<p>知识体系分类：one-stage和two-stage两大类，如one-stage和two-stage两大类，R-CNN和YOLO系列等</p>
+</blockquote>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p><strong><em>导言：</em></strong>目标检测的任务是<strong>找出图像中所有感兴趣的目标（物体），确定它们的位置和大小，是机器视觉领域的核心问题之一</strong>。由于各类物体有不同的外观，形状，姿态，加上成像时光照，遮挡等因素的干扰，目标检测一直是机器视觉领域最具有挑战性的问题。本文将针对目标检测（Object Detection）这个机器视觉中的经典任务进行解析，抛砖引玉。</p>
+<h2 id="什么是目标检测？"><a href="#什么是目标检测？" class="headerlink" title="什么是目标检测？"></a><strong>什么是目标检测？</strong></h2><blockquote>
+<p>目标检测的任务是找出图像中所有感兴趣的目标（物体），确定它们的位置和大小，是机器视觉领域的核心问题之一。由于各类物体有不同的外观，形状，姿态，加上成像时光照，遮挡等因素的干扰，目标检测一直是机器视觉领域最具有挑战性的问题。</p>
+</blockquote>
+<p>计算机视觉中关于图像识别有四大类任务：</p>
+<p><strong>分类-Classification</strong>：解决“是什么？”的问题，即给定一张图片或一段视频判断里面包含什么类别的目标。</p>
+<p><strong>定位-Location</strong>：解决“在哪里？”的问题，即定位出这个目标的的位置。</p>
+<p><strong>检测-Detection</strong>：解决“是什么？在哪里？”的问题，即<strong>定位出这个目标的的位置</strong>并且知道<strong>目标物是什么</strong>。</p>
+<p><strong>分割-Segmentation</strong>：分为实例的分割（Instance-level）和场景分割（Scene-level），解决“每一个像素属于哪个目标物或场景”的问题。</p>
+<p><img src="/2019/11/28/目标检测总结/1.png" alt="image-20191128225434251" style="zoom:50%;"></p>
+<h2 id="目标检测要解决的核心问题"><a href="#目标检测要解决的核心问题" class="headerlink" title="目标检测要解决的核心问题"></a><strong>目标检测要解决的核心问题</strong></h2><p>除了图像分类之外，目标检测要解决的核心问题是：</p>
+<p>1.目标可能出现在图像的<strong>任何位置</strong>。</p>
+<p>2.目标有各种不同的<strong>大小</strong>。</p>
+<p>3.目标可能有各种不同的<strong>形状</strong>。</p>
+<p>如果用矩形框来定义目标，则矩形有不同的宽高比。由于目标的宽高比不同，因此采用经典的<strong>滑动窗口+图像缩放的方案</strong>解决通用目标检测问题的成本太高。</p>
+<h2 id="目标检测的应用"><a href="#目标检测的应用" class="headerlink" title="目标检测的应用"></a><strong>目标检测的应用</strong></h2><p>目标检测在很多领域都有应用需求。其中被广为研究的是人脸检测，行人检测，车辆检测等重要目标的检测。人脸检测在SIGAI上一篇文章“<a href="https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzU4MjQ3MDkwNA%3D%3D%26mid%3D2247483726%26idx%3D1%26sn%3D9fef4cc1766ea4258749f8d40cc71a6e%26chksm%3Dfdb69cd9cac115cf4eba16081780c3b64c75e1e55a40bf2782783d5c28f00c6f143426e6f0aa%26scene%3D21%23wechat_redirect" target="_blank" rel="noopener">人脸识别算法演化史</a>”中已经简单介绍，后面我们会针对这个问题撰写综述文章。</p>
+<h3 id="行人检测"><a href="#行人检测" class="headerlink" title="行人检测"></a><strong>行人检测</strong></h3><p>行人检测在视频监控，人流量统计，自动驾驶中都有重要的地位，后续也会有相关综述文章。</p>
+<h3 id="车辆检测"><a href="#车辆检测" class="headerlink" title="车辆检测"></a><strong>车辆检测</strong></h3><p>车辆检测在智能交通，视频监控，自动驾驶中有重要的地位。车流量统计，车辆违章的自动分析等都离不开它，在自动驾驶中，首先要解决的问题就是确定道路在哪里，周围有哪些车、人或障碍物。</p>
+<h3 id="其他应用"><a href="#其他应用" class="headerlink" title="其他应用"></a><strong>其他应用</strong></h3><p>交通标志如交通灯、行驶规则标志的识别对于自动驾驶也非常重要，我们需要根据红绿灯状态，是否允许左右转、掉头等标志确定车辆的行为。</p>
+<p>除了这些常见目标的检测之外，很多领域里也需要检测自己感兴趣的目标。比如工业中材质表面的缺陷检测，硬刷电路板表面的缺陷检测等。</p>
+<p>农业中农作物表面的病虫害识别也需要用到目标检测技术：</p>
+<p>人工智能在医学中的应用目前是一个热门的话题，医学影像图像如MRI的肿瘤等病变部位检测和识别对于诊断的自动化，提供优质的治疗具有重要的意义。</p>
+<h2 id="目标检测相关算法"><a href="#目标检测相关算法" class="headerlink" title="目标检测相关算法"></a><strong>目标检测相关算法</strong></h2><h3 id="DPM算法"><a href="#DPM算法" class="headerlink" title="DPM算法"></a><strong>DPM算法</strong></h3><p>与人脸、行人等特定类型的目标检测不同，通用目标检测要同时检测出图像中的多类目标，难度更大。处理这一问题的经典方法是DPM（Deformable Part Model），正如其名，这是<strong>可变形的组件模型</strong>，是一种基<strong>于组件的检测算法</strong>。该模型由Felzenszwalb在2008年提出，并发表了一系列的CVPR，NIPS文章，蝉联三届PASCAL VOC目标检测冠军，拿下了2010年PASCAL VOC的“终身成就奖”。</p>
+<p>在深度卷积神经网络（DCNN）出现之前，DPM算法一直是目标检测领域最优秀的算法，它的基本思想<strong>是先提取DPM人工特征</strong>（如下图所示），再<strong>用latentSVM分类</strong>。这种特征提取方式存在明显的局限性，首先，DPM特征计算复杂，计算速度慢；其次，人工特征对于旋转、拉伸、视角变化的物体检测效果差。这些弊端很大程度上限制了算法的应用场景。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-72fba1d1d705a4411f3190a11f266df9_hd.jpg" alt=""></p>
+<h3 id="Alexnet"><a href="#Alexnet" class="headerlink" title="Alexnet"></a><strong>Alexnet</strong></h3><p>现代深度神经网络的想法早在2006年就被 Geoffrey Hinton 提出，直到2012年，Alex Krizhevsky凭借著名的Alexnet卷积神经网络模型以领先第二名10%的成绩夺得ILSVRC2012图像分类比赛冠军，深度学习技术才真正走进主流学术界和工业界的视野。深度神经网络的出现颠覆了传统的特征提取方式，凭借其强大的表达能力，通过丰富的训练数据和充分的训练能够自主学习有用的特征。这相比传统的人工发现特征并根据特征设计算法的方式是质的飞跃。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-43cf5fa9e33de08a93b4ff4e7688f1b6_hd.jpg" alt=""></p>
+<p>通过<strong>卷积神经网络可以学到物体在各个层次的抽象表达</strong>（关于卷积神经网络的原理以及为什么会有效，SIGAI会在接下来的文章中介绍）：深度学习得到的层次特征表达</p>
+<p><img src="https://pic1.zhimg.com/80/v2-92e78402a274c34e4999bbc843c3e5ac_hd.jpg" alt=""></p>
+<h3 id="OverFeat"><a href="#OverFeat" class="headerlink" title="OverFeat"></a><strong>OverFeat</strong></h3><p>2013年纽约大学Yann LeCun团队中Zhang xiang等提出的OverFeat在ILSVRC2013比赛中获得了多项第一，他们改进了Alexnet，提出了<strong>使用同一个卷积网络完成了多个任务的方法。该方法充分利用了卷积神经网络的特征提取功能，它把分类过程中提取到的特征同时又用于定位检测等各种任务</strong>，只需要改变网络的最后几层，就可以实现不同的任务，而不需要从头开始训练整个网络的参数。这充分体现和发掘了CNN特征共享的优点。</p>
+<p>该文主要的<strong>亮点</strong>是：</p>
+<p>1.共享卷基层用于<strong>多任务学习</strong>。</p>
+<p>2.全卷积网络思想。</p>
+<p>3.在特征层进行滑窗操作（Sliding Window）避免大量重复运算，这也是后来的系列算法不断沿用和改进的经典做法。</p>
+<p>OverFeat几个<strong>明显的缺陷</strong>：</p>
+<p>1.采用了多尺度贪婪的划窗策略，导致计算量还是很大 。</p>
+<p>2.由于当时并没有太优秀的backbone网络，共享特征层的表征能力不是太强，没有考虑多尺度特征融合，对小目标效果差，整体的检测效果不尽如人意。ILSVRC 2013数据集上的mAP（可以简单的理解为检测准确率）为24.3%。</p>
+<p>经典的卷积神经网络有一个问题是它<strong>只能接受固定大小的输入图像</strong>，这是因为第一个全连接层和它之前的卷积层之间的权重矩阵大小是固定的，而卷积层、全连接层本身对输入图像的大小并没有限制。而在<strong>做目标检测时，卷积网络面临的输入候选区域图像大小尺寸是不固定的</strong>。</p>
+<p>下面用一个例子说明怎么让一个已经设计好的DCNN模型，可以支持任意大小图片输入，其中一种方案是<strong>全卷积网络（FCN），即去掉所有全连接层，全部由卷积层来替代</strong>：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-86dfbdcd79e2aeb76d9d7ac0e9629b19_hd.jpg" alt="img"></p>
+<p>FCN并不是把5×5的图片展平成一维向量再进行计算，而是<strong>直接采用5×5的卷积核对一整张图片进行卷积运算。比如16×16大小的特征图片</strong>，那么会是什么样的结果？请看下面的示意图：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-8049ffb5b0f943809f3fd34c6d56bf61_hd.jpg" alt="img"></p>
+<p>这个时候就会发现，网络最后的输出是一张2×2大小的特征图片。可以发现采用FCN网络，可以输入任意大小的图片。需要注意的是网络最后输出的特征图片大小不再总是1×1而是一个与输入图片大小相关。</p>
+<p>OverFeat有很多创新，但是不能算是目标检测典型的Pipeline，所以我们单独提了出来。下面将<strong>从R-CNN开始介绍目前基于DCNN物体检测发展脉络</strong>。</p>
+<p>卷积神经网络用于目标检测之后，进展神速，在短期内大幅度的提高了算法的精度，推动这一技术走向实用。</p>
+<p>基于DCNN的目标检测算法发展路线图</p>
+<p><img src="https://pic1.zhimg.com/80/v2-129d4a8460bf961ebe49655842debee0_hd.jpg" alt="img"></p>
+<h3 id="R-CNN"><a href="#R-CNN" class="headerlink" title="R-CNN"></a><strong>R-CNN</strong></h3><p>Region CNN(简称R-CNN)由Ross Girshick</p>
+<p>（江湖人称RBG大神，Felzenszwalb的学生）提出，是<strong>利用深度学习进行目标检测的里程碑之作</strong>，奠定了这个子领域的基础。这篇文章思路清奇，在DPM方法经历多年瓶颈期后，显著提升了检测率（ILSVRC 2013数据集上的mAP为31.4%）。RBG是这个领域神一样的存在，后续的一些改进方法如Fast R-CNN、Faster R-CNN、YOLO等相关工作都和他有关。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-eb73f89616d4dae8a5323ded7272cac1_hd.jpg" alt="img"></p>
+<p><strong>R-CNN检测时的主要步骤为：</strong></p>
+<p>1.使用Selective Search算法从待检测图像中<strong>提取2000个左右的区域候选框</strong>，这些候选框可能包含要检测的目标。</p>
+<p>2.把所有<strong>侯选框缩放成固定大小</strong>（原文采用227×227）。</p>
+<p>3.用DCNN<strong>提取每个候选框的特征</strong>，得到<strong>固定长度的特征向量</strong>。</p>
+<p>4.把<strong>特征向量送入SVM进行分类得到类别信息</strong>，送入<strong>全连接网络进行回归得到对应位置坐标信息</strong>。</p>
+<p>R-CNN不采用滑动窗口方案的原因一是计算成本高，会产生大量的待分类窗口；另外不同类型目标的矩形框有不同的宽高比，无法使用统一尺寸的窗口对图像进行扫描。用于提取特征的卷积网络有5个卷积层和2个全连接层，其输入是固定大小的RGB图像，输出为4096维特征向量。对候选区域的分类采用线性支持向量机，对<strong>每一张待检测图像计算所有候选区域的特征向量，送入支持向量机中进行分类；同时送入全连接网络进行坐标位置回归</strong>。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-3426aa4db7caf65b56a9b66d8e6f45ed_hd.jpg" alt="img"></p>
+<p>R-CNN虽然设计巧妙，但仍存在很多缺点：</p>
+<p>1.重复计算。R-CNN虽然不再是穷举，但通过Proposal（Selective Search）的方案依然有两千个左右的候选框，这些候选框都需要单独经过backbone网络提取特征，计算量依然很大，候选框之间会有重叠，因此有不少其实是重复计算。</p>
+<p>2.训练测试不简洁。候选区域提取、特征提取、分类、回归都是分开操作，中间数据还需要单独保存。</p>
+<p>3.速度慢。前面的缺点最终导致R-CNN出奇的慢，GPU上处理一张图片需要十几秒，CPU上则需要更长时间。</p>
+<p>4.输入的图片Patch必须强制缩放成固定大小（原文采用227×227），会造成物体形变，导致检测性能下降。</p>
+<h3 id="SPPNet"><a href="#SPPNet" class="headerlink" title="SPPNet"></a><strong>SPPNet</strong></h3><p>此后MSRA的Kaiming He等人在R-CNN的基础上提出了SPPNet，该方法虽然还依赖候选框的生成，但将提取候选框特征向量的操作转移到卷积后的特征图上进行，将R-CNN中的多次卷积变为一次卷积，大大降低了计算量（这一点参考了OverFeat）。</p>
+<p>R-CNN的卷积网络只能接受固定大小的输入图像。为了适应这个图像尺寸，要么截取这个尺寸的图像区域，这将导致图像未覆盖整个目标；要么对图像进行缩放，这会产生扭曲。在卷积神经网络中，卷积层并不要求输入图像的尺寸固定，只有第一个全连接层需要固定尺寸的输入，因为它和前一层之间的权重矩阵是固定大小的，其他的全连接层也不要求图像的尺寸固定。如果在最后一个卷积层和第一个全连接层之间做一些处理，将不同大小的图像变为固定大小的全连接层输入就可以解决问题。</p>
+<p>SPPNet引入了Spatial Pyramid pooling层，对卷积特征图像进行空间金字塔采样获得固定长度的输出，可对特征层任意长宽比和尺度区域进行特征提取。具体做法是对特征图像区域进行固定数量的网格划分，对不同宽高的图像，每个网格的高度和宽度是不规定的，对划分的每个网格进行池化，这样就可以得到固定长度的输出。下图是SPP操作示意图：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-2793c1e447ebfe92fb50a476a6546351_hd.jpg" alt="img"></p>
+<p>相比R-CNN，SPPNet的检测速度提升了30倍以上。下图是R-CNN和SPPNet 检测流程的比较：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-ab621b3374de7561ecb9d0a94a508a0e_hd.jpg" alt="img"></p>
+<p>下图是SPPNet的原理：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-1b1e30043bbae0a9122c16bd6e3dfe28_hd.jpg" alt="img">SPPNet 检测框架图</p>
+<p>SPPNet和R-CNN一样，它的训练要经过多个阶段，中间特征也要进行存储；backbone网络参数沿用了分类网络的初始参数，没有针对检测问题进行优化。</p>
+<p>Fast RCNNRoss Girshick 针对SPPNet做了进一步改进提出的FRCNN ，其主要创新是RoI Pooling 层，它将不同大小候选框的卷积特征图统一采样成固定大小的特征。ROI池化层的做法和SPP层类似，但只使用一个尺度进行网格划分和池化。该层可以直接求导，训练时直接将梯度传导到backbone网络进行优化。FRCNN针对R-CNN和SPPNet在训练时是多阶段的和训练的过程中很耗费时间空间的问题进行改进。将深度网络和后面的SVM分类两个阶段整合到一起，使用一个新的网络直接做分类和回归。使得网络在Pascal VOC上的训练时间从R-CNN的84小时缩短到9.5小时，检测时间更是从45秒缩短到0.32秒。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-39d2f94d980d457beedd334f9ccad7d9_hd.jpg" alt="img"></p>
+<p><img src="https://pic1.zhimg.com/80/v2-7717f9578eb69895f8699d65d2e83880_hd.jpg" alt="img"></p>
+<p>重要的是Fast RCNN的backbone网络也可以参与训练了！！！</p>
+<h3 id="Faster-RCNN"><a href="#Faster-RCNN" class="headerlink" title="Faster RCNN"></a><strong>Faster RCNN</strong></h3><p>SPPNet和Faster RCNN都需要独立的候选区域生成模块，这个模块计算量很大，而且不易用GPU加速。针对这个问题，Shaoqin Ren 等人在Faster RCNN基础上提出Faster R-CNN ，在主干网络中增加了<strong>RPN （Region Proposal Network）网络</strong>，通过一定规则设置不同尺度的锚点（Anchor）在RPN的卷积特征层提取候选框来代替Selective Search等传统的候选框生成方法，实现了网络的端到端训练。候选区域生成、候选区域特征提取、框回归和分类全过程一气呵成，在训练过程中模型各部分不仅学习如何完成自己的任务，还自主学习如何相互配合。这也是第一个真正意义上的深度学习目标检测算法。</p>
+<p>注：Shaoqin Ren实现的matlab版本中RPN阶段和FRCNN阶段是分开训练的，但是在实际的实践中（RBG实现的Python版本）发现二者可以一起优化训练，而且精度没有损失，可以说Faster RCNN真正实现了端到端的训练。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-958c9e00806936093e623d2fa98523b8_hd.jpg" alt="img">Fast RCNN（左） 和 Faster RCNN（右）框架结构对比</p>
+<h3 id="R-FCN"><a href="#R-FCN" class="headerlink" title="R-FCN"></a><strong>R-FCN</strong></h3><p>由于现在的主流网络层数越来越多，基于Faster RCNN检测框架的方法的计算量受到了3个因素的影响：</p>
+<p>1.基础网络的复杂度</p>
+<p>2.候选框数量的多少</p>
+<p>3.分类和位置回归子网络的复杂度（每个候选框的box都会独立进行前向计算）。</p>
+<p>一般来说直接优化前两点性价比不太高。如果直接优化RoI-wise subnetwork是否可行呢,将子网络的深度尽可能减少？分类是要增加物体的平移不变性（不同的位置都是同一个物体）；目标检测时减少物体的平移变化（目标检测需要得到物体所在的位置）。通常我们所用的网络都是ImageNet的分类任务训练得到的，在目标检测的时候进行Finetune。由于得到的初始模型基于分类任务，那么会偏向于平移不变性，这和目标检测就出现了矛盾。</p>
+<p>MSRA的Jifeng Dai等人提出了R-FCN，通过position-positive score maps（位置敏感得分图）来解决这个矛盾。位置敏感得分图通过预测RoI中不同部位的类别投票表决产生该RoI的类别预测。引用原文中的例子，“如果我们的算法要识别婴儿，那么把一个目标区域分成九宫格，其中算法认为其中五个格子中的区域分别像婴儿的头、四肢和躯干，那么根据投票机制，就认为这个目标区域里的是一个婴儿。这很符合我们人类的判断逻辑。”</p>
+<p><img src="https://pic3.zhimg.com/80/v2-2dff77ec4cbdd8b7061206cce98d3cda_hd.jpg" alt="img"></p>
+<p>R-FCN沿用了 Faster RCNN 的框架结构，不同的是在Faster R-CNN的基础上通过引入位置敏感得分图，将RoI-wise subnetwork消灭了，直接在位置敏感得分图上利用ROI Pooling进行信息采样融合分类和位置信息。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-2dff77ec4cbdd8b7061206cce98d3cda_hd.jpg" alt="img"></p>
+<p>R-FCN 网络框架结构</p>
+<p><img src="https://pic4.zhimg.com/80/v2-14f715806795cc8160ba65ccabbc13bb_hd.jpg" alt="img"></p>
+<p>ResNet101为例，不同检测框架复用卷积网络层数</p>
+<h3 id="Mask-R-CNN"><a href="#Mask-R-CNN" class="headerlink" title="Mask R-CNN"></a><strong>Mask R-CNN</strong></h3><p>2017年Kaiming He等提出了Mask R-CNN ，并获得ICCV2017 Best Paper Award。作者指出，Faster R-CNN在做下采样和RoI Pooling时都对特征图大小做了取整操作，这种做法对于分类任务基本没有影响，但对检测任务会有一定影响，对语义分割这种像素级任务的精度影响则更为严重。为此，作者对网络中涉及特征图尺寸变化的环节都不使用取整操作，而是通过双线性差值填补非整数位置的像素。这使得下游特征图向上游映射时没有位置误差，不仅提升了目标检测效果，还使得算法能满足语义分割任务的精度要求。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-a395cf8522f01013ce89818285d8b2f0_hd.jpg" alt="img"></p>
+<p>以上介绍的检测方法都属于two-stage的方案，即分为候选区域生成和区域分类两步，接下来我们将介绍几种single-stage的经典方法。</p>
+<h2 id="YOLO系列"><a href="#YOLO系列" class="headerlink" title="YOLO系列"></a><strong>YOLO系列</strong></h2><p>2015年，随着YOLO算法的出现，深度学习目标检测算法开始有了两步（two-stage）和单步（single-stage）之分。区别于R-CNN系列为代表的两步检测算法，YOLO舍去了候选框提取分支（Proposal阶段），直接将特征提取、候选框回归和分类在同一个无分支的卷积网络中完成，使得网络结构变得简单，检测速度较Faster R-CNN也有近10倍的提升。这使得深度学习目标检测算法在当时的计算能力下开始能够满足实时检测任务的需求。</p>
+<p>算法将待检测图像缩放到统一尺寸，为了检测不同位置的目标，将图像等分成的网格，如果某个目标的中心落在一个网格单元中，此网格单元就负责预测该目标。</p>
+<p><strong>YOLOv1</strong>只针对最后7x7的特征图进行分析，使得它对小目标的检测效果不佳，当多个目标出现在一个Grid Cell时不容易区分。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-5a249f325784f3daf17c25d1643e0a2c_hd.jpg" alt="img">YOLOv1原理图</p>
+<p><img src="https://pic3.zhimg.com/v2-f8ab5273ec9f74b4a00e31ebb6413e4a_b.webp" alt="img"></p>
+<p>YOLOv1在7X7特征图上对每个Grid cell进行操作</p>
+<p><strong>YOLOv2</strong>改进了YOLOv1的网络结构，除加入时下热门的批量归一化层以及残差网络结构以外，还针对性的训练了一个高分辨率的分类网络（448x448）然后利用该网络训练检测网络，单单通过提升输入的分辨率，mAP获得了4%的提升。YOLOv1利用单个grid cell拼接成全连接层完成边框的预测，导致丢失较多的空间信息，定位不准,作者在这一版本中进行了优化改进：</p>
+<p>1.借鉴了Faster R-CNN中的Anchor思想，但是作者在实践中发现用基于规则选择的Anchor效果并没有得到提升，实验中作者对Pascal VOC和COCO的数据集进行了统计分析（聚类分析）选择针对行的Anchor的尺寸性能的到了明显提升。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-a99085346a369b20d108475b5cf3b750_hd.jpg" alt="img"></p>
+<p>2.作者在使用anchor boxes时发现模型收敛不稳定，尤其是在早期迭代的时候。大部分的不稳定现象出现在预测box的 (x,y) 坐标的优化上。因此作者就没有采用直接预测offset的方法，而使用了预测相对于grid cell的坐标位置的办法，利用logistic函数把ground truth归一化到0到1之间，坐标值被归一化后，模型优化会更稳定。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-90166bff6f1e5b88e1731f36beab9121_hd.jpg" alt="img"></p>
+<p><strong>YOLOv3</strong>在YOLOv2的基础上使用了全新设计的Darknet53残差网络并结合FPN网络结构，在网络后两个特征图上采样后于网络前期相应尺寸的特征图聚合再经过卷积网络后得到预测结果。这些改进使得YOLOv3用三分之一的时间达到与SSD相当的精确度。在 COCO test-dev 上 <a href="mailto:mAP@0.5" target="_blank" rel="noopener">mAP@0.5</a> 达到 57.9%，与RetinaNet（FocalLoss论文所提出的单阶段网络）的结果相近，但速度快4倍。</p>
+<p>YOLOv3的模型比之前的版本复杂了不少，可以通过改变模型结构的大小来权衡速度与精度。</p>
+<p>YOLOv3的改进点：</p>
+<ol>
+<li><p>多尺度预测（FPN）</p>
+</li>
+<li><p>更好的Backbone网络（Darknet53残差网络）</p>
+</li>
+<li><p>分类损失采用binary cross-entropy损失函数替换Softmax损失函数（Softmax会选择分数最高的类别判定为当前框所属的类别，而现实中一个目标可能属于多个类别标签）</p>
+</li>
+</ol>
+<p><img src="https://pic4.zhimg.com/80/v2-3468dcd60c50418a7038f406bb8e10cf_hd.jpg" alt="img"></p>
+<h2 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a><strong>SSD</strong></h2><p>SSD对YOLO进行了改进，达到了和两阶段方法相当的精度，同时又保持了较快的运行速度。SSD也采用了网格划分的思想，和Faster RCNN不同的是它将所有的操作整合在一个卷积网络中完成。为了检测不同尺度的目标，SSD对不同卷积层的特征图像进行滑窗扫描；在前面的卷积层输出的特征图像中检测小的目标，在后面的卷积层输出的特征图像中检测大的目标。它的主要特点是：</p>
+<p>1.基于多尺度特征图像的检测：在多个尺度的卷积特征图上进行预测，以检测不同大小的目标，一定程度上提升了小目标物体的检测精度。</p>
+<p>2.借鉴了Faster R-CNN中的Anchor boxes思想，在不同尺度的特征图上采样候选区域，一定程度上提升了检测的召回率以及小目标的检测效果。下图是SSD的原理：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-99fba14ea71f133630ac49f7fecc1c97_hd.jpg" alt="img"></p>
+<h2 id="FPN"><a href="#FPN" class="headerlink" title="FPN"></a><strong>FPN</strong></h2><p>FPN（Feature Pyramid Network）方法同时利用低层特征高分辨率和高层特征的高语义信息，通过融合这些不同层的特征达到提升预测的效果的作用。FPN中预测是在每个融合后的特征层上单独进行的，这和常规的特征融合方式有所不同。</p>
+<p>FPN 网络结构如下图d（其中YOLO使用b结构，SSD使用c结构）所示，它的结构具有相当的灵活性，可以和各种特征提取网络结合作为检测算法的基础网络。在后文中会看到，目前大多数state-of-art的模型都采用了这种结构。其中RetinaNet在FPN的基础上使用了ResNet网络提取特征，并用Focal Loss损失改善单步目标检测算法中普遍存在的前景类和背景类损失不均衡的问题。这些基于FPN结构的检测算法能够在增加网络深度、获取更丰富语义信息的同时从浅层特征图中获取更丰富且高分辨率的图像特征，这使得这种网络结构在实际应用中表现出优异的性能。</p>
+<p>目前主流检测框架有4种使用特征的形式：</p>
+<p>1.图像金字塔。即将图像缩放到不同的大小，然后不同大小的图像生成对应的特征。这种方法的缺点是增加了时间成本。有些算法会在检测时采用这种图像金字塔的方案。</p>
+<p>2.单一尺度特征层。SPPNet，Fast RCNN，Faster RCNN采用这种方式，即仅采用网络最后一层卷积层的特征。</p>
+<p>3.SSD采用这种多尺度特征融合的方式，但是没有上采样过程，即从网络不同层抽取不同尺度的特征做预测，这种方式不会增加额外的计算量。SSD算法中没有用到足够低层的特征（在SSD中，最低层的特征是VGG网络的conv4_3），而足够低层的特征对于检测小物体是很有帮助的。</p>
+<p>4.FPN采用bottom-up与top-down的结构，实现了低层特征和高层语义特征的融合，提高了特征映射的信息密度和分辨率，提高了小目标物体的检测效果；区别于SSD，FPN每层都是独立预测的。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-78394fe1fbe74cd5e5be31031666a623_hd.jpg" alt="img"></p>
+<h2 id="COCO2017排行榜"><a href="#COCO2017排行榜" class="headerlink" title="COCO2017排行榜"></a><strong>COCO2017排行榜</strong></h2><p>最后我们来看通用目标检测算法的最新进展。下图是MSCOCO 2017年目标检测竞赛的领先算法：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-5aca680d0ba51613f421d806d511f3c9_hd.jpg" alt="img"></p>
+<p>其中排名第一的模型为旷视科技（face++）提交的MegDet。他们的方案没有在检测算法方面做过多优化（采用的是ResNet50+FPN），而是在并行训练规模上做了优化。训练硬件环境是由128个GPU组成的集群，通过改进跨GPU批量归一化算法和学习率变化策略，将batch size增大到256张，这使得批量归一化层中使用的批均值和方差更能够反应总体特征，有效提升了归一化效果，从而大幅提升训练速度并且得到了非常好的结果。</p>
+<p>排名第二的方案PAN改进了FPN算法，如下图所示。它在FPN的基础上不仅增加了一个降采样网络（b），还聚合使用了多个不同尺度特征图上的预测候选框（c）。该模型不仅在这一届的COCO目标检测竞赛中名列第二，而且取得了语义分割任务的冠军。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-1262e4b41c89d8f123fe5cef5afd446f_hd.jpg" alt="img"></p>
+<p>第三名的模型出自MSRA之手，他们同样没有对检测算法本身做过多改进，在FPN基础上使用了Xception网络结构和SoftNMS，但与以往不同的是使用了可变卷积层DCN（deformable convnet）替代了传统卷积，使得卷积层能够根据图片的语义信息调整卷积核感受点的位置，达到提升网络特征提取能力的目的。下图是可变卷积层的原理：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-349abbae65a4204832b706ab008db5fa_hd.jpg" alt="img"></p>
+<p>排名第四的结果是用以FPN+ResNeXt网络为作为基础网络的Mask R-CNN算法得到的。后面大多数成绩优异的模型都是R-FCN、FPN、Faster-RCNN等经典模型结合DCN、Attention机制、先进分类网络结构和模型融合等技术而形成的算法。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-11-22T13:17:46.805Z">2019-11-22</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    an hour membaca (Sekitar 8638 kata)
+                    an hour read (About 8639 words)
                 </span>
                 
                 
@@ -175,237 +359,16 @@
 <li>如何创建标准Java类库中的类对象</li>
 <li>如何编写自己的类</li>
 </ol>
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>面向对象程序设计 （ 简称 OOP)是当今主流的程序设计范型。Java完全面向对象。</p>
-<p>面向对象的程序是由对象组成的，每个对象包含对用户<strong>公开的特定功能部分和隐藏的实现部分</strong>。</p>
-<p>传统的结构化程序设计通过<strong>设计一系列的过程 （ 即算法） 来求解问题</strong>。一旦确定了这些过程，开始考虑存储数据的方式。算法+数据结构 = 程序。算法是第一位的，数据结构是第二位的。程序员的工作方式, 首先<strong>要确定如何操作数据</strong>，然后<strong>再决定如何组织数据</strong>，以便于数据操作。而OOP却调换了这个次序，将数据放在第一位，然后再考虑操作数据的算法。</p>
-<p>对于一些规模较小的问题，将其分解为过程的开发方式比较理想。而面向对象更加适用于解决规模较大的问题。</p>
-<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>类 （ class ) 是构造对象的模板或蓝图。我们可以将类想象成制作小甜饼的切割机，将对象想象为小甜饼 。由类构造 （ construct ) 对象的过程称为创建类的实例 （ instance ) .</p>
-<p>用 Java 编写的所有代码都位于某个类的内部。标准的 Java 库提供 了几千个类。尽管如此，还是需要在Java 程序中创建一些自己的类，以便描述应用程序所对应的问题域中的对象。</p>
-<ol>
-<li><strong>封装 （ encapsulation , 有时称为数据隐藏 ） 是与对象有关的一个重要概念。</strong>从形式上看，封装不过是将<strong>数据和行为组合在一个包</strong>， 并对对象的使用者隐藏了数据的实现方式。对象中的数据称为实例域，操作数据的过程称为方法(method)。对每个特定的类实例(对象)都有一组特定的实例域值。这些值的结合就是这个对象的当前状态。无论何时，向对象发送一个消息，他的状态就可能改变。</li>
-</ol>
-<p>实现封装的关键在于绝对不能让<strong>类中的方法直接地访问其他类的实例域</strong>。仅能通过方法对对象的数据进行交互。</p>
-<ol start="2">
-<li>继承，OOP 的另一个原则会让用户自定义 Java 类变得轻而易举，可以通过扩展一个类来建立另外一个新的类，所有的类都源自于一个 “ 神通广大的超类 ”。它就是 Object。这个扩展后的新类具有所扩展的类的全部属性和方法，只需提供适用于这个新类的新方法和数据域</li>
-</ol>
-<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>要想使用OOP ,清楚对象的三个主要特性：</p>
-<ul>
-<li>对象的行为(behavior)， 可以施加哪些操作，</li>
-<li>对象的状态(state), 对象的如何相应</li>
-<li>对象的标识(identity)。</li>
-</ul>
-<p>同一个类的所有对象实例, 对象的行为是可调用的方法定义。</p>
-<h3 id="识别类"><a href="#识别类" class="headerlink" title="识别类"></a>识别类</h3><p>传统的过程化程序设计。必须从顶部的main函数开始编写，在面向对象所谓的顶部，要 首先从设计类开始，然后再往下每个类中添加方法。</p>
-<p>识别类的简单规则是在<strong>分析问题的过程中寻找名词</strong>，而<strong>方法对应着动词</strong>。</p>
-<h3 id="类之间的关系"><a href="#类之间的关系" class="headerlink" title="类之间的关系"></a>类之间的关系</h3><ul>
-<li>依赖(‘uses-a’);</li>
-<li>聚合(‘has-a’)</li>
-<li>继承(‘is-a’)</li>
-</ul>
-<p>依赖 （ dependence ) , 即 “ uses - a ” 关系. 如果一个类的方法操纵另一个类的对象 我们就说一个类依赖于另一个类。应该尽可能地将相互依赖的类减至最少，让类之间的耦合度最小。</p>
-<p>聚合关系意味着类 A 的对象包含类 B 的对象</p>
-<p>继承 （inheritance ) , 即 “ is - a ” 关系 是一种用于表示特殊与一般关系的</p>
-<p><img src="/2019/11/22/第四章-对象与类/5.png" alt="image-20191122215412010" style="zoom:50%;"></p>
-<p><img src="/2019/11/22/第四章-对象与类/6.png" alt="image-20191122215439423" style="zoom:50%;"></p>
-<h1 id="使用预定义类"><a href="#使用预定义类" class="headerlink" title="使用预定义类"></a>使用预定义类</h1><p>使用类。但如 Math类的方法，Math封装了功能，不需要也不必隐藏数据，无数据</p>
-<h3 id="对象与对象变量"><a href="#对象与对象变量" class="headerlink" title="对象与对象变量"></a>对象与对象变量</h3><p>要想使用对象，就必须<strong>先构造对象</strong>，并<strong>指定其初始化状态</strong>。然后，<strong>对对象应用方法</strong>。 Java中，用构造器(constructor)构造新实例。<strong>构造器是一种特殊的方法，用来构造并初始化对象</strong>。</p>
-<p>如Java类库中的包含一个Date类。</p>
-<p>构造器的名字应该与类名相同，因此Date类的构造器为Date，要想构造一个Date对象，需要在构造器前面加上new操作符，如 new Date().这个表达式<strong>构造了一个新对象</strong> , 这个对象被初始化为当前的日期和时间</p>
-<p>如果需要的话 也可以将这个对象传递给一个方法。Date类中有一个toString方法。这个方法将返回字符串</p>
-<p>String s = new Date().toString();</p>
-<p>在对象与对象变量之间存在着一个重要的区别;</p>
-<p>Date deadline; // deadlin doesn’t refer to any object;定义了一个对象变量deadline,它可以引用Date类型的对象，但是，变量deadline不是一个对象，实际上也没有引用对象。不能使用方法。</p>
-<p>必须首先初始化变量 deadline , </p>
-<p>方法1：deadline = new Date();</p>
-<p>方法2：deadline = birthday; 引用已有的对象。</p>
-<p><img src="/2019/11/22/第四章-对象与类/7.png" alt="image-20191122220930815" style="zoom:50%;"></p>
-<p>一定要认识到 ： 一个<strong>对象变量</strong>并<strong>没有实际包含一个对象</strong>而<strong>仅仅引用一个对象</strong></p>
-<p>在Java中，<strong>任何对象变量的值都是对存储在另一个地方的一个对象的引用</strong>。new操作符的返回值也是一个引用。</p>
-<p>语句： Date deadline = new Date () ;</p>
-<p>有两个部分：表达式new Date() 构造了一个Date类型的对象，并且它的值是对新创建对象的引用。这个引用存储在变量deadline中。可以显示将对象置为null，表明这个对象变量目前没有引用任何对象。</p>
-<p>如果将<strong>一个方法应用于一个值为 null的对象</strong>上 ，那么就会产生运行时错误。</p>
-<p><strong>局部变量不会自动地初始化为 null</strong> ，而必须通过<strong>调用 new 或将它们设置为 null 进行初始化</strong></p>
-<blockquote>
-<p>很多人错误地认为 Java 对象变量与 C ++ 的引用类似,然而 在 C ++ 中没有空引用 ， 并且引用不能被赋值.可<strong>以将 Java 的对象变量看作 C + + 的对象指针</strong></p>
-</blockquote>
-<p>将 Java 的对象变量看作 C + + 的对象指针</p>
-<p>如果把一个变量的值賦给另一个变量, 两个变量就指向同一个日期.</p>
-<p>在 Java 中的 null 引用对应 C ++中的 NULL 指针.</p>
-<p>所有的 <strong>Java 对象都存储在堆</strong>中,当一个对象包含另一个对象变量时,这个变量依然包含着指向另一个堆对象的指针</p>
-<h3 id="LocalDate类"><a href="#LocalDate类" class="headerlink" title="LocalDate类"></a>LocalDate类</h3><p>Date类中实例有一个状态，即特定的时间点。Date类中： 实际上时间是用距离一个固定时间点的毫秒数表示的。这个点称为纪元epoch。即UTC 1970年1月1日00:00:00,</p>
-<p>类库设计者决定将<strong>保存时间</strong>与<strong>给时间点命名分开</strong>. 所以标准 Java 类库分别包含了两个类: </p>
-<p>一个是用来<strong>表示时间点的 Date 类,</strong> 另一个是用来表示大家熟悉的日历表示法的 LocalDate 类.</p>
-<p>将<strong>时间</strong>与<strong>日历</strong>分开是一种很好的面向对象设计.</p>
-<p>不要使用构造器来构造 LocalDate 类的对象。实际上 应当使用静态工厂方法 ( factory method ) 代表你调用构造器。LocalDate.now() 构造一个新对象。</p>
-<p>一旦有 了一个 LocalDate 对象，可以用方法 get Year 、getMonth Value 和 getDayOfMonth得到年 月和日：</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">LocalDate newss = LocalDate.now();</span><br><span class="line"><span class="hljs-comment">//通常都希望将构造的对象保存在一个对象变量中</span></span><br><span class="line">LocalDate newYearsEve = LocalDate.of(<span class="hljs-number">1999</span>, <span class="hljs-number">1</span>, <span class="hljs-number">23</span>);</span><br><span class="line"><span class="hljs-keyword">int</span> year = newYearsEve.getYear();</span><br><span class="line"><span class="hljs-keyword">int</span> month = newYearsEve.getMonthValue();</span><br><span class="line"><span class="hljs-keyword">int</span> day = newYearsEve.getDayOfMonth();</span><br><span class="line"><span class="hljs-comment">// plusDays 方法会得到一个新的 LocalDate ,</span></span><br><span class="line">        LocalDate aThousandDaysLater = newYearsEve.plusDays(<span class="hljs-number">1000</span>);</span><br><span class="line">        year = aThousandDaysLater.getYear();</span><br><span class="line">        month = aThousandDaysLater.getMonthValue();</span><br><span class="line">        day = aThousandDaysLater.getDayOfMonth();</span><br></pre></td></tr></table></figure>
-<p>plusDays 方法会生成一个新的 LocalDate 对象,然后把这个新对象赋给 aThousandDaysLater变量 原来的对象不做任何改动 我们说 plusDays 方法没有更改调用这个方法的对象.</p>
-<h1 id="用户自定义类"><a href="#用户自定义类" class="headerlink" title="用户自定义类"></a>用户自定义类</h1><p>已经开始编写了一些简单的类；如何设计复杂应用程序的各种主力类(workhorse class)。通常这些类<strong>没有main方法，却有自己的实例域和实例方法</strong>。想创建一个完整的程序, 若干类组合，只有一个类有main方法。</p>
-<h3 id="Employee类"><a href="#Employee类" class="headerlink" title="Employee类"></a>Employee类</h3><p>在Java中，最简单的类定义形式：</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ClassName</span> </span>&#123;</span><br><span class="line">	field1;</span><br><span class="line">	field2;</span><br><span class="line">	...</span><br><span class="line">	constructor1,</span><br><span class="line">	constructor2,</span><br><span class="line">	...</span><br><span class="line">	method1,</span><br><span class="line">	method2,</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如下面的简单的Employee类，在编写资金管理时，用到</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> java.time.LocalDate;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">// instance field </span></span><br><span class="line">  	<span class="hljs-comment">// 可以用 public 标记实例域 但这是一种极为不提倡的做法,public 數据域允许程序中的任何方法对其进行读取和修改。</span></span><br><span class="line">    <span class="hljs-keyword">private</span> String name;</span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">double</span> salary;</span><br><span class="line">    <span class="hljs-keyword">private</span> LocalDate hireDay;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// constructor</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Employee</span><span class="hljs-params">(String n, <span class="hljs-keyword">double</span> s, <span class="hljs-keyword">int</span> year, <span class="hljs-keyword">int</span> month, <span class="hljs-keyword">int</span> day)</span> </span>&#123;</span><br><span class="line">        name = n;</span><br><span class="line">        salary = s;</span><br><span class="line">        hireDay = LocalDate.of(year, month, day);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// a method</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-comment">// more method</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EmployeeTest</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">// fill the staff array with three Employee objects</span></span><br><span class="line">        Employee[] staff = <span class="hljs-keyword">new</span> Employee[<span class="hljs-number">3</span>];</span><br><span class="line"></span><br><span class="line">        staff[<span class="hljs-number">0</span>] = <span class="hljs-keyword">new</span> Employee(<span class="hljs-string">"Carl Cracker"</span>, <span class="hljs-number">75000</span>, <span class="hljs-number">1987</span>, <span class="hljs-number">12</span>, <span class="hljs-number">15</span>);</span><br><span class="line">        staff[<span class="hljs-number">1</span>] = <span class="hljs-keyword">new</span> Employee(<span class="hljs-string">"Harry Hacker"</span>, <span class="hljs-number">5000</span>, <span class="hljs-number">1993</span>, <span class="hljs-number">10</span>, <span class="hljs-number">16</span>);</span><br><span class="line">        staff[<span class="hljs-number">2</span>] = <span class="hljs-keyword">new</span> Employee(<span class="hljs-string">"Tony Tester"</span>, <span class="hljs-number">6000</span>, <span class="hljs-number">2001</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>);</span><br><span class="line">        <span class="hljs-comment">// raise everyon's salary by 5%</span></span><br><span class="line">        <span class="hljs-keyword">for</span> (Employee e : staff) &#123;</span><br><span class="line">            e.raiseSalary(<span class="hljs-number">5</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">for</span> (Employee e : staff) &#123;</span><br><span class="line">            System.out.println(<span class="hljs-string">"name="</span>+e.getName()+<span class="hljs-string">" salary="</span>+e.getSalary()+<span class="hljs-string">" hireDay="</span>+e.getHireDay());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        staff[<span class="hljs-number">0</span>].test = <span class="hljs-string">"teswt"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>在类中：Employee 类和带有 public 访问修饰符的 EmployeeTest 类。EmployeeTest 类包含了 main 方法 其中使用了前面介绍的指令。源文件名是 EmployeeTest . java 这是因为文件名必须与 public 类的名字相匹配。在一个 源文件中，<strong>只能有一个公有类，但可以有任意数目的非公有类</strong>。</p>
-</li>
-<li><p>接下来当<strong>编译这段源代码的时候，编译器将在目录下创建两个类文件</strong>: EmployeeTest.class和Employ.class。</p>
-</li>
-<li><p>将程序中包含main方法的类名提供了给字节码解释器，以便启动这个程序:</p>
-</li>
-</ol>
-<p><code>java EmployeeTest</code></p>
-<ol start="4">
-<li>字节码解释器开始运行EmployeeTest类的main方法中的代码。在这段代码中，先后构成了三个新Employee对象，并显示他们的状态。</li>
-</ol>
-<h3 id="多源文件使用"><a href="#多源文件使用" class="headerlink" title="多源文件使用"></a><strong>多源文件使用</strong></h3><p>实际上习惯于每一个类存在一个单独的源文件中。将Employee类放在Employee.java中，将EmployeeTest放入EmployeeTest.java中。可通过通配符调用Java编译器: javac Employee*.java; 或者 javac EmployeeTest.java</p>
-<h3 id="剖析Employee类"><a href="#剖析Employee类" class="headerlink" title="剖析Employee类"></a><strong>剖析Employee类</strong></h3><p>下面对Employee类剖析。首先从这个类的方法开始。通过查看源代码会发现，这个类包含一个构造器和4个方法，用public标记。</p>
-<p>用 public 标记<strong>实例域</strong>，但这是一种极为不提倡的做法,public 數据域允许程序中的任何方法对其进行读取和修改。</p>
-<p>最后，请注意，有两个实例域本身就是对象: name域是String对象，hireDay域是LocalDate类对象。</p>
-<h3 id="从构造器开始"><a href="#从构造器开始" class="headerlink" title="从构造器开始"></a><strong>从构造器开始</strong></h3><p>Employee类构造器</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// constructor</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Employee</span><span class="hljs-params">(String n, <span class="hljs-keyword">double</span> s, <span class="hljs-keyword">int</span> year, <span class="hljs-keyword">int</span> month, <span class="hljs-keyword">int</span> day)</span> </span>&#123;</span><br><span class="line">    name = n;</span><br><span class="line">    salary = s;</span><br><span class="line">    hireDay = LocalDate.of(year, month, day);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>构造器与类同名</strong>。在构造Employee类的对象时，构造器会运行，将实例域初始化。<code>new Employee(&quot;Carl Cracker&quot;, 75000, 1987, 12, 15);</code></p>
-<p><strong>可有多个构造器</strong>。</p>
-<p><strong>构造器没有返回值。</strong></p>
-<p>构造器与其他的方法有一个重要的不同 。构造器<strong>总是伴随着 new 操作符的执行被调用</strong>, 而<strong>不能对一个已经存在的对象调用构造器</strong>来达到重新设置实例域的目的, 将产生编译错误。</p>
-<p>请注意 <strong>不要在构造器中定义与实例域重名的局部变量</strong>，这些变量只能在构造器内部访问。这些变量屏蔽了同名的实例域。因此 ，必须注意在所有的方法中不要命名与实例域同名的变量</p>
-<p>注意: Java构造器与C++一致，Java对象都是在堆中构造，构造器总伴随着new一起使用。</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">Employee <span class="hljs-title">number007</span><span class="hljs-params">(<span class="hljs-string">"Tony Tester"</span>, <span class="hljs-number">6000</span>, <span class="hljs-number">2001</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>)</span></span>;<span class="hljs-comment">// 在C++可以这样使用，Java不行</span></span><br><span class="line">Employee number007 = <span class="hljs-keyword">new</span> Employee(<span class="hljs-string">"Tony Tester"</span>, <span class="hljs-number">6000</span>, <span class="hljs-number">2001</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>); <span class="hljs-comment">//Java中使用</span></span><br></pre></td></tr></table></figure>
-<h3 id="隐式参数与显式参数"><a href="#隐式参数与显式参数" class="headerlink" title="隐式参数与显式参数"></a><strong>隐式参数与显式参数</strong></h3><p><strong>方法用于操作对象以及存取它们的实例域</strong>。例如，方法:</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">raiseSalary</span><span class="hljs-params">(<span class="hljs-keyword">double</span> byPercent)</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">double</span> raise = salary * byPercent / <span class="hljs-number">100</span>;</span><br><span class="line">  salary += raise;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">// 将调用这个方法的对象的salary实例设置为新值。例如</span></span><br><span class="line">number007.raiseSalary(<span class="hljs-number">5</span>);</span><br><span class="line"><span class="hljs-comment">// 它的结果将 number007.salary 域的值增加 5 %,具体该调用执行下列指令</span></span><br><span class="line"><span class="hljs-keyword">double</span> raise = number007.salary * <span class="hljs-number">5</span> /<span class="hljs-number">100</span>;</span><br><span class="line">number007.salary += raise;</span><br></pre></td></tr></table></figure>
-<p>raiseSalary用两个参数: 1. 隐式参数(implicit)，是<strong>出现在方法名前的Employee类对象</strong>，也可称为方法调用的目标或者接收者。 2. 第二个参数是位于方法名后面括号中的数值。这是一个显式参数(explicit)。显式参数是明显列在方法声明中的，例如double byPercent, 隐式参数没有出现在方法声明中。</p>
-<p>在每一个方法中，关键字this表示隐式参数，如需要可用下列方法编写raiseSalary方法:</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">raiseSalary</span><span class="hljs-params">(<span class="hljs-keyword">double</span> byPercent)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">double</span> raise = <span class="hljs-keyword">this</span>.salary * byPercent / <span class="hljs-number">100</span>;</span><br><span class="line">	<span class="hljs-keyword">this</span>.salary += raise;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>有些程序员更偏爱这样的风格, 因为这样可以<strong>将实例域与局部变量明显地区分开来</strong>。</p>
-<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">void</span> Employee::raiseSalary(<span class="hljs-keyword">double</span> byPercent) &#123; <span class="hljs-comment">//in C++ not Java 在类外定义方法</span></span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span> &#123;</span></span><br><span class="line">	...</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getName</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-keyword">return</span> name;&#125; <span class="hljs-comment">// inline C++</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>在Java，所有方法都必须在类的内部定义</strong>， 但不代表他们是内联方法。是否将某个方法设置为内联方法是Java虚拟机的任务，即 编译器会监视调用<strong>那些简洁、经常被调用的，没有被重载以及可以被优化</strong>的方法。</p>
-<h3 id="封装的优点"><a href="#封装的优点" class="headerlink" title="封装的优点"></a>封装的优点</h3><p>最后仔细看下getName方法，getSalary，getHireDay方法。这些都是典型的访问器方法，又称为域访问器。一般需要获取或者设置实例域的值。</p>
-<ul>
-<li>一个私有的数据域</li>
-<li>一个公有的域访问器的方法</li>
-<li>一个公有的域更改器方法: 更改器方法可以执行错误检查</li>
-</ul>
-<p>注意：不要编写返回<strong>引用可变对象的访问器</strong>方法，在Employee类中，就违反了该设计原则:</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">private</span> Date hireDay;</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> Date <span class="hljs-title">getHireDay</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">		<span class="hljs-keyword">return</span> hireDay; <span class="hljs-comment">//Bad</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">// LocalDate类中没有更改器的方法，但Date类中有一个更改器方法setTime,可以设置</span></span><br><span class="line">Employee harry = ..</span><br><span class="line">Date d = harry.getHireDay();</span><br><span class="line"><span class="hljs-keyword">double</span> tenYears = <span class="hljs-number">10</span>*<span class="hljs-number">365</span>...;</span><br><span class="line">d.setTime(d.getTime() - (<span class="hljs-keyword">long</span>)tenYears);</span><br></pre></td></tr></table></figure>
-<p>因此，如果需要返回一个可变对象的引用，首先应该先克隆(clone)，对象 clone 指存放在另一个位置上的对象副本。</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span></span>&#123;</span><br><span class="line">  <span class="hljs-keyword">private</span> Date hireDay;</span><br><span class="line"> 	<span class="hljs-function"><span class="hljs-keyword">public</span> Date <span class="hljs-title">getHireDay</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (Date)hireDay.clone();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果需要返回一个可变数据域的拷贝 ，就应该使用clone</p>
-<h3 id="基于类的访问权限"><a href="#基于类的访问权限" class="headerlink" title="基于类的访问权限"></a>基于类的访问权限</h3><p>方法可以访问所调用对象的私有数据 。一个方法可以访问所属类的所有对象的私有数据。</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span></span>&#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Employee other)</span> </span>&#123;</span><br><span class="line">		<span class="hljs-keyword">return</span> name.equals(other.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">// 典型的调用方式是</span></span><br><span class="line"><span class="hljs-keyword">if</span>(harry.equals(boss)) ..</span><br></pre></td></tr></table></figure>
-<p>这个方法可以访问harry的私有域，它<strong>还可以访问boss的私有域，这是合法的。其原因是boss是Employee类对象，而Employee类的方法可以访问Employee类的 任何一个对象的私有域</strong>。</p>
-<p>注意： C++也是一样的，方法可以访问所属类的私有特性(feature) , 而不仅限访问隐私参数的私有特性。</p>
-<h3 id="私有方法"><a href="#私有方法" class="headerlink" title="私有方法"></a>私有方法</h3><p>在实现一个类时，公有数据很危险，一般私有化。方法一般公有，特殊情况下，如何一个计算代码，划分成若干独立的辅助方法。使用private。</p>
-<h3 id="final实例域"><a href="#final实例域" class="headerlink" title="final实例域"></a>final实例域</h3><p><strong>可以将实例域定义为 final，构建对象时必须初始化这样的域</strong>。必须确保在每一个构造器执行之后，这个域的值被设置，并且在后面的操作中，不能够再对它进行修改。例如<strong>，可以将 Employee 类中的 name 域声明为 final , 因为在对象构建之后 这个值不会再改变， 被修改 即没有 setName 方法</strong></p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span></span>&#123;</span><br><span class="line">    <span class="hljs-comment">//insance field</span></span><br><span class="line"><span class="hljs-comment">//    private String name;</span></span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>final 修饰符大都应用于<strong>基本(primitive)类型域，或者不可变(immutable)类的域</strong>。(如果类中的每个方法都不会改变其对象，这种类成为不可变类，如String类。)</p>
-<p>对于可变的类 ，使用 final 修饰符可能会对读者造成混乱</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> StringBuilder evaluations;</span><br><span class="line"><span class="hljs-comment">// 在Employee构造器中会初始化为</span></span><br><span class="line">evaluations = <span class="hljs-keyword">new</span> StringBuilder();</span><br></pre></td></tr></table></figure>
-<p>final关键字只是表示存储在evaluations变量中的对象引用不会指示其他的StringBuilder对象，不过这个对象可以更改:</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">giveGoldStar</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	evaluations.append(LocalDate.now() + <span class="hljs-string">": Gold star!\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="静态域与静态方法"><a href="#静态域与静态方法" class="headerlink" title="静态域与静态方法"></a>静态域与静态方法</h2><p>前面中，main 方法都被标记为 static 修饰符。<strong>可以给类名直接使用</strong>，生命周期程序延长，给类名使用。</p>
-<h3 id="静态域"><a href="#静态域" class="headerlink" title="静态域"></a>静态域</h3><p>如果将域定义为static，每个类只有一个这样的域，而<strong>每一个对象对于所有的实例域都有自己的一份拷贝</strong>。例如，假定需要给每一个雇员赋予一个唯一标识码，这里给Employee类添加一个实例域id和一个静态域nextId。</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span></span>&#123;</span><br><span class="line">    <span class="hljs-comment">//insance field</span></span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> Id;</span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> nextId = <span class="hljs-number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在 ，每一个雇员对象都有一个自己的 id 域 ，但这个类的所有实例将共享一个 nextld域.换句话说 ，</p>
-<p>如果有 1000 个Employee类的对象 ，则有1000个实例域 id 。但是只有一个静态域nextId。即是没有一个雇员对象，静态域nextId也存在，它属于类，不属于任何独立的对象。在绝大多数的面向对象程序设计语言中，<strong>静态域被称为类域</strong>，沿用了 C ++ 的叫法 并无实际意义</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setId</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ID)</span> </span>&#123;</span><br><span class="line"><span class="hljs-comment">//        this.id = ID;</span></span><br><span class="line">        <span class="hljs-keyword">this</span>.id = nextId;</span><br><span class="line">        nextId++;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="hljs-comment">// 假定为 harry 设定雇员标识码</span></span><br><span class="line">harry.setID(<span class="hljs-number">10</span>);</span><br><span class="line">harry的id域被设置为静态域nextId的当前值，并且静态域nextId的值加<span class="hljs-number">1</span>:</span><br><span class="line">harry.id = Employee.nextId;</span><br><span class="line">Employee.nextId++;</span><br></pre></td></tr></table></figure>
-<h3 id="静态常量"><a href="#静态常量" class="headerlink" title="静态常量"></a>静态常量</h3><p>静态变量使用得比较少，但静态常量却使用得比较多，如</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Math</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">double</span> PI = <span class="hljs-number">3.1415926</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在程序中，可通过Math.PI的形式获得这个常量。</p>
-<p><strong>静态变量</strong>（<em>Static Variable</em>）在<a href="https://zh.wikipedia.org/wiki/计算机编程" target="_blank" rel="noopener">计算机编程</a>领域指在<a href="https://zh.wikipedia.org/wiki/程序" target="_blank" rel="noopener">程序</a>执行前系统就为之<a href="https://zh.wikipedia.org/w/index.php?title=静态分配&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">静态分配</a>（也即在运行时中不再改变分配情况）存储空间的一类<a href="https://zh.wikipedia.org/wiki/变量_(程序设计" target="_blank" rel="noopener">变量</a>)。与之相对应的是在运行时只暂时存在的<a href="https://zh.wikipedia.org/wiki/自动变量" target="_blank" rel="noopener">自动变量</a>（即局部变量）与以<a href="https://zh.wikipedia.org/wiki/动态内存分配" target="_blank" rel="noopener">动态分配</a>方式获取存储空间的一些对象，其中自动变量的存储空间在<a href="https://zh.wikipedia.org/wiki/调用栈" target="_blank" rel="noopener">调用栈</a>上分配与释放。</p>
-<p>static 声明的变量在C语言中有两方面的特征：</p>
-<p>1.变量被放<strong>在程序的全局存储区</strong>中，这样在下一次调用的时候还可以保持原来的赋值。这一点是它与堆栈变量和堆变量的区别。</p>
-<p>2.变量用static告知编译器，自己<strong>仅在变量的作用范围内可见</strong>。这一点是它与全局变量的区别。</p>
-<p>全局变量、静态全局变量、静态局部变量和局部变量的区别<br>变量可以分为：全局变量、静态全局变量、静态局部变量和局部变量。<br>按存储区域分，全局变量、静态全局变量和静态局部变量都存放在<strong>内存的静态存储区域</strong>，局部变量存放在<strong>内存的栈区</strong>。<br>按作用域分，<strong>全局变量在整个工程文件内都有效</strong>；<strong>静态全局变量只在定义它的文件内有效</strong>；<strong>静态局部变量只在定义它的函数内有效</strong>，并<strong>且程序仅分配一次内存</strong>，函数返回后，该变量不会消失；局部变量在定义它的函数内有效，但是函数返回后失效。</p>
-<p>static表示“全局”或者“静态”的意思，用来修饰成员变量和成员方法，也可以形成静态static代码块，但是Java语言中没有全局变量的概念。</p>
-<p>  static是静态修饰符，什么叫静态修饰符呢？大家都知道，在程序中任何变量或者代码都是在编译时由系统自动分配内存来存储的，而所谓静态就是指在编译后所分配的内存会一直存在，直到程序退出内存才会释放这个空间，也就是只要程序在运行，那么这块内存就会一直存在。这样做有什么意义呢？在Java程序里面，所有的东西都是对象，而对象的抽象就是类，对于一个类而言，如果要使用他的成员，那么普通情况下必须先实例化对象后，通过对象的引用才能够访问这些成员，但是<strong>用static修饰的成员可以通过类名加“.”进行直接访问</strong>。</p>
-<h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><p>静态方法是一种<strong>不能向对象实施操作</strong>的方法。例如，Math类中的pow方式就是一个静态方法:</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Math.pow(x, a);<span class="hljs-comment">//计算，在运算时，没有使用任何Math对象，换句话，静态方法没有隐式参数。</span></span><br></pre></td></tr></table></figure>
-<p>Employee 静态方法不能访问Id 实例域 因为它不能操作对象。建议使用类名来调用静态方法。</p>
-<p>在下面两种情况使用静态方法:</p>
-<ul>
-<li>一个方法不需要访问对象状态，其需要的参数是通过显式参数提供。(Math.pow)</li>
-<li>一个方法只需要访问类的静态域。(Employee.getNextId)</li>
-</ul>
-<p>static属于类且不属于类对象的变量和函数</p>
-<h3 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h3><p><strong>静态方法还有另外一种常见的用途</strong>。类似 LocalDate 和 NumberFormat 的类使用静态工厂(factory method)来构造对象。如LocalDate.now()和LocalDate.of()，NumberFormat类如下<strong>使用工厂方法生成不同风格的格式化对象</strong>：</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();</span><br><span class="line">NumberFormat percnetFormatter = NumberFormat.getPercentInstance();</span><br></pre></td></tr></table></figure>
-<p>为什么 NumberFormat 类不利用构造器完成这些操作呢 ？ 这主要有两个原因:</p>
-<ul>
-<li><strong>无法命名构造器。构造器的名字必须的对象类型</strong>，但这里希望将得到的货币实例和和百分比的实例采用不同的名字。</li>
-<li><strong>当使用构造器时，无法改变所构造的对象类型</strong>。而Factory方法返回一个DecimalFormat类对象。</li>
-</ul>
-<h3 id="main方法"><a href="#main方法" class="headerlink" title="main方法"></a>main方法</h3><p>需要注意，<strong>不需要使用对象调用静态方法</strong>(object.method)。例如，不需要构造Math类对象就可使用Math.pow。</p>
-<p>同理，main方法也是静态方法。</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span> </span>&#123;</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="hljs-comment">// construct objects here</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>main方法不对任何对象进行操作。事实上，在启动程序时还没有任何一个对象。<strong>静态main方法将执行并创建程序所需要的对象</strong>。</p>
-<p>每个类可以有一个main方法。这是一个常用与对类经常进行单元测试的技巧。例如，可以在Employee类中添加</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">private</span> String name;</span><br><span class="line">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">double</span> salary;</span><br><span class="line">  </span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Employee</span><span class="hljs-params">(String n, <span class="hljs-keyword">double</span> s)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.name = n;</span><br><span class="line">    <span class="hljs-keyword">this</span>.salary = s;</span><br><span class="line">  &#125;</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123; <span class="hljs-comment">//unit test</span></span><br><span class="line">        Employee emp = <span class="hljs-keyword">new</span> Employee(<span class="hljs-string">"s"</span>, <span class="hljs-number">1.1</span>, <span class="hljs-number">1000</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>);</span><br><span class="line">        emp.raiseSalary(<span class="hljs-number">3</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果 Employee 类是一个更大型应用程序的一部分 就可以使用下面这条语句运行程序<code>java Application</code>, Employee 类的 main 方法永远不会执行。</p>
-<h2 id="方法参数"><a href="#方法参数" class="headerlink" title="方法参数"></a>方法参数</h2><p>将参数传递给方法。按值调用(call by value)表示<strong>方法接收的是调用者提供的值</strong>。而引用调用(call by reference)表示<strong>方法接收的是调用者提供的变量地址</strong>。一个方法可以修改传递引用所对应的变量值，而不能修改传递值调用所对应的变量值。</p>
-<p><strong>Java 程序设计语言总是采用按值调用</strong>。也就是说 ，方法得到的是所有参数值的一个拷贝。特别是 ，<strong>方法不能修改传递给它的任何参数变量的内容</strong></p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">double percent = 10;</span><br><span class="line">harry.raiseSalary(percent); // 调用完成之后percent依然是10</span><br></pre></td></tr></table></figure>
-<p>方法得到是对象引用的拷贝，对象引用及其他的拷贝同时引用同一个对象。</p>
-<p>Java参数总结：</p>
-<ul>
-<li>一个方法不能修改一<strong>个基本数据类型的参数</strong>(即数值型或布尔型)</li>
-<li>一个方法可以改变<strong>一个对象参数</strong>的状态 。</li>
-<li>一个方法不能让对象参数引用一个新的对象</li>
-</ul>
-<p>C++中值调用和引用调用。引用参数标有&amp;符号。例如void tripleValue(double&amp; x)方法实现修改引用参数目的。</p>
-<h2 id="对象构造"><a href="#对象构造" class="headerlink" title="对象构造"></a>对象构造</h2><p>前面已经学习了编写简单的构造器 ， 可以定义对象的初始状态。由于对象构造非 常重要 所以 Java 提供了多种编写构造器的机制。</p>
-<h3 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h3><p>有些类有多个构造器，例如如下构造一个空的StringBuilder对象:</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder messages = <span class="hljs-keyword">new</span> StringBuilder();</span><br></pre></td></tr></table></figure>
-<p>或者，可以指定一个初始化字符串:</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder todoList = <span class="hljs-keyword">new</span> StringBuilder(<span class="hljs-string">"To do:\n"</span>);</span><br></pre></td></tr></table></figure>
-<p>这种加重载overloading。同一个类中多个<strong>方法有相同名字、不同的参数</strong>，编译器必须挑选具体的执行方法，通过用各个方法给出参数类型与特定方法调用所使用的值类型进行匹配来挑选对应的方法。找不到，则编译时错误。Java可以重载任何方法, 要<strong>完整描述一个方法，需要指出方法名以及参数类型</strong>，叫方法的签名(signature)。例如，String类中有4个称为indexOf的公有方法。签名是</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">index(<span class="hljs-keyword">int</span>)</span><br><span class="line">index(<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>)</span><br><span class="line">index(String, <span class="hljs-keyword">int</span>)</span><br></pre></td></tr></table></figure>
-<p>返回参数不是方法签名的一部分，即不能有两个名字相同、参数类型相同却返回不同类型值的方法。</p>
-<h3 id="默认域初始化"><a href="#默认域初始化" class="headerlink" title="默认域初始化"></a>默认域初始化</h3><p>如果在构造器中没有显式地给域赋予初值，则会自动赋予默认值。数值为0，布尔值未false，对象引用为null。</p>
-<h3 id="无参数的构造器"><a href="#无参数的构造器" class="headerlink" title="无参数的构造器"></a>无参数的构造器</h3><p>很多类都包含一个无参数的构造函数，对象由无参数构造函数创建，其状态设置为默认值。如Employee：</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">private</span> String name;</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Employee</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">		name = <span class="hljs-string">" "</span>;</span><br><span class="line">		salary = <span class="hljs-number">0.0</span>;</span><br><span class="line">		hireDay = LocalDate.now();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>默认提供public Employee()，如果没有重写，调用默认值；提供了构造器public Employee(String name)；但是未提供无参数构造器；则构造对象时使用这个这个方法这则是不合法。</p>
-<h3 id="显示域初始化"><a href="#显示域初始化" class="headerlink" title="显示域初始化"></a>显示域初始化</h3><p>通过重载类的构造器方法 可以采用多种形式设置类的实例域的初始状态。可以在类定义中直接将一个值赋给任何域</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">private</span> String name = <span class="hljs-string">"111"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在执行构造器之前，先执行赋值操作。当一个类的所有构造器都希望把相同的值赋予某个特定的实例域时 ，这种方式特别有用。</p>
-<p>初始值不一定是常量值 。在下面的例子中，可以初始值不一定是常量值 。</p>
-<p>在下面的例子中 可以调用方法对域进行初始化。</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> nextId;</span><br><span class="line">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id = assignId();</span><br><span class="line">  ...</span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">assignId</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> r = nextId;</span><br><span class="line">    nextId++;</span><br><span class="line">    <span class="hljs-keyword">return</span> r;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注释：在C++中，不能直接初始化类的实例域。所有的域必须在构造器中设置。但是，有一个特殊的初始化器列表语法，如下：</p>
-<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Employee::Employee(String n, <span class="hljs-keyword">double</span> s, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">int</span> m. <span class="hljs-keyword">int</span> d):name(n),salary(s),hireDay(y, m, d)&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="参数名"><a href="#参数名" class="headerlink" title="参数名"></a>参数名</h3><p>在编写很小的构造器时(这是十分常见的),常常在参数命名上出现错误。</p>
-<p>通常，参数用单个字符命名:</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Employee</span><span class="hljs-params">(String n, <span class="hljs-keyword">double</span> s)</span></span>&#123;</span><br><span class="line">	name = n; salary = s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">// 可以命名参数 aName, aSalary</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Employee</span><span class="hljs-params">(String aName, <span class="hljs-keyword">double</span> aSalary)</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">// 还一种常用的技巧 ，它基于这样的事实 参数变量用同样的名字将实例域屏蔽起来,如果将参数命名为salary,salary将引用这个参数 而不是实例域,可以采用this.salary的形式访问实例域</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Employee</span><span class="hljs-params">(String name, <span class="hljs-keyword">double</span> salary)</span> </span>&#123; <span class="hljs-comment">// 可以用下划线，Java不常用</span></span><br><span class="line">  <span class="hljs-keyword">this</span>.name = name; <span class="hljs-keyword">this</span>.salary = salary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="调用另一个构造器"><a href="#调用另一个构造器" class="headerlink" title="调用另一个构造器"></a>调用另一个构造器</h3><p>关键字this引用方法的隐式参数，还有另一个含义。如构造器的第一个语句如this(…)，这个构造器将调用同一个类的另一个构造器，如</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span> </span>&#123;</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Employee</span><span class="hljs-params">(<span class="hljs-keyword">double</span> s)</span> </span>&#123;</span><br><span class="line">		<span class="hljs-comment">// calls Employee( String , double)</span></span><br><span class="line">		<span class="hljs-keyword">this</span>(<span class="hljs-string">"Employee #"</span>+ nextId, s);</span><br><span class="line">		nextId++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当调用 new Employee ( 60000 ) 时, Employee(double)构造器将调用Employee(String, double)构造器。</p>
-<p>采用这种方式使用 this 关键字非常有用，这样对公共的构造器代码部分只编写一次</p>
-<p>在 Java 中: this 引用等价于 C + + 的 this 指针,C++不能调用另一个构造器。</p>
-<h3 id="初始化模块"><a href="#初始化模块" class="headerlink" title="初始化模块"></a>初始化模块</h3><p>前面已经讲过两种初始化数据域的方法:</p>
-<ul>
-<li>在构造器中设置值</li>
-<li>在声明中赋值</li>
-</ul>
-<p>Java中还有第三种：成为初始化块(initialization block)。在一个类的声明中，可以包含多个代码块。只要构造类的对象，这些块就会被执行。</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Empployee</span></span>&#123;</span><br><span class="line">	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> nextId;</span><br><span class="line">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;</span><br><span class="line">	<span class="hljs-keyword">private</span> String name;</span><br><span class="line">	<span class="hljs-keyword">private</span> <span class="hljs-keyword">double</span> salary;</span><br><span class="line">  <span class="hljs-comment">// object initialization 建议始化块放在域定义之后</span></span><br><span class="line">  &#123;</span><br><span class="line">    id = nextId;</span><br><span class="line">    nextId++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Employee</span><span class="hljs-params">(<span class="hljs-keyword">double</span> s)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>(<span class="hljs-string">"Employee #"</span>+nextId, s);</span><br><span class="line">    nextId++;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这种机制不是必需的 ，也不常见 通常会直接将初始化代码放在构造器中</p>
-<p>由于初始化数据域有多种途径，所以列出构造过程的所有路径可能相当混乱。下面是调用构造器的具体处理步骤：</p>
-<ol>
-<li>所有<strong>数据域被初始化为默认值</strong> （ 0 false 或 null )。</li>
-<li>按照在<strong>类声明中出现的次序，一次执行所有域初始化语句和初始化块</strong>。</li>
-<li>如果构造器第一行调用了第二个构造器 则执行第二个构造器主体。</li>
-<li>执行这个构造器的主体。</li>
-</ol>
-<p>如果对类的静态域进行初始化的代码比较复杂 ，那么可以使用静态的初始化块</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// static initialization block</span></span><br><span class="line"><span class="hljs-keyword">static</span> &#123;</span><br><span class="line">	Random generator = <span class="hljs-keyword">new</span> Random();</span><br><span class="line">	nextId = generator.nextId(<span class="hljs-number">10000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在类第一次加载的时候 ，将会进行静态域的初始化。与实例域一样 除非将它们显式地 ，设置成其他值 ，否则默认的初始值是 0 、false 或 null 。</p>
-<h3 id="对象析构与finalize方法"><a href="#对象析构与finalize方法" class="headerlink" title="对象析构与finalize方法"></a>对象析构与finalize方法</h3><p>C ++ , 有显式的析构器方法。其中放置一些当对象不再使用时需要执行的清理代码。在析构器中，最常见的操作是<strong>回收分配给对象的存储空间</strong>。Java中自动的垃圾回收器，所以不支持析构器。某些对象使用了内存之外的其他资源 例如 文件或使用了系统资源的另一个对 象的句柄，当资源不再需要时 将其回收和再利用将显得十分重要。可以为任何一个类添加 finalize 方法 。finalize 方法将在垃圾回收器清除对象之前调用。在实际应用中 ， 不要依赖于使用finalize方法，不知道什么时候才能够调用。</p>
-<p>如果某个资源需要在使用完毕后立刻被关闭 ，那么就需要由人工来管理。对象用完时 ，可以应用一个 close 方法来完成相应的清理操作。</p>
-<h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><p>Java允许使用包(package)将类组织起来。借助包可以方便的组织自己的代码，并将自己的代码与被人提供代码库分开管理。</p>
-<p>标准的 Java 类库分布在多个包中，包括 java.lang 、java.util 和 java.net 等。标准的 Java包具有一个层次结构，如目录嵌套。所有标准JavaJava 包都处于 java和 javax 包层次中。</p>
-<p>使用包的主要原因是确保类名的唯一性 假如两个程序员不约而同地建立了 Employee类。只要将这些类放置在不同的包中 就不会产生冲突。</p>
-<p>建议将公司的因特网域名 （ 这显然是独一无二的 ） 以逆序的形式作为包名。如 <code>com.</code></p>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/11/22/第四章-对象与类/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -434,7 +397,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    a few seconds membaca (Sekitar 63 kata)
+                    a few seconds read (About 63 words)
                 </span>
                 
                 
@@ -487,7 +450,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 minutes membaca (Sekitar 820 kata)
+                    5 minutes read (About 820 words)
                 </span>
                 
                 
@@ -507,7 +470,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/11/18/算法40讲笔记/#more">Selengkapnya</a>
+                <a class="button is-size-7 is-light" href="/2019/11/18/算法40讲笔记/#more">Read More</a>
                 </div>
             </div>
         </div>
@@ -539,7 +502,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes membaca (Sekitar 358 kata)
+                    2 minutes read (About 358 words)
                 </span>
                 
                 
@@ -559,7 +522,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/11/09/2两数相加/#more">Selengkapnya</a>
+                <a class="button is-size-7 is-light" href="/2019/11/09/2两数相加/#more">Read More</a>
                 </div>
             </div>
         </div>
@@ -591,7 +554,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 minutes membaca (Sekitar 711 kata)
+                    5 minutes read (About 711 words)
                 </span>
                 
                 
@@ -616,7 +579,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/11/07/1两数之和/#more">Selengkapnya</a>
+                <a class="button is-size-7 is-light" href="/2019/11/07/1两数之和/#more">Read More</a>
                 </div>
             </div>
         </div>
@@ -648,7 +611,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    an hour membaca (Sekitar 6823 kata)
+                    an hour read (About 6823 words)
                 </span>
                 
                 
@@ -668,7 +631,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/10/22/第一章Java程序设计概述/#more">Selengkapnya</a>
+                <a class="button is-size-7 is-light" href="/2019/10/22/第一章Java程序设计概述/#more">Read More</a>
                 </div>
             </div>
         </div>
@@ -696,7 +659,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    an hour membaca (Sekitar 7308 kata)
+                    an hour read (About 7308 words)
                 </span>
                 
                 
@@ -717,7 +680,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/10/20/NICO/#more">Selengkapnya</a>
+                <a class="button is-size-7 is-light" href="/2019/10/20/NICO/#more">Read More</a>
                 </div>
             </div>
         </div>
@@ -749,7 +712,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    27 minutes membaca (Sekitar 4091 kata)
+                    27 minutes read (About 4091 words)
                 </span>
                 
                 
@@ -769,7 +732,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/09/02/LEAF/#more">Selengkapnya</a>
+                <a class="button is-size-7 is-light" href="/2019/09/02/LEAF/#more">Read More</a>
                 </div>
             </div>
         </div>
@@ -801,7 +764,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes membaca (Sekitar 428 kata)
+                    3 minutes read (About 428 words)
                 </span>
                 
                 
@@ -821,59 +784,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/08/31/CPP入门/#more">Selengkapnya</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-29T15:22:15.000Z">2019-08-29</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/AI/">AI</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    an hour membaca (Sekitar 8555 kata)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/08/29/分布式机器学习论文/">分布式机器学习论文</a>
-            
-        </h1>
-        <div class="content">
-            <p>虽说具体要做的东西目前还在思考比较多，从之前的 <a href="http://jcf94.com/2017/08/18/2017-08-18-paper/" target="_blank" rel="noopener">【整理一下看过的论文】</a> 里面把相关的论文理出来了。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/08/29/分布式机器学习论文/#more">Selengkapnya</a>
+                <a class="button is-size-7 is-light" href="/2019/08/31/CPP入门/#more">Read More</a>
                 </div>
             </div>
         </div>
@@ -894,10 +805,10 @@
 <div class="card card-transparent">
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
         <div class="pagination-previous is-invisible is-hidden-mobile">
-            <a class="is-flex-grow has-text-black-ter" href="/page/0/">Sebelumnya</a>
+            <a class="is-flex-grow has-text-black-ter" href="/page/0/">Previous</a>
         </div>
         <div class="pagination-next">
-            <a class="is-flex-grow has-text-black-ter" href="/page/2/">Berikutnya</a>
+            <a class="is-flex-grow has-text-black-ter" href="/page/2/">Next</a>
         </div>
         <ul class="pagination-list is-hidden-mobile">
             
@@ -953,17 +864,17 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Artikel
+                        Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        58
+                        59
                     </p>
                 </div>
             </div>
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Kategori
+                        Categories
                     </p>
                     <p class="title has-text-weight-normal">
                         25
@@ -973,7 +884,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Tag
+                        Tags
                     </p>
                     <p class="title has-text-weight-normal">
                         43
@@ -983,7 +894,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/fallenk" target="_blank">
-                IKUTI</a>
+                Follow</a>
         </div>
         
         
@@ -1037,7 +948,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Tautan
+            Links
         </h3>
         <ul class="menu-list">
         
@@ -1075,7 +986,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Kategori
+                Categories
             </h3>
             <ul class="menu-list">
             <li>
@@ -1124,7 +1035,7 @@
                 <span class="level-item">Federated Learning</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Java/">
@@ -1288,9 +1199,9 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Awan tag
+            Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 10px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 12px;">LeetCode</a> <a href="/tags/Leetcode/" style="font-size: 12px;">Leetcode</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 12px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 12px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 12px;">代码</a> <a href="/tags/入门/" style="font-size: 16px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 12px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 12px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 12px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 18px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 14px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 12px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
+        <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 12px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 12px;">LeetCode</a> <a href="/tags/Leetcode/" style="font-size: 12px;">Leetcode</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 12px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 12px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 12px;">代码</a> <a href="/tags/入门/" style="font-size: 16px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 12px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 12px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 12px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 18px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 14px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 12px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
     </div>
 </div>
 
@@ -1302,8 +1213,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Terbaru
+            Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/11/28/目标检测总结/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="目标检测总结">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T14:36:01.000Z">2019-11-28</time></div>
+                    <a href="/2019/11/28/目标检测总结/" class="title has-link-black-ter is-size-6 has-text-weight-normal">目标检测总结</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Federated-Learning/">Federated Learning</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1381,25 +1311,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/11/07/1两数之和/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="1两数之和">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-07T13:26:52.000Z">2019-11-07</time></div>
-                    <a href="/2019/11/07/1两数之和/" class="title has-link-black-ter is-size-6 has-text-weight-normal">1两数之和</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1408,7 +1319,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Arsip
+            Archives
         </h3>
         <ul class="menu-list">
         
@@ -1418,7 +1329,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -1575,7 +1486,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tag
+                Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -1610,7 +1521,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Federated-Learning/">
                         <span class="tag">Federated Learning</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1900,8 +1811,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Terbaru
+            Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/11/28/目标检测总结/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="目标检测总结">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T14:36:01.000Z">2019-11-28</time></div>
+                    <a href="/2019/11/28/目标检测总结/" class="title has-link-black-ter is-size-6 has-text-weight-normal">目标检测总结</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Federated-Learning/">Federated Learning</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1979,25 +1909,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/11/07/1两数之和/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="1两数之和">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-07T13:26:52.000Z">2019-11-07</time></div>
-                    <a href="/2019/11/07/1两数之和/" class="title has-link-black-ter is-size-6 has-text-weight-normal">1两数之和</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -2006,7 +1917,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Arsip
+            Archives
         </h3>
         <ul class="menu-list">
         
@@ -2016,7 +1927,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -2173,7 +2084,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tag
+                Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -2208,7 +2119,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Federated-Learning/">
                         <span class="tag">Federated Learning</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -2623,7 +2534,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
 
-<a id="back-to-top" title="Kembali ke atas" href="javascript:;">
+<a id="back-to-top" title="Back to Top" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
@@ -2650,7 +2561,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Tulis Sesuatu.." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -2662,11 +2573,11 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Artikel',
-                PAGES: 'Halaman',
-                CATEGORIES: 'Kategori',
-                TAGS: 'Tag',
-                UNTITLED: 'Tanpa Judul',
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
             },
             CONTENT_URL: '/content.json',
         };
