@@ -19,7 +19,7 @@
 <meta property="og:description" content="Java的特性：">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-11-22T13:18:19.449Z">
+<meta property="og:updated_time" content="2019-11-25T08:28:11.899Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一章Java程序设计概述">
 <meta name="twitter:description" content="Java的特性：">
@@ -131,7 +131,7 @@
                 
                 
                 
-                <a class="navbar-item search" title="Search" href="javascript:;">
+                <a class="navbar-item search" title="Pencarian" href="javascript:;">
                     <i class="fas fa-search"></i>
                 </a>
                 
@@ -159,7 +159,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    an hour read (About 6789 words)
+                    an hour membaca (Sekitar 6823 kata)
                 </span>
                 
                 
@@ -249,14 +249,15 @@
 <p><img src="/2019/10/22/第一章Java程序设计概述/3.png" alt="image-20191022200619365" style="zoom:50%;"></p>
 <h3 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h3><p>可以自定义枚举类型 。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">enum</span> Size &#123; SMALL , MEDIUM , LARGE , EXTRA LARCE &#125; ;</span><br><span class="line"><span class="hljs-comment">//现在 ，可以声明这种类型的变量</span></span><br><span class="line">Size s = Size.MEDIUM;</span><br><span class="line"><span class="hljs-comment">//Size 类型的变量只能存储这个类型声明中给定的某个枚举值 或者 null 值</span></span><br></pre></td></tr></table></figure>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>从概念上讲，Java字符串是Unicode字符串序列。例如，”Java\u2122”由5个字符Unicode字符J、a、v、a和”TM”特殊字符。无内置字符串类型；<strong>在类库中提供预定义类，叫String</strong>。 <strong>每个用双引号括起来的字符串都是Strin类的一个实例</strong>。</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p><strong>注意:</strong>String 类是不可改变的，所以你一旦创建了 String 对象，那它的值就无法改变了。</p>
+<p>从概念上讲，Java字符串是Unicode字符串序列。例如，”Java\u2122”由5个字符Unicode字符J、a、v、a和”TM”特殊字符。无内置字符串类型；<strong>在类库中提供预定义类，叫String</strong>。 <strong>每个用双引号括起来的字符串都是Strin类的一个实例</strong>。</p>
 <p>子串，String类中的substring方法可以提取子串。[ );substring 的工作方式有一个优点 容易计算子串的长度 字符串 s . substring ( a , b ) 的长度为 b - a。子串 “ Hel ” 的长度为 3 - 0 = 3</p>
 <h3 id="拼接"><a href="#拼接" class="headerlink" title="拼接"></a>拼接</h3><p>允许使用+号连接 （ 拼接 ） 两个字符串。当将一个字符串与一个非字符串的值进行拼接时,<strong>后者被转换成字符串</strong>。</p>
 <h3 id="不可变字符串"><a href="#不可变字符串" class="headerlink" title="不可变字符串"></a>不可变字符串</h3><p><strong>String 类没有提供用于修改字符串的方法</strong>。如果希望将 greeting 的内容修改为 “ Help ! ”，<strong>不能直接地将 greeting 的最后两个位置的字符修改为’p’和!’.</strong>  greeting = greeting.substring(0, 3)+”p!”;</p>
 <p>由于不能修改 Java 字符串中的字符 ，所以在 Java 文档中将 String类对象称为不可变字符串. 如同数字 3 永远是数字 3一样， <strong>字符串”hello”包含字符h,e,l,l,o代码单元序列，不能修改其中的任何一个字符。</strong> <strong>可以修改字符串变量greeting，让他引用另外一个字符串。</strong></p>
 <p>看起来好像修改一个代码单元要比创建一个新字符串更 加简洁，对，也不对。通过拼接 “ Hel ” 和 p ! ” 来创建一个新字符串的效率确实不高。但是 ，不可变字符串却有一个优点 ：<strong>编译器可以让字符串共享</strong> 。</p>
 <p>为了弄清具体的工作方式，可以想象<strong>将各种字符串存放在公共的存储池中</strong>。字符串变量指向存储池中相应的位置，如果复制一个字符串变量，原始字符串与复制的字符串共享相同的字符。</p>
-<p>Java 字符串大致类似于 char * 指针 ，不是认为是字符型数组；greeting = “ess”; 指向新串时，Java自动回收垃圾</p>
+<p>Java 字符串<strong>大致类似于 char * 指针</strong> ，<strong>不是认为是字符型数组</strong>；greeting = “ess”; 指向新串时，Java自动回收垃圾</p>
 <h3 id="检测字符串相等"><a href="#检测字符串相等" class="headerlink" title="检测字符串相等"></a>检测字符串相等</h3><p>使用equals方法； s.quals(t); 或 “Hello”.equals(s); 而不区分大小写 ，可以使用 equalsIgnoreCase方法</p>
 <h3 id="空串与NULL串"><a href="#空串与NULL串" class="headerlink" title="空串与NULL串"></a>空串与NULL串</h3><p>空串 “” 是长度为 0 的字符串；可以调用以下代码检查一个字符串是否为空 ： if(str.length() == 0)或者if(str.equals(“”)); 空串是一个Java对象，有自己的串长度(0)和内容(空)。</p>
 <p>String变量还可以存一个特殊的值，名为null，表示目前没有任何对象与该变量关联。if(str==null)</p>
@@ -436,7 +437,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Posts
+                        Artikel
                     </p>
                     <p class="title has-text-weight-normal">
                         58
@@ -446,7 +447,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Kategori
                     </p>
                     <p class="title has-text-weight-normal">
                         25
@@ -456,7 +457,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Tags
+                        Tag
                     </p>
                     <p class="title has-text-weight-normal">
                         43
@@ -466,7 +467,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/fallenk" target="_blank">
-                Follow</a>
+                IKUTI</a>
         </div>
         
         
@@ -520,7 +521,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Links
+            Tautan
         </h3>
         <ul class="menu-list">
         
@@ -558,7 +559,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Categories
+                Kategori
             </h3>
             <ul class="menu-list">
             <li>
@@ -771,7 +772,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Tag Cloud
+            Awan tag
         </h3>
         <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 10px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 12px;">LeetCode</a> <a href="/tags/Leetcode/" style="font-size: 12px;">Leetcode</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 12px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 12px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 12px;">代码</a> <a href="/tags/入门/" style="font-size: 16px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 12px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 12px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 12px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 18px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 14px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 12px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
     </div>
@@ -785,7 +786,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Terbaru
         </h3>
         
         <article class="media">
@@ -891,7 +892,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            Arsip
         </h3>
         <ul class="menu-list">
         
@@ -1058,7 +1059,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                Tag
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -1383,7 +1384,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Terbaru
         </h3>
         
         <article class="media">
@@ -1489,7 +1490,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            Arsip
         </h3>
         <ul class="menu-list">
         
@@ -1656,7 +1657,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                Tag
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -2106,7 +2107,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
 
-<a id="back-to-top" title="Back to Top" href="javascript:;">
+<a id="back-to-top" title="Kembali ke atas" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
@@ -2133,7 +2134,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Tulis Sesuatu.." />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -2145,11 +2146,11 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: 'Artikel',
+                PAGES: 'Halaman',
+                CATEGORIES: 'Kategori',
+                TAGS: 'Tag',
+                UNTITLED: 'Tanpa Judul',
             },
             CONTENT_URL: '/content.json',
         };
