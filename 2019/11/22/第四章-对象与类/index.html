@@ -19,7 +19,7 @@
 <meta property="og:description" content="title: 第四章 对象与类date: 2019-11-22 21:17:46tags: [coding]category: [Java学习] 主要介绍如下：  面向对象程序设计 如何创建标准Java类库中的类对象 如何编写自己的类">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-11-28T14:39:25.751Z">
+<meta property="og:updated_time" content="2019-12-02T09:34:42.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fallenk&#39;s Blog">
 <meta name="twitter:description" content="title: 第四章 对象与类date: 2019-11-22 21:17:46tags: [coding]category: [Java学习] 主要介绍如下：  面向对象程序设计 如何创建标准Java类库中的类对象 如何编写自己的类">
@@ -155,7 +155,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    an hour read (About 8639 words)
+                    an hour read (About 9313 words)
                 </span>
                 
                 
@@ -400,10 +400,25 @@
 <p>在类第一次加载的时候 ，将会进行静态域的初始化。与实例域一样 除非将它们显式地 ，设置成其他值 ，否则默认的初始值是 0 、false 或 null 。</p>
 <h3 id="对象析构与finalize方法"><a href="#对象析构与finalize方法" class="headerlink" title="对象析构与finalize方法"></a>对象析构与finalize方法</h3><p>C ++ , 有显式的析构器方法。其中放置一些当对象不再使用时需要执行的清理代码。在析构器中，最常见的操作是<strong>回收分配给对象的存储空间</strong>。Java中自动的垃圾回收器，所以不支持析构器。某些对象使用了内存之外的其他资源 例如 文件或使用了系统资源的另一个对 象的句柄，当资源不再需要时 将其回收和再利用将显得十分重要。可以为任何一个类添加 finalize 方法 。finalize 方法将在垃圾回收器清除对象之前调用。在实际应用中 ， 不要依赖于使用finalize方法，不知道什么时候才能够调用。</p>
 <p>如果某个资源需要在使用完毕后立刻被关闭 ，那么就需要由人工来管理。对象用完时 ，可以应用一个 close 方法来完成相应的清理操作。</p>
-<h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><p>Java允许使用包(package)将类组织起来。借助包可以方便的组织自己的代码，并将自己的代码与被人提供代码库分开管理。</p>
+<h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><p><strong>Java允许使用包(package)将类组织起来</strong>。借助包可以方便的组织自己的代码，并将自己的代码与被人提供代码库分开管理。</p>
 <p>标准的 Java 类库分布在多个包中，包括 java.lang 、java.util 和 java.net 等。标准的 Java包具有一个层次结构，如目录嵌套。所有标准JavaJava 包都处于 java和 javax 包层次中。</p>
 <p>使用包的主要原因是确保类名的唯一性 假如两个程序员不约而同地建立了 Employee类。只要将这些类放置在不同的包中 就不会产生冲突。</p>
-<p>建议将公司的因特网域名 （ 这显然是独一无二的 ） 以逆序的形式作为包名。如 <code>com.</code></p>
+<p>建议将公司的因特网域名 （ 这显然是独一无二的 ） 以逆序的形式作为包名。如 <code>com.org.zju.cst</code></p>
+<p>每一个都拥有<strong>独立的类集合</strong>。嵌套的包没有任何关系</p>
+<h3 id="类的导入"><a href="#类的导入" class="headerlink" title="类的导入"></a>类的导入</h3><p>一个类可以使用所属包中的所有类 ，以及其他包中的公有类( public class)。采用两种方式访问另一个包中的公有类。第一种方式：每个类名之前添加完整的包名：</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.time.LocalDate today = <span class="hljs-keyword">new</span> java.time.LocalDate.now()</span><br></pre></td></tr></table></figure>
+<p>第二种使用import语句。</p>
+<p>可以使用 import 语句导人一个特定的类或者整个包 import 语句应该位于源文件的顶部( 但位于 package 语句的后面 )。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 而无须在前面加上包前缀 。还可以导人一个包中的特定类</span></span><br><span class="line"><span class="hljs-comment">// java . time . * 的语法比较简单 对代码的大小也没有任何负面影响将会使代码的读者更加准确地知道加载了哪些类</span></span><br><span class="line"><span class="hljs-keyword">import</span> java.util.*;</span><br></pre></td></tr></table></figure>
+<p>但是，需要注意的是只能使用星号<code>(*)</code> 导入一个包, 而不能使用 <code>import java</code> 或 <code>import java .*.*</code>  导入以java 为前缀的所有包。在大多数情况下, 只导入所需的包, 并不必过多地理睬它们。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> java.util.*;</span><br><span class="line"><span class="hljs-keyword">import</span> java.sql.*; <span class="hljs-comment">// 如果java.util和java.sql包中都有特定日期(Date) 增加一个特定的import语句</span></span><br><span class="line"><span class="hljs-keyword">import</span> java.util.Date; <span class="hljs-comment">//如果都要使用</span></span><br><span class="line">java.util.Date deadline = <span class="hljs-keyword">new</span> java.util.Date();</span><br><span class="line">java.sql.Date today = <span class="hljs-keyword">new</span> java.sql.Date(...)</span><br></pre></td></tr></table></figure>
+<p>在包中定位类是编译器(compiler)的工作 。类文件中的字节码肯定使用完整的包名来引用其他类</p>
+<p>注意：C++，import和#include两者无共同之处，在C++中，必须使用#include将外部特性的声明加载进来，这个因为C++无法查看任何文件的内部，除了正在编译的文件以及在头文件中明确包含的文件，Java编译可以查看其他文件内部。在Java中，通过显示地给出包名，不用import；Import 语句的唯一的好处是简捷，可以使用简短的名字而不是完整的包名来引用一个类 。例如 ，在import java.util.*;</p>
+<p>在 C++ 中，与包 机 制 类 似 的 是 命 名 空 间 (namespace)。在Java中，package与import语句类似于C++中的的namespace和using指令。</p>
+<h3 id="静态导入"><a href="#静态导入" class="headerlink" title="静态导入"></a>静态导入</h3><p>import 语句不仅可以导人类，还增加了导人静态方法和静态域的功能。</p>
+<p>如果在源文件的顶部，添加一条指令：</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> java.lang,System.*;</span><br></pre></td></tr></table></figure>
+<p>就可以使用System类的静态方法和静态域 ，而不必加类名前缀：</p>
 
         </div>
         
@@ -479,17 +494,17 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Posts
+                        Articles
                     </p>
                     <p class="title has-text-weight-normal">
-                        59
+                        60
                     </p>
                 </div>
             </div>
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Catégories
                     </p>
                     <p class="title has-text-weight-normal">
                         25
@@ -502,14 +517,14 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        43
+                        44
                     </p>
                 </div>
             </div>
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/fallenk" target="_blank">
-                Follow</a>
+                SUIVRE</a>
         </div>
         
         
@@ -563,7 +578,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Links
+            Liens
         </h3>
         <ul class="menu-list">
         
@@ -601,7 +616,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Categories
+                Catégories
             </h3>
             <ul class="menu-list">
             <li>
@@ -650,7 +665,7 @@
                 <span class="level-item">Federated Learning</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">5</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Java/">
@@ -814,9 +829,9 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Tag Cloud
+            Nuage de tags
         </h3>
-        <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 12px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 12px;">LeetCode</a> <a href="/tags/Leetcode/" style="font-size: 12px;">Leetcode</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 12px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 12px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 12px;">代码</a> <a href="/tags/入门/" style="font-size: 16px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 12px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 12px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 12px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 18px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 14px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 12px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
+        <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 12px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 12px;">LeetCode</a> <a href="/tags/Leetcode/" style="font-size: 12px;">Leetcode</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/data/" style="font-size: 10px;">data</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 12px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 12px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 12px;">代码</a> <a href="/tags/入门/" style="font-size: 16px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 12px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 12px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 12px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 18px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 14px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 12px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
     </div>
 </div>
 
@@ -828,8 +843,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Récents
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/04/Non-IID数据集调研/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Non-IID数据集调研">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T11:29:55.000Z">2020-01-04</time></div>
+                    <a href="/2020/01/04/Non-IID数据集调研/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Non-IID数据集调研</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Federated-Learning/">Federated Learning</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -907,25 +941,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/11/09/2两数相加/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="2两数相加">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-09T14:30:59.000Z">2019-11-09</time></div>
-                    <a href="/2019/11/09/2两数相加/" class="title has-link-black-ter is-size-6 has-text-weight-normal">2两数相加</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -937,6 +952,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/11/">
@@ -1186,6 +1212,13 @@
                     <a class="tags has-addons" href="/tags/coding/">
                         <span class="tag">coding</span>
                         <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/data/">
+                        <span class="tag">data</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1426,8 +1459,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Récents
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/04/Non-IID数据集调研/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Non-IID数据集调研">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T11:29:55.000Z">2020-01-04</time></div>
+                    <a href="/2020/01/04/Non-IID数据集调研/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Non-IID数据集调研</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Federated-Learning/">Federated Learning</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1505,25 +1557,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/11/09/2两数相加/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="2两数相加">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-09T14:30:59.000Z">2019-11-09</time></div>
-                    <a href="/2019/11/09/2两数相加/" class="title has-link-black-ter is-size-6 has-text-weight-normal">2两数相加</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1535,6 +1568,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/11/">
@@ -1784,6 +1828,13 @@
                     <a class="tags has-addons" href="/tags/coding/">
                         <span class="tag">coding</span>
                         <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/data/">
+                        <span class="tag">data</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -2025,7 +2076,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 Fallenk Liu&nbsp;
+                &copy; 2020 Fallenk Liu&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 
@@ -2188,9 +2239,9 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
+                POSTS: 'Articles',
                 PAGES: 'Pages',
-                CATEGORIES: 'Categories',
+                CATEGORIES: 'Catégories',
                 TAGS: 'Tags',
                 UNTITLED: '(Untitled)',
             },
