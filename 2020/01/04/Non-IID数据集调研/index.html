@@ -19,7 +19,7 @@
 <meta property="og:description" content="数据集分析">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2020-01-04T14:15:46.801Z">
+<meta property="og:updated_time" content="2020-01-05T15:19:04.316Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Non-IID数据集调研">
 <meta name="twitter:description" content="数据集分析">
@@ -159,7 +159,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    17 minutes read (About 2609 words)
+                    40 minutes read (About 6040 words)
                 </span>
                 
                 
@@ -176,9 +176,9 @@
 <a id="more"></a>
 <h1 id="Paper1-First-Analysis-of-Local-GD-on-Heterogeneous-Data"><a href="#Paper1-First-Analysis-of-Local-GD-on-Heterogeneous-Data" class="headerlink" title="Paper1:  First Analysis of Local GD on Heterogeneous Data"></a>Paper1:  First Analysis of Local GD on Heterogeneous Data</h1><p>异构数据的局部GD分析</p>
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>我们提供了<strong>局部梯度下降的第一个收敛性分析</strong>，以<strong>最小化 光滑和凸函数以及其他任意函数的平均值</strong>。这种形式的问题和局部梯度下降作为一种解决方法在联邦学习中具有重要意义，其中每个函数都是基于用户在移动设备上存储的私有数据，不同用户的数据可以任意异构。我们表明，在低精度的情况下，该方法具有与梯度下降相同的通信复杂性。</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>我们对解决最优化问题感兴趣</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>我们对解决<strong>最优化问题感兴趣</strong></p>
 <p>$\min <em>{x \in \mathbb{R}^{d}}\left{f(x) \stackrel{\text { def }}{=} \frac{1}{M} \sum</em>{m=1}^{M} f_{m}(x)\right}$</p>
-<p>这是在有监督的机器学习模型的训练中产生的。我们假设$f_{m}: \mathbb{R}^{d} \rightarrow \mathbb{R}$ 是L-光滑凸函数，我们将$x_{*}$ 作为f固定的最小值。</p>
+<p>这是在有监督的机器学习模型的训练中产生的。我们假设$f_{m}: \mathbb{R}^{d} \rightarrow \mathbb{R}$ 是L-光滑凸函数，我们将$x_{*}$ 作为$f$固定的最小值。</p>
 <p>我们的主要兴趣是在这样的情况下，每个功能都基于单个设备上可用的数据，并且跨设备的数据分布可以任意异构。这种情况出现在联合学习中，在这种情况下，机器学习模型是根据消费者设备（如移动电话）上可用的数据进行训练的。在联合学习中，由于隐私的原因，禁止将本地数据传输到单个数据中心进行集中培训，并且频繁的通信是不可取的，因为它昂贵且具有侵入性。因此，最近的几项工作旨在以<strong>尽可能少的通信回合的分布式方式构建新的解决方法</strong>（1）。</p>
 <p>大规模问题通常用一阶方法来解决，因为它们在维度和数据大小上都有很好的伸缩性。一个有吸引力的选择是局部梯度下降，它将优化过程分为几个阶段。每一个阶段的开始都是以一个模型的形式在所有M个设备上平均一步的通信。每个epoch的其余部分不涉及任何通信，致力于执行从平均模型开始的固定数量的梯度下降步骤，并基于所有M设备独立并行执行的本地功能。详见算法一。</p>
 <p><img src="/2020/01/04/Non-IID数据集调研/1.png" alt="image-20200104195529772" style="zoom:50%;"></p>
@@ -202,7 +202,7 @@
 <p>分别是。关于f的Bregman散度是通过</p>
 <p>$D_{f}(x, y) \stackrel{\text { def }}{=} f(x)-f(y)-\langle\nabla f(y), x-y\rangle$</p>
 <p>注意，在这种情况下,$y=x_{<em>}$, 我们有 $D_{f}\left(x, x_{</em>}\right)=f(x)-f\left(x_{*}\right)$</p>
-<h3 id="分析-Analysis"><a href="#分析-Analysis" class="headerlink" title="分析 Analysis"></a>分析 Analysis</h3><p>第一引理使我们能够找到局部GD的一个单步最优差的递推：</p>
+<h3 id="分析-Analysis"><a href="#分析-Analysis" class="headerlink" title="分析 Analysis"></a>分析 Analysis</h3><p>第一引理Lemma使我们能够找到局部GD的一个单步最优差的递推：</p>
 <p><strong>Lemma 1</strong>. 在 Assumption 1 和对于  $\gamma \geqslant 0$ 我们有：</p>
 <p>$\left|r_{t+1}\right|^{2} \leqslant\left|r_{t}\right|^{2}+\gamma L(1+2 \gamma L) V_{t}-2 \gamma(1-2 \gamma L) D_{f}\left(\hat{x}<em>{t}, x</em>{*}\right)$</p>
 <p>当$r_{t} \stackrel{\text { def }}{=} \hat{x}<em>{t}-x</em>{<em>}$,  特别是，$\text { if } \gamma \leqslant \frac{1}{4 L}, \text { then }\left|r_{t+1}\right|^{2} \leqslant\left|r_{t}\right|^{2}+\frac{3}{2} \gamma L V_{t}-\gamma D_{f}\left(\hat{x}<em>{t}, x</em>{</em>}\right)$</p>
@@ -215,7 +215,49 @@
 <p>其中 $\bar{x}<em>{T} \stackrel{\text { def }}{=} \frac{1}{T} \sum</em>{t=0}^{T-1} \hat{x}_{t}$</p>
 <h3 id="Local-GD-vs-GD"><a href="#Local-GD-vs-GD" class="headerlink" title="Local GD vs GD"></a>Local GD vs GD</h3><p>为了解释上述界限，我们可能会问：有多少沟通回合是足够保证的 $f\left(\bar{x}<em>{T}\right)-f\left(x</em>{<em>}\right) \leqslant \epsilon ?$,  为了回答这个问题，我们需要最小化$\frac{T}{H}$ , 受约束于 $0&lt;\gamma \leqslant \frac{1}{4 L}, \frac{2\left|x_{0}-x_{</em>}\right|^{2}}{\gamma T} \leqslant \frac{\epsilon}{2}$,  和 $24 \gamma^{2} \sigma_{f}^{2} H^{2} L \leqslant \frac{\epsilon}{2}$,  在 变量$T, H 和 \gamma$。 我们可以很容易从约束条件中推断出: </p>
 <p>$\frac{T}{H} \geqslant \frac{16\left|x_{0}-x_{*}\right|^{2}}{\epsilon} \max \left{L, \sigma_{f} \sqrt{\frac{3 L}{\epsilon}}\right}$</p>
-<p>另一方面，只要我们选择</p>
+<p>另一方面，下界为 $0&lt;\gamma \leqslant \frac{1}{4 L}$, 只要我们选择:</p>
+<p>$T=T(\gamma) \stackrel{\text { def }}{=} \frac{4\left|x_{0}-x_{*}\right|^{2}}{\epsilon \gamma} \quad \text { and } \quad H=H(\gamma) \stackrel{\text { def }}{=} \frac{1}{4 \max \left{L, \sigma_{f} \sqrt{\frac{3 L}{\epsilon}}\right} \gamma}$</p>
+<p>最小的$H$ 达到下界为 $H\left(\frac{1}{4 L}\right)=\min {1, \sqrt{\frac{\epsilon L}{3 \sigma_{f}^{2}}}}$</p>
+<p>此外，请注意，只要目标精度不太高, 特别是 $\epsilon \geqslant \frac{3 \sigma^{2}}{L}$, 然后 $\max \left{L, \sigma_{f} \sqrt{3 L / \epsilon}\right}=L$, 然后[6]说表示本地GD的通信数量（参数设置为 $H=H(\gamma)$ 和 $T=T(\gamma)$</p>
+<h2 id="Local-GD-vs-Minibatch-SGD"><a href="#Local-GD-vs-Minibatch-SGD" class="headerlink" title="Local GD vs Minibatch SGD"></a>Local GD vs Minibatch SGD</h2><p>公式（5）清楚地表明了局部GD的收敛与小批量SGD的收敛速率之间的相似性，根据在最佳σf处的预期2噪声建立了一个1 {T到邻域的收敛。 彼此在最佳x处。</p>
+<p>下一个推论表明，SGD和本地GD之间的类比进一步扩展到收敛速度。</p>
+<p><img src="/2020/01/04/Non-IID数据集调研/2.png" alt="image-20200105143200266"></p>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>为了验证该理论，我们对逻辑回归进行了实验，其中使用了2正则化和来自LIBSVM库的数据集[2]。我们使用一台具有3.20GHz内核的24个Intel®Xeon®Gold 6146 CPU的机器，并且通过MPI for Python软件包处理通信[4]。</p>
+<p>由于我们的体系结构导致了计算和通信之间的非常特殊的折衷，因此我们还提供了通信时间相对于梯度计算时间为1或更低的情况的图表。在所有实验中，我们使用全梯度rf m和恒定步长L。选择2的正则化量1的顺序为n，其中n是数据总量。数据分区不是i.i.d.并根据原始数据集中的索引完成。</p>
+<p>我们观察到理论与数值结果之间存在非常紧密的匹配。在通信比梯度计算贵得多的情况下，局部方法对于不精确的收敛要快得多。尽管对于我们的体系结构而言，这并不是一个很大的优势，主要是因为计算整个梯度需要花费大量时间。</p>
+<h1 id="Paper2-Measuring-the-Effects-of-Non-Identical-Data-Distribution-for-Federated-Visual-Classification"><a href="#Paper2-Measuring-the-Effects-of-Non-Identical-Data-Distribution-for-Federated-Visual-Classification" class="headerlink" title="Paper2: Measuring the Effects of Non-Identical Data Distribution for Federated Visual Classification"></a>Paper2: Measuring the Effects of Non-Identical Data Distribution for Federated Visual Classification</h1><p>联邦视觉分类中非同一数据分布效应的测量</p>
+<h2 id="Abstract-1"><a href="#Abstract-1" class="headerlink" title="Abstract"></a>Abstract</h2><p>联合学习使视觉模型能够以保护隐私的方式使用来自移动设备的真实数据进行训练。考虑到它们的分布性质，这些设备上的数据统计可能会有很大的不同。在这项工作中，我们将通过联合学习来研究<strong>这些不相同的数据分布对视觉分类的影响</strong>。我们提出了<strong>一种合成具有连续一致性范围的数据集的方法</strong>，并为联邦平均算法提供了性能指标。结果表明，随着分布的不同，性能下降，并<strong>提出了一种基于服务器动量的缓解策略</strong>。在CIFAR-10上的实验表明，在一系列不可识别的情况下，分类性能得到了改善，在最倾斜的设置下，分类精度从30.1%提高到76.9%。</p>
+<h2 id="Introduction-1"><a href="#Introduction-1" class="headerlink" title="Introduction"></a>Introduction</h2><p>联邦学习（FL）[McMahan等人，2017]是一个隐私保护框架，用于从位于边缘设备上的分散用户数据中训练模型。使用联邦平均算法（FedAvg），在每个联邦学习回合中，每个参与设备（也称为客户机）从中央服务器接收初始模型，在其本地数据集上执行随机梯度下降（SGD）并将梯度发回。然后，服务器从参与的客户端聚合所有渐变并更新启动模型。虽然在数据中心培训中，批次通常可以假设为IID（独立且相同分布），但这种假设在联合学习环境中不太可能成立。在这项工作中，我们特别研究了不同的数据分布对每个客户的影响，假设数据是独立于不同的本地分布绘制的。我们<strong>考虑了一系列连续的非一致分布，并给出了一系列超参数和优化策略的经验结果</strong>。</p>
+<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><p>几位作者探索了在由图像分类数据集生成的非相同客户端数据分区上的FedAvg算法。McMahan等人。[2017]从MNIST数据集中合成病理性非同一用户分裂，按类标签对训练样本进行排序，并划分成碎片，使每个客户端分配2个碎片。他们证明了非相同客户机上的FedAvg仍然收敛到99%的准确率，尽管比相同客户机进行了更多轮。以类似的分类和划分方式，Zhao等人。[2018]和Sattler等人。[2019]在CIFAR-10数据集上生成极端分区，形成总共10个客户端的总体。这些设置有些不切实际，因为实际的联合学习通常会涉及到比简单分区更大的客户机池和更复杂的分布。</p>
+<p>其他作者则关注客户机上更真实的数据分布。例如，Caldas等人。[2018]使用扩展MNIST[Cohen等人，2017]在数字写入器上进行分区，而不是简单地在数字类上进行分区。与我们的工作密切相关，Yurochkin等人。[2019]<strong>使用浓度参数为0.5的Dirichlet分布合成非同一数据集。我们扩展了这一概念，探索了浓度α的连续范围，并详细探索了最优超参数和优化设置</strong>。</p>
+<p>理论方面的前期工作研究了FedAvg变量在不同条件下的收敛性。Sahu等人。〔2018〕引入客户目标的近似项，并证明收敛性保证。Li等人。[2019]分析强凸问题在适当抽样和平均方案下的FedAvg。</p>
+<h2 id="Synthetic-Non-Identical-Client-Data"><a href="#Synthetic-Non-Identical-Client-Data" class="headerlink" title="Synthetic Non-Identical Client Data"></a>Synthetic Non-Identical Client Data</h2><p>合成的不同分布client数据</p>
+<p>在我们的视觉分类任务中，我们假设在每个客户机上，训练示例都是独立绘制的，类标签遵循向量q$(q_{i}&gt;= 0, 0&lt;i&lt;N, ||q||_{1} = 1)$参数化的N个类上的分类分布。 为了合成一个不完全相同的客户群，我们从Dirichlet分布中得到q∼Dir（αp），其中<strong>p表示N个类上的先验类分布</strong>，α&gt;0是控制客户间一致性的浓度参数。我们用8个α值进行实验，以产生覆盖同一光谱的总体。对于α趋向于无穷大，所有客户机的分布都与先前的相同；对于α············，在<strong>另一个极端，每个客户机只持有随机选择的一个类的示例</strong>。</p>
+<p>在这项工作中，我们使用CIFAR-10【Krizhevsky等人，2009年】图像分类数据集，其中包含来自10个类的60000个图像（50000个用于训练，10000个用于测试）。我们<strong>产生了由100个客户组成的平衡群体，每个客户持有500张图片</strong>。我们将先前的分布设置为在10个类中均匀分布，与我们报告性能的测试集相同。对于每个客户机，给定一个α，我们对q进行采样，并为客户机分配来自10个类的相应数量的图像。图1显示了不同浓度参数下从Dirichlet分布中提取的种群。</p>
+<p><img src="/2020/01/04/Non-IID数据集调研/3.png" alt="image-20200105214032760"></p>
+<p>图1：具有不同客户的合成种群。用不同的颜色表示class之间的分布。（a） 从排序和分区方案生成的10个客户端，每个客户端分配2个类。（b-e）分别由不同浓度参数α的Dirichlet分布产生的群体，每个群体30个随机客户。</p>
+<h2 id="Experiments-and-Results"><a href="#Experiments-and-Results" class="headerlink" title="Experiments and Results"></a>Experiments and Results</h2><p>鉴于以上数据集的准备工作，我们现在开始在从相同到不相同的分布范围内对vanilla FedAvg算法的性能进行基准测试。</p>
+<p>我们使用与McMahan等人相同的CNN架构和符号。[2017]除了使用0.004的权重衰减，并且不应用学习率衰减计划。该模型不是CIFAR-10数据集上的最新技术，但足以显示我们调查的相对性能。</p>
+<p>FedAvg在客户机批处理大小B=64、本地epoch计数E∈{1，5}、报告分数C∈{0.05，0.1，0.2，0.4}（分别对应每轮参与的5，10，20，40个客户机）下运行，共10000个通信轮。我们在客户学习率的网格上执行超参数搜索</p>
+<h3 id="Classiﬁcation-Performance-with-Non-Identical-Distributions"><a href="#Classiﬁcation-Performance-with-Non-Identical-Distributions" class="headerlink" title="Classiﬁcation Performance with Non-Identical Distributions"></a>Classiﬁcation Performance with Non-Identical Distributions</h3><p>图2显示了作为Dirichlet浓度参数α函数的分类性能（较大的α意味着更相同的分布）。当客户接近一个class时，测试精度在低α附近发生显著变化。增加报告分数C会产生递减的回报，而对于相同分布的客户机数据集来说，性能的提高尤其微不足道。有趣的是，对于固定优化轮次预算的情况，更频繁地同步权重（E=1）并不总是提高非相同数据的准确性。</p>
+<p>除了降低训练结束时的准确度外，我们还观察到在数据不完全相同的情况下，训练误差的波动性更大，见图3。在10000个通信回合内，以小报告率运行难以收敛。</p>
+<p><img src="/2020/01/04/Non-IID数据集调研/4.png" alt="image-20200105215742460" style="zoom:50%;"></p>
+<p>图2：不同α的FedAvg精度。每个细胞在学习率上进行优化，在相同α下，每个学习率在不同种群上平均运行5次以上。</p>
+<p>图3：固定学习率的FedAvg学习曲线。集中学习结果（虚线）来自TensorFlow教程[Tensor-Flow]。</p>
+<p><img src="/2020/01/04/Non-IID数据集调研/5.png" alt="image-20200105215848429" style="zoom:50%;"></p>
+<p>图4：超参数搜索中的FedAvg测试精度。（a-b）100名客户中报告分数高（c-d）低。机会准确度用虚线表示。</p>
+<p><strong>超参数敏感性</strong>。除了影响测试集的整体准确性外，由C和α指定的学习条件对超参数敏感性也有显著影响。在大α的同一端，一系列的学习率（大约两个数量级）可以在测试集上产生良好的精度。然而，当C和α值较小时，需要仔细调整学习率以达到良好的精度。见图4。</p>
+<h3 id="Accumulating-Model-Updates-with-Momentum"><a href="#Accumulating-Model-Updates-with-Momentum" class="headerlink" title="Accumulating Model Updates with Momentum"></a>Accumulating Model Updates with Momentum</h3><p>用动量累积模型更新</p>
+<p>在SGD的基础上利用动量通过梯度历史的累积来抑制振荡，在加速网络训练方面取得了巨大的成功。这似乎与FL特别相关，因为参与方可能拥有稀疏的数据分布，并持有有限的标签子集。在本小节中，我们将测试服务器上的动量对FedAvg性能的影响。</p>
+<p><img src="/2020/01/04/Non-IID数据集调研/6.png" alt="image-20200105220438897" style="zoom:50%;"></p>
+<p>Vanilla FedAvg通过w☆w负极∏w更新权重，其中∏w=k=1 n n∏w k（n k是pk示例数，∏w k是来自第k个客户端的权重更新，n=k=1 n k）。为了在服务器上增加动量，我们计算了v☆βv+☆w，并用w☆w-v更新了模型。我们称这种方法为FedAvgM（服务器动量联合平均）</p>
+<p>在实验中，我们使用了具有动量β∈{0，0.7，0.9，0.97，0.99，0.997}的Nesterov加速梯度[Nesterov，2007]。模型架构、客户批处理大小B和学习率η与前一小节中的vanilla FedAvg相同。服务器优化器的学习速率保持不变，为1.0。</p>
+<p><strong>服务器动量的影响</strong>。图5显示了在有或没有服务器动量的情况下，使用非相同数据进行学习的效果。与FedAvg相比，FedAvgM的测试精度持续提高，在许多情况下，性能接近集中学习基线（86.0%）。例如，当E=1和C=0.05时，FedAvgM的性能保持相对恒定且在75%以上，而FedAvg的精度则迅速下降到35%左右。</p>
+<p><img src="/2020/01/04/Non-IID数据集调研/7.png" alt="image-20200105220629725" style="zoom:50%;"></p>
+<p>图5:FedAvgM和FedAvg在不同非相同性下的性能曲线。右边的数据越来越不一样了。最好用彩色观看。</p>
+<p><strong>对C和E的超参数依赖性</strong>。对FedAvgM来说，<strong>超参数调整更困难，因为它涉及额外的超参数β</strong>。在图6中，我们根据有效学习率（定义为ηe ffe=η/（1-β）[Shallue等人，2018年]绘制了准确度曲线，这表明了每一组学习条件的最佳ηeff。<strong>值得注意的是，当报告分数C较大时，选择ηe ffe更容易，两个数量级的值范围产生合理的测试精度</strong>。相反，当每轮只有少数客户报告时，ηeff的可行窗口可以小到只有一个数量级。为了防止客户端更新出现分歧，我们还必须使用低绝对学习率和高动量的组合。局部历元参数E也影响学习率的选择。广泛的局部优化增加了客户权重更新的方差，因此需要更低的ηeff来抵消噪声。</p>
+<p><img src="/2020/01/04/Non-IID数据集调研/8.png" alt="image-20200105220952479" style="zoom:50%;"></p>
+<p>图6:FedAvgM试验精度灵敏度。绘制α=1。有效学习率定义为ηeff=η/（1-β）。大小与客户学习率η成正比，最有效的点用十字线标记。</p>
 
         </div>
         
@@ -293,7 +335,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Articles
+                        Posts
                     </p>
                     <p class="title has-text-weight-normal">
                         60
@@ -303,7 +345,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Catégories
+                        Categories
                     </p>
                     <p class="title has-text-weight-normal">
                         25
@@ -323,7 +365,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/fallenk" target="_blank">
-                SUIVRE</a>
+                Follow</a>
         </div>
         
         
@@ -377,7 +419,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Liens
+            Links
         </h3>
         <ul class="menu-list">
         
@@ -415,7 +457,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Catégories
+                Categories
             </h3>
             <ul class="menu-list">
             <li>
@@ -483,9 +525,9 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/Leecode/">
+        <a class="level is-marginless" href="/categories/LeeCode/">
             <span class="level-start">
-                <span class="level-item">Leecode</span>
+                <span class="level-item">LeeCode</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -628,9 +670,9 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Nuage de tags
+            Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 12px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 12px;">LeetCode</a> <a href="/tags/Leetcode/" style="font-size: 12px;">Leetcode</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/data/" style="font-size: 10px;">data</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 12px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 12px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 12px;">代码</a> <a href="/tags/入门/" style="font-size: 16px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 12px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 12px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 12px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 18px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 14px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 12px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
+        <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 12px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 14px;">LeetCode</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/data/" style="font-size: 10px;">data</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 14px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 12px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 12px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 12px;">代码</a> <a href="/tags/入门/" style="font-size: 16px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 12px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 12px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 12px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 18px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 14px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 12px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
     </div>
 </div>
 
@@ -642,7 +684,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Récents
+            Recent
         </h3>
         
         <article class="media">
@@ -715,7 +757,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-19T02:41:59.000Z">2019-11-19</time></div>
                     <a href="/2019/11/19/算法40讲数组和链表/" class="title has-link-black-ter is-size-6 has-text-weight-normal">算法40讲数组和链表</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Leecode/">Leecode</a>
+                        <a class="has-link-grey -link" href="/categories/LeeCode/">LeeCode</a>
                     </p>
                 </div>
             </div>
@@ -982,14 +1024,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Leetcode/">
                         <span class="tag">Leetcode</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1258,7 +1300,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Récents
+            Recent
         </h3>
         
         <article class="media">
@@ -1331,7 +1373,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-19T02:41:59.000Z">2019-11-19</time></div>
                     <a href="/2019/11/19/算法40讲数组和链表/" class="title has-link-black-ter is-size-6 has-text-weight-normal">算法40讲数组和链表</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Leecode/">Leecode</a>
+                        <a class="has-link-grey -link" href="/categories/LeeCode/">LeeCode</a>
                     </p>
                 </div>
             </div>
@@ -1598,14 +1640,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Leetcode/">
                         <span class="tag">Leetcode</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -2038,9 +2080,9 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Articles',
+                POSTS: 'Posts',
                 PAGES: 'Pages',
-                CATEGORIES: 'Catégories',
+                CATEGORIES: 'Categories',
                 TAGS: 'Tags',
                 UNTITLED: '(Untitled)',
             },
