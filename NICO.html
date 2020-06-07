@@ -19,7 +19,7 @@
 <meta property="og:description" content="non-iid朝向分类图像：数据集和基线训练和测试数据之间的独立同分布假设是众多图像分类方法的基础。在非真实性普遍的情况下，这种性质在实际中很难得到保证，导致模型性能不稳定。然而，在文献中，非I.I.D图像分类问题在很大程度上未被研究。一个关键原因是缺乏设计良好的数据集来支持相关研究。在本文中，我们构建并发布了一个名为nico的非i.i.d.图像数据集，它使用上下文有意识地创建非真实性。与其他数据">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2020-03-21T12:23:50.175Z">
+<meta property="og:updated_time" content="2020-05-23T18:54:23.448Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NICO">
 <meta name="twitter:description" content="non-iid朝向分类图像：数据集和基线训练和测试数据之间的独立同分布假设是众多图像分类方法的基础。在非真实性普遍的情况下，这种性质在实际中很难得到保证，导致模型性能不稳定。然而，在文献中，非I.I.D图像分类问题在很大程度上未被研究。一个关键原因是缺乏设计良好的数据集来支持相关研究。在本文中，我们构建并发布了一个名为nico的非i.i.d.图像数据集，它使用上下文有意识地创建非真实性。与其他数据">
@@ -165,9 +165,9 @@
 <p>Problem 1. (Non-I.I.D. Image Classiﬁcation) 根据训练数据 $D_{\text {train}} = \left(X_{\text {train}}, Y_{\text {train}}\right), \text {where } X_{\text {train}} \in \mathbb{R}^{n \times(c \times h \times w)} 代表图像， Y_{\text {train}} \in \mathbb{R}^{n \times 1}代表labels$ 。任务是学习一个特征抽取器$g_{\varphi}(\cdot)$和一个分类器$f_{\theta}(\cdot)$ 。$\begin{array}{l}{\text { so that } f_{\theta}\left(g_{\varphi}(\cdot)\right) \text { can predict the labels of testing data } D_{\text {test }}=\left(X_{\text {test }}, Y_{\text {test }}\right) \text { precisely, }} \ {\text { where } g_{\varphi}(\cdot) \in \mathbb{R}^{n \times p} \text { and } \psi\left(D_{\text {train }}\right) \neq \psi\left(D_{\text {test }}\right) .}\end{array}$</p>
 <p>此外，根据测试数据先验知识的可用性，我们进一步定义了两个不同的任务。</p>
 <ol>
-<li><p>一种是目标非I.I.D.图像分类，其中<strong>测试数据分布是已知</strong>的。</p>
+<li><p>一种是目标Non-IID图像分类，其中<strong>测试数据分布是已知</strong>的。</p>
 </li>
-<li><p>另一种是一般的非I.I.D.图像分类，对应于<strong>测试数据分布未知的更现实</strong>的场景。 ？？未知是什么意思</p>
+<li><p>另一种是一般的Non-IID图像分类，对应于<strong>测试数据分布未知的更现实</strong>的场景。</p>
 </li>
 </ol>
 <p>为了直观地量化<strong>训练数据集$\psi\left(D_{\text {train}}\right)$和测试数据集$\psi\left(D_{\text {test}}\right)$之间的分布变化程度</strong>，我们将非I.I.D.指数定义如下：Non-I.I.D. Index</p>
@@ -207,8 +207,7 @@
 <p>NICO数据集将不断更新和扩展。到目前为止，有两个超类：动物类和车辆类，其中动物类10个，车辆类9个。<strong>每个类有9或10个上下文</strong>。每个类的上下文平均数量大小在83到215之间，类的平均大小约为1300个图像，与imagenet类似。nico数据集中总共有25000个图像。由于nico是一个层次结构，所以很容易扩展。关于nico的更多统计数据见表1。数据集可以通过link 5下载，也可以通过link 6下载。</p>
 <p><a href="https://www.dropbox.com/sh/8mouawi5guaupyb/AAD4fdySrA6fn3PgSmhKwFgva?dl=0" target="_blank" rel="noopener">https://www.dropbox.com/sh/8mouawi5guaupyb/AAD4fdySrA6fn3PgSmhKwFgva?dl=0</a> </p>
 <p><a href="https://pan.baidu.com/s/1277mgM-Nju6REd5h3xXlrA" target="_blank" rel="noopener">https://pan.baidu.com/s/1277mgM-Nju6REd5h3xXlrA</a></p>
-<h3 id="3-3-Supported-Non-I-I-D-Settings"><a href="#3-3-Supported-Non-I-I-D-Settings" class="headerlink" title="3.3. Supported Non-I.I.D. Settings"></a>3.3. Supported Non-I.I.D. Settings</h3><p>c</p>
-<h4 id="Setting-1-Minimum-bias"><a href="#Setting-1-Minimum-bias" class="headerlink" title="Setting 1. Minimum bias."></a>Setting 1. Minimum bias.</h4><p>​    给定一个类，我们可以忽略上下文，将类的所有图像随机分成训练和测试子集作为正样本。然后我们可以随机抽取属于其他类别的图像作为负样本进行训练和测试。在这个设置中，随机抽样的方式导致数据集中的训练和测试分布之间的最小分布偏移，这模拟了一个近似I.I.D.的场景。</p>
+<h3 id="3-3-Supported-Non-I-I-D-Settings"><a href="#3-3-Supported-Non-I-I-D-Settings" class="headerlink" title="3.3. Supported Non-I.I.D. Settings"></a>3.3. Supported Non-I.I.D. Settings</h3><h4 id="Setting-1-Minimum-bias"><a href="#Setting-1-Minimum-bias" class="headerlink" title="Setting 1. Minimum bias."></a>Setting 1. Minimum bias.</h4><p>​    给定一个类，我们可以忽略上下文，将类的所有图像随机分成训练和测试子集作为正样本。然后我们可以随机抽取属于其他类别的图像作为负样本进行训练和测试。在这个设置中，随机抽样的方式导致数据集中的训练和测试分布之间的最小分布偏移，这模拟了一个近似I.I.D.的场景。</p>
 <h4 id="Setting-2-Proportional-bias"><a href="#Setting-2-Proportional-bias" class="headerlink" title="Setting 2. Proportional bias."></a>Setting 2. Proportional bias.</h4><p>​    给定一个类，当对<strong>正样本进行抽样时，我们使用所有上下文进行训练和测试</strong>，但是每个上下文在训练和测试子集中所占的百分比是不同的。例如，我们<strong>可以让一个上下文在训练数据中占大多数，而在测试中占少数，这与视觉概念服从幂律分布的自然现象是一致的</strong>[15]，负采样过程与设置1相同。在此设置中，可以通过<strong>调整每个上下文的训练和测试子集之间的比例差来调整分布偏移的级别</strong>。</p>
 <h4 id="Setting-3-Compositional-bias"><a href="#Setting-3-Compositional-bias" class="headerlink" title="Setting 3. Compositional bias."></a>Setting 3. Compositional bias.</h4><p>​    给定一个类，并不是正样本所属的测试上下文都同时出现在训练子集中，这样的设置在真实场景中很常见，因为由于采样时间和空间的限制，可用的数据集在本质上不可能包含所有的潜在上下文。从观察到的上下文到看不到的上下文的分布变化通常很大。<strong>训练中测试上下文的数量越少，通常会导致更高的分布偏移，通过组合偏移和比例偏移相结合，可以进一步实现更激进的分布偏移</strong>。</p>
 <h4 id="Setting-4-Adversarial-bias-对抗的"><a href="#Setting-4-Adversarial-bias-对抗的" class="headerlink" title="Setting 4. Adversarial bias. 对抗的"></a>Setting 4. Adversarial bias. 对抗的</h4><p>​    给定一个类，<strong>正采样过程与设置3相同。对于负样本，我们倾向于从没有（或已经）包含在正训练样本中的上下文中选择负样本，以形成负训练（或测试）子集。</strong>在这种情况下，<strong>分布转移甚至高于设置3，并且在I.I.D.假设下开发的现有分类模型更容易混淆</strong>。</p>
@@ -306,7 +305,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Posts
+                        Entradas
                     </p>
                     <p class="title has-text-weight-normal">
                         58
@@ -316,7 +315,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Categorias
                     </p>
                     <p class="title has-text-weight-normal">
                         25
@@ -326,7 +325,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Tags
+                        Etiquetas
                     </p>
                     <p class="title has-text-weight-normal">
                         44
@@ -336,7 +335,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/fallenk" target="_blank">
-                Follow</a>
+                SEGUIR</a>
         </div>
         
         
@@ -428,7 +427,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Categories
+                Categorias
             </h3>
             <ul class="menu-list">
             <li>
@@ -641,7 +640,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Tag Cloud
+            Nube de etiquetas
         </h3>
         <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 12px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 14px;">LeetCode</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/data/" style="font-size: 10px;">data</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 12px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 12px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 12px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 12px;">代码</a> <a href="/tags/入门/" style="font-size: 16px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 12px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 12px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 12px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 18px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 14px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 10px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
     </div>
@@ -655,7 +654,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Recientes
         </h3>
         
         <article class="media">
@@ -761,7 +760,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            Archivos
         </h3>
         <ul class="menu-list">
         
@@ -928,7 +927,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                Etiquetas
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -1260,7 +1259,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Recientes
         </h3>
         
         <article class="media">
@@ -1366,7 +1365,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            Archivos
         </h3>
         <ul class="menu-list">
         
@@ -1533,7 +1532,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                Etiquetas
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -2029,10 +2028,10 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
+                POSTS: 'Entradas',
                 PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
+                CATEGORIES: 'Categorias',
+                TAGS: 'Etiquetas',
                 UNTITLED: '(Untitled)',
             },
             CONTENT_URL: '/content.json',
