@@ -19,7 +19,7 @@
 <meta property="og:description" content="题目给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n&amp;gt;1并且m&amp;gt;1）,求最大乘积 https://leetcode-cn.com/problems/jian-sheng-zi-lcof/">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2020-06-07T14:54:20.835Z">
+<meta property="og:updated_time" content="2020-06-07T15:12:24.879Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态规划_剪绳子">
 <meta name="twitter:description" content="题目给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n&amp;gt;1并且m&amp;gt;1）,求最大乘积 https://leetcode-cn.com/problems/jian-sheng-zi-lcof/">
@@ -180,7 +180,7 @@
 </blockquote>
 <p>由算术几何均值不等式</p>
 <p><strong>推论一：</strong> 将绳子 <strong>以相等的长度等分为多段</strong> ，得到的乘积最大。</p>
-<p><strong>推论二：</strong> 尽可能将绳子以长度 33 等分为多段时，乘积最大。</p>
+<p><strong>推论二：</strong> 尽可能将绳子以长度 3等分为多段时，乘积最大。</p>
 <p>切分规则：<br>最优： 3 。把绳子尽可能切为多个长度为 3 的片段，留下的最后一段绳子的长度可能为 0,1,2三种情况。<br>次优： 2。若最后一段绳子长度为 2 ；则保留，不再拆为 1+1 。<br>最差： 1。若最后一段绳子长度为 1；则应把一份 3 + 1替换为 2 + 2，因为2<em>2 &gt;3</em>1。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">cuttingRope</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(n &lt;= <span class="hljs-number">3</span>) <span class="hljs-keyword">return</span> n - <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> a = n / <span class="hljs-number">3</span>, b = n % <span class="hljs-number">3</span>;</span><br><span class="line">        <span class="hljs-keyword">if</span>(b == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>)Math.pow(<span class="hljs-number">3</span>, a);</span><br><span class="line">        <span class="hljs-keyword">if</span>(b == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>)Math.pow(<span class="hljs-number">3</span>, a - <span class="hljs-number">1</span>) * <span class="hljs-number">4</span>;</span><br><span class="line">        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>)Math.pow(<span class="hljs-number">3</span>, a) * <span class="hljs-number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h2><blockquote>
