@@ -10,19 +10,19 @@
 <title>Java的String和char数组 - Fallenk&#39;s Blog</title>
 
 
-    <meta name="description" content="谈Java的String和char数组的关系继承关系12java.lang.Object    java.lang.String 原型声明public final class String extends Object implements Serializable, Comparable&amp;lt;String&amp;gt;, charSequence 构造方法\123456789Stirng()Stri">
+    <meta name="description" content="谈Java的String和char数组的关系继承关系12java.lang.Object    java.lang.String">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java的String和char数组">
 <meta property="og:url" content="https://fallenk.github.io/2020/06/08/Java的String和char数组/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="谈Java的String和char数组的关系继承关系12java.lang.Object    java.lang.String 原型声明public final class String extends Object implements Serializable, Comparable&amp;lt;String&amp;gt;, charSequence 构造方法\123456789Stirng()Stri">
+<meta property="og:description" content="谈Java的String和char数组的关系继承关系12java.lang.Object    java.lang.String">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2020-06-08T01:57:01.279Z">
+<meta property="og:updated_time" content="2020-06-08T01:58:21.325Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java的String和char数组">
-<meta name="twitter:description" content="谈Java的String和char数组的关系继承关系12java.lang.Object    java.lang.String 原型声明public final class String extends Object implements Serializable, Comparable&amp;lt;String&amp;gt;, charSequence 构造方法\123456789Stirng()Stri">
+<meta name="twitter:description" content="谈Java的String和char数组的关系继承关系12java.lang.Object    java.lang.String">
 <meta name="twitter:image" content="https://fallenk.github.io/images/og_image.png">
 
 
@@ -155,7 +155,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    23 minutes read (About 3410 words)
+                    23 minutes read (About 3411 words)
                 </span>
                 
                 
@@ -169,6 +169,7 @@
         </h1>
         <div class="content">
             <h1 id="谈Java的String和char数组的关系"><a href="#谈Java的String和char数组的关系" class="headerlink" title="谈Java的String和char数组的关系"></a>谈Java的String和char数组的关系</h1><h2 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java.lang.Object</span><br><span class="line">    java.lang.String</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="原型声明"><a href="#原型声明" class="headerlink" title="原型声明"></a>原型声明</h2><p><code>public final class String extends Object implements Serializable, Comparable&lt;String&gt;, charSequence</code></p>
 <h2 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法\"></a><strong><em>构造方法\</em></strong></h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Stirng()</span><br><span class="line"></span><br><span class="line">String(<span class="hljs-keyword">byte</span>[] bytes, <span class="hljs-keyword">int</span> ofset, <span class="hljs-keyword">int</span> length, String charSetName)</span><br><span class="line"></span><br><span class="line">String(<span class="hljs-keyword">byte</span>[] bytes)</span><br><span class="line"></span><br><span class="line">Stirng(<span class="hljs-keyword">char</span>[] value)</span><br><span class="line"></span><br><span class="line">String(StringBuilder builder)</span><br></pre></td></tr></table></figure>
 <p><strong><em>在以上的构造方法中，我们强调<code>String(char[] value)</code>\</em></strong></p>
