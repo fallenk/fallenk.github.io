@@ -7,21 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Archives: 2019/6 - Fallenk&#39;s Blog</title>
+<title>二分旋转数组 - Fallenk&#39;s Blog</title>
 
 
-    <meta name="description" content="不忘初心，努力学习，砥砺前进，自我反省">
-<meta name="keywords" content="经历，心得，笔记，目标">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fallenk&#39;s Blog">
-<meta property="og:url" content="https://fallenk.github.io/archives/2019/06/index.html">
+    <meta name="description" content="题目https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/ 解法 暴力解法， 0(n)不符合要求   有序，要到0(logn)，考虑二分查找，排序数组的查找问题首先考虑使用 二分法 解决，其可将遍历法的 线性级别 时间复杂度降低至 对数级别 。  定下大概思路， 接着弄清楚算法流程:  入口，设置 i,">
+<meta name="keywords" content="LeetCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二分旋转数组">
+<meta property="og:url" content="https://fallenk.github.io/2020/06/09/二分旋转数组/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta property="og:description" content="题目https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/ 解法 暴力解法， 0(n)不符合要求   有序，要到0(logn)，考虑二分查找，排序数组的查找问题首先考虑使用 二分法 解决，其可将遍历法的 线性级别 时间复杂度降低至 对数级别 。  定下大概思路， 接着弄清楚算法流程:  入口，设置 i,">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
+<meta property="og:updated_time" content="2020-06-09T02:36:50.972Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fallenk&#39;s Blog">
-<meta name="twitter:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta name="twitter:title" content="二分旋转数组">
+<meta name="twitter:description" content="题目https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/ 解法 暴力解法， 0(n)不符合要求   有序，要到0(logn)，考虑二分查找，排序数组的查找问题首先考虑使用 二分法 解决，其可将遍历法的 线性级别 时间复杂度降低至 对数级别 。  定下大概思路， 接着弄清楚算法流程:  入口，设置 i,">
 <meta name="twitter:image" content="https://fallenk.github.io/images/og_image.png">
 
 
@@ -92,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Fallenk&#39;s Blog" height="28">
+                <img src="/images/logo.svg" alt="二分旋转数组" height="28">
             
             </a>
         </div>
@@ -142,69 +143,84 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="tag is-link">
-        June 2019
-        </h3>
-        <div class="timeline">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
         
-            <article class="media">
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-06-09T02:11:44.000Z">2020-06-09</time>
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-06-19T12:06:01.000Z">2019-06-19</time>
-                        <a href="/2019/06/19/spring-bootSummary/" class="title has-link-black-ter is-size-6 has-text-weight-normal">spring-bootSummary</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-06-13T09:06:02.000Z">2019-06-13</time>
-                        <a href="/2019/06/13/论文阅读-RandWiredNN/" class="title has-link-black-ter is-size-6 has-text-weight-normal">论文阅读-RandWiredNN</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/论文阅读/">论文阅读</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 291 words)
+                </span>
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-06-03T02:25:21.000Z">2019-06-03</time>
-                        <a href="/2019/06/03/NeuralArchitectureSearch/" class="title has-link-black-ter is-size-6 has-text-weight-normal">综述-NeuralArchitectureSearch</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/论文阅读/">论文阅读</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
+                
+            </div>
         </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                二分旋转数组
+            
+        </h1>
+        <div class="content">
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/</a></p>
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><blockquote>
+<p>暴力解法， 0(n)不符合要求</p>
+</blockquote>
+<blockquote>
+<p>有序，要到0(logn)，考虑二分查找，排序数组的查找问题首先考虑使用 <strong>二分法</strong> 解决，其可将遍历法的 <em>线性级别</em> 时间复杂度降低至 <em>对数级别</em> 。</p>
+</blockquote>
+<p>定下大概思路，</p>
+<p>接着弄清楚算法流程:</p>
+<ol>
+<li>入口，设置 i, j 指针分别指向 <code>numbers</code> 数组左右两端，m = (i + j) // 2为每次二分的中点</li>
+<li><p>循环二分：</p>
+<ol>
+<li>比较 number[m] &gt; number[j]</li>
+<li>number[m] &lt; number[j]</li>
+<li>特殊  number[m] == number[j]</li>
+</ol>
+<p>是否可以用 <code>numbers[m]</code> 和 <code>numbers[i]</code> 比较做代替？<br><strong>解析：</strong> 不可以。因为做比较的目的是判断 m<em>m</em> 在哪个排序数组中。但在 <code>numbers[m] &gt; numbers[i]</code>情况下，无法判断 m 在哪个排序数组中。</p>
+</li>
+</ol>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">minArray</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] numbers)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (numbers == <span class="hljs-keyword">null</span> || numbers.length ==<span class="hljs-number">0</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">return</span> Integer.MIN_VALUE;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">int</span> len = numbers.length;</span><br><span class="line">        <span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>, j = len-<span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">while</span>(i&lt;j) &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> m = i + (j-i)/<span class="hljs-number">2</span>;</span><br><span class="line">          </span><br><span class="line">						<span class="hljs-comment">// 错误示范！！！！， 以后写条件判断，if() else if(); 变量改变了条件。</span></span><br><span class="line">            <span class="hljs-keyword">if</span> (numbers[m] &gt; numbers[j]) &#123;</span><br><span class="line">                i = m+<span class="hljs-number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="hljs-keyword">if</span> (numbers[m] &lt; numbers[j]) &#123;</span><br><span class="line">                j = m;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="hljs-keyword">if</span> (numbers[m] == numbers[j]) &#123;</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">          <span class="hljs-comment">// ------</span></span><br><span class="line">          <span class="hljs-keyword">if</span> (numbers[m] &gt; numbers[j]) &#123;</span><br><span class="line">                i = m+<span class="hljs-number">1</span>;</span><br><span class="line">            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(numbers[m] &lt; numbers[j]) &#123;</span><br><span class="line">                j = m;</span><br><span class="line">            &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">          </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> numbers[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/LeetCode/">LeetCode</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/06/08/Java快排和二分/">
+                <span class="level-item">Java快排和二分</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
     </div>
 </div>
 
@@ -1780,7 +1796,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Fallenk&#39;s Blog" height="28">
+                    <img src="/images/logo.svg" alt="二分旋转数组" height="28">
                 
                 </a>
                 <p class="is-size-7">
