@@ -10,19 +10,19 @@
 <title>回文数 - Fallenk&#39;s Blog</title>
 
 
-    <meta name="description" content="题目int型的回文数">
+    <meta name="description" content="题目int型的回文数 https://leetcode-cn.com/problems/palindrome-number">
 <meta name="keywords" content="LeetCode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="回文数">
 <meta property="og:url" content="https://fallenk.github.io/2020/06/10/回文数/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="题目int型的回文数">
+<meta property="og:description" content="题目int型的回文数 https://leetcode-cn.com/problems/palindrome-number">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2020-06-10T06:55:47.850Z">
+<meta property="og:updated_time" content="2020-06-10T09:16:08.630Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="回文数">
-<meta name="twitter:description" content="题目int型的回文数">
+<meta name="twitter:description" content="题目int型的回文数 https://leetcode-cn.com/problems/palindrome-number">
 <meta name="twitter:image" content="https://fallenk.github.io/images/og_image.png">
 
 
@@ -155,7 +155,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 137 words)
+                    5 minutes read (About 685 words)
                 </span>
                 
                 
@@ -169,6 +169,7 @@
         </h1>
         <div class="content">
             <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>int型的回文数</p>
+<p><a href="https://leetcode-cn.com/problems/palindrome-number" target="_blank" rel="noopener">https://leetcode-cn.com/problems/palindrome-number</a></p>
 <a id="more"></a>
 <h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><blockquote>
 <p> 解法一： 普通解法</p>
@@ -180,6 +181,13 @@
 </blockquote>
 <p>举个例子：1221 这个数字。</p>
 <p>通过计算 1221 / 1000， 得首位1<br>通过计算 1221 % 10， 可得末位 1<br>进行比较<br>再将 22 取出来继续比较</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//边界判断</span></span><br><span class="line">        <span class="hljs-keyword">if</span> (x &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> div = <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-comment">//</span></span><br><span class="line">        <span class="hljs-keyword">while</span> (x / div &gt;= <span class="hljs-number">10</span>) div *= <span class="hljs-number">10</span>;</span><br><span class="line">        <span class="hljs-keyword">while</span> (x &gt; <span class="hljs-number">0</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> left = x / div;</span><br><span class="line">            <span class="hljs-keyword">int</span> right = x % <span class="hljs-number">10</span>;</span><br><span class="line">            <span class="hljs-keyword">if</span> (left != right) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;</span><br><span class="line">            x = (x % div) / <span class="hljs-number">10</span>;</span><br><span class="line">            div /= <span class="hljs-number">100</span>; <span class="hljs-comment">// 很重要</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解法三：进阶解法—巧妙解法<br>直观上来看待回文数的话，就感觉像是将数字进行对折后看能否一一对应。</p>
+<p>所以这个解法的操作就是 取出后半段数字进行翻转。</p>
+<p>这里需要注意的一个点就是由于回文数的位数可奇可偶，所以当它的长度是偶数时，它对折过来应该是相等的；当它的长度是奇数时，那么它对折过来后，有一个的长度需要去掉一位数（除以 10 并取整）。</p>
+<p>具体做法如下：</p>
+<p>每次进行取余操作 （ %10），取出最低的数字：y = x % 10<br>将最低的数字加到取出数的末尾：revertNum = revertNum * 10 + y<br>每取一个最低位数字，x 都要自除以 10<br>判断 x 是不是小于 revertNum ，当它小于的时候，说明数字已经对半或者过半了<br>最后，判断奇偶数情况：如果是偶数的话，revertNum 和 x 相等；如果是奇数的话，最中间的数字就在revertNum 的最低位上，将它除以 10 以后应该和 x 相等。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function">bool <span class="hljs-title">isPalindrome</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">// 特殊情况：</span></span><br><span class="line">        <span class="hljs-comment">// 如上所述，当 x &lt; 0 时，x 不是回文数。</span></span><br><span class="line">        <span class="hljs-comment">// 同样地，如果数字的最后一位是 0，为了使该数字为回文，</span></span><br><span class="line">        <span class="hljs-comment">// 则其第一位数字也应该是 0</span></span><br><span class="line">        <span class="hljs-comment">// 只有 0 满足这一属性</span></span><br><span class="line">        <span class="hljs-keyword">if</span> (x &lt; <span class="hljs-number">0</span> || (x % <span class="hljs-number">10</span> == <span class="hljs-number">0</span> &amp;&amp; x != <span class="hljs-number">0</span>)) &#123;</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">int</span> revertedNumber = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">while</span> (x &gt; revertedNumber) &#123;</span><br><span class="line">            revertedNumber = revertedNumber * <span class="hljs-number">10</span> + x % <span class="hljs-number">10</span>;</span><br><span class="line">            x /= <span class="hljs-number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// 当数字长度为奇数时，我们可以通过 revertedNumber/10 去除处于中位的数字。</span></span><br><span class="line">        <span class="hljs-comment">// 例如，当输入为 12321 时，在 while 循环的末尾我们可以得到 x = 12，revertedNumber = 123，</span></span><br><span class="line">        <span class="hljs-comment">// 由于处于中位的数字不影响回文（它总是与自己相等），所以我们可以简单地将其去除。</span></span><br><span class="line">        <span class="hljs-keyword">return</span> x == revertedNumber || x == revertedNumber / <span class="hljs-number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -203,6 +211,13 @@
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/06/10/二进制数字中1的个数/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">二进制数字中1的个数</span>
+            </a>
+        </div>
         
         
         <div class="level-end">
@@ -260,7 +275,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -563,6 +578,25 @@
         
         <article class="media">
             
+            <a href="/2020/06/10/二进制数字中1的个数/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="二进制数字中1的个数">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-10T11:51:06.000Z">2020-06-10</time></div>
+                    <a href="/2020/06/10/二进制数字中1的个数/" class="title has-link-black-ter is-size-6 has-text-weight-normal">二进制数字中1的个数</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/06/10/回文数/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="回文数">
@@ -637,25 +671,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/06/08/Java的String和char数组/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java的String和char数组">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-08T01:35:50.000Z">2020-06-08</time></div>
-                    <a href="/2020/06/08/Java的String和char数组/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java的String和char数组</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -674,7 +689,7 @@
                     <span class="level-item">June 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -898,7 +913,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">10</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -1179,6 +1194,25 @@
         
         <article class="media">
             
+            <a href="/2020/06/10/二进制数字中1的个数/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="二进制数字中1的个数">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-10T11:51:06.000Z">2020-06-10</time></div>
+                    <a href="/2020/06/10/二进制数字中1的个数/" class="title has-link-black-ter is-size-6 has-text-weight-normal">二进制数字中1的个数</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/06/10/回文数/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="回文数">
@@ -1253,25 +1287,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/06/08/Java的String和char数组/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java的String和char数组">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-08T01:35:50.000Z">2020-06-08</time></div>
-                    <a href="/2020/06/08/Java的String和char数组/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java的String和char数组</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1290,7 +1305,7 @@
                     <span class="level-item">June 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -1514,7 +1529,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">10</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
