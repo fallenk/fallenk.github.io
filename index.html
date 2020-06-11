@@ -149,6 +149,55 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-06-11T02:29:01.000Z">2020-06-11</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 380 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/06/11/机器人的运动范围/">机器人的运动范围</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof</a></p>
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><p>解题思路：<br>本题与 矩阵中的路径 类似，是典型的矩阵搜索问题。此类问题通常可使用 深度优先搜索（DFS） 或 广度优先搜索（BFS） 解决。在介绍 DFS / BFS 算法之前，为提升计算效率，首先讲述两项前置工作： 数位之和计算 、 搜索方向简化 。</p>
+<blockquote>
+<p> DFS</p>
+</blockquote>
+<p>优化，机器人只能向下或者向右</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">movingCount</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">// case 1</span></span><br><span class="line">        <span class="hljs-keyword">int</span>[][] map = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[m][n];</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;m; i++)&#123;</span><br><span class="line">            Arrays.fill(map[i], <span class="hljs-number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> dfs(map, k, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[][] map, <span class="hljs-keyword">int</span> k, <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (i&lt;<span class="hljs-number">0</span> || i&gt;=map.length || j&lt;<span class="hljs-number">0</span> ||j&gt;=map[<span class="hljs-number">0</span>].length || sumPos(i, j) &gt; k || map[i][j]!=<span class="hljs-number">1</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">int</span> temp = map[i][j];</span><br><span class="line">        map[i][j] = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">return</span> temp  + dfs(map, k, i+<span class="hljs-number">1</span>, j) + dfs(map, k, i, j+<span class="hljs-number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">sumPos</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(a &lt; <span class="hljs-number">0</span> || b &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> res=<span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">while</span>(a != <span class="hljs-number">0</span>) &#123;</span><br><span class="line">            res += a %<span class="hljs-number">10</span>;</span><br><span class="line">            a /=<span class="hljs-number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">while</span>(b != <span class="hljs-number">0</span>) &#123;</span><br><span class="line">            res += b%<span class="hljs-number">10</span>;</span><br><span class="line">            b /= <span class="hljs-number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h2><p>广度优先遍历 BFS<br>BFS/DFS ： 两者目标都是遍历整个矩阵，不同点在于搜索顺序不同。DFS 是朝一个方向走到底，再回退，以此类推；BFS 则是按照“平推”的方式向前搜索。<br>BFS 实现： 通常利用<strong>队列实现广度优先遍历</strong>。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">movingCount2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">boolean</span>[][] visited = <span class="hljs-keyword">new</span> <span class="hljs-keyword">boolean</span>[m][n];</span><br><span class="line">        <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;</span><br><span class="line">        Queue&lt;<span class="hljs-keyword">int</span>[]&gt; queue = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.add(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;<span class="hljs-number">0</span>,<span class="hljs-number">0</span>&#125;);</span><br><span class="line">        <span class="hljs-keyword">while</span> (queue.size() &gt; <span class="hljs-number">0</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span>[] x = queue.poll();</span><br><span class="line">            <span class="hljs-keyword">int</span> i = x[<span class="hljs-number">0</span>], j = x[<span class="hljs-number">1</span>];</span><br><span class="line">            <span class="hljs-keyword">if</span> (i&gt;=m || j&gt;= n || get(i, j)&gt;k || visited[i][j] == <span class="hljs-keyword">true</span>) &#123;</span><br><span class="line">                <span class="hljs-keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            visited[i][j] = <span class="hljs-keyword">true</span>;</span><br><span class="line">            res++;</span><br><span class="line">            queue.add(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;i+<span class="hljs-number">1</span>, j&#125;);</span><br><span class="line">            queue.add(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;i, j+<span class="hljs-number">1</span>&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-06-11T01:35:11.000Z">2020-06-11</time>
                 
                 
@@ -580,55 +629,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-06-07T14:24:02.000Z">2020-06-07</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 minutes read (About 493 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/06/07/贪心-剪绳子/">动态规划_剪绳子</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给你一根长度为 <code>n</code> 的绳子，请把绳子剪成整数长度的 <code>m</code> 段（m、n都是整数，n&gt;1并且m&gt;1）,求最大乘积</p>
-<p><a href="https://leetcode-cn.com/problems/jian-sheng-zi-lcof/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/jian-sheng-zi-lcof/</a></p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/06/07/贪心-剪绳子/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -696,7 +696,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        68
+                        69
                     </p>
                 </div>
             </div>
@@ -999,6 +999,25 @@
         
         <article class="media">
             
+            <a href="/2020/06/11/机器人的运动范围/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="机器人的运动范围">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-11T02:29:01.000Z">2020-06-11</time></div>
+                    <a href="/2020/06/11/机器人的运动范围/" class="title has-link-black-ter is-size-6 has-text-weight-normal">机器人的运动范围</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/06/11/数值的整数次方/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="数值的整数次方">
@@ -1073,25 +1092,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/06/09/二分旋转数组/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="二分旋转数组">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-09T02:11:44.000Z">2020-06-09</time></div>
-                    <a href="/2020/06/09/二分旋转数组/" class="title has-link-black-ter is-size-6 has-text-weight-normal">二分旋转数组</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1110,7 +1110,7 @@
                     <span class="level-item">June 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">10</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -1334,7 +1334,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
@@ -1615,6 +1615,25 @@
         
         <article class="media">
             
+            <a href="/2020/06/11/机器人的运动范围/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="机器人的运动范围">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-11T02:29:01.000Z">2020-06-11</time></div>
+                    <a href="/2020/06/11/机器人的运动范围/" class="title has-link-black-ter is-size-6 has-text-weight-normal">机器人的运动范围</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/06/11/数值的整数次方/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="数值的整数次方">
@@ -1689,25 +1708,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/06/09/二分旋转数组/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="二分旋转数组">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-09T02:11:44.000Z">2020-06-09</time></div>
-                    <a href="/2020/06/09/二分旋转数组/" class="title has-link-black-ter is-size-6 has-text-weight-normal">二分旋转数组</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1726,7 +1726,7 @@
                     <span class="level-item">June 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">10</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -1950,7 +1950,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
