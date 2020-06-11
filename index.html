@@ -155,7 +155,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 380 words)
+                    3 minutes read (About 381 words)
                 </span>
                 
                 
@@ -169,17 +169,16 @@
         </h1>
         <div class="content">
             <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof</a></p>
-<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><p>解题思路：<br>本题与 矩阵中的路径 类似，是典型的矩阵搜索问题。此类问题通常可使用 深度优先搜索（DFS） 或 广度优先搜索（BFS） 解决。在介绍 DFS / BFS 算法之前，为提升计算效率，首先讲述两项前置工作： 数位之和计算 、 搜索方向简化 。</p>
-<blockquote>
-<p> DFS</p>
-</blockquote>
-<p>优化，机器人只能向下或者向右</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">movingCount</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">// case 1</span></span><br><span class="line">        <span class="hljs-keyword">int</span>[][] map = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[m][n];</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;m; i++)&#123;</span><br><span class="line">            Arrays.fill(map[i], <span class="hljs-number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> dfs(map, k, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[][] map, <span class="hljs-keyword">int</span> k, <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (i&lt;<span class="hljs-number">0</span> || i&gt;=map.length || j&lt;<span class="hljs-number">0</span> ||j&gt;=map[<span class="hljs-number">0</span>].length || sumPos(i, j) &gt; k || map[i][j]!=<span class="hljs-number">1</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">int</span> temp = map[i][j];</span><br><span class="line">        map[i][j] = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">return</span> temp  + dfs(map, k, i+<span class="hljs-number">1</span>, j) + dfs(map, k, i, j+<span class="hljs-number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">sumPos</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(a &lt; <span class="hljs-number">0</span> || b &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> res=<span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">while</span>(a != <span class="hljs-number">0</span>) &#123;</span><br><span class="line">            res += a %<span class="hljs-number">10</span>;</span><br><span class="line">            a /=<span class="hljs-number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">while</span>(b != <span class="hljs-number">0</span>) &#123;</span><br><span class="line">            res += b%<span class="hljs-number">10</span>;</span><br><span class="line">            b /= <span class="hljs-number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h2><p>广度优先遍历 BFS<br>BFS/DFS ： 两者目标都是遍历整个矩阵，不同点在于搜索顺序不同。DFS 是朝一个方向走到底，再回退，以此类推；BFS 则是按照“平推”的方式向前搜索。<br>BFS 实现： 通常利用<strong>队列实现广度优先遍历</strong>。</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">movingCount2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">boolean</span>[][] visited = <span class="hljs-keyword">new</span> <span class="hljs-keyword">boolean</span>[m][n];</span><br><span class="line">        <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;</span><br><span class="line">        Queue&lt;<span class="hljs-keyword">int</span>[]&gt; queue = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.add(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;<span class="hljs-number">0</span>,<span class="hljs-number">0</span>&#125;);</span><br><span class="line">        <span class="hljs-keyword">while</span> (queue.size() &gt; <span class="hljs-number">0</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span>[] x = queue.poll();</span><br><span class="line">            <span class="hljs-keyword">int</span> i = x[<span class="hljs-number">0</span>], j = x[<span class="hljs-number">1</span>];</span><br><span class="line">            <span class="hljs-keyword">if</span> (i&gt;=m || j&gt;= n || get(i, j)&gt;k || visited[i][j] == <span class="hljs-keyword">true</span>) &#123;</span><br><span class="line">                <span class="hljs-keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            visited[i][j] = <span class="hljs-keyword">true</span>;</span><br><span class="line">            res++;</span><br><span class="line">            queue.add(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;i+<span class="hljs-number">1</span>, j&#125;);</span><br><span class="line">            queue.add(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;i, j+<span class="hljs-number">1</span>&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/06/11/机器人的运动范围/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -634,10 +633,10 @@
 <div class="card card-transparent">
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
         <div class="pagination-previous is-invisible is-hidden-mobile">
-            <a class="is-flex-grow has-text-black-ter" href="/page/0/">Previous</a>
+            <a class="is-flex-grow has-text-black-ter" href="/page/0/">Anterior</a>
         </div>
         <div class="pagination-next">
-            <a class="is-flex-grow has-text-black-ter" href="/page/2/">Next</a>
+            <a class="is-flex-grow has-text-black-ter" href="/page/2/">Siguiente</a>
         </div>
         <ul class="pagination-list is-hidden-mobile">
             
@@ -693,7 +692,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Posts
+                        Entradas
                     </p>
                     <p class="title has-text-weight-normal">
                         69
@@ -703,7 +702,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Categorias
                     </p>
                     <p class="title has-text-weight-normal">
                         19
@@ -713,7 +712,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Tags
+                        Etiquetas
                     </p>
                     <p class="title has-text-weight-normal">
                         44
@@ -723,7 +722,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/fallenk" target="_blank">
-                Follow</a>
+                SEGUIR</a>
         </div>
         
         
@@ -815,7 +814,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Categories
+                Categorias
             </h3>
             <ul class="menu-list">
             <li>
@@ -980,7 +979,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Tag Cloud
+            Nube de etiquetas
         </h3>
         <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 11.67px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 11.67px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 18.33px;">coding</a> <a href="/tags/data/" style="font-size: 10px;">data</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 11.67px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 11.67px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 11.67px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 11.67px;">代码</a> <a href="/tags/入门/" style="font-size: 15px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 11.67px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 11.67px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 11.67px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 16.67px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 13.33px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 10px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
     </div>
@@ -994,7 +993,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Recientes
         </h3>
         
         <article class="media">
@@ -1100,7 +1099,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            Archivos
         </h3>
         <ul class="menu-list">
         
@@ -1278,7 +1277,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                Etiquetas
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -1610,7 +1609,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Recientes
         </h3>
         
         <article class="media">
@@ -1716,7 +1715,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            Archivos
         </h3>
         <ul class="menu-list">
         
@@ -1894,7 +1893,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                Etiquetas
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -2390,10 +2389,10 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
+                POSTS: 'Entradas',
                 PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
+                CATEGORIES: 'Categorias',
+                TAGS: 'Etiquetas',
                 UNTITLED: '(Untitled)',
             },
             CONTENT_URL: '/content.json',
