@@ -19,7 +19,7 @@
 <meta property="og:description" content="题目https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2020-06-11T08:19:14.189Z">
+<meta property="og:updated_time" content="2020-06-12T13:46:02.521Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数值的整数次方">
 <meta name="twitter:description" content="题目https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof">
@@ -155,7 +155,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 377 words)
+                    3 minutes read (About 412 words)
                 </span>
                 
                 
@@ -207,6 +207,7 @@
 </li>
 </ul>
 <p><a href="https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/solution/mian-shi-ti-16-shu-zhi-de-zheng-shu-ci-fang-kuai-s/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/solution/mian-shi-ti-16-shu-zhi-de-zheng-shu-ci-fang-kuai-s/</a></p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">myPow</span><span class="hljs-params">(<span class="hljs-keyword">double</span> x, <span class="hljs-keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">       <span class="hljs-keyword">if</span> (x == <span class="hljs-number">0.0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0.0</span>;</span><br><span class="line">       <span class="hljs-keyword">long</span> exp = n;</span><br><span class="line">       <span class="hljs-keyword">if</span>(exp &lt; <span class="hljs-number">0</span>) &#123;</span><br><span class="line">           x = <span class="hljs-number">1</span>/x;</span><br><span class="line">           exp = -exp;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">double</span> res = <span class="hljs-number">1.0</span>;</span><br><span class="line">       <span class="hljs-keyword">while</span>(exp &gt; <span class="hljs-number">0</span>) &#123;</span><br><span class="line">           <span class="hljs-keyword">if</span>((exp&amp;<span class="hljs-number">1</span>) == <span class="hljs-number">1</span>) &#123;</span><br><span class="line">               res *= x;</span><br><span class="line">           &#125;</span><br><span class="line">           x *= x;</span><br><span class="line">           exp &gt;&gt;&gt;= <span class="hljs-number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="hljs-keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
         
