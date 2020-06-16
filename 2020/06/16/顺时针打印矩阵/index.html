@@ -7,21 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Tag: Cryptography - Fallenk&#39;s Blog</title>
+<title>顺时针打印矩阵 - Fallenk&#39;s Blog</title>
 
 
-    <meta name="description" content="不忘初心，努力学习，砥砺前进，自我反省">
-<meta name="keywords" content="经历，心得，笔记，目标">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fallenk&#39;s Blog">
-<meta property="og:url" content="https://fallenk.github.io/tags/Cryptography/index.html">
+    <meta name="description" content="题目https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof">
+<meta name="keywords" content="LeetCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="顺时针打印矩阵">
+<meta property="og:url" content="https://fallenk.github.io/2020/06/16/顺时针打印矩阵/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta property="og:description" content="题目https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
+<meta property="og:updated_time" content="2020-06-16T13:51:40.420Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fallenk&#39;s Blog">
-<meta name="twitter:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta name="twitter:title" content="顺时针打印矩阵">
+<meta name="twitter:description" content="题目https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof">
 <meta name="twitter:image" content="https://fallenk.github.io/images/og_image.png">
 
 
@@ -92,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Fallenk&#39;s Blog" height="28">
+                <img src="/images/logo.svg" alt="顺时针打印矩阵" height="28">
             
             </a>
         </div>
@@ -143,33 +144,18 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">Tags</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Cryptography</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-12-21T09:03:24.000Z">2018-12-21</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Python学习/">Python学习</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2020-06-16T13:50:51.000Z">2020-06-16</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    44 minutes read (About 6583 words)
+                    a minute read (About 127 words)
                 </span>
                 
                 
@@ -178,21 +164,25 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2018/12/21/Pysyft-Prerequisites/">Pysyft Prerequisites</a>
+                顺时针打印矩阵
             
         </h1>
         <div class="content">
-            <h1 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h1><p>密码学是研究<strong>密码编制、密码破译和密钥管理</strong>的一门综合性应用科学。<br>术语：<br></p>
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof</a></p>
+<a id="more"></a>
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] spiralOrder(<span class="hljs-keyword">int</span>[][] matrix) &#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (matrix == <span class="hljs-keyword">null</span> || matrix.length == <span class="hljs-number">0</span>) &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">int</span> rowLen = matrix.length;</span><br><span class="line">    <span class="hljs-keyword">int</span> colLen = matrix[<span class="hljs-number">0</span>].length;</span><br><span class="line">    List&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="hljs-keyword">int</span> top = <span class="hljs-number">0</span>, right = colLen-<span class="hljs-number">1</span>, bottom = rowLen-<span class="hljs-number">1</span>, left =<span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-keyword">while</span> (top&lt;bottom &amp;&amp; left &lt; right) &#123;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=left; i&lt;right; i++) &#123;</span><br><span class="line">            res.add(matrix[top][i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=top; i&lt;bottom; i++) &#123;</span><br><span class="line">             res.add(matrix[i][right]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=right; i&gt;left; i--) &#123;</span><br><span class="line">            res.add(matrix[bottom][i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=bottom; i&gt;top; i--) &#123;</span><br><span class="line">            res.add(matrix[i][left]);</span><br><span class="line">        &#125;</span><br><span class="line">        top++;</span><br><span class="line">        right--;</span><br><span class="line">        bottom--;</span><br><span class="line">        left++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">if</span>(top == bottom) &#123;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=left; i&lt;=right; i++) res.add(matrix[top][i]);</span><br><span class="line">    &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(left == right) &#123;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=top; i&lt;= bottom; i++) &#123;</span><br><span class="line">            res.add(matrix[i][left]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">int</span>[] result = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[res.size()];</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;res.size(); i++) &#123;</span><br><span class="line">        result[i] = res.get(i).intValue();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/12/21/Pysyft-Prerequisites/#more">Read More</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/LeetCode/">LeetCode</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -202,7 +192,19 @@
 
 
 
-
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/06/16/对称的二叉树-1/">
+                <span class="level-item">对称的二叉树</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -1776,7 +1778,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Fallenk&#39;s Blog" height="28">
+                    <img src="/images/logo.svg" alt="顺时针打印矩阵" height="28">
                 
                 </a>
                 <p class="is-size-7">
