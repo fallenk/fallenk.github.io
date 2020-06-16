@@ -7,22 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>算法40讲笔记 - Fallenk&#39;s Blog</title>
+<title>最长公共前缀子串 - Fallenk&#39;s Blog</title>
 
 
-    <meta name="description" content="介绍算法的重要性？">
-<meta name="keywords" content="Leetcode">
+    <meta name="description" content="题目https://leetcode-cn.com/problems/longest-common-prefix">
+<meta name="keywords" content="LeetCode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法40讲笔记">
-<meta property="og:url" content="https://fallenk.github.io/2019/11/18/算法40讲笔记/index.html">
+<meta property="og:title" content="最长公共前缀子串">
+<meta property="og:url" content="https://fallenk.github.io/2020/06/16/最长公共前缀子串/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="介绍算法的重要性？">
+<meta property="og:description" content="题目https://leetcode-cn.com/problems/longest-common-prefix">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2020-05-15T03:58:35.246Z">
+<meta property="og:updated_time" content="2020-06-16T01:46:10.335Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法40讲笔记">
-<meta name="twitter:description" content="介绍算法的重要性？">
+<meta name="twitter:title" content="最长公共前缀子串">
+<meta name="twitter:description" content="题目https://leetcode-cn.com/problems/longest-common-prefix">
 <meta name="twitter:image" content="https://fallenk.github.io/images/og_image.png">
 
 
@@ -93,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="算法40讲笔记" height="28">
+                <img src="/images/logo.svg" alt="最长公共前缀子串" height="28">
             
             </a>
         </div>
@@ -149,17 +149,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-11-18T07:37:57.000Z">2019-11-18</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2020-06-16T01:44:43.000Z">2020-06-16</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    6 minutes read (About 940 words)
+                    a few seconds read (About 86 words)
                 </span>
                 
                 
@@ -168,95 +164,16 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                算法40讲笔记
+                最长公共前缀子串
             
         </h1>
         <div class="content">
-            <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>算法的重要性？</p>
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/longest-common-prefix" target="_blank" rel="noopener">https://leetcode-cn.com/problems/longest-common-prefix</a></p>
 <a id="more"></a>
-<p>每天的工作任务安排，算法来说，不是队列 来一个处理一个，更不是栈，最新的先处理；</p>
-<p>而是优先级队列。很痛苦，但是坚持下来，产出最多，收获最好！！！ </p>
-<p>原因一:  <strong>编程coding是内功的修炼</strong></p>
-<p>原因二: 大公司必备条件</p>
-<p>原因三: 硅谷现场手写</p>
-<p>原因四: 算法和数据结构实用并有趣的</p>
-<h2 id="有效学习算法和数据结构"><a href="#有效学习算法和数据结构" class="headerlink" title="有效学习算法和数据结构"></a>有效学习算法和数据结构</h2><p>不是记或者背；</p>
-<p>第一是要去理解, 明白其结构；</p>
-<p>第二是去练习，大量的练习。</p>
-<p>&lt;&lt;异类-不一样的成功启示录&gt;&gt; 马尔科姆</p>
-<p>任何一个人想要在某个领域达到顶尖的位置: 切碎知识点； 刻意练习； 获得反馈</p>
-<ol>
-<li><p><strong>chunk it up 切碎知识点</strong>  大知识体系 分成 小模块； 购买该领域的专业书籍学习；最后整合回来，<strong>注意每块之间的脉络联系</strong>；一块一块的去学习，去练习</p>
-<p><img src="/2019/11/18/算法40讲笔记/1.png" alt="image-20191118161710303" style="zoom:50%;"></p>
-<p><img src="/2019/11/18/算法40讲笔记/2.png" alt="image-20191118161832065" style="zoom:50%;"></p>
-<p>理解记知识：<strong>每块知识点之间串起来，关键是找到主干，不断分散，枝叶</strong></p>
-</li>
-<li><p><strong>deliberate practicing 刻意练习</strong></p>
-<p>很重要：大量练习缺陷，不熟悉的地方；会有不舒服，枯燥的地方</p>
-<p>坚持住，才能提升自己，和自己作斗争。</p>
-<p>练习什么：1. review各个知识点整体框架概念，知识点之间的联系,<strong>要在脑子中能够构建起图谱</strong> 2. 针对新知识，不断去写，去coding，去理解，去做笔记。</p>
-</li>
-<li><p><strong>feed back 反馈</strong></p>
-<ol>
-<li><strong>及时反馈</strong></li>
-<li><strong>主动型反馈</strong>(自己去找)<ol>
-<li>高手代码(Github, Leetcode!!)</li>
-<li>第一视角直播</li>
-</ol>
-</li>
-<li><strong>被动式反馈(可遇不可求</strong>，高手给你指点)<ol>
-<li>高手 code review </li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="切题四件套"><a href="#切题四件套" class="headerlink" title="切题四件套"></a>切题四件套</h3><ul>
-<li>clarification !!明确题目意思</li>
-<li>Possible solutions 可能的解，范围，拉掉的可能性<ul>
-<li>compare（time/space）</li>
-<li>optimal（加强）</li>
-</ul>
-</li>
-<li>Coding <strong>多写</strong></li>
-<li>Test cases</li>
-</ul>
-<h2 id="课程总览和算法复杂度"><a href="#课程总览和算法复杂度" class="headerlink" title="课程总览和算法复杂度"></a>课程总览和算法复杂度</h2><h3 id="Data-Structure："><a href="#Data-Structure：" class="headerlink" title="Data Structure："></a>Data Structure：</h3><p><strong>Array; Stack/Queue; PriorityQueue(heap); LinkedList(single/double); Tree/Binary Tree; HashTable; Disjoint Set; Trie; BloomFilter; LRU Cache</strong></p>
-<h3 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm:"></a>Algorithm:</h3><p><strong>General Coding; In-order/Pre-order/Post-order traversal; Greedy; Recursion/Backtrace; Breadth-first search; Depth-first search; Divide and Conquer; Dynamic Programming; Binary Search; Graph</strong></p>
-<p><img src="/2019/11/18/算法40讲笔记/3.png" alt="image-20191118164103909" style="zoom:50%;"></p>
-<h3 id="时间复杂度和-空间复杂度"><a href="#时间复杂度和-空间复杂度" class="headerlink" title="时间复杂度和 空间复杂度"></a>时间复杂度和 空间复杂度</h3><p>时间复杂度 这是 常识，习惯；若是无法判断；代入特殊值，1，3，5，7</p>
-<p>Big O notation</p>
-<p>O(1): Constant Complexity: Constant 常数复杂度； 一次运算；<br>O(log n): Logarithmic Complexity: <strong>对数</strong>复杂度</p>
-<p>O(n): Linear Complexity: <strong>线性时间复杂度</strong> 和N有关， 程序跑多少次<br>O(n^2): N square Complexity 平方</p>
-<p>O(n^3): N square Complexity 立⽅<br>O(2^n): Exponential Growth 指数</p>
-<p>O(n!): Factorial 阶乘</p>
-<p>多个只看最高阶的复杂度；大概多少次；</p>
-<p><img src="/2019/11/18/算法40讲笔记/4.png" alt="image-20191118165004015" style="zoom:50%;"></p>
-<h2 id="如何练习算法"><a href="#如何练习算法" class="headerlink" title="如何练习算法"></a>如何练习算法</h2><p>！！！三分学习，七分练习；一定开始自己的练习</p>
-<p>练习题 + 练习方式</p>
-<h3 id="刻意练习"><a href="#刻意练习" class="headerlink" title="刻意练习"></a>刻意练习</h3><ul>
-<li>坚持 刻意练习：不要自己会做的题目，要花时间去做要做常见，不会的题目。</li>
-<li>练习缺陷 弱点的地方</li>
-<li>不舒服 枯燥，难受</li>
-</ul>
-<p>运用 <strong>目就用切题四件套</strong>； 条件反射！！！！！</p>
-<ol>
-<li>明确题目的意思</li>
-<li>看到一个题目，数据的范围，错过的可能性，需要注意的地方；<ol>
-<li>想到<strong>可能的解法，找出最佳解法</strong>，对比<strong>时间，空间复杂度</strong></li>
-<li>改进暴力算法！</li>
-</ol>
-</li>
-<li>Coding <strong>多写</strong></li>
-<li>测试用例</li>
-</ol>
-<h2 id="反馈！！！"><a href="#反馈！！！" class="headerlink" title="反馈！！！"></a>反馈！！！</h2><p>solution from leetcode</p>
-<p>discussion from leetcode</p>
-<h2 id="关键的关键！"><a href="#关键的关键！" class="headerlink" title="!!关键的关键！"></a>!!关键的关键！</h2><ul>
-<li>现在就动手</li>
-<li><strong>练习 - 坚持 - 机会给予有准备的⼈</strong></li>
-<li>每节课的课后作业</li>
-</ul>
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><blockquote>
+<p>两个比较</p>
+</blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">longestCommonPrefix</span><span class="hljs-params">(String[] strs)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (strs == <span class="hljs-keyword">null</span> || strs.length == <span class="hljs-number">0</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">int</span> len = strs.length;</span><br><span class="line">        String prefix = strs[<span class="hljs-number">0</span>];</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>; i&lt;len; i++) &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> minLen = Math.min(prefix.length(), strs[i].length());</span><br><span class="line">            StringBuilder stringBuilder = <span class="hljs-keyword">new</span> StringBuilder();</span><br><span class="line">            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>; j&lt;minLen; j++) &#123;</span><br><span class="line">                <span class="hljs-keyword">if</span> (prefix.charAt(j) == strs[i].charAt(j)) &#123;</span><br><span class="line">                    stringBuilder.append(prefix.charAt(j));</span><br><span class="line">                &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">                    prefix = stringBuilder.toString();</span><br><span class="line">                    <span class="hljs-keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            prefix = stringBuilder.toString();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> prefix;  </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -264,7 +181,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Leetcode/">Leetcode</a>
+                    <a class="has-link-grey -link" href="/tags/LeetCode/">LeetCode</a>
                 </div>
             </div>
         </div>
@@ -281,17 +198,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/11/19/算法40讲数组和链表/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">算法40讲数组和链表</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/11/09/2两数相加/">
-                <span class="level-item">2两数相加</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/06/13/正则表达式匹配/">
+                <span class="level-item">正则表达式匹配</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -1871,7 +1781,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="算法40讲笔记" height="28">
+                    <img src="/images/logo.svg" alt="最长公共前缀子串" height="28">
                 
                 </a>
                 <p class="is-size-7">
