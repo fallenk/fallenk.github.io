@@ -7,21 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Tag: Goa入门 - Fallenk&#39;s Blog</title>
+<title>对称的二叉树 - Fallenk&#39;s Blog</title>
 
 
-    <meta name="description" content="不忘初心，努力学习，砥砺前进，自我反省">
-<meta name="keywords" content="经历，心得，笔记，目标">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fallenk&#39;s Blog">
-<meta property="og:url" content="https://fallenk.github.io/tags/Goa入门/index.html">
+    <meta name="description" content="题目https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof">
+<meta name="keywords" content="LeetCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对称的二叉树">
+<meta property="og:url" content="https://fallenk.github.io/2020/06/16/对称的二叉树-1/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta property="og:description" content="题目https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
+<meta property="og:updated_time" content="2020-06-16T13:26:56.208Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fallenk&#39;s Blog">
-<meta name="twitter:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta name="twitter:title" content="对称的二叉树">
+<meta name="twitter:description" content="题目https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof">
 <meta name="twitter:image" content="https://fallenk.github.io/images/og_image.png">
 
 
@@ -92,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Fallenk&#39;s Blog" height="28">
+                <img src="/images/logo.svg" alt="对称的二叉树" height="28">
             
             </a>
         </div>
@@ -143,33 +144,18 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">Tags</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Goa入门</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-11-30T11:20:57.000Z">2018-11-30</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/golang学习/">golang学习</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2020-06-16T13:26:07.000Z">2020-06-16</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    16 minutes read (About 2424 words)
+                    a few seconds read (About 67 words)
                 </span>
                 
                 
@@ -178,21 +164,24 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2018/11/30/goa快速入门/">goa快速入门</a>
+                对称的二叉树
             
         </h1>
         <div class="content">
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><strong>配置环境，学习新东西请看官网教程，官网教程，官网教程！重要的事情强调三遍！！！！</strong><br>国内的博客坑实在太多了，耐心点，看英文官方教程！！</p>
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof</a></p>
+<a id="more"></a>
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isSymmetric</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> root == <span class="hljs-keyword">null</span> ? <span class="hljs-keyword">true</span> : recur(root.left, root.right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">recur</span><span class="hljs-params">(TreeNode L, TreeNode R)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (L == <span class="hljs-keyword">null</span> &amp;&amp; R == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;</span><br><span class="line">    <span class="hljs-keyword">if</span> (L == <span class="hljs-keyword">null</span> || R == <span class="hljs-keyword">null</span> || L.val != R.val) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> recur(L.left, R.right) &amp;&amp; recur(L.right, R.left);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/11/30/goa快速入门/#more">Read More</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/LeetCode/">LeetCode</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -202,7 +191,19 @@
 
 
 
-
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/06/16/二叉树的镜像/">
+                <span class="level-item">二叉树的镜像</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -1776,7 +1777,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Fallenk&#39;s Blog" height="28">
+                    <img src="/images/logo.svg" alt="对称的二叉树" height="28">
                 
                 </a>
                 <p class="is-size-7">
