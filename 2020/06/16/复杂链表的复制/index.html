@@ -19,7 +19,7 @@
 <meta property="og:description" content="题目https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2020-06-16T15:32:17.539Z">
+<meta property="og:updated_time" content="2020-06-17T05:47:11.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="复杂链表的复制">
 <meta name="twitter:description" content="题目https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof">
@@ -155,7 +155,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 156 words)
+                    4 minutes read (About 651 words)
                 </span>
                 
                 
@@ -170,7 +170,13 @@
         <div class="content">
             <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof</a></p>
 <a id="more"></a>
-<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> Node <span class="hljs-title">copyRandomList</span><span class="hljs-params">(Node head)</span> </span>&#123;</span><br><span class="line">        HashMap&lt;Node,Node&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;(); <span class="hljs-comment">//创建HashMap集合</span></span><br><span class="line">        Node cur=head;</span><br><span class="line">        <span class="hljs-comment">//复制结点值</span></span><br><span class="line">        <span class="hljs-keyword">while</span>(cur!=<span class="hljs-keyword">null</span>)&#123;</span><br><span class="line">            <span class="hljs-comment">//存储put:&lt;key,value1&gt;</span></span><br><span class="line">            map.put(cur,<span class="hljs-keyword">new</span> Node(cur.val)); <span class="hljs-comment">//顺序遍历，存储老结点和新结点(先存储新创建的结点值)</span></span><br><span class="line">            cur=cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-comment">//复制结点指向</span></span><br><span class="line">        cur = head;</span><br><span class="line">        <span class="hljs-keyword">while</span>(cur!=<span class="hljs-keyword">null</span>)&#123;</span><br><span class="line">            <span class="hljs-comment">//得到get:&lt;key&gt;.value2,3</span></span><br><span class="line">            map.get(cur).next = map.get(cur.next); <span class="hljs-comment">//新结点next指向同旧结点的next指向</span></span><br><span class="line">            map.get(cur).random = map.get(cur.random); <span class="hljs-comment">//新结点random指向同旧结点的random指向</span></span><br><span class="line">            cur = cur.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//返回复制的链表</span></span><br><span class="line">        <span class="hljs-keyword">return</span> map.get(head);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>本题的意思是复制一个链表并返回，这个链表与一般链表不同的是多了一个 random 指针。</p>
+<p>在这里，复制的意思是指 深拷贝（Deep Copy），类似我们常用的“复制粘贴”，事实上，与此对应的还有 浅拷贝，它们的区别是：</p>
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><h4 id="算法-迭代"><a href="#算法-迭代" class="headerlink" title="算法(迭代)"></a>算法(迭代)</h4><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> Node <span class="hljs-title">copyRandomList</span><span class="hljs-params">(Node head)</span> </span>&#123;</span><br><span class="line">        HashMap&lt;Node,Node&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;(); <span class="hljs-comment">//创建HashMap集合</span></span><br><span class="line">        Node cur=head;</span><br><span class="line">        <span class="hljs-comment">//复制结点值</span></span><br><span class="line">        <span class="hljs-keyword">while</span>(cur!=<span class="hljs-keyword">null</span>)&#123;</span><br><span class="line">            <span class="hljs-comment">//存储put:&lt;key,value1&gt;</span></span><br><span class="line">            map.put(cur,<span class="hljs-keyword">new</span> Node(cur.val)); <span class="hljs-comment">//顺序遍历，存储老结点和新结点(先存储新创建的结点值)</span></span><br><span class="line">            cur=cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-comment">//复制结点指向</span></span><br><span class="line">        cur = head;</span><br><span class="line">        <span class="hljs-keyword">while</span>(cur!=<span class="hljs-keyword">null</span>)&#123;</span><br><span class="line">            <span class="hljs-comment">//得到get:&lt;key&gt;.value2,3</span></span><br><span class="line">            map.get(cur).next = map.get(cur.next); <span class="hljs-comment">//新结点next指向同旧结点的next指向</span></span><br><span class="line">            map.get(cur).random = map.get(cur.random); <span class="hljs-comment">//新结点random指向同旧结点的random指向</span></span><br><span class="line">            cur = cur.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//返回复制的链表</span></span><br><span class="line">        <span class="hljs-keyword">return</span> map.get(head);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方法：DFS-amp-BFS"><a href="#方法：DFS-amp-BFS" class="headerlink" title="方法：DFS &amp; BFS"></a>方法：DFS &amp; BFS</h3><p>图的基本单元是 <strong>顶点</strong>，顶点之间的关联关系称为 <strong>边</strong>，我们可以将此链表看成一个图：</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Node <span class="hljs-title">copyRandomList3</span><span class="hljs-params">(Node head)</span> </span>&#123;</span><br><span class="line">     Map&lt;Node, Node&gt; used = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">     <span class="hljs-keyword">return</span> dfs(head, used);</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function">Node <span class="hljs-title">dfs</span><span class="hljs-params">(Node head, Map&lt;Node, Node&gt; used)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;</span><br><span class="line">    <span class="hljs-keyword">if</span> (used.containsKey(head)) <span class="hljs-keyword">return</span> used.get(head);</span><br><span class="line">    Node res = <span class="hljs-keyword">new</span> Node(head.val);</span><br><span class="line">    used.put(head, res);</span><br><span class="line">    res.next = dfs(head.next, used);</span><br><span class="line">    res.random =dfs(head.random, used);</span><br><span class="line">    <span class="hljs-keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="分解"><a href="#分解" class="headerlink" title="分解"></a>分解</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 1. 复制每一个节点，使得复制后的节点都在当前节点的下一个节点</span><br><span class="line">// 2. 原生链表的节点的指向任意节点，使复制的节点也都指向某一任意节点</span><br><span class="line">// 3. 重新连接节点，把原生节点重新连接起来，把克隆后的节点连接起来</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Node <span class="hljs-title">copyRandomList</span><span class="hljs-params">(Node head)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;</span><br><span class="line">        copy(head);</span><br><span class="line">        randomDirect(head);</span><br><span class="line">        <span class="hljs-keyword">return</span> reList(head);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// 1. 复制每一个节点，使得复制后的节点都在当前节点的下一个节点</span></span><br><span class="line">    <span class="hljs-comment">// 2. 原生链表的节点的指向任意节点，使复制的节点也都指向某一任意节点</span></span><br><span class="line">    <span class="hljs-comment">// 3. 重新连接节点，把原生节点重新连接起来，把克隆后的节点连接起来</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">copy</span><span class="hljs-params">(Node pNode)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">while</span> (pNode != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">            Node cloneNode = <span class="hljs-keyword">new</span> Node(pNode.val);</span><br><span class="line">            Node nextNode = pNode.next;</span><br><span class="line">            pNode.next = cloneNode;</span><br><span class="line">            cloneNode.next = nextNode;</span><br><span class="line">            pNode = cloneNode.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">randomDirect</span><span class="hljs-params">(Node pNode)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">while</span> (pNode != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">            Node cloneNode = pNode.next;</span><br><span class="line">            <span class="hljs-keyword">if</span> (pNode.random != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                Node direct = pNode.random;</span><br><span class="line">                cloneNode.random = direct.next;</span><br><span class="line">            &#125;</span><br><span class="line">            pNode = cloneNode.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">private</span> Node <span class="hljs-title">reList</span><span class="hljs-params">(Node pNode)</span> </span>&#123;</span><br><span class="line">        Node cloneNode = pNode.next;</span><br><span class="line">        Node cloneHead = cloneNode;</span><br><span class="line">        pNode.next = cloneNode.next;</span><br><span class="line">        pNode = pNode.next;</span><br><span class="line">        <span class="hljs-keyword">while</span> (pNode != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">            cloneNode.next = pNode.next;</span><br><span class="line"><span class="hljs-comment">//            cloneNode = cloneNode.next;</span></span><br><span class="line"><span class="hljs-comment">//            pNode.next = cloneNode.next;</span></span><br><span class="line"><span class="hljs-comment">//            pNode = pNode.next;</span></span><br><span class="line">            pNode = pNode.next.next;</span><br><span class="line">            pNode = pNode.next;</span><br><span class="line">            cloneNode = cloneNode.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> cloneHead;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -255,7 +261,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Articles
+                        Posts
                     </p>
                     <p class="title has-text-weight-normal">
                         92
@@ -265,7 +271,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Catégories
+                        Categories
                     </p>
                     <p class="title has-text-weight-normal">
                         19
@@ -285,7 +291,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/fallenk" target="_blank">
-                SUIVRE</a>
+                Follow</a>
         </div>
         
         
@@ -339,7 +345,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Liens
+            Links
         </h3>
         <ul class="menu-list">
         
@@ -377,7 +383,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Catégories
+                Categories
             </h3>
             <ul class="menu-list">
             <li>
@@ -542,7 +548,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Nuage de tags
+            Tag Cloud
         </h3>
         <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Cryptography/" style="font-size: 10px;">Cryptography</a> <a href="/tags/Federated-Learning/" style="font-size: 11.67px;">Federated Learning</a> <a href="/tags/Goa入门/" style="font-size: 10px;">Goa入门</a> <a href="/tags/Java/" style="font-size: 11.67px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Mac终端命令/" style="font-size: 10px;">Mac终端命令</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/coding/" style="font-size: 18.33px;">coding</a> <a href="/tags/data/" style="font-size: 10px;">data</a> <a href="/tags/encryption/" style="font-size: 10px;">encryption</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/important/" style="font-size: 10px;">important</a> <a href="/tags/intro/" style="font-size: 10px;">intro</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/paper/" style="font-size: 11.67px;">paper</a> <a href="/tags/paper-reading/" style="font-size: 10px;">paper reading</a> <a href="/tags/paperReading/" style="font-size: 11.67px;">paperReading</a> <a href="/tags/python转换/" style="font-size: 10px;">python转换</a> <a href="/tags/pytorch学习/" style="font-size: 11.67px;">pytorch学习</a> <a href="/tags/云端学习笔记/" style="font-size: 10px;">云端学习笔记</a> <a href="/tags/代码/" style="font-size: 11.67px;">代码</a> <a href="/tags/入门/" style="font-size: 15px;">入门</a> <a href="/tags/入门指引/" style="font-size: 10px;">入门指引</a> <a href="/tags/刷题/" style="font-size: 11.67px;">刷题</a> <a href="/tags/双指针/" style="font-size: 10px;">双指针</a> <a href="/tags/基础/" style="font-size: 11.67px;">基础</a> <a href="/tags/大数据，spark/" style="font-size: 10px;">大数据，spark</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/提升自我/" style="font-size: 10px;">提升自我</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/神经网络搜索/" style="font-size: 11.67px;">神经网络搜索</a> <a href="/tags/禅/" style="font-size: 10px;">禅</a> <a href="/tags/编程/" style="font-size: 16.67px;">编程</a> <a href="/tags/编程技巧，/" style="font-size: 10px;">编程技巧，</a> <a href="/tags/联合学习/" style="font-size: 13.33px;">联合学习</a> <a href="/tags/自我修炼/" style="font-size: 10px;">自我修炼</a> <a href="/tags/论文阅读/" style="font-size: 10px;">论文阅读</a> <a href="/tags/配置文件/" style="font-size: 10px;">配置文件</a>
     </div>
@@ -556,7 +562,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Récents
+            Recent
         </h3>
         
         <article class="media">
@@ -1172,7 +1178,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Récents
+            Recent
         </h3>
         
         <article class="media">
@@ -1952,9 +1958,9 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Articles',
+                POSTS: 'Posts',
                 PAGES: 'Pages',
-                CATEGORIES: 'Catégories',
+                CATEGORIES: 'Categories',
                 TAGS: 'Tags',
                 UNTITLED: '(Untitled)',
             },
