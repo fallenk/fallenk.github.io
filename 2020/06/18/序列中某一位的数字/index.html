@@ -19,7 +19,7 @@
 <meta property="og:description" content="题目https://leetcode-cn.com/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2020-06-18T07:51:00.661Z">
+<meta property="og:updated_time" content="2020-06-18T07:58:01.387Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="序列中某一位的数字">
 <meta name="twitter:description" content="题目https://leetcode-cn.com/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof">
@@ -171,6 +171,7 @@
             <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof</a></p>
 <a id="more"></a>
 <h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">findNth</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> digit = <span class="hljs-number">1</span>;</span><br><span class="line">    <span class="hljs-keyword">long</span> start = <span class="hljs-number">1</span>;</span><br><span class="line">    <span class="hljs-keyword">long</span> count = <span class="hljs-number">9</span>; <span class="hljs-comment">// 注意越界问题</span></span><br><span class="line">    <span class="hljs-keyword">while</span> (n&gt;count) &#123;</span><br><span class="line">        n -= count;</span><br><span class="line">        digit += <span class="hljs-number">1</span>;</span><br><span class="line">        start *= <span class="hljs-number">10</span>;</span><br><span class="line">        count = digit * start * <span class="hljs-number">9</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">long</span> num = start + (n-<span class="hljs-number">1</span>)/digit;</span><br><span class="line">    <span class="hljs-keyword">return</span> Long.toString(num).charAt((n-<span class="hljs-number">1</span>)%digit) - <span class="hljs-string">'0'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
         </div>
         
         
