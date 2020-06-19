@@ -7,22 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>iOS之LighterviewController - Fallenk&#39;s Blog</title>
+<title>在排序数组中查找数字 I - Fallenk&#39;s Blog</title>
 
 
-    <meta name="description" content="被误解的 MVC 和被神化的 MVVM被误解的 MVCMVC，全称是 Model View Controller，是模型 (model)－视图 (view)－控制器 (controller) 的缩写。它表示的是一种常见的客户端软件开发框架。">
-<meta name="keywords" content="coding">
+    <meta name="description" content="题目https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/ 解法1234567891011121314151617181920212223242526272829303132333435class Solution &amp;#123;    public int search(int[] nums, i">
+<meta name="keywords" content="LeetCode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS之LighterviewController">
-<meta property="og:url" content="https://fallenk.github.io/2019/05/07/iOS之LighterviewController/index.html">
+<meta property="og:title" content="在排序数组中查找数字 I">
+<meta property="og:url" content="https://fallenk.github.io/2020/06/19/在排序数组中查找数字-I/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="被误解的 MVC 和被神化的 MVVM被误解的 MVCMVC，全称是 Model View Controller，是模型 (model)－视图 (view)－控制器 (controller) 的缩写。它表示的是一种常见的客户端软件开发框架。">
+<meta property="og:description" content="题目https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/ 解法1234567891011121314151617181920212223242526272829303132333435class Solution &amp;#123;    public int search(int[] nums, i">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-05-07T17:03:45.969Z">
+<meta property="og:updated_time" content="2020-06-19T12:58:25.304Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS之LighterviewController">
-<meta name="twitter:description" content="被误解的 MVC 和被神化的 MVVM被误解的 MVCMVC，全称是 Model View Controller，是模型 (model)－视图 (view)－控制器 (controller) 的缩写。它表示的是一种常见的客户端软件开发框架。">
+<meta name="twitter:title" content="在排序数组中查找数字 I">
+<meta name="twitter:description" content="题目https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/ 解法1234567891011121314151617181920212223242526272829303132333435class Solution &amp;#123;    public int search(int[] nums, i">
 <meta name="twitter:image" content="https://fallenk.github.io/images/og_image.png">
 
 
@@ -93,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="iOS之LighterviewController" height="28">
+                <img src="/images/logo.svg" alt="在排序数组中查找数字 I" height="28">
             
             </a>
         </div>
@@ -149,17 +149,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-07T15:09:00.000Z">2019-05-07</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/iOS编程/">iOS编程</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2020-06-19T12:42:09.000Z">2020-06-19</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    17 minutes read (About 2603 words)
+                    a minute read (About 197 words)
                 </span>
                 
                 
@@ -168,68 +164,13 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                iOS之LighterviewController
+                在排序数组中查找数字 I
             
         </h1>
         <div class="content">
-            <h1 id="被误解的-MVC-和被神化的-MVVM"><a href="#被误解的-MVC-和被神化的-MVVM" class="headerlink" title="被误解的 MVC 和被神化的 MVVM"></a>被误解的 MVC 和被神化的 MVVM</h1><h1 id="被误解的-MVC"><a href="#被误解的-MVC" class="headerlink" title="被误解的 MVC"></a>被误解的 MVC</h1><p>MVC，全称是 Model View Controller，是模型 (model)－视图 (view)－控制器 (controller) 的缩写。它表示的是一种常见的客户端软件开发框架。</p>
-<a id="more"></a>
-<h2 id="Controller-的臃肿问题何解？"><a href="#Controller-的臃肿问题何解？" class="headerlink" title="Controller 的臃肿问题何解？"></a>Controller 的臃肿问题何解？</h2><ul>
-<li>「什么样的内容才应该放到 Controller 中？」</li>
-<li>我们来看看 MVC 这种架构的特点。其实设计模式很多时候是为了 Don’t repeat yourself 原则来做的，<strong>该原则要求能够复用的代码要尽量复用，来保证重用。</strong>在 MVC 这种设计模式中，我们发现 View 和 Model 都是符合这种原则的。</li>
-</ul>
-<p>对于 View 来说，你如果抽象得好，那么一个 App 的动画效果可以很方便地移植到别的 App 上，而 Github 上也有很多 UI 控件，这些控件都是在 View 层做了很好的封装设计，使得它能够方便地开源给大家复用。</p>
-<p>对于 Model 来说，它其实是用来存储业务的数据的，如果做得好，它也可以方便地复用。比如我当时在做有道云笔记 iPad 版的时候，我们就直接和 iOS 版复用了所有的 Model 层的代码。在创业做猿题库客户端时，iOS 和 iPad 版的 Model 层代码再次被复用上了。当然，因为和业务本身的数据意义相关，Model 层的复用大多数是在一个产品内部，不太可能像 View 层那样开源给社区。</p>
-<p>说完 View 和 Model 了，那我们想想 Controller，Controller 有多少可以复用的？我们写完了一个 Controller 之后，可以很方便地复用它吗？结论是：非常难复用。在某些场景下，我们可能可以用 addSubViewController 之类的方式复用 Controller，但它的复用场景还是非常非常少的。</p>
-<p>如果我们能够意识到 Controller 里面的代码不便于复用，我们就能知道什么代码应该写在 Controller 里面了，那就是那些不能复用的代码。在我看来，<strong>Controller 里面就只应该存放这些不能复用的代码</strong>，这些代码包括：</p>
-<ul>
-<li>在初始化时，构造相应的 View 和 Model。</li>
-<li>监听 Model 层的事件，将 Model 层的数据传递到 View 层。</li>
-<li>监听 View 层的事件，并且将 View 层的事件转发到 Model 层。<br>如果 Controller 只有以上的这些代码，那么它的逻辑将非常简单，而且也会非常短。</li>
-</ul>
-<h3 id="如何对-ViewController-瘦身？"><a href="#如何对-ViewController-瘦身？" class="headerlink" title="如何对 ViewController 瘦身？"></a>如何对 ViewController 瘦身？</h3><p>objc.io 是一个非常有名的 iOS 开发博客，它上面的第一课 《Lighter View Controllers》 上就讲了很多这样的技巧，我们先总结一下它里面的观点：</p>
-<ul>
-<li>将 UITableView 的 Data Source 分离到另外一个类中。</li>
-<li>将数据获取和转换的逻辑分别到另外一个类中。</li>
-<li>将拼装控件的逻辑，分离到另外一个类中。</li>
-</ul>
-<p>其实 MVC 虽然只有三层，但是它并没有限制你只能有三层。所以，我们可以将 Controller 里面过于臃肿的逻辑抽取出来，形成新的可复用模块或架构层次。</p>
-<h3 id="将网络请求抽象到单独的类中"><a href="#将网络请求抽象到单独的类中" class="headerlink" title="将网络请求抽象到单独的类中"></a>将网络请求抽象到单独的类中</h3><p>新手写代码，直接就在 Controller 里面用 AFNetworking 发一个请求，请求的完数据直接就传递给 View。入门一些的同学，知道把这些请求代码移到另外一个静态类里面。但是我觉得还不够，所以我建议将<strong>每一个网络请求直接封装成类</strong>。</p>
-<p>把每一个网络请求封装成对象其实是使用了设计模式中的 Command 模式，它有以下好处：</p>
-<ul>
-<li>将网络请求与具体的第三方库依赖隔离，方便以后更换底层的网络库。实际上我们公司的 iOS 客户端最初是基于 ASIHttpRequest 的，我们只花了两天，就很轻松地切换到了 AFNetworking。</li>
-<li>方便在<strong>基类中处理公共逻辑</strong>，例如猿题库的数据版本号信息就统一在基类中处理。</li>
-<li>方便在基类中处理缓存逻辑，以及其它一些公共逻辑。</li>
-<li>方便做对象的持久化。</li>
-</ul>
-<p>大家如果感兴趣，可以看我们公司开源的 iOS 网络库：YTKNetwork。它在这种思考的指导下，不但将 Controller 中的代码瘦身，而且进一步演化和加强，现在它<strong>还支持诸如复杂网络请求管理，断点续传，插件机制，JSON 合法</strong>性检查等功能。<br>这部分代码从 Controller 中剥离出来后，不但简化了 Controller 中的逻辑，也达到了网络层的代码复用的效果。</p>
-<h3 id="将界面的拼装抽象到专门的类中"><a href="#将界面的拼装抽象到专门的类中" class="headerlink" title="将界面的拼装抽象到专门的类中"></a>将界面的拼装抽象到专门的类中</h3><p>新手写代码，喜欢在 Controller 中把一个个 UILabel ，UIButton，UITextField 往 self.view 上用 addSubView 方法放。我建议大家可以用两种办法把这些代码从 Controller 中剥离。</p>
-<p>方法一：构造专门的 UIView 的子类，来负责这些控件的拼装。这是最彻底和优雅的方式，不过稍微麻烦一些的是，你需要把这些控件的事件回调先接管，再都一一暴露回 Controller。</p>
-<p>方法二：用一个静态的 Util 类，帮助你做 UIView 的拼装工作。这种方式稍微做得不太彻底，但是比较简单。</p>
-<p>对于一些能复用的 UI 控件，我建议用方法一。如果项目工程比较复杂，我也建议用方法一。如果项目太紧，另外相关项目的代码量也不多，可以尝试方法二。</p>
-<h3 id="构造-ViewModel"><a href="#构造-ViewModel" class="headerlink" title="构造 ViewModel"></a>构造 ViewModel</h3><p>谁说 MVC 就不能用 ViewModel 的？MVVM 的优点我们一样可以借鉴。<strong>具体做法就是将 ViewController 给 View 传递数据这个过程，抽象成构造 ViewModel 的过程</strong>。</p>
-<p>这样抽象之后，View 只接受 ViewModel，而 Controller 只需要传递 ViewModel 这么一行代码。而另外<strong>构造 ViewModel 的过程，我们就可以移动到另外的类中了</strong>。</p>
-<p>在具体实践中，我建议大家专门<strong>创建构造 ViewModel 工厂类</strong>，参见 工厂模式。另外，也可以专门将数据存取都抽将到一个 Service 层，由这<strong>层来提供 ViewModel 的获取</strong>。</p>
-<h3 id="专门构造存储类"><a href="#专门构造存储类" class="headerlink" title="专门构造存储类"></a>专门构造存储类</h3><p>刚刚说到 ViewModel 的构造可以抽奖到一个 Service 层。与此相应的，数据的存储也应该由专门的对象来做。在小猿搜题项目中，我们由一个叫 UserAgent 的类，专门来处理本地数据的存取。</p>
-<p>数据存取放在专门的类中，就可以针对存取做额外的事情了。比如：</p>
-<ul>
-<li>对一些热点数据增加缓存</li>
-<li>处理数据迁移相关的逻辑<br>如果要做得更细，可以把存储引擎再抽象出一层。这样你就可以方便地切换存储的底层，例如从 sqlite 切换到 key-value 的存储引擎等。</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>通过代码的抽取，我们可以将原本的 MVC 设计模式中的 ViewController 进一步拆分，构造出 <strong>网络请求层</strong>、<strong>ViewModel 层</strong>、<strong>Service 层</strong>、<strong>Storage 层</strong>等其它类，来配合 Controller 工作，从而使 Controller 更加简单，我们的 App 更容易维护。</p>
-<h2 id="被神化的-MVVM"><a href="#被神化的-MVVM" class="headerlink" title="被神化的 MVVM"></a>被神化的 MVVM</h2><p>MVVM 是 Model-View-ViewModel 的简写。</p>
-<p>MVVM 在使用当中，通常还会利用双向绑定技术，使得 Model 变化时，ViewModel 会自动更新，而 ViewModel 变化时，View 也会自动变化。所以，MVVM 模式有些时候又被称作：model-view-binder 模式。<br>具体在 iOS 中，可以使用 KVO 或 Notification 技术达到这种效果。</p>
-<p>第一点：<strong>数据绑定使得 Bug 很难被调试</strong>。你看到界面异常了，有可能是你 View 的代码有 Bug，也可能是 Model 的代码有问题。数据绑定使得一个位置的 Bug 被快速传递到别的位置，要定位原始出问题的地方就变得不那么容易了。</p>
-<p>第二点：对于过大的项目，<strong>数据绑定需要花费更多的内存</strong>。</p>
-<p>某种意义上来说，我认为就是数据绑定使得 MVVM 变得复杂和难用了。但是，这个缺点同时也被很多人认为是优点。</p>
-<h2 id="ReactiveCocoa"><a href="#ReactiveCocoa" class="headerlink" title="ReactiveCocoa"></a>ReactiveCocoa</h2><p>函数式编程（Functional Programming）和响应式编程（React Programming）也是当前很火的两个概念，它们的结合可以很方便地实现数据的绑定。</p>
-<ul>
-<li>函数式编程（Functional Programming），函数也变成一等公民了，可以拥有和对象同样的功能，例如当成参数传递，当作返回值等。看看 Swift 语言带来的众多函数式编程的特性，就你知道这多 Cool 了。</li>
-<li>响应式编程（React Programming），原来我们基于事件（Event）的处理方式都弱了，现在是基于输入（在 ReactiveCocoa 里叫 Signal）的处理方式。输入还可以通过函数式编程进行各种 Combine 或 Filter，尽显各种灵活的处理。</li>
-<li>无状态（Stateless），状态是函数的魔鬼，无状态使得函数能更好地测试。</li>
-<li>不可修改（Immutable），数据都是不可修改的，使得软件逻辑简单，也可以更好地测试。</li>
-</ul>
-<p>而我想说，我们需要保持的是一个拥抱变化的心，以及理性分析的态度。在新技术的面前，不盲从，也不守旧，一切的决策都应该建立在认真分析的基础上，这样才能应对技术的变化。</p>
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/</a></p>
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (nums==<span class="hljs-keyword">null</span> || nums.length==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-comment">// 搜索右边界</span></span><br><span class="line">        <span class="hljs-keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>, j= len-<span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">while</span>(i&lt;=j) &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> mid = i+(j-i)/<span class="hljs-number">2</span>;</span><br><span class="line">            <span class="hljs-keyword">if</span>(nums[mid]&lt;target) &#123;</span><br><span class="line">                i = mid+<span class="hljs-number">1</span>;</span><br><span class="line">            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[mid]&gt;target)&#123;</span><br><span class="line">                j = mid-<span class="hljs-number">1</span>;</span><br><span class="line">            &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">                i= mid+<span class="hljs-number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">int</span> right = i;</span><br><span class="line">        <span class="hljs-keyword">if</span>(j &gt;= <span class="hljs-number">0</span> &amp;&amp; nums[j] != target) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        i=<span class="hljs-number">0</span>;</span><br><span class="line">        j = right;</span><br><span class="line">        <span class="hljs-keyword">while</span>(i&lt;=j) &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> mid = i+(j-i)/<span class="hljs-number">2</span>;</span><br><span class="line">            <span class="hljs-keyword">if</span>(nums[mid] &lt; target) &#123;</span><br><span class="line">                i = mid+<span class="hljs-number">1</span>;</span><br><span class="line">            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[mid] &gt; target) &#123;</span><br><span class="line">                j = mid-<span class="hljs-number">1</span>;</span><br><span class="line">            &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">                j = mid-<span class="hljs-number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">int</span> left = j;</span><br><span class="line">        <span class="hljs-keyword">return</span> right-left-<span class="hljs-number">1</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">由于数组 nums 中元素都为整数，因此可以分别二分查找 target 和 target - <span class="hljs-number">1</span>的右边界，将两结果相减并返回即可。</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> helper(nums, target) - helper(nums, target - <span class="hljs-number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">helper</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> tar)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j = nums.length - <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">while</span>(i &lt;= j) &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> m = (i + j) / <span class="hljs-number">2</span>;</span><br><span class="line">            <span class="hljs-keyword">if</span>(nums[m] &lt;= tar) i = m + <span class="hljs-number">1</span>;</span><br><span class="line">            <span class="hljs-keyword">else</span> j = m - <span class="hljs-number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -237,7 +178,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/coding/">coding</a>
+                    <a class="has-link-grey -link" href="/tags/LeetCode/">LeetCode</a>
                 </div>
             </div>
         </div>
@@ -254,17 +195,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/05/08/iOS路由设计/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">iOS路由设计</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/07/iOS学习入门/">
-                <span class="level-item">iOS学习入门</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/06/19/寻找公共节点/">
+                <span class="level-item">寻找公共节点</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -1844,7 +1778,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="iOS之LighterviewController" height="28">
+                    <img src="/images/logo.svg" alt="在排序数组中查找数字 I" height="28">
                 
                 </a>
                 <p class="is-size-7">
