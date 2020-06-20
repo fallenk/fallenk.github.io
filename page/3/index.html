@@ -149,6 +149,144 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-06-16T14:55:04.000Z">2020-06-16</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 189 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/06/16/BFS二叉树3/">BFS二叉树3</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof</a></p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/06/16/BFS二叉树3/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-06-16T14:38:39.000Z">2020-06-16</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 78 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/06/16/BFS二叉树2/">BFS二叉树2</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/binary-tree-level-order-traversal/</a></p>
+<!--mroe-->
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;</span><br><span class="line">    Queue&lt;TreeNode&gt; queue = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="hljs-keyword">if</span> (root != <span class="hljs-keyword">null</span>) queue.add(root);</span><br><span class="line">    <span class="hljs-keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">        List&lt;Integer&gt; tmp = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=queue.size(); i&gt;<span class="hljs-number">0</span>; i--) &#123;</span><br><span class="line">            TreeNode node = queue.poll();</span><br><span class="line">            tmp.add(node.val);</span><br><span class="line">            <span class="hljs-keyword">if</span> (node.left != <span class="hljs-keyword">null</span>) queue.add(node.left);</span><br><span class="line">            <span class="hljs-keyword">if</span> (node.right != <span class="hljs-keyword">null</span>) queue.add(node.right);</span><br><span class="line">        &#125;</span><br><span class="line">        res.add(tmp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-06-16T14:25:35.000Z">2020-06-16</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 89 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/06/16/BFS二叉树/">BFS二叉树</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof</a></p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/06/16/BFS二叉树/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-06-16T14:13:50.000Z">2020-06-16</time>
                 
                 
@@ -479,151 +617,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-06-16T02:21:01.000Z">2020-06-16</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 229 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/06/16/对称的二叉树/">对称的二叉树</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof</a></p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/06/16/对称的二叉树/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-06-16T01:44:43.000Z">2020-06-16</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 minutes read (About 392 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/06/16/最长公共前缀子串/">最长公共前缀子串</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/longest-common-prefix" target="_blank" rel="noopener">https://leetcode-cn.com/problems/longest-common-prefix</a></p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/06/16/最长公共前缀子串/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-06-13T07:54:47.000Z">2020-06-13</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 164 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/06/13/正则表达式匹配/">正则表达式匹配</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/regular-expression-matching" target="_blank" rel="noopener">https://leetcode-cn.com/problems/regular-expression-matching</a></p>
-<p><a href="https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof</a></p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/06/13/正则表达式匹配/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -695,7 +688,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        105
+                        108
                     </p>
                 </div>
             </div>
@@ -998,6 +991,63 @@
         
         <article class="media">
             
+            <a href="/2020/06/20/出现3次的数组中寻找出现一次的数字/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="出现3次的数组中寻找出现一次的数字">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T14:38:22.000Z">2020-06-20</time></div>
+                    <a href="/2020/06/20/出现3次的数组中寻找出现一次的数字/" class="title has-link-black-ter is-size-6 has-text-weight-normal">出现3次的数组中寻找出现一次的数字</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/20/寻找两个只出现一次的数字/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="寻找两个只出现一次的数字">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T14:17:30.000Z">2020-06-20</time></div>
+                    <a href="/2020/06/20/寻找两个只出现一次的数字/" class="title has-link-black-ter is-size-6 has-text-weight-normal">寻找两个只出现一次的数字</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/20/二叉树的高度以及平衡/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="二叉树的高度以及平衡">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T13:12:03.000Z">2020-06-20</time></div>
+                    <a href="/2020/06/20/二叉树的高度以及平衡/" class="title has-link-black-ter is-size-6 has-text-weight-normal">二叉树的高度以及平衡</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/06/20/二分查找法应用/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="二分查找法应用">
@@ -1034,63 +1084,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/06/19/寻找公共节点/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="寻找公共节点">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-19T09:49:07.000Z">2020-06-19</time></div>
-                    <a href="/2020/06/19/寻找公共节点/" class="title has-link-black-ter is-size-6 has-text-weight-normal">寻找公共节点</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/06/19/只出现一次的字符/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="只出现一次的字符">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-19T07:39:34.000Z">2020-06-19</time></div>
-                    <a href="/2020/06/19/只出现一次的字符/" class="title has-link-black-ter is-size-6 has-text-weight-normal">只出现一次的字符</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/06/19/丑数/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="丑数">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-19T06:58:49.000Z">2020-06-19</time></div>
-                    <a href="/2020/06/19/丑数/" class="title has-link-black-ter is-size-6 has-text-weight-normal">丑数</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1109,7 +1102,7 @@
                     <span class="level-item">June 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">47</span>
+                    <span class="level-item tag">50</span>
                 </span>
             </a>
         </li>
@@ -1333,7 +1326,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">47</span>
+                        <span class="tag is-grey">50</span>
                     </a>
                 </div>
                 
@@ -1614,6 +1607,63 @@
         
         <article class="media">
             
+            <a href="/2020/06/20/出现3次的数组中寻找出现一次的数字/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="出现3次的数组中寻找出现一次的数字">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T14:38:22.000Z">2020-06-20</time></div>
+                    <a href="/2020/06/20/出现3次的数组中寻找出现一次的数字/" class="title has-link-black-ter is-size-6 has-text-weight-normal">出现3次的数组中寻找出现一次的数字</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/20/寻找两个只出现一次的数字/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="寻找两个只出现一次的数字">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T14:17:30.000Z">2020-06-20</time></div>
+                    <a href="/2020/06/20/寻找两个只出现一次的数字/" class="title has-link-black-ter is-size-6 has-text-weight-normal">寻找两个只出现一次的数字</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/20/二叉树的高度以及平衡/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="二叉树的高度以及平衡">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T13:12:03.000Z">2020-06-20</time></div>
+                    <a href="/2020/06/20/二叉树的高度以及平衡/" class="title has-link-black-ter is-size-6 has-text-weight-normal">二叉树的高度以及平衡</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/06/20/二分查找法应用/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="二分查找法应用">
@@ -1650,63 +1700,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/06/19/寻找公共节点/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="寻找公共节点">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-19T09:49:07.000Z">2020-06-19</time></div>
-                    <a href="/2020/06/19/寻找公共节点/" class="title has-link-black-ter is-size-6 has-text-weight-normal">寻找公共节点</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/06/19/只出现一次的字符/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="只出现一次的字符">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-19T07:39:34.000Z">2020-06-19</time></div>
-                    <a href="/2020/06/19/只出现一次的字符/" class="title has-link-black-ter is-size-6 has-text-weight-normal">只出现一次的字符</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/06/19/丑数/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="丑数">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-19T06:58:49.000Z">2020-06-19</time></div>
-                    <a href="/2020/06/19/丑数/" class="title has-link-black-ter is-size-6 has-text-weight-normal">丑数</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1725,7 +1718,7 @@
                     <span class="level-item">June 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">47</span>
+                    <span class="level-item tag">50</span>
                 </span>
             </a>
         </li>
@@ -1949,7 +1942,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">47</span>
+                        <span class="tag is-grey">50</span>
                     </a>
                 </div>
                 
