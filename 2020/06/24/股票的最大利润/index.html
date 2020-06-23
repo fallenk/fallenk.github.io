@@ -7,21 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Fallenk&#39;s Blog</title>
+<title>股票的最大利润 - Fallenk&#39;s Blog</title>
 
 
-    <meta name="description" content="不忘初心，努力学习，砥砺前进，自我反省">
-<meta name="keywords" content="经历，心得，笔记，目标">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fallenk&#39;s Blog">
-<meta property="og:url" content="https://fallenk.github.io/page/10/index.html">
+    <meta name="description" content="题目https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/">
+<meta name="keywords" content="LeetCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="股票的最大利润">
+<meta property="og:url" content="https://fallenk.github.io/2020/06/24/股票的最大利润/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta property="og:description" content="题目https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
+<meta property="og:updated_time" content="2020-06-23T17:54:34.491Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fallenk&#39;s Blog">
-<meta name="twitter:description" content="不忘初心，努力学习，砥砺前进，自我反省">
+<meta name="twitter:title" content="股票的最大利润">
+<meta name="twitter:description" content="题目https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/">
 <meta name="twitter:image" content="https://fallenk.github.io/images/og_image.png">
 
 
@@ -92,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Fallenk&#39;s Blog" height="28">
+                <img src="/images/logo.svg" alt="股票的最大利润" height="28">
             
             </a>
         </div>
@@ -142,24 +143,19 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-    <div class="card">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-12-05T12:17:44.000Z">2018-12-05</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Python学习/">Python学习</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2020-06-23T17:53:36.000Z">2020-06-24</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    27 minutes read (About 3978 words)
+                    a minute read (About 116 words)
                 </span>
                 
                 
@@ -168,21 +164,25 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2018/12/05/Pytorch快速入门/">Pytorch快速入门</a>
+                股票的最大利润
             
         </h1>
         <div class="content">
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>原文连接： <a href="https://zhuanlan.zhihu.com/p/26854386" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26854386</a><br>本文为快速学习入门Pytorch。<br>学习之道：明白目的；pytorchd的结构框架；pytorch的使用。<br></p>
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/</a></p>
+<a id="more"></a>
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(prices==<span class="hljs-keyword">null</span> || prices.length==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">int</span> len = prices.length;</span><br><span class="line">        <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> buyInCost = prices[<span class="hljs-number">0</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; len; i++) &#123;</span><br><span class="line">            buyInCost = Math.min(buyInCost, prices[i]);</span><br><span class="line">            res = Math.max(res, prices[i]-buyInCost);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">maxProfit2</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(prices==<span class="hljs-keyword">null</span> || prices.length==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">int</span> len = prices.length;</span><br><span class="line">        <span class="hljs-keyword">int</span>[] dp = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[len]; <span class="hljs-comment">// 前i个日最大利润</span></span><br><span class="line">        dp[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> minValue = prices[<span class="hljs-number">0</span>];</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; len; i++) &#123;</span><br><span class="line">            minValue = Math.min(minValue, prices[i]);</span><br><span class="line">            dp[i] = Math.max(dp[i-<span class="hljs-number">1</span>], prices[i]-minValue);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> dp[len-<span class="hljs-number">1</span>];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/12/05/Pytorch快速入门/#more">Read More</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/LeetCode/">LeetCode</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -192,507 +192,21 @@
 
 
 
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-11-30T11:20:57.000Z">2018-11-30</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/golang学习/">golang学习</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    16 minutes read (About 2424 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/11/30/goa快速入门/">goa快速入门</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><strong>配置环境，学习新东西请看官网教程，官网教程，官网教程！重要的事情强调三遍！！！！</strong><br>国内的博客坑实在太多了，耐心点，看英文官方教程！！</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/11/30/goa快速入门/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-11-28T06:58:02.000Z">2018-11-28</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/golang学习/">golang学习</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    14 minutes read (About 2026 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/11/28/Swagger的快速入门/">Swagger的快速入门</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Swagger：<em>REST APIs文档生成工具</em>。Swagger 是一个规范和完整的框架，用于<strong>生成、描述、调用和可视化 RESTful 风格的 Web 服务</strong>。</p>
-<p>是一种API设计工具，能更好地实现前后端分离：<a href="https://link.jianshu.com/?t=http://www.cnblogs.com/whitewolf/p/4686154.html" target="_blank" rel="noopener">Swagger - 前后端分离后的契约</a>。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/11/28/Swagger的快速入门/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-11-28T02:37:36.000Z">2018-11-28</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Docker容器/">Docker容器</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7 minutes read (About 1063 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/11/28/Docker三剑客/">Docker三剑客</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>理解Docker的三个核心概念：镜像，容器，仓库；</p>
-<ol>
-<li>开发人员使用Dockerfile定制镜像，使用docker-compose在<code>.yml</code>文件中配置所有容器的部署方法、文件映射、容器链接等，运行<code>docker-compose up</code>执行安装容器并且自动部署。</li>
-<li>运维人员从仓库下载容器，运行脚本。</li></ol>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/11/28/Docker三剑客/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-11-27T13:23:58.000Z">2018-11-27</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Docker容器/">Docker容器</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    an hour read (About 8471 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/11/27/Docker快速入门/">Docker快速入门</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>本文记录的是作为一个新手，从了解 Docker 是什么、Docker 技术包含哪些概念到上手使用、安装以及发布 Docker 镜像的整个过程。作者在学习过程中参阅了诸多文档和教程，在此一并感谢，与此同时本文结尾也列出了参考文献的链接，供读者进一步参考。遵循简介、入门、上手到深入的顺序，本文根据个人学习实践过程进行书写，结构如下：</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/11/27/Docker快速入门/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-11-15T07:01:25.000Z">2018-11-15</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Blcokchain/">Blcokchain</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 minutes read (About 916 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/11/15/区块链技术学习指引/">区块链技术学习指引</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a>1. 引言</h1><p>给迷失在如何学习区块链技术的同学一个指引，区块链技术是随比特币诞生，因此要搞明白区块链技术，应该先了解下比特币。<br>但区块链技术不单应用于比特币，还有非常多的现实应用场景，想做区块链应用开发=&gt;可进一步阅读以太坊系列。<br></p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/11/15/区块链技术学习指引/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-11-14T12:54:11.000Z">2018-11-14</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/大数据学习/">大数据学习</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    20 minutes read (About 2936 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/11/14/大数据学习之Spark/">大数据学习之Spark</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>基于内存计算的大数据并行计算框架;一个可用于大规模数据快速处理的快速、通用引擎。为Apache分布式计算三大框架[hadoop, Spark, Storm]之一。<br>Spark目的：使数据分析更快，不仅运行速度快，也要能快速、容易地编写程序。为了程序更快，Spark提供了内存运算，减少了迭代计算时的IO开销。<br>由于Hadoop中MapReduce存在诸多缺陷，Spark可以解决。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/11/14/大数据学习之Spark/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-10-29T02:35:34.000Z">2018-10-29</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Blcokchain/">Blcokchain</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    15 minutes read (About 2207 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/10/29/BlockchainTutorial/">BlockchainTutorial</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="How-to-learn-Blockchain"><a href="#How-to-learn-Blockchain" class="headerlink" title="How to learn Blockchain"></a>How to learn Blockchain</h1><h2 id="确定方向"><a href="#确定方向" class="headerlink" title="确定方向"></a>确定方向</h2><p>从事区块链开发也有很多方向，如:区块链应用开发人员、区块链架构师、底层核心开发、共识算法研究等等。<br>方向不同，需要学习的内容就不一样，如果做基于区块链应用开发，只需要了解一门编程语言（nodejs, Go, Python, C++ 等）, 大概了解区块链的原理，不一定要深入，当能理解越深入开发应用就越顺。<br>如果做区块链基础开发，就需要了解加密算法，P2P通信，共识算法等等。</p>
-<h2 id="投入时间学习-动手实践"><a href="#投入时间学习-动手实践" class="headerlink" title="投入时间学习-动手实践"></a>投入时间学习-动手实践</h2><p>由于区块链涉及的技术很多，可以相对各个技术有一个概念了解，再逐步深入原理。<br>总=(深入)&gt;分=(总结)&gt;总；逐步深入的过程也是解答疑问的过程，需要我们善用Google搜索。<br>如果觉得已经理解一个概念或原理时，可以尝试动手实现它，如在理解挖矿后，可以写代码模拟挖矿过程。实践检验学习，画出脑图，印在脑中，记录下来<br>学习是一个长期的过期，没有捷径，必须得多读书，读代码，写代码。<br></p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/10/29/BlockchainTutorial/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-09-28T11:52:39.000Z">2018-09-28</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Python学习/">Python学习</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    an hour read (About 7075 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/09/28/Numpy使用/">Numpy使用</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="Numpy教程"><a href="#Numpy教程" class="headerlink" title="Numpy教程"></a>Numpy教程</h1><p>Python中用于科学计算的核心库。<code>numpy（Numerical Python）</code>提供了python对<strong>多维数组对象</strong>的支持：<code>ndarray</code>，具有矢量运算能力，快速、节省空间。numpy支持高级大量的维度数组与矩阵运算，此外也针对数组运算提供大量的数学函数库。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/09/28/Numpy使用/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-09-28T11:49:34.000Z">2018-09-28</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Python学习/">Python学习</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 hours read (About 35352 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/09/28/Python入门/">Python入门</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="Python入门"><a href="#Python入门" class="headerlink" title="Python入门"></a>Python入门</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h3><p>一种高级的，动态类型的多范型编程语言，写法近似伪代码，面向对象。哲学：“优雅”、“明确”、“简单”，简单优雅，尽量写容易看明白的代码，尽量写少的代码。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/09/28/Python入门/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-    
 <div class="card card-transparent">
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <div class="pagination-previous">
-            <a class="is-flex-grow has-text-black-ter" href="/page/9/">Previous</a>
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/06/23/扑克牌的顺子/">
+                <span class="level-item">扑克牌的顺子</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        <div class="pagination-next">
-            <a class="is-flex-grow has-text-black-ter" href="/page/11/">Next</a>
-        </div>
-        <ul class="pagination-list is-hidden-mobile">
-            
-            <li><a class="pagination-link has-text-black-ter" href="/">1</a></li>
-            
-            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/page/9/">9</a></li>
-            
-            <li><a class="pagination-link is-current" href="/page/10/">10</a></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/page/11/">11</a></li>
-            
-        </ul>
-    </nav>
+        
+    </div>
 </div>
+
+
 </div>
                 
 
@@ -2264,7 +1778,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Fallenk&#39;s Blog" height="28">
+                    <img src="/images/logo.svg" alt="股票的最大利润" height="28">
                 
                 </a>
                 <p class="is-size-7">
