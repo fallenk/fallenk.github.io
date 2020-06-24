@@ -7,22 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>二叉树的高度以及平衡 - Fallenk&#39;s Blog</title>
+<title>最接近的三数之和 - Fallenk&#39;s Blog</title>
 
 
-    <meta name="description" content="题目https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof">
+    <meta name="description" content="题目https://leetcode-cn.com/problems/3sum-closest/">
 <meta name="keywords" content="LeetCode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="二叉树的高度以及平衡">
-<meta property="og:url" content="https://fallenk.github.io/2020/06/20/二叉树的高度以及平衡/index.html">
+<meta property="og:title" content="最接近的三数之和">
+<meta property="og:url" content="https://fallenk.github.io/2020/06/24/最接近的三数之和/index.html">
 <meta property="og:site_name" content="Fallenk&#39;s Blog">
-<meta property="og:description" content="题目https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof">
+<meta property="og:description" content="题目https://leetcode-cn.com/problems/3sum-closest/">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fallenk.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2020-06-20T13:28:14.350Z">
+<meta property="og:updated_time" content="2020-06-24T12:55:30.617Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="二叉树的高度以及平衡">
-<meta name="twitter:description" content="题目https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof">
+<meta name="twitter:title" content="最接近的三数之和">
+<meta name="twitter:description" content="题目https://leetcode-cn.com/problems/3sum-closest/">
 <meta name="twitter:image" content="https://fallenk.github.io/images/og_image.png">
 
 
@@ -93,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="二叉树的高度以及平衡" height="28">
+                <img src="/images/logo.svg" alt="最接近的三数之和" height="28">
             
             </a>
         </div>
@@ -149,13 +149,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-06-20T13:12:03.000Z">2020-06-20</time>
+                <time class="level-item has-text-grey" datetime="2020-06-24T12:54:31.000Z">2020-06-24</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 346 words)
+                    a few seconds read (About 78 words)
                 </span>
                 
                 
@@ -164,16 +164,14 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                二叉树的高度以及平衡
+                最接近的三数之和
             
         </h1>
         <div class="content">
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof</a></p>
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/3sum-closest/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/3sum-closest/</a></p>
 <a id="more"></a>
-<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 判断当前的树是不是平衡二叉树</span></span><br><span class="line">思路是构造一个获取当前子树的深度的函数 depth(root) （即 面试题<span class="hljs-number">55</span> - I. 二叉树的深度 ），通过比较某子树的左右子树的深度差 abs(depth(root.left) - depth(root.right)) &lt;= <span class="hljs-number">1</span> 是否成立，来判断某子树是否是二叉平衡树。若所有子树都平衡，则此树平衡。</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isBalanced</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (root==<span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">int</span> leftTree = getHeight(root.left);</span><br><span class="line">    <span class="hljs-keyword">int</span> rightTree = getHeight(root.right);</span><br><span class="line">    <span class="hljs-keyword">boolean</span> res = Math.abs(leftTree-rightTree)&lt;=<span class="hljs-number">1</span>?<span class="hljs-keyword">true</span>:<span class="hljs-keyword">false</span>;</span><br><span class="line">    <span class="hljs-keyword">if</span> (res &amp;&amp; isBalanced(root.left) &amp;&amp; isBalanced(root.right)) &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getHeight</span><span class="hljs-params">(TreeNode node)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (node == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-keyword">int</span> left = getHeight(node.left);</span><br><span class="line">    <span class="hljs-keyword">int</span> right = getHeight(node.right);</span><br><span class="line">    <span class="hljs-keyword">return</span> Math.max(left, right) +<span class="hljs-number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>方法一：后序遍历 + 剪枝 （从底至顶）<br>此方法为本题的最优解法，但剪枝的方法不易第一时间想到。</p>
-<p>思路是对二叉树做后序遍历，从底至顶返回子树深度，若判定某子树不是平衡树则 “剪枝” ，直接向上返回。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 判断左右子树 后序遍历</span><br><span class="line">public boolean isBalanced2(TreeNode root) &#123;</span><br><span class="line">    return recur(root)  != -1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 后序遍历 计算左右子树高度差 &gt;1 return -1;</span><br><span class="line">private int recur(TreeNode root) &#123;</span><br><span class="line">    if (root == null) return 0;</span><br><span class="line"></span><br><span class="line">    int left = recur(root.left);</span><br><span class="line">    if (left == -1) return -1;</span><br><span class="line"></span><br><span class="line">    int right = recur(root.right);</span><br><span class="line">    if (right == -1) return -1;</span><br><span class="line"></span><br><span class="line">    return Math.abs(left-right)&lt;2?Math.max(left, right)+1 : -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">threeSumClosest</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (nums==<span class="hljs-keyword">null</span> || nums.length &lt; <span class="hljs-number">3</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">return</span> Integer.MAX_VALUE;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="hljs-keyword">int</span> minRes = Integer.MAX_VALUE;</span><br><span class="line">        <span class="hljs-keyword">int</span> dis = Integer.MAX_VALUE;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.length-<span class="hljs-number">2</span>; i++) &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> twoSum = target - nums[i];</span><br><span class="line">            <span class="hljs-keyword">int</span> j = i+<span class="hljs-number">1</span>, k = nums.length-<span class="hljs-number">1</span>;</span><br><span class="line">            <span class="hljs-keyword">while</span> (j&lt;k) &#123;</span><br><span class="line">                </span><br><span class="line">                <span class="hljs-keyword">if</span> (Math.abs(nums[i] + nums[j] + nums[k] - target) &lt; dis) &#123;</span><br><span class="line">                    dis = Math.abs(nums[i] + nums[j] + nums[k] - target);</span><br><span class="line">                    minRes = nums[i] + nums[j] + nums[k];</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="hljs-keyword">if</span> (nums[j] + nums[k] &lt; twoSum) &#123;</span><br><span class="line">                    j++; </span><br><span class="line">                    </span><br><span class="line">                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[j] + nums[k] &gt; twoSum) &#123;</span><br><span class="line">                    k--;</span><br><span class="line">                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[j] + nums[k] == twoSum) &#123;</span><br><span class="line">                    <span class="hljs-keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="hljs-keyword">if</span> (j &lt; k) &#123;</span><br><span class="line">                <span class="hljs-keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> minRes;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -197,17 +195,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/06/20/寻找两个只出现一次的数字/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">寻找两个只出现一次的数字</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/06/20/二分查找法应用/">
-                <span class="level-item">二分查找法应用</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/06/24/1到n的和/">
+                <span class="level-item">1到n的和</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -1787,7 +1778,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="二叉树的高度以及平衡" height="28">
+                    <img src="/images/logo.svg" alt="最接近的三数之和" height="28">
                 
                 </a>
                 <p class="is-size-7">
