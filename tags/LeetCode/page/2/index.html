@@ -159,6 +159,49 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-06-19T12:42:09.000Z">2020-06-19</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 197 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/06/19/在排序数组中查找数字-I/">在排序数组中查找数字 I</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/</a></p>
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (nums==<span class="hljs-keyword">null</span> || nums.length==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-comment">// 搜索右边界</span></span><br><span class="line">        <span class="hljs-keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>, j= len-<span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">while</span>(i&lt;=j) &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> mid = i+(j-i)/<span class="hljs-number">2</span>;</span><br><span class="line">            <span class="hljs-keyword">if</span>(nums[mid]&lt;target) &#123;</span><br><span class="line">                i = mid+<span class="hljs-number">1</span>;</span><br><span class="line">            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[mid]&gt;target)&#123;</span><br><span class="line">                j = mid-<span class="hljs-number">1</span>;</span><br><span class="line">            &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">                i= mid+<span class="hljs-number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">int</span> right = i;</span><br><span class="line">        <span class="hljs-keyword">if</span>(j &gt;= <span class="hljs-number">0</span> &amp;&amp; nums[j] != target) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        i=<span class="hljs-number">0</span>;</span><br><span class="line">        j = right;</span><br><span class="line">        <span class="hljs-keyword">while</span>(i&lt;=j) &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> mid = i+(j-i)/<span class="hljs-number">2</span>;</span><br><span class="line">            <span class="hljs-keyword">if</span>(nums[mid] &lt; target) &#123;</span><br><span class="line">                i = mid+<span class="hljs-number">1</span>;</span><br><span class="line">            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[mid] &gt; target) &#123;</span><br><span class="line">                j = mid-<span class="hljs-number">1</span>;</span><br><span class="line">            &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">                j = mid-<span class="hljs-number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">int</span> left = j;</span><br><span class="line">        <span class="hljs-keyword">return</span> right-left-<span class="hljs-number">1</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">由于数组 nums 中元素都为整数，因此可以分别二分查找 target 和 target - <span class="hljs-number">1</span>的右边界，将两结果相减并返回即可。</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> helper(nums, target) - helper(nums, target - <span class="hljs-number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">helper</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> tar)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j = nums.length - <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">while</span>(i &lt;= j) &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> m = (i + j) / <span class="hljs-number">2</span>;</span><br><span class="line">            <span class="hljs-keyword">if</span>(nums[m] &lt;= tar) i = m + <span class="hljs-number">1</span>;</span><br><span class="line">            <span class="hljs-keyword">else</span> j = m - <span class="hljs-number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-06-19T09:49:07.000Z">2020-06-19</time>
                 
                 
@@ -585,54 +628,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-06-17T06:57:32.000Z">2020-06-17</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a few seconds read (About 77 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/06/17/二叉搜索树与双向链表/">二叉搜索树与双向链表</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof</a></p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/06/17/二叉搜索树与双向链表/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -702,7 +697,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        114
+                        115
                     </p>
                 </div>
             </div>
@@ -1005,6 +1000,25 @@
         
         <article class="media">
             
+            <a href="/2020/07/06/LC63-uniquePathsWithObstacles/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="LC63_uniquePathsWithObstacles">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-06T06:50:29.000Z">2020-07-06</time></div>
+                    <a href="/2020/07/06/LC63-uniquePathsWithObstacles/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LC63_uniquePathsWithObstacles</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/07/04/LC32-longestValidParentheses/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LC32_longestValidParentheses">
@@ -1079,25 +1093,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/06/24/股票的最大利润/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="股票的最大利润">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-23T17:53:36.000Z">2020-06-24</time></div>
-                    <a href="/2020/06/24/股票的最大利润/" class="title has-link-black-ter is-size-6 has-text-weight-normal">股票的最大利润</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1116,7 +1111,7 @@
                     <span class="level-item">July 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1351,7 +1346,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">55</span>
+                        <span class="tag is-grey">56</span>
                     </a>
                 </div>
                 
@@ -1632,6 +1627,25 @@
         
         <article class="media">
             
+            <a href="/2020/07/06/LC63-uniquePathsWithObstacles/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="LC63_uniquePathsWithObstacles">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-06T06:50:29.000Z">2020-07-06</time></div>
+                    <a href="/2020/07/06/LC63-uniquePathsWithObstacles/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LC63_uniquePathsWithObstacles</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/07/04/LC32-longestValidParentheses/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="LC32_longestValidParentheses">
@@ -1706,25 +1720,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/06/24/股票的最大利润/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="股票的最大利润">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-23T17:53:36.000Z">2020-06-24</time></div>
-                    <a href="/2020/06/24/股票的最大利润/" class="title has-link-black-ter is-size-6 has-text-weight-normal">股票的最大利润</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1743,7 +1738,7 @@
                     <span class="level-item">July 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1978,7 +1973,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">55</span>
+                        <span class="tag is-grey">56</span>
                     </a>
                 </div>
                 
